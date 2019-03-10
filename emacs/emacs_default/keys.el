@@ -105,7 +105,7 @@
 "C-c L w"   'my/new-theme
 
 ;;;; EDITING ;;;;
-"C-c K" 'last-macro
+"C-c K" 'avy-goto-char-timer
 "C-S-j" 'my/move-line-down
 "C-S-k" 'my/move-line-up
 "C-c i a" 'align-regexp

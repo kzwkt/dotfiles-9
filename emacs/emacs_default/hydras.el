@@ -613,7 +613,7 @@
        ^Search^
        -------------------------------------------------
        _C-s_: grep/swiper  _u_: substitute  _j_: michaelis
-       _s_:   evil         _p_: processes   _l_: dic informal
+       _s_:   evil         _p_: processes   _L_: dic informal
        _e_:   swiper       _l_: google      _m_: urban dic
        _c_:   occur        _g_: grep
        _o_:   outline      _h_: translate
@@ -636,7 +636,7 @@
   ("i" wordnut-search)
   ("I" wordnut-lookup-current-word)
   ("j" engine/search-michaelis)
-  ("l" engine/search-dic-informal)
+  ("L" engine/search-dic-informal)
   ("m" engine/search-urban-dictionary))
 
 (defhydra hydra-org-clock (:color blue :hint nil :exit nil :foreign-keys nil)

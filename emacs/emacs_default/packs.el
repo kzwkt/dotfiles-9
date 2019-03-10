@@ -575,8 +575,10 @@
   (general-nvmap
     "F" 'my/avy-char-2-selecting-above
     "f" 'my/avy-char-2-selecting
-    "gf" 'evil-find-char
-    "gF" 'evil-find-char-backward)
+    "gf" 'avy-goto-char-2-below
+    "gF" 'avy-goto-char-2-above
+    "gD" 'evil-find-char-backward
+    "gd" 'evil-find-char)
 
   (setq avy-background t)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l
@@ -1364,7 +1366,6 @@
     (flyspell-mode 1)
     (auto-capitalize-mode 1)
     (tab-jump-out-mode 1)
-    (company-mode 1)
     (hl-sentence-mode 1)
     (electric-operator-mode 1)
     (wc-mode 1)
