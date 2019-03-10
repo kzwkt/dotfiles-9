@@ -386,6 +386,14 @@
     "C-M-i" 'evil-numbers/inc-at-pt
     "C-M-o" 'evil-numbers/dec-at-pt))
 
+(use-package pabbrev
+  :defer t
+  :ensure t
+  :config
+  (general-define-key
+   :keymaps 'pabbrev-mode-map
+   "C-b" 'pabbrev-expand-maybe))
+
 (use-package lorem-ipsum
 :defer t
 :ensure t)
@@ -557,7 +565,6 @@
   :defer 2
   :ensure t
   :config
-
   (defun my/avy-char-2-selecting-below ()
     (interactive)
     (evil-visual-state)
@@ -573,10 +580,10 @@
   (setq avy-single-candidate-jump t)
 
   (general-nvmap
-    "F" 'my/avy-char-2-selecting-above
-    "f" 'my/avy-char-2-selecting
-    "gf" 'avy-goto-char-2-below
-    "gF" 'avy-goto-char-2-above
+    "C-." 'my/avy-char-2-selecting-above
+    "C-," 'my/avy-char-2-selecting-below
+    "f" 'avy-goto-char-2-below
+    "F" 'avy-goto-char-2-above
     "gD" 'evil-find-char-backward
     "gd" 'evil-find-char)
 
@@ -912,8 +919,7 @@
    "M-;" 'hydra-yasnippet/body
    "C-s" 'hydra-search/body
    "<f1>" 'hydra-help/body
-   "C-M-h" 'hydra-help/body
-   "C-," 'hydra-find-emacs-files/body))
+   "C-M-h" 'hydra-help/body)
 
 (use-package ivy-hydra
 :after hydra
@@ -923,6 +929,10 @@
   :load-path "~/.emacs.d/lisp/"
   :config
   (targets-setup t))
+
+(use-package clipmon
+  :defer t
+  :ensure t)
 
 (use-package disable-mouse
   :ensure t
@@ -2333,8 +2343,7 @@
     :keymaps 'company-mode-map
     "C-ç" 'company-complete
     "M-/" 'hippie-expand)
-  (global-company-mode 1))
-
+  ;; (global-company-mode 1))
 
 (use-package company-shell
   :after company

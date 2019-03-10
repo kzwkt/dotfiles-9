@@ -464,6 +464,16 @@ Ver: https://github.com/org2blog/org2blog/wiki
     "C-M-o" 'evil-numbers/dec-at-pt))
 #+END_SRC
 * Text
+** pabbrev
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package pabbrev
+  :defer t
+  :ensure t
+  :config
+  (general-define-key
+   :keymaps 'pabbrev-mode-map
+   "C-b" 'pabbrev-expand-maybe))
+#+END_SRC
 ** lorem ipsum
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package lorem-ipsum
@@ -682,7 +692,6 @@ Maybe I need it in the future.
   :defer 2
   :ensure t
   :config
-
   (defun my/avy-char-2-selecting-below ()
     (interactive)
     (evil-visual-state)
@@ -698,10 +707,10 @@ Maybe I need it in the future.
   (setq avy-single-candidate-jump t)
 
   (general-nvmap
-    "F" 'my/avy-char-2-selecting-above
-    "f" 'my/avy-char-2-selecting
-    "gf" 'avy-goto-char-2-below
-    "gF" 'avy-goto-char-2-above
+    "C-." 'my/avy-char-2-selecting-above
+    "C-," 'my/avy-char-2-selecting-below
+    "f" 'avy-goto-char-2-below
+    "F" 'avy-goto-char-2-above
     "gD" 'evil-find-char-backward
     "gd" 'evil-find-char)
 
@@ -1065,8 +1074,7 @@ Maybe I need it in the future.
    "M-;" 'hydra-yasnippet/body
    "C-s" 'hydra-search/body
    "<f1>" 'hydra-help/body
-   "C-M-h" 'hydra-help/body
-   "C-," 'hydra-find-emacs-files/body))
+   "C-M-h" 'hydra-help/body)
 #+END_SRC
 **** ivy-hydra
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -1082,6 +1090,12 @@ Maybe I need it in the future.
   (targets-setup t))
 #+END_SRC
 * Utilities
+** clipmon
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package clipmon
+  :defer t
+  :ensure t)
+#+END_SRC
 ** disable mouse
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package disable-mouse
@@ -2691,8 +2705,7 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
     :keymaps 'company-mode-map
     "C-ç" 'company-complete
     "M-/" 'hippie-expand)
-  (global-company-mode 1))
-
+  ;; (global-company-mode 1))
 #+END_SRC
 *** company shell
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el

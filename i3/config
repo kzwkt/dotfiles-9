@@ -66,8 +66,7 @@ bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
 # bindsym Mod4+F1 exec ~/scripts/keyboard/init_keys.sh; exec notify-send --expire-time=1 "init keys on"
 # bindsym $mod+Shift+Menu exec ~/scripts/keyboard/reset_keys.sh; exec notify-send "init keys off"
 bindsym Mod4+F2 exec "xdotool key Caps_Lock"; mode default
-
-bindsym $mod+Return exec st -e tmux attach
+# bindsym $mod+Return exec st -e tmux attach
 bindsym $mod+q kill
 bindsym $mod+Shift+F5 exit
 bindsym $mod+Shift+w reload
@@ -123,7 +122,7 @@ bindsym $mod+Pause mode "$mode_system"
 # bindsym XF86MonBrightnessDown mode "$launch"; exec notify-send --expire-time=20 "launch mode"
 
 
-bindsym F10 mode "$launch"
+bindsym Menu mode "$launch"
 
 mode "$launch" {
 
@@ -135,7 +134,7 @@ mode "$launch" {
     bindsym p exec pavucontrol; mode default
     bindsym t exec thunar; mode default
     bindsym r exec xfce4-taskmanager; mode default
-    bindsym F10 mode default; exec "~/scripts/i3_scripts/my_rofy_run"
+    bindsym Menu mode default; exec "~/scripts/i3_scripts/my_rofy_run"
 
     bindsym z exec google-chrome-stable; mode default
     bindsym Shift+C exec "xdotool key Caps_Lock"; mode default
@@ -309,12 +308,12 @@ for_window [class="keepassxc"] move to position 650 0
 for_window [title="term-up"] border none
 for_window [title="term-up"] floating enable sticky enable
 for_window [title="term-up"] move scratchpad
-for_window [title="term-up"] resize set 1367 450; move to position 0 0
+for_window [title="term-up"] resize set 1920 450; move to position 0 0
 
 for_window [title="term-ranger"] border none
 for_window [title="term-ranger"] floating enable sticky enable
 for_window [title="term-ranger"] move scratchpad
-for_window [title="term-ranger"] resize set 1367 450; move to position 0 0
+for_window [title="term-ranger"] resize set 1920 450; move to position 0 0
 
 for_window [title="term-music"] border none
 for_window [title="term-music"] floating enable sti

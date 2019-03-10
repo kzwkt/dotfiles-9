@@ -80,6 +80,7 @@ alias push='clear && git push && ls --color'
 # alias t='~/maps/tldr++/tldr'
 # Markdown to Org
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
+alias p='clear && python3'
 alias gig='clear && nvim .gitignore'
 alias fl='flatpak'
 alias fr='flatpak run'
