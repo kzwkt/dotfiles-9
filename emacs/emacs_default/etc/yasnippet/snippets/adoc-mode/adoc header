@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: adoc header
+# key: head
+# --
+:toc:
+:sectnums:
+:sectnumlevels: 1

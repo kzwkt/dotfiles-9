@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: orgdefinition 
+# key: -::
+# --
+
+- $1 :: $0

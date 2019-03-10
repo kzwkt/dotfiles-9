@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: void
+# key: void
+# --
+#include <stdio.h>
+
+int main(void)
+{
+${1:$$(yas-choose-value '("float" "double" "int" "char"))} $2;
+
+$0;
+
+return 0;
+}

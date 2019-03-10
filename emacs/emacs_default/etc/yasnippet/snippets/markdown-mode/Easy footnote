@@ -1,0 +1,4 @@
+# key: foot
+# name: Easy footnote
+# --
+[efn_note]${1:Footnote content}[/efn_note]

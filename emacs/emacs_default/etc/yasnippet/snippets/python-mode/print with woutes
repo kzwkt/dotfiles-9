@@ -1,0 +1,4 @@
+# key: pl
+# name: print with quotes
+# --
+print("$0")

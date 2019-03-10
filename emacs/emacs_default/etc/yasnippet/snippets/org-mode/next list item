@@ -1,0 +1,5 @@
+# key: trr
+# name: next list item
+# --
+${
+- $1 :: $2}$0

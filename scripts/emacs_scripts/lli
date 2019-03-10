@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+pkill -fi "^emacs --daemon=emacs-mini$" &
+~/maps/emacs/emacs_mini/bin/emacs --daemon=emacs-mini &&
+~/maps/emacs/emacs_mini/bin/emacsclient --socket-name=emacs-mini -nw --alternate-editor=""

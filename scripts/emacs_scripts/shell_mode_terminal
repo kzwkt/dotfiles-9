@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+emacs --daemon=shell-mode-terminal &&
+emacsclient --socket-name=shell-mode-terminal --no-wait --create-frame --frame-parameters='(quote (name . "shell-mode-terminal "))' --display "$DISPLAY" --eval "(my/shell-mode-server)"

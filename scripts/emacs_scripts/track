@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git add -A ~/.emacs.d/ || true
+git add -A ~/org/      || true

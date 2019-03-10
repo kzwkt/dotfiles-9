@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: find file function 
+# key: find
+# --
+(defun find-${1:file} ()
+(interactive)
+(find-file "${2:file-path}"))

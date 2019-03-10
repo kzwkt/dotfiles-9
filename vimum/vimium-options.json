@@ -1,0 +1,38 @@
+{
+  "settingsVersion": "1.64",
+  "exclusionRules": [
+    {
+      "pattern": "https://www.rememberthemilk.com/app/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https://www.netflix.com/watch/*",
+      "passKeys": "f"
+    },
+    {
+      "pattern": "https://www.youtube.com",
+      "passKeys": "f"
+    },
+    {
+      "pattern": "*www.memrise.com/course*",
+      "passKeys": ""
+    }
+  ],
+  "filterLinkHints": false,
+  "waitForEnterForFilteredHints": true,
+  "hideHud": false,
+  "keyMappings": "# {{{ g-motions\n\nscrollFullPageUp\n\nmap gf createTab https://www.facebook.com/\nmap gt createTab https://tildes.net/user/mrbig\nmap gl createTab https://gitlab.com/mrbig/org\nmap gr createTab https://old.reddit.com/user/takethecannoli4/?sort=hot\nmap gb createTab https://old.reddit.com/r/bash/  http://mywiki.wooledge.org/BashGuide\nmap gh createTab https://github.com/mrbig033/dotfiles/tree/master/emacs/emacs_default\nmap gi createTab https://github.com/Malabarba/smart-mode-line/issues/235\nmap gv createTab chrome-extension://dbepggeogbaibhgnhhndojpepiihcmeb/pages/options.html\nmap ga createTab https://tildes.net/user/mrbig https://old.reddit.com/user/takethecannoli4/?sort=hot\nmap ge createTab chrome://extensions/\nmap gk createTab chrome://extensions/shortcuts\n\n# }}}\n# {{{ in-motions\n\nmap a scrollPageDown\nmap d scrollPageUp\nmap w scrollUp\nmap s scrollDown\nmap D scrollToTop\nmap A scrollToBottom\n\n# }}}\n# {{{ buffers\n\nmap q goBack\nmap 3 nextTab\nmap E showHelp\nmap e goForward\nmap 2 createTab\nmap i focusInput\nmap 1 previousTab\nmap < moveTabLeft\nmap > moveTabRight\nmap <c-a-n> nextTab\nmap <a-s> visitPreviousTab\n\nmap S moveTabToNewWindow\nmap ' Marks.activateGotoMode\nmap t Vomnibar.activateInNewTab\nmap H Vomnibar.activate\nmap c LinkHints.activateModeWithQueue\nmap gc LinkHints.activateModeToCopyLinkUrl\nmap b LinkHints.activateModeToOpenInNewTab\nmap yd LinkHints.activateModeToDownloadLink\n\n# }}}",
+  "linkHintCharacters": "qwertyasdfghzxcvbn",
+  "linkHintNumbers": "0123456789",
+  "newTabUrl": "about:newtab",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
+  "regexFindMode": false,
+  "ignoreKeyboardLayout": false,
+  "scrollStepSize": 300,
+  "smoothScroll": true,
+  "grabBackFocus": true,
+  "searchEngines": "# {{{ search\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\np: https://pt.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nh: https://github.com/search?q=%s Github\nr: https://old.reddit.com/search?q=%s Reddit\na: https://wiki.archlinux.org/index.php?search=%s Arch Wiki\nm: https://melpa.org/#/?q=%s&sort=downloads&asc=false Melpa\ny: https://www.youtube.com/results?search_query=%s Youtube\ni: https://www.imdb.com/find?s=all&q=%s IMDB\nl: https://www.libgen.io/search.php?req=%s libgen\nd: https://www.thefreedictionary.com/%s Dictionary\nz: https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=%s Amazon\n2: https://torrentz2.eu/search?f=%s Torrentz\nt: https://thepiratebay.org/search/%s Pirate Bay\n# }}}",
+  "searchUrl": "https://www.google.com/search?q=",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+}

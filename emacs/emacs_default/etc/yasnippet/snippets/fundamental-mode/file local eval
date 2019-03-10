@@ -1,0 +1,4 @@
+# key: eval
+# name: file local eval
+# --
+${1:$$(yas-choose-value '("# " ";; "))}-*- eval: (${2:name}-mode 1) -*-

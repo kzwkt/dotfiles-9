@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: archive option same file
+# key: archive 
+# --
+#+ARCHIVE: ::* Archived

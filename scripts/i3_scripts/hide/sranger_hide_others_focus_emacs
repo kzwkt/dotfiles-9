@@ -1,0 +1,5 @@
+#!/bin/bash
+
+i3-msg [class=Hexchat] move scratchpad
+i3-msg [class=term-up] move scratchpad
+i3-msg [class=SpeedCrunch] move scratchpad

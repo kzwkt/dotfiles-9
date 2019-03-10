@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+file="$*"
+clear && gcc "$file" && ./a.out

@@ -1,0 +1,79 @@
+# {{{ settings
+
+set -g mouse on
+set escape-time 0
+set -g base-index 1
+set -g focus-events
+set -g history-limit 3000
+setw -g aggressive-resize on
+set-window-option -g pane-base-index 1
+set -g default-terminal "tmux-256color"
+
+# }}}
+# {{{ copy
+
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection
+bind-key -T copy-mode-vi 'r' send-keys -X rectangle-toggle
+bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+
+# }}}
+# {{{ movement
+
+unbind C-b
+set -g prefix ´
+bind-key ´ send-prefix
+
+bind-key -n M-q switch-client -p
+bind-key -n M-w switch-client -n
+
+bind-key -n S-right switch-client -n
+bind-key -n S-left switch-client -p
+
+bind-key -n S-Pageup copy-mode -u
+bind-key -n F8 copy-mode -u
+
+bind-key c clear-history
+bind-key f switch-client -t 00_k
+bind-key 0 switch-client -t 00_k
+bind-key 1 switch-client -t 01_k
+bind-key 2 switch-client -t 02_k
+bind-key 3 switch-client -t 03_k
+bind-key 4 switch-client -t 04_k
+bind-key 5 switch-client -t 05_k
+bind-key 6 switch-client -t 06_k
+bind-key 7 switch-client -t 07_k
+bind-key 8 switch-client -t 08_k
+bind-key 9 switch-client -t 09_k
+bind-key - switch-client -t 10_k
+
+bind-key v split-window -h
+bind-key s split-window -v
+
+# }}}
+# {{{ status
+
+set -g status-bg black
+set -g status-fg white
+set -g status-right '#(date +%%a,\ %%H:%%M) '
+bind -n M-F11 set -g status
+
+# }}}
+# {{{ plugins
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+run '~/.tmux/plugins/tpm/tpm'
+run-shell ~/.tmux/tmux-picker/tmux-picker.tmux
+
+# }}} }}}
+# {{{ source
+
+unbind y
+bind y source-file ~/.tmux.conf ; display ".tmux.conf reloaded!"
+
+# }}}

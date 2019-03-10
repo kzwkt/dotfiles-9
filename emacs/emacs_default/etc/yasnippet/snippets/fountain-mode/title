@@ -1,0 +1,10 @@
+# key: title
+# name: title
+# --
+Title: _**$1**_
+Credit: por
+Author: Davi Ramos
+Draft date: $2
+Contact: daviramos@protonmail.com
+
+$0

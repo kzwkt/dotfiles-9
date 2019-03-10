@@ -1,0 +1,100 @@
+search time
+search functions
+search init
+search el
+search *.elc
+touch a.c
+x
+search nvim
+md Self_Help
+touch blog_posts.org
+md evil_keys.el
+touch evil_keys.el
+search ranger
+md ranger
+touch ranger_find_
+touch ranger_find_functions.el
+md info
+search projectile
+md projectile
+open_with
+rename keyfreq_upper.el
+search org
+search which
+touch my_rofy_run
+touch archive.org
+cd 
+open_with kjk f
+rename Books
+md default-workspace
+md java_hydras.org
+search java_hydras.org
+search hydra
+touch java_hydras.org
+md .cache
+/
+search java
+md Mooc
+rename MOOC.fi
+touch mooc_notes.org
+search mooc
+md Netbeans_MOOC
+md tmcbeans
+md mooc
+rename Personal
+rename Private
+md Public
+touch social_public.org
+search packs
+md Watchmen_Ultimate
+md image
+search dream
+search 
+search best
+md last_question
+search complete
+md Masterchef
+md 01
+md Ufba
+md terapeuta_virtual
+md tech
+md lit
+rename cult
+rename planning
+rename publ
+rename ref
+md Blogging
+rename 03_ref
+rename plan
+touch terapeuta_virtual.org
+
+md Style
+rename Guides
+open_with  f
+search well
+open_with o f
+touch o_psicologo.org
+md Philip_K_Dick
+open_with 0i f
+open_with calibre f
+rename ufba_present.org
+touch 
+rename ufba_notes.org
+rename ufba_present_notes.org
+rename ufba_present_notes.org_
+rename 
+rename .ufba_present_notes.org.b
+open_with 0 f
+open_with 1 f
+md Repo
+rename Repo
+rename .apresentacao.b
+touch j
+rename Present_Repo
+rename 7_Anos_de_RNP_5_pages.pdf
+rename Identificao_Adaptativa_14_pages.pdf
+rename Catalogo_de_URLs_Maliciosas+16_pages.pdf
+rename Catalogo_de_URLs_Maliciosas_cropped_16_pages.pdf
+touch .gitignore
+open_with 
+open_with nvim

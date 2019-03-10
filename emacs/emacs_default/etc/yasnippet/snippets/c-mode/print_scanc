@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: print_scanc
+# key: prsc
+# --
+
+  printf("$1"$2);
+  scanf("%$3", &$4);$0

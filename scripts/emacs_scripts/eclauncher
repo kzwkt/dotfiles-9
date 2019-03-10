@@ -1,0 +1,17 @@
+#!/bin/bash
+
+~/scripts/i3_scripts/hide/hide_all
+emacsclient --socket-name=gui-emacs -n -e "(if (> (length (frame-list)) 1) 't)" | grep t
+if [ "$?" = "1" ]; then
+    if [ "$DISPLAY" = "" ]; then
+        emacsclient --socket-name=gui-emacs -c -a "" "$@"
+    else
+        emacsclient --socket-name=gui-emacs -c -n -a "" "$@"
+    fi
+else
+    if [ "$DISPLAY" = "" ]; then
+        emacsclient--socket-name=gui-emacs -a "" "$@"
+    else
+        emacsclient --socket-name=gui-emacs -n -a "" "$@"
+    fi
+fi

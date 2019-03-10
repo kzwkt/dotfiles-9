@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: general unbind
+# key: gunb
+# --
+(general-unbind '${1:example}-mode-map
+  :with '${2:replace with}
+  [remap ${3:to be replaced}])

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: defun simple
+# key: defs
+# --
+(defun my/$1 ()
+(interactive)
+($0

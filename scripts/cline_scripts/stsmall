@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+st -f 'Input Mono:size=15' & ~/scripts/i3_scripts/hide/hide_all

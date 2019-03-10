@@ -1,0 +1,55 @@
+* Custom key mappings
+** tab motions
+map ge createTab chrome://extensions/
+map gf createTab https://www.facebook.com/
+map gl createTab https://gitlab.com/mrbig/org
+map gt createTab https://tildes.net/user/mrbig
+map gk createTab chrome://extensions/shortcuts
+map gr createTab https://old.reddit.com/user/takethecannoli4/?sort=hot
+map gi createTab https://github.com/Malabarba/smart-mode-line/issues/235
+map gb createTab https://old.reddit.com/r/bash/  http://mywiki.wooledge.org/BashGuide
+map gh createTab https://github.com/mrbig033/dotfiles/tree/master/emacs/emacs_default
+map gv createTab chrome-extension://dbepggeogbaibhgnhhndojpepiihcmeb/pages/options.html
+map ga createTab https://tildes.net/user/mrbig https://old.reddit.com/user/takethecannoli4/?sort=hot
+** in-motions
+map w scrollUp
+map s scrollDown
+map D scrollToTop
+map d scrollPageUp
+map a scrollPageDown
+map A scrollToBottom
+** buffers
+map q goBack
+map 3 nextTab
+map E showHelp
+map e goForward
+map 2 createTab
+map i focusInput
+map 1 previousTab
+map < moveTabLeft
+map > moveTabRight
+map <c-a-n> nextTab
+map <a-s> visitPreviousTab
+map H Vomnibar.activate
+map S moveTabToNewWindow
+map ' Marks.activateGotoMode
+map t Vomnibar.activateInNewTab
+map c LinkHints.activateModeWithQueue
+map gc LinkHints.activateModeToCopyLinkUrl
+map b LinkHints.activateModeToOpenInNewTab
+map yd LinkHints.activateModeToDownloadLink
+* Custom search engines
+h: https://github.com/search?q=%s Github
+g: https://www.google.com/search?q=%s Google
+r: https://old.reddit.com/search?q=%s Reddit
+i: https://www.imdb.com/find?s=all&q=%s IMDB
+2: https://torrentz2.eu/search?f=%s Torrentz
+t: https://thepiratebay.org/search/%s Pirate Bay
+l: https://www.libgen.io/search.php?req=%s libgen
+d: https://www.thefreedictionary.com/%s Dictionary
+y: https://www.youtube.com/results?search_query=%s Youtube
+a: https://wiki.archlinux.org/index.php?search=%s Arch Wiki
+m: https://melpa.org/#/?q=%s&sort=downloads&asc=false Melpa
+p: https://pt.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+z: https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=%s Amazon

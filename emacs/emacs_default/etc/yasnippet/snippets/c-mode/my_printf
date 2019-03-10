@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: My new printf
+# key: p
+# --
+printf("${1:string}"$2);

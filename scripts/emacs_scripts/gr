@@ -1,0 +1,3 @@
+#!/bin/bash
+clear
+ps ax | grep -v grep | egrep -i 'emacs'

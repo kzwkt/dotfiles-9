@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+message="$*"
+clear
+echo "adding files" &&
+git add -A &&
+echo "commiting" &&
+git commit -am "$message" &&
+clear &&
+echo "pushing" &&
+git push

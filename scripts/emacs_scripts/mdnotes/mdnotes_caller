@@ -1,0 +1,8 @@
+#!/bin/bash
+
+emacsclient --socket-name=gui-emacs -n -e "(if (> (length (frame-list)) 1) 't)" | grep t
+if [ "$?" = "1" ]; then
+        ~/scripts/emacs_scripts/mdnotes/create_md_frame
+else
+        ~/scripts/emacs_scripts/mdnotes/use_md_frame
+fi

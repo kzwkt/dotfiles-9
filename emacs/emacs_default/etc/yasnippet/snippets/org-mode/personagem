@@ -1,0 +1,19 @@
+# key: perso
+# name: personagem
+# --
+*** ${1:Nome} (${2:idade})
+**** Aparência
+
+${3:Pequeno e magrelo}.
+
+**** Personalidade
+
+${4:Esperto, sarcástico e perverso}.
+
+**** Biografia
+
+${5:Fatos pregressos de sua vida}.
+
+**** Extras
+
+${6:Curiosidades e miscelânea}.

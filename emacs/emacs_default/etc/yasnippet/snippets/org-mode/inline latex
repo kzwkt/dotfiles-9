@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: inline latex
+# key: lla
+# --
+\[$1\]$0

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo ln -rsf "$1" ~/.emacs.d

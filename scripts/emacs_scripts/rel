@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pkill -fi "^emacs --daemon=gui-emacs$" &
+~/scripts/emacs_scripts/live

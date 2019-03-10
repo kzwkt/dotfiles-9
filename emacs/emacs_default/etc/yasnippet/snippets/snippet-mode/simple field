@@ -1,0 +1,4 @@
+# key: ff
+# name: simple field
+# --
+\$\{1:${1:value}}$0

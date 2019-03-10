@@ -1,0 +1,9 @@
+# key: vdd
+# name: Int Main Void
+# --
+#include <stdio.h>
+
+int main (void)
+{
+	$0
+}

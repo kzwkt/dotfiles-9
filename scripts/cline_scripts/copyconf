@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+dir="$*"
+mv -f ~/.config/"$dir" /home/dotfiles/backup/ &&
+ln -rsf "$dir" ~/.config/

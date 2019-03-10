@@ -1,0 +1,72 @@
+! {{{ swap contrl with alt
+
+! clear control
+! clear mod1
+! keycode 37 = Alt_L Meta_L
+! keycode 37 = F2
+
+! keycode 64 = Control_L
+
+! keycode 64 =
+! add control = Control_L Control_R
+! add mod1 = Alt_L Meta_L
+
+! }}}
+! {{{ caps to control
+
+clear lock
+clear control
+keycode 66 = Control_L
+add control = Control_L Control_R
+
+! }}}
+! escape to caps
+! https://askubuntu.com/questions/363346/how-to-permanently-switch-caps-lock-and-esc
+! keycode 9 = Caps_Lock NoSymbol Caps_Lock
+! keycode 66 = Escape NoSymbol Escape
+! {{{ tab to alt
+keycode 64 = Tab
+keycode 23 = Alt_L
+!}}}
+! {{{ f8 to delete
+
+! keycode 119 = F8
+
+! {{{ misc
+
+! F10 to menu-key
+! keycode 135 = F10
+
+! F11 to win-right
+! keycode 134 = F11
+
+! Pause9 TO Shift_R
+! keycode 62 = Pause
+
+! Pause to AltGr
+keycode 108 = F9
+
+! F10 to SPC
+! keycode 65 = F10
+
+! SPC to F10
+! keycode 76 = space
+
+! Menu to AltGr
+! keycode 108 = Menu
+
+
+! Pause to Left_R
+! keycode 50  = Pause
+
+!
+! F7 to  scroll lock (disabled)
+! keycode 78 =
+
+! }}}
+!}}}
+! {{{ shift lock
+! http://xahlee.info/linux/linux_shift_lock_key.html
+! make the left right  key do shift lock
+! keycode 62 = Shift_Lock
+!

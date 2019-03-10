@@ -1,0 +1,9 @@
+# key: case
+# name: case
+# --
+case $${1:variable} in
+    ${2:pat*}) ${3:command} ;;
+    ${4:pat*}) ${5:command} ;;
+    ${6:pat*}) ${7:command} ;;
+    $0)
+esac

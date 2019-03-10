@@ -1,0 +1,4 @@
+# key: refp
+# name: Referência: artigo ou matéria de jornal
+# --
+${1:SOBRENOME, N.O.M.E.$(upcase yas-text)}. ${2:Título do Artigo}. ${3:*Título da publicação*}, ${4:Local}, ${5:11 Nov. 1997}. Disponível em: <${6:http://}>. Acesso em: 28 dez. 2018.

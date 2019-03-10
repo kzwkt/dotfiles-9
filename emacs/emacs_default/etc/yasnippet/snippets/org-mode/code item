@@ -1,0 +1,4 @@
+# key: ic
+# name: code item
+# --
+- ~$1~ :: ${2:descripition}$0

@@ -1,0 +1,6 @@
+# key: genunb
+# name: general full unbind
+# --
+(general-unbind '${1:mode}-mode-map
+  :with '${2:replace with}
+  [remap ${3:to be replaced}])

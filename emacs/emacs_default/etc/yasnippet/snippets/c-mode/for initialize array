@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: for initialize array
+# key: far
+# --
+for (i = 0; i < ${1:array}; ++i)
+{
+printf(" Digite o %dº ${2:valor}:\n ${3:fmt}", i + 1);
+scanf(" %${4:$$(yas-choose-value '("d" "f"))}", &${5:a}[i]);
+}

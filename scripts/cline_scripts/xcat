@@ -1,0 +1,3 @@
+#!/bin/bash
+arg1=$1
+cat $arg1 | xclip -selection clipboard

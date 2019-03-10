@@ -1,0 +1,3 @@
+#!/bin/bash
+arg1=$1
+zathura $arg1 &>/dev/null &

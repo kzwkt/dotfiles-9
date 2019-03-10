@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pkill -fi "^emacs --daemon=gui-emacs$"

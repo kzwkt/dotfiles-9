@@ -1,0 +1,15 @@
+# key: lug
+# name: lugares
+# --
+*** ${1:Lugar}
+**** Aparência
+
+${2:Quarto pequeno e sem adornos}.
+
+**** Localização
+
+${3:Posição geográfica e caminhos possíveis a partir deste local}.
+
+**** Eventos Relacionados
+
+${4:Links para eventos que se passagem neste local}.

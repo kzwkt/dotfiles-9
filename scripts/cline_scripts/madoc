@@ -1,0 +1,6 @@
+#!/bin/bash
+
+asciidoctor -n --attribute=nofooter "$*".txt &>/dev/null
+google-chrome-stable "$*".html &>/dev/null
+~/scripts/i3_scripts/hide/hide_all &>/dev/null
+i3-msg "[class=Google-chrome]" focus &>/dev/null

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Todo com Etapas
+# key: tde
+# --
+
+** DONE $1 [/]

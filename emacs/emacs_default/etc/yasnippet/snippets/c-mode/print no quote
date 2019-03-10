@@ -1,0 +1,4 @@
+# key: pn
+# name: print no quote
+# --
+printf($1);

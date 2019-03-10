@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: general use-package
+# key: gen
+# --
+:general
+   (${1:$$(yas-choose-value '("nvmap" "nmap" "imap"))}
+   ${2::prefix "SPC"
+  }"${3:key}" '${4:command})

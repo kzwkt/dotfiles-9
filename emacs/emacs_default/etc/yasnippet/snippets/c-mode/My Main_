@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: My Main
+# key: mm
+# --
+#include <stdio.h>
+
+int main(${1:int argc, char *argv[]})
+{
+    $0
+    return 0;
+}

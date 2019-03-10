@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: array with values
+# key: arv
+# --
+${1:$$(yas-choose-value '("float" "double" "int" "char"))} ${2:name}[${3:n}] = {${4:values}};

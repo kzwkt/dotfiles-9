@@ -1,0 +1,7 @@
+# key: sp
+# name: shell block and paste
+# --
+`(evil-insert-state)`
+#+BEGIN_SRC shell
+`(yank)`
+#+END_SRC

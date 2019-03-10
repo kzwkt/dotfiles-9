@@ -1,0 +1,4 @@
+#!/bin/bash
+
+clear
+source ~/scripts/emacs_scripts/eclauncher ~/.bash_aliases.org

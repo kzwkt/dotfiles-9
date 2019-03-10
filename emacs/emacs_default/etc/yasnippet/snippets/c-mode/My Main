@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: My Main
+# key: mm
+# --
+#include <stdio.h>
+
+int main(${1:int argc, char *argv[]})
+{
+${1:$$(yas-choose-value '("float" "double" "int" "char"))} $2;
+$0;
+return 0;
+}

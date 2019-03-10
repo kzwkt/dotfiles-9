@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+clear
+arg="$*"
+javac "$arg" &&
+filename=${arg::-5} &&
+java "$filename"

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+message="$*"
+git commit -am "$message" &&
+clear &&
+git push

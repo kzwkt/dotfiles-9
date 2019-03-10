@@ -1,0 +1,4 @@
+#!/bin/bash
+arg1=$1
+python ~/.maps/apps/t/t.py --task-dir ~/.maps/apps/t/tasks --list flux -f $arg1
+

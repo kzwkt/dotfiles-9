@@ -1,0 +1,3 @@
+#!/bin/bash
+sleep 10
+feh --recursive --randomize --bg-fill /home/Pictures/Wallpaper/

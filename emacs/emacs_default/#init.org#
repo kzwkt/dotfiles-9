@@ -1,0 +1,30 @@
+# -*- mode: org; fill-column: 79 -*-
+#+STARTUP: overview
+
+* Speedup
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+;; (profiler-start 'cpu+mem)
+;; (setq gc-cons-threshold 100000000)
+#+END_SRC
+* Packages
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+(load-file "~/.emacs.d/packs.el")
+#+END_SRC
+* Macros
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+(load-file "~/.emacs.d/macros.el")
+#+END_SRC
+* Keybindings
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+(load-file "~/.emacs.d/keys.el")
+#+END_SRC
+* Functions
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+(load-file "~/.emacs.d/functions.el")
+#+END_SRC
+* Hydras
+Hre loaded on [[file:/media/walt/Home/dotfiles/emacs/emacs_default/packs.org::*hydra%20declaration][packs.el]]
+* Miscellaneous
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/init.el
+(load-file "~/.emacs.d/misc.el")
+#+END_SRC

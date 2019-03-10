@@ -1,0 +1,57 @@
+# -*- mode: sh -*-
+
+#  settings
+# give color
+set colored-stats on
+# Append char to indicate type
+set visible-stats on
+# Mark symlinked directories
+set mark-symlinked-directories on
+# Color the common prefix
+set colored-completion-prefix on
+# Color the common prefix in menu-complete
+set menu-complete-display-prefix On
+# disable ctrl echoe
+set echo-control-characters off
+# fix del key
+set enable-keypad On
+# show completions early
+set show-all-if-ambiguous on
+# ignore case
+set completion-ignore-case on
+
+#  keybindings
+
+# C-p: Go Backwards
+# "": "\C-k \C-ub\n"
+
+# M-p: Clear and list
+"p": "\C-k \C-uclear && ls --color=always\n"
+
+# C-/: Clear and list
+# "": "\C-k \C-uclear && ls --color=always\n"
+
+# M-;: list
+# ";": "\C-k \C-uls --color=always\n"
+
+# M-;: timewarrior
+# ";": "\C-k \C-u~/scripts/cline_scripts/tw_line\n,\C-i"
+
+# M-u: Go Up
+# "u": "\C-k \C-ue ..\n"
+
+# M-p: Go Backwards
+# "p": "\C-k \C-ub\n"
+
+# M-p: tw summary
+# "p": "\C-k \C-u~/scripts/cline_scripts/tw_summary\n"
+
+# C-t: Go last
+# "": "\C-k \C-ub\n"
+
+# C-x c cheat sheet
+"c": "\C-k \C-ubat /home/dotfiles/bash/cheat-sheet.sh\n"
+
+
+# Binds C-o to emacs mini
+"": "\C-k \C-uTERM=xterm-256color ~/maps/emacs/emacs_mini/bin/emacs\n"

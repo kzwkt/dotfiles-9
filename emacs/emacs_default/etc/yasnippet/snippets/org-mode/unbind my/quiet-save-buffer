@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: unbind my/quiet-save-buffer
+# key: unq
+# --
+(general-unbind '${1:example}-mode-map
+  :with '${2:replace with}
+  [remap my/quiet-save-buffer])

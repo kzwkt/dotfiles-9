@@ -1,0 +1,6 @@
+# key: i3
+# name: i3 config
+# --
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+$0
+#+END_SRC

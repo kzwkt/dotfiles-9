@@ -1,0 +1,6 @@
+#!/bin/bash
+#https://unix.stackexchange.com/questions/9502/get-numeric-ascii-value-for-a-character
+
+echo -n "Enter a letter:"
+read A
+echo ${A}|od -t d1|awk '{printf "%s",$2}';echo

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: general simple unbind 
+# key: unbind
+# --
+(general-unbind '${1:mode-map}
+  "${2:key to unbind}")

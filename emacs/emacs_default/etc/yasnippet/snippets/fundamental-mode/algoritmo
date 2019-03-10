@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# name: algoritmo 
+# key: algg
+# --
+
+Algoritmo "$1"
+// Disciplina  : [Algoritmos e Programação]
+// Professor   : Alano Filho
+// Descrição   : $2
+// Autor(a)    : Davi Ramos
+// Data atual  : $3
+Var
+// Seção de Declarações das variáveis
+
+$4
+
+Inicio
+// Seção de Comandos, procedimento, funções, operadores, etc...
+
+$0
+
+Fimalgoritmo

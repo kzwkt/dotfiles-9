@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: weapon
+# key: ww
+# --
+class $1:
+    def __init__(self):
+        self.name = "$1"
+        self.description = \
+            "$2."
+        self.damage = $3
+
+        def __str__(self):
+            return self.name

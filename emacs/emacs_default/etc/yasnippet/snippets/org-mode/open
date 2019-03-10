@@ -1,0 +1,4 @@
+# key: open
+# name: open
+# --
+Oi, ${1:nome}, tudo bem?$0

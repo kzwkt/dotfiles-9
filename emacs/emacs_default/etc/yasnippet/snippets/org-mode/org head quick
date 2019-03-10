@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: org head quick 
+# key: oq
+# --
+
+# -- mode: org; fill-column: 79 --
+#+STARTUP: content
+#+TITLE: ${1:Título}
+#+OPTIONS: toc:${2:$$(yas-choose-value '("nil" "2" "3" ))}
+#+OPTIONS: num:${3:$$(yas-choose-value '("1" "2" "3"))}
+#+latex_header: \hypersetup{colorlinks=true,linkcolor=blue}
+
+* $0

@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/dotfiles/emacs/emacs_default/eclipse.jdt.ls'
+let g:netrw_dirhist_2='/home/dotfiles/.git'
+let g:netrw_dirhist_3='/home/dotfiles/nvim/.undodir'
+let g:netrw_dirhist_4='/home/dotfiles/.git'

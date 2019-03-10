@@ -1,0 +1,3 @@
+#!/bin/bash
+clear 
+tmux attach || tmux dettach -t 0 &>/dev/null

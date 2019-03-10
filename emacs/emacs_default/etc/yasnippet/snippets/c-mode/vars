@@ -1,0 +1,5 @@
+# key: v
+# name: vars
+# --
+${1:$$(yas-choose-value '("float" "double" "int" "char"))} $2;
+$0

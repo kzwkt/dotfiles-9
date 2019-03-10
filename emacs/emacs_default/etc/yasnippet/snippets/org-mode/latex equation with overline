@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: latex equation with overline
+# key: ov
+# --
+\begin{equation*}
+\[\overline{$1}\]$0
+\end{equation*}
+

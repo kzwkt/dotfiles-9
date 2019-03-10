@@ -1,0 +1,5 @@
+# key: ppr
+# name: print scanf
+# --
+printf("${1:string}"${2: ,a0,a1});
+scanf(" %${3:d}", &${4:variable});

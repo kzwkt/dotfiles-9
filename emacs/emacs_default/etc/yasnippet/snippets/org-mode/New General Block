@@ -1,0 +1,6 @@
+# key: map
+# name: New General Block
+# --
+(${1:$$(yas-choose-value '("nvmap" "nmap" "imap"))}
+:keymaps '${2:name-mode-map}
+"${3:}" '${4:command}$0)

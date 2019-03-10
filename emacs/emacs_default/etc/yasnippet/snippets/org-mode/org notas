@@ -1,0 +1,20 @@
+
+# name: orgnotas
+# key: orgnotas
+# --
+
+# -*- fill-column: 59
+#+STARTUP: showall
+#+TITLE: ${1:Título}
+#+AUTHOR: Davi Ramos
+#+OPTIONS: toc:1
+#+OPTIONS: ^:nil
+
+* Capítulo 1
+** Definições e Exemplos
+** Dados e Tabelas
+** Admoestações
+** Diversos
+** Fluxo
+
+- $0

@@ -1,0 +1,8 @@
+#!/bin/bash
+clear
+i3-msg "[class=scratchterm] move scratchpad"
+i3-msg "[class=Terminator] move scratchpad"
+i3-msg "[class=sranger] move scratchpad"
+xprop
+i3-msg "[con_mark=_last] focus"
+

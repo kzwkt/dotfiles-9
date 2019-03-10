@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: presença
+# key: a
+# --
+
+$1, $2, $3 $0

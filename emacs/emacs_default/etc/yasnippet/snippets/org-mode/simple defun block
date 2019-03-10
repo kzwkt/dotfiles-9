@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: simple defun block
+# key: deff
+# --
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/$1 ()
+(interactive)
+($0
+#+END_SRC

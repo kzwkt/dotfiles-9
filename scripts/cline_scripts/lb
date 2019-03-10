@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+arg="$*"
+ls -l --color=always /usr/bin/ | grep -i "$arg"

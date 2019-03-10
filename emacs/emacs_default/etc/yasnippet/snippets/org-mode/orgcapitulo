@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: orgcapitulo
+# key: orgcapitulo
+# --
+
+* Capítulo $1
+** Definições e Exemplos
+** Dados e Tabelas
+** Admoestações
+** Diversos
+** Fluxo
+
+- $0

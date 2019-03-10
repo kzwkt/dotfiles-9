@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: use
+# key: use
+# --
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package $1
+:ensure t$0)
+#+END_SRC

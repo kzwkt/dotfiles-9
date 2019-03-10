@@ -1,0 +1,4 @@
+# key: arr
+# name: array
+# --
+${1:$$(yas-choose-value '("float" "double" "int" "char"))} ${2:name}[${3:n}];

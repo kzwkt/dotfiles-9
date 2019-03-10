@@ -1,0 +1,4 @@
+#!/bin/bash
+
+~/scripts/i3_scripts/hide/hide_terms &&
+emacsclient --socket-name=gui-emacs --no-wait --create-frame

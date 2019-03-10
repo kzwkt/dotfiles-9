@@ -1,0 +1,4 @@
+#!/bin/bash
+clear
+~/scripts/i3_scripts/hide/hide_all &>/dev/null
+emacs --debug-init &

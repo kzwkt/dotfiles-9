@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+~/scripts/i3_scripts/hide/hide_all && sudo make clean install >/dev/null 2>&1 && st & clear

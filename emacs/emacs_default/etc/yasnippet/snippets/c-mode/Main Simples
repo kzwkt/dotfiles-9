@@ -1,0 +1,17 @@
+# key: mms
+# name: Main Simples
+# --
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main()
+{
+setlocale(LC_ALL,"Portuguese");
+
+${1:$$(yas-choose-value '("float " "double " "int " "char "))};
+
+	$0
+
+return 0;
+}

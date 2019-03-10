@@ -1,0 +1,67 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Sun Jan  6 01:45:26 2019
+;; Desktop file format version 208
+;; Emacs version 27.0.50
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (23601 34790 991900 284000) (desktop . "208") "mrbig@gunther" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font-backend xft x) (font . "-FBI -Input Mono-extralight-normal-normal-*-17-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#cccccc") (background-color . "#202020") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (scroll-bar-foreground) (scroll-bar-background) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (wait-for-wm . t) (tool-bar-position . top) (inhibit-double-buffering) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (scroll-bar-height . 0) (alpha) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (environment "_=/usr/local/bin/emacsclient" "PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games" "XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0" "XAUTHORITY=/home/mrbig/.Xauthority" "XDG_RUNTIME_DIR=/run/user/1000" "DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-L8JkJgJLpn,guid=e3157807e2d13b712f8d56305c317749" "LOGNAME=mrbig" "GDMSESSION=i3" "XDG_SEAT=seat0" "SHLVL=1" "QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1" "GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1" "XDG_CURRENT_DESKTOP=i3" "XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0" "SHELL=/bin/bash" "GTK_MODULES=canberra-gtk-module" "XDG_SESSION_DESKTOP=i3" "XDG_DATA_DIRS=/home/mrbig/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share" "XDG_SESSION_TYPE=x11" "QT_ACCESSIBILITY=1" "SSH_AGENT_PID=3365" "HOME=/home/mrbig" "PWD=/home/mrbig" "DESKTOP_SESSION=i3" "USER=mrbig" "XDG_GREETER_DATA_DIR=/var/lib/lightdm/data/mrbig" "XDG_SESSION_ID=1" "SSH_AUTH_SOCK=/tmp/ssh-mcUumpAWLpUN/agent.3305" "XDG_VTNR=7" "DISPLAY=:0" "LANG=en_US.UTF-8") (display-type . color) (background-mode . dark) (cursor-color . "#ffffff") (sticky) (eyebrowse-last-slot . 2) (eyebrowse-current-slot . 1) (eyebrowse-window-configs (1 (((min-height . 8) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 8) (min-height-safe . 2) (min-width-safe . 4) (min-pixel-height . 168) (min-pixel-width . 220) (min-pixel-height-ignore . 63) (min-pixel-width-ignore . 76) (min-pixel-height-safe . 42) (min-pixel-width-safe . 44)) vc (pixel-width . 1920) (pixel-height . 1040) (total-width . 175) (total-height . 50) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (hc (pixel-width . 1920) (pixel-height . 704) (total-width . 175) (total-height . 34) (normal-height . 0.676923076923077) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 957) (pixel-height . 704) (total-width . 87) (total-height . 34) (normal-height . 1.0) (normal-width . 0.4984375) (buffer "Bash_Reddit_Guide.pdf" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1))) (leaf (last . t) (pixel-width . 963) (pixel-height . 704) (total-width . 88) (total-height . 34) (normal-height . 1.0) (normal-width . 0.5015625) (buffer "bash_notes.org" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 2640) (start . 2356)))) (leaf (last . t) (pixel-width . 1920) (pixel-height . 336) (total-width . 175) (total-height . 16) (normal-height . 0.3230769230769231) (normal-width . 1.0) (buffer "*terminal*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 892) (start . 848)))) "")) (last-focus-update . t) (powerline-cache) (frameset--id . "8674-929D-8B9A-2D1E") (frameset--mini t . t) (height . 50) (width . 173) (modeline . t) (unsplittable) (left . 0) (top . 0) (icon-name) (display . ":0") (explicit-name)) ((min-height . 8) (min-width . 20) (min-height-ignore . 3) (min-width-ignore . 8) (min-height-safe . 2) (min-width-safe . 4) (min-pixel-height . 168) (min-pixel-width . 220) (min-pixel-height-ignore . 63) (min-pixel-width-ignore . 76) (min-pixel-height-safe . 42) (min-pixel-width-safe . 44)) vc (pixel-width . 1920) (pixel-height . 1040) (total-width . 175) (total-height . 50) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (hc (pixel-width . 1920) (pixel-height . 830) (total-width . 175) (total-height . 40) (normal-height . 0.7980769230769231) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 957) (pixel-height . 830) (total-width . 87) (total-height . 40) (normal-height . 1.0) (normal-width . 0.4984375) (buffer "Bash_Reddit_Guide_cropped.pdf" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1))) (leaf (last . t) (pixel-width . 963) (pixel-height . 830) (total-width . 88) (total-height . 40) (normal-height . 1.0) (normal-width . 0.5015625) (buffer "bash_notes.org" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 2834) (start . 2356)))) (leaf (last . t) (pixel-width . 1920) (pixel-height . 210) (total-width . 175) (total-height . 10) (normal-height . 0.20192307692307693) (normal-width . 1.0) (buffer "*terminal*" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 892) (start . 885)))) (((minibuffer . t) (eyebrowse-last-slot . 1) (eyebrowse-current-slot . 1) (eyebrowse-window-configs (1 (((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 2) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 4) (min-pixel-width . 10) (min-pixel-height-ignore . 2) (min-pixel-width-ignore . 2) (min-pixel-height-safe . 1) (min-pixel-width-safe . 2)) leaf (pixel-width . 10) (pixel-height . 8) (total-width . 10) (total-height . 8) (normal-height . 1.0) (normal-width . 1.0) (buffer "*scratch*" (selected . t) (hscroll . 0) (fringes 0 0 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1))) "")) (powerline-cache) (cursor-color . "#ffffff") (menu-bar-lines . 0) (tool-bar-lines . 0) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#cccccc") (background-color . "#202020") (display-type . mono) (background-mode . dark) (font . "tty") (height . 10) (width . 10) (modeline . t) (unsplittable) (frameset--id . "5BC0-5708-5A76-FFCF") (frameset--mini t)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 2) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 4) (min-pixel-width . 10) (min-pixel-height-ignore . 2) (min-pixel-width-ignore . 2) (min-pixel-height-safe . 1) (min-pixel-width-safe . 2)) leaf (pixel-width . 10) (pixel-height . 9) (total-width . 10) (total-height . 9) (normal-height . 1.0) (normal-width . 1.0) (buffer "*scratch*" (selected) (hscroll . 0) (fringes 0 0 nil) (margins nil) (scroll-bars nil 0 t nil 0 t) (vscroll . 0) (dedicated) (point . 1) (start . 1))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist '((108 . [34 107 80 80 120 escape 106]) (48 . #(")" 0 1 (fontified t font-lock-fontified t help-echo nil src-block t font-lock-multiline t face (org-block))))))
+(setq file-name-history '(#("/home/mrbig/.emacs.d/lisp/" 0 26 (ivy-index 7)) #("/home/mrbig/.emacs.d/bash_study.desktop" 0 39 (ivy-index 0)) "/home/Documents/Ebooks/IT/UNIX/Bash/Scripting/Bash_Guide_Reddit/Bash_Reddit_Guide_cropped.pdf" "/home/Documents/Ebooks/IT/UNIX/Bash/Scripting/Bash_Guide_Reddit/Bash_Reddit_Guide.pdf" "/home/Documents/Org/Studying/Programming/Bash/bash_notes/bash_tasks.org" "/home/Documents/Org/Studying/Programming/Bash/bash_my_code/007" "/home/Documents/Org/Studying/Programming/Bash/bash_notes/bash_notes.org" #("/home/mrbig/.timewarrior/thh" 0 28 (ivy-index 3)) "/home/maps/emacs_anywhere/install" "/home/mrbig/chomper/data/rules.yaml" "/home/mrbig/chomper/data/block_settings.json" "/home/mrbig/chomper/data/rules.yaml" "/home/Downloads/Linux/debian.sh"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/home/Documents/Org/Studying/Programming/Bash/bash_notes/bash_notes.org"
+  "bash_notes.org"
+  'org-mode
+  '(abbrev-mode visual-line-mode override-global-mode general-override-mode flyspell-mode undo-tree-mode evil-org-mode evil-commentary-mode evil-rsi-mode super-save-mode global-auto-revert-mode ivy-mode counsel-mode clipmon-mode subword-mode company-mode TeX-PDF-mode yas-minor-mode magit-file-mode org-indent-mode dimmer-mode)
+  2834
+  '(2640 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 23601 34785 791437 967000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (2640 2639 2757 2336 2739 2771 2824 2333 3891 2840 2886))))
+
+(desktop-create-buffer 208
+  "/home/Documents/Ebooks/IT/UNIX/Bash/Scripting/Bash_Guide_Reddit/Bash_Reddit_Guide_cropped.pdf"
+  "Bash_Reddit_Guide_cropped.pdf"
+  'pdf-view-mode
+  '(abbrev-mode visual-line-mode override-global-mode general-override-mode flyspell-mode undo-tree-mode evil-commentary-mode evil-rsi-mode super-save-mode global-auto-revert-mode ivy-mode counsel-mode clipmon-mode company-mode TeX-PDF-mode yas-minor-mode org-indent-mode dimmer-mode)
+  1
+  '(nil nil)
+  t
+  nil
+  '((buffer-display-time 23601 34785 791437 641000) (buffer-file-coding-system . no-conversion) (overwrite-mode) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/home/Documents/Org/Studying/Programming/Bash/bash_my_code/007"
+  "007"
+  'sh-mode
+  '(abbrev-mode visual-line-mode override-global-mode general-override-mode flyspell-mode undo-tree-mode evil-commentary-mode evil-rsi-mode super-save-mode global-auto-revert-mode ivy-mode counsel-mode clipmon-mode smartparens-mode subword-mode company-mode TeX-PDF-mode yas-minor-mode flycheck-mode electric-operator-mode highlight-indent-guides-mode magit-file-mode org-indent-mode dimmer-mode)
+  310
+  '(310 nil)
+  nil
+  nil
+  '((buffer-display-time 23601 33979 380067 65000) (buffer-file-coding-system . undecided-unix) (overwrite-mode) (truncate-lines))
+  '((mark-ring (310 305 254 22))))
+
+(desktop-create-buffer 208
+  nil
+  "*eww*"
+  'eww-mode
+  '(abbrev-mode visual-line-mode override-global-mode general-override-mode flyspell-mode undo-tree-mode evil-commentary-mode evil-rsi-mode super-save-mode global-auto-revert-mode ivy-mode counsel-mode clipmon-mode company-mode TeX-PDF-mode yas-minor-mode org-indent-mode dimmer-mode)
+  36984
+  '(1 nil)
+  t
+  '(:history ((:point 723 :url "file:///home/Documents/Org/Studying/Programming/Bash/bash_notes/FullBashGuide.html#Parameters" :title "FullBashGuide - Greg's Wiki") (:point 721 :url "file:///home/Documents/Org/Studying/Programming/Bash/bash_notes/FullBashGuide.html" :title "FullBashGuide - Greg's Wiki")))
+  '((buffer-display-time 23601 34349 949944 106000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t) (eww-history-position . 0))
+  '((mark-ring (1 1 1 1))))
+

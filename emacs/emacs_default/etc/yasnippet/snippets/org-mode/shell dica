@@ -1,0 +1,10 @@
+# key: dica
+# name: shell dica
+# --
+**** ${1:Título}
+
+#+BEGIN_SRC shell
+`(my/yank-flush)`
+#+END_SRC
+
+$0

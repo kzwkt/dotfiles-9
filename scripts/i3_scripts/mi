@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+arg="$*"
+emacsclient --socket-name=emacs-mini -nw "$arg"

@@ -1,0 +1,6 @@
+# key: com
+# name: lisp comment
+# --
+;;;; $1 ;;;;
+
+$0

@@ -1,0 +1,6 @@
+# key: ref
+# name: referência web
+# --
+${1:SOBRENOME}${2:, INICIAL}. ${3:Título do artigo}${4:, ano}. Disponível em: <`(yank)`>. Acesso em: 06 dez. 2018.
+
+$0

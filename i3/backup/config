@@ -1,0 +1,436 @@
+# {{{ init
+
+set $mod Mod4
+
+show_marks yes
+
+focus_follows_mouse no
+
+popup_during_fullscreen ignore
+
+font pango:monospace 8
+
+floating_modifier $mod
+
+# }}}
+# {{{ startup
+
+exec --no-startup-id redshift
+exec --no-startup-id ~/scripts/i3_scripts/scratch.sh
+exec --no-startup-id xset dpms 600
+exec --no-startup-id google-chrome-stable
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+
+exec --no-startup-id "~/scripts/cline_scripts/sessions.sh"
+exec --no-startup-id "~/scripts/keyboard/init_keys.sh"
+exec --no-startup-id "~/scripts/screen/mx-big.sh"
+exec --no-startup-id "unclutter -display :0.0 -idle 0.1"
+
+exec --no-startup-id synclient TapButton1=1 TouchpadOff=0 PalmDetect=1
+exec --no-startup-id fehlaunch
+
+# }}}
+# {{{ launchers
+
+bindsym mod+F9 exec ~/scripts/keyboard/init_keys.sh; exec notify-send "init keys on"
+bindsym $mod+F10 exec ~/scripts/keyboard/reset_keys.sh; exec notify-send "init keys off"
+bindcode 107 exec xfce4-screenshooter -r
+bindcode $mod+107 exec xfce4-screenshooter -w
+bindcode $mod+Shift+107 exec xfce4-screenshooter -f
+bindsym $mod+q kill
+bindsym $mod+Return exec st
+bindsym $mod+Shift+d exec "rofi -show run"
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+w reload
+bindsym $mod+Shift+Control+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+F5 exit
+bindsym Control+F5 exec ~/scripts/i3_scripts/copy_from_crome.sh
+# }}}
+# {{{ system
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+# }}}
+# {{{ launch mode
+
+bindsym Menu mode "$launch"
+
+mode "$launch" {
+
+    bindsym f mode "$float_mode"
+    bindsym t mode "$tilling_mode"
+    bindsym c [class="SpeedCrunch"] scratchpad show; move to position 400 0; mode "$leave_mode"
+
+    bindsym n exec "st -c mynotes -t mynotes -e ~/scripts//mynotes.sh"; mode default
+
+    bindsym s exec ~/scripts/timewarrior/twscontinue; mode default; exec notify-send --expire-time=200 "Timewarrior Start"
+    bindsym o exec ~/scripts/timewarrior/twstop; mode default; exec notify-send --expire-time=200 "Timewarrior Stop"
+
+    bindsym x exec st; mode default
+    bindsym w exec thunar; mode default
+    # bindsym a exec xfce4-terminal --hold --hide-menubar --hide-scrollbar --hide-toolbar; border none; mode default
+    bindsym a exec terminator; border none; mode default
+    bindsym Tab exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none; mode default
+
+    bindsym r exec "rofi -show run"; mode default
+    bindsym z exec google-chrome-stable; mode default
+    bindsym apostrophe exec ~/scripts/texpander.sh; mode default
+
+    bindsym Shift+b exec ~/scripts/i3_scripts/black_bg.sh; mode default
+    bindsym Shift+w exec feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper; mode default
+
+    bindsym e exec "~/scripts/emacs_scripts/new-i3"; mode default
+
+    bindsym q kill; mode default
+    bindsym Menu mode default
+    bindsym Escape mode default
+
+    bindsym Shift+e exec ~/scripts/emacs_scripts/rel; [class="Emacs"] focus; mode default
+
+}
+
+# }}}
+# {{{ scratchpads
+
+bindsym $mod+minus move scratchpad; mode default
+bindsym $mod+equal scratchpad show
+bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
+
+# Simplynoise
+
+for_window [class="Google-chrome" title="SimplyNoise"] border none
+for_window [class="Google-chrome" title="SimplyNoise"] border none
+for_window [class="Google-chrome" title="SimplyNoise"] floating enable sticky enable
+for_window [class="Google-chrome" title="SimplyNoise"] move scratchpad
+for_window [class="Google-chrome" title="SimplyNoise"] resize set 1220 700
+bindsym $mod+Shift+n [class="Google-chrome" title="SimplyNoise"] scratchpad show; move to position 650 0; resize set 920 450
+
+# speedcrunch
+
+for_window [class="SpeedCrunch"] move to position 650 0
+for_window [class="SpeedCrunch"] border none
+for_window [class="SpeedCrunch"] floating enable sticky enable
+for_window [class="SpeedCrunch"] move scratchpad
+for_window [class="SpeedCrunch"] resize set 620 550
+
+# terminal
+for_window [class="scratchterm"] move to position 650 0
+for_window [class="scratchterm"] border none
+for_window [class="scratchterm"] floating enable sticky enable
+for_window [class="scratchterm"] move scratchpad
+for_window [class="scratchterm"] resize set 920 600
+
+# ranger
+for_window [class="sranger"] move to position 650 0
+for_window [class="sranger"] border none
+for_window [class="sranger"] floating enable sticky enable
+for_window [class="sranger"] move scratchpad
+for_window [class="sranger"] resize set 920 600
+
+# hexchat
+for_window [title="mrblack" class="Hexchat"] move to position 650 0
+for_window [title="mrblack" class="Hexchat"] border none
+for_window [title="mrblack" class="Hexchat"] floating enable sticky enable
+for_window [title="mrblack" class="Hexchat"] move scratchpad
+for_window [title="mrblack" class="Hexchat"] resize set 920 600
+
+# }}}
+# {{{ focus
+
+# change focus
+
+bindsym $mod+h focus Left
+bindsym $mod+j focus Down
+bindsym $mod+k focus Up
+bindsym $mod+l focus Right
+
+bindsym $mod+Escape focus Right
+# bindsym Mod1+Escape focus Up
+
+bindsym $mod+Left focus Left
+bindsym $mod+Down focus Down
+bindsym $mod+Up focus Up
+bindsym $mod+Right focus Right
+
+bindsym $mod+c [class="Emacs"] focus
+
+# }}}
+# {{{ move windows
+
+bindsym $mod+Shift+h move Left
+bindsym $mod+Shift+j move Down
+bindsym $mod+Shift+k move Up
+bindsym $mod+Shift+l move Right
+
+bindsym $mod+Shift+Left move Left
+bindsym $mod+Shift+Down move Down
+bindsym $mod+Shift+Up move Up
+bindsym $mod+Shift+Right move Right
+
+# }}}
+# {{{ orientation and fullscreen
+
+# split in horizontal orientation
+bindsym $mod+a split h;exec notify-send 'tile horizontally'
+
+# split in vertical orientation
+bindsym $mod+d split v;exec notify-send 'tile vertically'
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
+bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
+bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+w layout tabbed
+bindsym $mod+s layout stacking
+
+bindsym $mod+x layout toggle all
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
+
+# focus the child container
+bindsym Mod1+Shift+c focus child;exec notify-send 'parent focus'
+
+# }}}
+# {{{ workspaces
+
+workspace_layout stacking
+
+# bindsym $mod+bracketright workspace back_and_forth
+exec --no-startup-id ~/scripts/i3_scripts/last_window.sh
+bindsym $mod+bracketright [con_mark=_last] focus
+# bindsym $mod+Escape workspace back_and_forth
+workspace_auto_back_and_forth yes
+
+bindsym $mod+p workspace prev_on_output
+bindsym $mod+n workspace next_on_output
+
+bindsym $mod+Control+Right move workspace to output Right
+bindsym $mod+Control+Left move workspace to output Left
+
+bindsym $mod+Mod1+l focus output Right
+bindsym $mod+Mod1+h focus output Left
+
+bindsym $mod+Control+l move container to output right; focus output Right
+bindsym $mod+Control+h move container to output left; focus output Left
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# move focused container to workspace
+bindsym $mod+Control+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Control+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Control+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Control+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Control+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Control+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Control+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Control+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Control+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Control+0 move container to workspace $ws10; workspace $ws10
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# }}}
+# {{{ tilling mode
+
+bindsym $mod+r mode "$tilling_mode"
+
+mode "$tilling_mode" {
+
+    bindsym $mod+h move Left
+    bindsym $mod+j move Down
+    bindsym $mod+k move Up
+    bindsym $mod+l move Right
+
+    bindsym Left focus Left
+    bindsym Down focus Down
+    bindsym Up focus Up
+    bindsym Right focus Right
+
+    bindsym Shift+h resize shrink Left       10 px or 10 ppt
+    bindsym h resize grow Left   10 px or 10 ppt
+
+    bindsym Shift+j resize shrink height     10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+
+    bindsym Shift+k resize shrink height     10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+
+    bindsym Shift+l resize shrink width      10 px or 10 ppt
+    bindsym l resize grow width  10 px or 10 ppt
+
+    bindsym t mode default
+    bindsym Escape mode default
+    bindsym Return mode default
+
+}
+
+# }}}
+# {{{ float mode
+
+bindsym $mod+Shift+f mode "$float_mode"
+
+mode "$float_mode" {
+
+    bindsym h resize shrink Left       80 px or 80 ppt
+    bindsym Shift+h resize grow Left   80 px or 80 ppt
+
+    bindsym j resize shrink height     80 px or 80 ppt
+    bindsym Shift+j resize grow height 80 px or 80 ppt
+
+    bindsym k resize shrink height     80 px or 80 ppt
+    bindsym Shift+k resize grow height 80 px or 80 ppt
+
+    bindsym l resize shrink width      80 px or 80 ppt
+    bindsym Shift+l resize grow width  80 px or 80 ppt
+
+    # move
+    bindsym Left  move Left  250px
+    bindsym Right move Right 250px
+    bindsym Up    move Up    250px
+    bindsym Down  move Down  250px
+
+    bindsym Shift+Left  move Left  100px
+    bindsym Shift+Right move Right 100px
+    bindsym Shift+Up    move Up    100px
+    bindsym Shift+Down  move Down  100px
+
+    bindsym f mode default
+    bindsym Escape mode default
+    bindsym Return mode default
+
+}
+
+# }}}
+# {{{ audio controls
+
+bindsym XF86AudioPlay exec playerctl play-pause
+
+bindsym Mod1+XF86AudioLowerVolume exec spotifycli --prev
+bindsym Mod1+XF86AudioRaiseVolume exec spotifycli --next
+
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer set Master 10%+
+bindsym XF86AudioLowerVolume exec amixer set Master 10%-
+
+bindsym $mod+XF86AudioRaiseVolume exec amixer set Master 200%+
+
+bindsym $mod+Mod1+XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym $mod+Mod1+XF86AudioLowerVolume exec amixer set Master 5%-
+
+# }}}
+# {{{ window assignments
+
+# for_window [class="mynotes" title="emacs-visualg.sh"] resize set 720 400
+for_window [class="mynotes"] floating enable sticky enable border none
+
+for_window [class="myi3config" title="myi3config"] floating enable sticky enable border none
+for_window [class="Emacs" title="reload-emacs"] no_focus
+for_window [class="visualg30.exe"] floating disable
+for_window [class="visualg30.exe" title="Aviso"] floating enable
+for_window [id="0x4800001"] move scratchpad
+
+# terminal
+for_window [class="scratchterm"] move to position 650 0
+for_window [class="scratchterm"] border none
+for_window [class="scratchterm"] floating enable sticky enable
+for_window [class="scratchterm"] move scratchpad
+for_window [class="scratchterm"] resize set 920 600
+
+assign [class="Kodi"] $ws3
+assign [class="qBittorrent"] $ws4
+assign [class="Gnome-pomodoro"] $ws2
+for_window [class="Spotify"] move to workspace 5
+for_window [class="Spotify"] floating disable
+
+for_window [class="Gimp"] border normal
+for_window [class="Emacs"] border normal;
+for_window [class="br-univali-ps-ui-Lancador"] border normal;
+
+for_window [class="calibre"] floating disable
+for_window [title="Terminator Preferences"] floating enable
+for_window [class="Viewnior"] floating enable border none
+for_window [class="feh"] floating enable border none
+for_window [class="Xfrun4"] floating enable resize set 520 200
+for_window [class="File-roller"] floating enable resize set 720 400
+for_window [class="Pavucontrol"] floating enable resize set 720 400  move position 650 0
+
+# }}}
+# {{{ bar mode
+
+bar {
+    mode hide
+    modifier none
+}
+
+bindsym $mod+m bar mode toggle
+
+# }}}
+# {{{
+
+mode "$leave_mode" {
+
+    bindsym Escape move scratchpad; mode default
+    # bindsym F12 move scratchpad; mode default
+    # bindsym F1 move scratchpad; mode default
+
+}
+
+# 00SC: Uncomment on the small screen
+
+# bindsym $mod+i [class="sranger"] scratchpad show; move to position 250 0; resize set 920 400
+# bindsym $mod+u [class="scratchterm"] scratchpad show; move to position 250 0; resize set 920 400
+# bindsym $mod+o [class="Hexchat"] scratchpad show; move to position 250 0; resize set 920 400
+
+bindsym $mod+i [class="sranger"] scratchpad show; move to position 525 0
+bindsym $mod+u [class="scratchterm"] scratchpad show; move to position 525 0
+bindsym $mod+o [class="Hexchat"] scratchpad show; move to position 525 0

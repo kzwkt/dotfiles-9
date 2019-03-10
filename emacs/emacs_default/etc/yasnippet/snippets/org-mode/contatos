@@ -1,0 +1,11 @@
+# key: con
+# name: contatos
+# --
+* ${1:Nome}
+:PROPERTIES:
+:TEL1:${2: }
+:@:${3: email@email.com}
+:ADD:${4: endereço}
+:CONTEXTO:${8: contexto}${9:
+:EXT:${10: extra}}
+:END:

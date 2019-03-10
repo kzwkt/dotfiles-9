@@ -1,0 +1,6 @@
+#!/bin/bash
+
+clear
+~/scripts/emacs_scripts/eclauncher --eval "(tldr \"$1\")" --eval "(my-tldr)" &>/dev/null
+i3-msg "[class=Emacs]" focus &>/dev/null
+

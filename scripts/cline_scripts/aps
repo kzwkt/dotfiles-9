@@ -1,0 +1,4 @@
+#!/bin/bash
+
+clear 
+aptitude search "$1" | grep -i "$2"

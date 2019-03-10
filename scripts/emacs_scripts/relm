@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pkill -fi emacs
+sleep 1
+emacs &

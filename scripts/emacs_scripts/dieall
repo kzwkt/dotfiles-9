@@ -1,0 +1,6 @@
+#!/bin/bash
+clear
+pkill -fi ^emacs*
+clear
+sleep 2
+ps ax | grep -v grep | egrep -i ' emacs'

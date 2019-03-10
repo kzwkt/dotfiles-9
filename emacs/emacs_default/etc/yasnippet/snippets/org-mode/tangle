@@ -1,0 +1,6 @@
+# key: tr
+# name: tangle
+# --
+#+BEGIN_SRC ${1:$$(yas-choose-value '("emacs-lisp" "shell"))} :tangle ${2:$$(yas-choose-value '("~/.emacs.d/init.el" "~/.emacs.d/packs.el" "~/.emacs.d/functions.el" "~/.emacs.d/keys.el" "~/.emacs.d/misc.el" "~/.emacs.d/macros.el" "~/.emacs.d/hydras.el" "yes" "/home/dotfiles/bash/bashdot/.bash_aliases" "~/.config/i3/config"))}
+$0
+#+END_SRC

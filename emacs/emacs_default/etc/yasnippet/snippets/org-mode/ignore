@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ignore
+# key: ignore
+# --
+(general-unbind '$0
+  :with 'ignore
+  [remap my/quiet-save-buffer])

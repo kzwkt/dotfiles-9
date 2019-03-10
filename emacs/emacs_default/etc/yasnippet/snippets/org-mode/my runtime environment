@@ -1,0 +1,10 @@
+# key: myenv
+# name: my environment
+# --
+* Environment
+
+- MX Linux 17
+- `(emacs-version)`
+- `(evil-version)`
+- [[https://github.com/mrbig033/dotfiles/tree/master/emacs/emacs_default][.emacs.d]]
+- [[https://github.com/mrbig033/dotfiles/blob/master/emacs/emacs_default/packs.el][packages]]

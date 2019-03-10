@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: function block
+# key: fblock
+# --
+** $1
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+$0
+#+END_SRC

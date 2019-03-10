@@ -1,0 +1,4 @@
+#!/bin/bash
+
+unlink ~/.emacs.d 2>/dev/null
+ln -rsf "$1" ~/.emacs.d

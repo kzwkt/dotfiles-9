@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+clear
+timew summary :ids
+while true; do
+    echo ""
+    echo " [s] start [o] stop [c] continue [m] summary [n] cancel [r] reset [q] leave"
+
+    echo ""
+    read -rp " -> " resposta
+    clear
+    case $resposta in
+	s) timew :adjust start  && timew summary :ids ;;
+	o) timew :adjust stop && timew summary :ids ;;
+	c) timew :adjust continue && timew summary :ids ;;
+	m) timew summary :ids ;;
+	n) timew cancel ;;
+	r) mv -f ~/.timewarrior/data/2019* ~/.timewarrior/data.back &>/dev/null && timew summary :ids ;;
+	q) break ;;
+	*) echo 'Opção inválida' ;;
+
+    esac
+done

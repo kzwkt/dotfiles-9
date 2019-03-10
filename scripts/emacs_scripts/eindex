@@ -1,0 +1,5 @@
+#!/bin/bash
+
+~/scripts/i3_scripts/hide/hide_all
+~/scripts/emacs_scripts/eclauncher --eval "(find-links)"
+i3-msg [class='Emacs'] focus

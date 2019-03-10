@@ -1,0 +1,7 @@
+# key: iff
+# name: simple if
+# --
+if ($1)
+{
+$0;
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+clear
+fdisk /dev/sdb
+read -n1 -r -p "Press space to continue..." key
+if [ "$key" = '' ]; then
+    arg1=$1
+    dd if=$arg1 of=/dev/sdb
+else
+    break
+fi

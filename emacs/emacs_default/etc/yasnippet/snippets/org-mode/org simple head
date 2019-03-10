@@ -1,0 +1,11 @@
+# key: orgs
+# name: org head simples
+# --
+# -*- mode: org; fill-column: ${1:$$(yas-choose-value '("59 -*-" "79 -*-"))}
+#+STARTUP: content ${3:
+#+TITLE: ${4:title}}${5:
+#+OPTIONS: toc:${6:$$(yas-choose-value '("nil" "2" "3" ))}}${7:
+#+OPTIONS: num:${8:$$(yas-choose-value '("nil" "1" "2" "3"))}}
+#+OPTIONS: ^:nil
+
+${9:* } $0

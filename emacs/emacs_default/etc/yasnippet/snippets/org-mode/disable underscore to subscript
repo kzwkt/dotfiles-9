@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: disable underscore to subscript 
+# key: nosub
+# --
+
+#+OPTIONS: ^:nil

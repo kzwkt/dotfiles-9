@@ -1,0 +1,5 @@
+# key: lrange
+# name: list comprehension range
+# --
+${1:variable} = [${2:item}${3: expression} for $2 in range(${4:start},${5:end}${6:, ${7:step}})]
+$0

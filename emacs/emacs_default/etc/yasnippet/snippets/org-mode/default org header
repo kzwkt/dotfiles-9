@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: default org header
+# key: orgg
+# --
+#+OPTIONS: toc:${2:$$(yas-choose-value '("nil" "1" "2" "3"))}
+#+OPTIONS: num:${3:$$(yas-choose-value '("nil" "1" "2" "3"))}
+#+OPTIONS: html-postamble:nil
+#+STARTUP: overview${4:
+#+AUTHOR: ${5:Davi Ramos}}
+#+latex_header: \hypersetup{colorlinks=true,linkcolor=blue}
+
+$0
