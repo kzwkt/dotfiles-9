@@ -8,4 +8,3 @@ Estes são meus [dotfiles](https://wiki.archlinux.org/index.php/Dotfiles_(Portug
 
 - OS: MX Linux 18
 - Text Editor: GNU Emacs 27.0.50
-- Evil version 1.2.14
