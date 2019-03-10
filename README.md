@@ -9,5 +9,5 @@
 - **Window Manager**: i3 version 4.13
 - **Terminal Emulator**: xfce4-terminal 0.8.3
 - **Terminal Multiplexer**: tmux master
-- **Text Editor**: GNU Emacs 27.0.50
+- **Primary Text Editor**: GNU Emacs 27.0.50
 - **Secondary Text Editor**: NVIM 0.1.7
