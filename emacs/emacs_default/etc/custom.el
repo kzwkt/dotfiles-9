@@ -8,7 +8,7 @@
  '(flyspell-default-dictionary "american")
  '(flyspell-issue-message-flag nil)
  '(flyspell-issue-welcome-flag nil)
- '(package-selected-packages '(pabbrev clipmon use-package)))
+ '(package-selected-packages '(undo-propose use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -685,6 +685,18 @@ return t."
 (defun my/move-line-up ()
   (interactive)
   (transpose-lines 1)
+  (forward-line -2))
+
+(defun my/move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
+
+(defun my/move-line-up ()
+  (interactive)
+  (transpose-lines 1)
   (forward-line -2)
   (indent-according-to-mode))
 
@@ -695,6 +707,17 @@ return t."
   (transpose-lines 1)
   (forward-line -1)
   (indent-according-to-mode))
+
+(defun my/move-word-backwards ()
+  (interactive)
+  (transpose-words 1)
+  (backward-word 2))
+
+(defun my/move-word-forward ()
+  (interactive)
+  (forward-word 1)
+  (transpose-words 1)
+  (backward-word))
 
 (defun my/insert-em-dash ()
   (interactive)

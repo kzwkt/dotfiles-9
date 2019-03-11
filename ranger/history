@@ -1,4 +1,3 @@
-search time
 search functions
 search init
 search el
@@ -84,8 +83,6 @@ rename ufba_present_notes.org
 rename ufba_present_notes.org_
 rename 
 rename .ufba_present_notes.org.b
-open_with 0 f
-open_with 1 f
 md Repo
 rename Repo
 rename .apresentacao.b
@@ -98,3 +95,6 @@ rename Catalogo_de_URLs_Maliciosas_cropped_16_pages.pdf
 touch .gitignore
 open_with 
 open_with nvim
+open_with r0 f
+open_with 0 f
+open_with 1 f

@@ -1,7 +1,8 @@
 set $mod Mod4
 show_marks yes
 focus_follows_mouse yes
-font pango:monospace 8
+# font pango:monospace 8
+font pango:DejaVu 10
 floating_modifier $mod
 workspace_layout stacking
 set $Locker i3lock --color=#000000 && sleep 1
@@ -19,6 +20,8 @@ bar {
 }
 
 
+exec google-chrome
+exec "~/scripts/emacs_scripts/live"
 exec --no-startup-id ~/scripts/i3_scripts/fehlaunch
 exec --no-startup-id "feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper/Abstract/allblack.png"
 exec --no-startup-id  "~/scripts/screen/mx-big.sh"
@@ -26,13 +29,11 @@ exec --no-startup-id  exec "st -e sudo apt update"
 exec --no-startup-id "xset mouse 7/5 0"
 exec --no-startup-id redshift
 exec --no-startup-id indicator-keylock
-exec exec "~/scripts/emacs_scripts/live"
 exec --no-startup-id nm-applet
 exec --no-startup-id xset dpms 600
 # exec --no-startup-id xset -dpms
 # exec --no-startup-id dropbox start
 # exec --no-startup-id google-chrome-stable
- exec --no-startup-id google-chrome --no-startup-window
 exec --no-startup-id "~/scripts/i3_scripts/scratch.sh"
 exec --no-startup-id "~/scripts/keyboard/init_keys.sh"
 exec --no-startup-id "~/scripts/i3_scripts/last_window.sh"

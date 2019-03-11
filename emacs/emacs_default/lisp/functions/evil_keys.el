@@ -52,7 +52,7 @@
   "gt" 'fix-word-capitalize
   "gA" 'evil-append-line
   "\\" 'evil-execute-in-god-state
-  "g," 'evil-execute-in-god-state
+  ;; "g," 'evil-execute-in-god-state
   "M-i" 'evil-jump-forward
   "M-o" 'evil-jump-backward
   "<M-S-f11>" 'my/evil-botright

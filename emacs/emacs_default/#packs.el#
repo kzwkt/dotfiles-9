@@ -1,7 +1,3 @@
-# -*- mode: org; fill-column: 59 -*-
-
-* Init
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
 		    (not (gnutls-available-p))))
@@ -39,15 +35,11 @@
 (setq custom-file "~/.emacs.d/etc/custom.el")
 ;; (load-file "~/.emacs.d/etc/custom.el")
 
-#+END_SRC
 
-* Main
-** General
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package general
   :ensure t
   :config
-  ;; (load-file "~/.emacs.d/lisp/functions/general_shift_avoidance.el")
+  (load-file "~/.emacs.d/lisp/functions/general_shift_avoidance.el")
 
   (general-unbind 'global
     "<C-next>"
@@ -89,10 +81,7 @@
    "M-n" 'my/paragraph-forward
    "M-p" 'my/paragraph-backwards)
   (general-evil-setup t))
-#+END_SRC
-** Org Main
-*** org init
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package org
   :defer t
   :ensure t
@@ -130,9 +119,7 @@
   (defun my/save-archive ()
     (interactive)
     (save-buffer "~/org/Config/.archive.org::* From %s"))
-#+END_SRC
-*** org clock
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (setq org-clock-persist nil)
 ;; (org-clock-persistence-insinuate)
 (setq org-clock-in-resume t)
@@ -148,9 +135,7 @@
 (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
 (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))  ;; Separate drawers for clocking and logs
 (setq org-log-into-drawer t)
-#+END_SRC
-*** org source blocks
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)))
@@ -161,12 +146,8 @@
 (setq org-src-preserve-indentation t)
 (setq org-edit-src-content-indentation 1)
 (setq org-src-ask-before-returning-to-edit-buffer nil)
-#+END_SRC
-*** org loads
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-#+END_SRC
-*** org misc
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
+
 (setq org-pretty-entities-include-sub-superscripts nil)
 (setq org-format-latex-options
       (plist-put org-format-latex-options :scale 1.3))
@@ -187,20 +168,13 @@
 (setq org-ellipsis ".")
 (setq org-babel-temporary-directory "~/.emacs.d/babel-temp")
 (setq org-fontify-done-headline t)
-#+END_SRC
-*** org todo config
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (setq org-todo-keywords
       '((sequence "TODO(t!)" "STARTED(s!)" "|"  "DONE(d!)")))
-#+END_SRC
-*** org tags config
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (setq org-tags-column -69)
 (setq org-agenda-tags-column -80)
-#+END_SRC
-*** org refile config
-The targets of the ~org-refile~ command.
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 
 (setq org-refile-targets '((nil :maxlevel . 9)
                                 (org-agenda-files :maxlevel . 9)))
@@ -211,10 +185,7 @@ The targets of the ~org-refile~ command.
 ;; (setq org-refile-use-outline-path file)                  ; Show full paths for refiling
 (setq org-refile-use-outline-path 'file)
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
-#+END_SRC
-*** org file apps
-The default handlers for different file types.
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 
 (setq org-file-apps (quote ((auto-mode . emacs)
                             ("\\.mm\\'" . default)
@@ -229,10 +200,7 @@ The default handlers for different file types.
 ;;                             ("\\.odt\\'" . "lowriter %s")
 ;;                             ("\\.pdf\\'" . "zathura %s"))))
 
-#+END_SRC
-*** org easy templates
-Easy templates
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (add-to-list 'org-structure-template-alist '("ll" "\\begin{equation*}\n\\begin{split}\n?\n\\end{split}\n\\end{equation*}"))
 (add-to-list 'org-structure-template-alist '("cc" "#+BEGIN_SRC C\n?\n#+END_SRC"))
 (add-to-list 'org-structure-template-alist '("s" "#+BEGIN_SRC shell \n?\n#+END_SRC"))
@@ -242,9 +210,7 @@ Easy templates
 (add-to-list 'org-structure-template-alist '("lisp" "#+BEGIN_SRC lisp\n\n?\n\n#+END_SRC"))
 (add-to-list 'org-structure-template-alist '("p" "#+BEGIN_SRC python :tangle yes\n?\n#+END_SRC"))
 (add-to-list 'org-structure-template-alist '("u" "#+begin_quote\n?\n#+end_quote"))
-#+END_SRC
-*** org capture templates config
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (setq org-capture-templates
       '(
 	;; ("m" "Matemática" entry (file+headline "~/Matérias/matematica.org" "Refile") "** %u %i%?" :empty-lines 1)
@@ -259,9 +225,7 @@ Easy templates
 	("2" "Logo"   entry  (file+headline "~/org/Planning/planning.org" "Logo")   "* TODO %u %i%?")
 	("3" "Depois" entry  (file+headline "~/org/Planning/planning.org" "Depois") "* TODO %u %i%?")
 	("4" "Um Dia" entry  (file+headline "~/org/Planning/planning.org" "Um Dia") "* TODO %u %i%?")))
-#+END_SRC
-*** org keys
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 
 (general-define-key
  :keymaps 'org-src-mode-map
@@ -304,48 +268,32 @@ Easy templates
 
 
 )
-#+END_SRC
-** Org Bullets
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package org-bullets
 :ensure t)
   ;; :init
   ;; (setq org-bullets-bullet-list (quote ("◐" "◑" "◒" "◓" "☉" "◎" "◉")))
-#+END_SRC
-** Org Noter
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package org-noter
 :defer t
 :ensure t)
-#+END_SRC
-** Org Asciidoc
 
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ox-asciidoc
 :after org
 :ensure t)
-#+END_SRC
-** Org Web Tools
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package org-web-tools
 :after org
 :ensure t)
-#+END_SRC
-** Org Epub
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ox-epub
 :after org
 :ensure t)
-#+END_SRC
-** Org Toc
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package toc-org
 :defer t
 :ensure t)
-#+END_SRC
-** Org2Blog
-Ver: https://github.com/org2blog/org2blog/wiki
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package org2blog
   :init
   (setq org2blog/wp-blog-alist
@@ -362,17 +310,12 @@ Ver: https://github.com/org2blog/org2blog/wiki
 	   :default-categories ("sci-fi")
 	   :tags-as-categories nil)))
   :ensure t)
-#+END_SRC
-** adoc mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package adoc-mode
 :ensure t
 :init
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode)))
-#+END_SRC
-** Evil
-*** Evil Main
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil
   :ensure t
   :init
@@ -398,19 +341,7 @@ Ver: https://github.com/org2blog/org2blog/wiki
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
-#+END_SRC
-*** Evil Org
-***** Evil Org Text Objects
 
-| key     | function              | examples           |
-|---------+-----------------------+--------------------|
-| ae / ie | inner-object          | link, markup, cell |
-| aE / iE | inner-element         | par, src, row      |
-| ar / ir | inner-greater-element | item list, table   |
-| aR / iR | inner-subtree         | subtree            |
-
-***** Evil Org Use Package Declaration
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package evil-org
   :ensure t
   :after org
@@ -421,17 +352,13 @@ Ver: https://github.com/org2blog/org2blog/wiki
               (evil-org-set-key-theme)))
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
-#+END_SRC
-*** Evil Commentary
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-commentary
   :after evil
   :ensure t
   :config
   (evil-commentary-mode 1))
-#+END_SRC
-*** Evil Collection
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-collection
 :after evil
 :ensure t
@@ -443,17 +370,13 @@ Ver: https://github.com/org2blog/org2blog/wiki
   :config
   (global-evil-surround-mode 1))
 
-#+END_SRC
-*** Evil Rsi
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-rsi
   :after evil
   :ensure t
   :config
   (evil-rsi-mode))
-#+END_SRC
-*** Evil Numbers
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-numbers
   :defer t
   :ensure t
@@ -462,10 +385,7 @@ Ver: https://github.com/org2blog/org2blog/wiki
     :keymaps 'override
     "C-M-i" 'evil-numbers/inc-at-pt
     "C-M-o" 'evil-numbers/dec-at-pt))
-#+END_SRC
-* Text
-** pabbrev
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package pabbrev
   :defer t
   :ensure t
@@ -473,33 +393,23 @@ Ver: https://github.com/org2blog/org2blog/wiki
   (general-define-key
    :keymaps 'pabbrev-mode-map
    "C-b" 'pabbrev-expand-maybe))
-#+END_SRC
-** lorem ipsum
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package lorem-ipsum
 :defer t
 :ensure t)
-#+END_SRC
-** typo
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package typo
 :defer t
 :ensure t)
-#+END_SRC
-** writegood-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package writegood-mode
   :defer t
   :ensure t)
-#+END_SRC
-** hl-sentence
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package hl-sentence
   :defer t
   :ensure t)
-#+END_SRC
-** flyspell
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package flyspell
   :defer t
   :custom
@@ -516,9 +426,7 @@ Ver: https://github.com/org2blog/org2blog/wiki
   :after flyspell
   :custom
   (flyspell-correct-interface 'flyspell-correct-ivy))
-#+END_SRC
-** ispell
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ispell
 :defer t
 :ensure nil
@@ -526,10 +434,7 @@ Ver: https://github.com/org2blog/org2blog/wiki
 (general-nvmap
   :keymaps 'override
   "z[" 'ispell-insert-word))
-#+END_SRC
-** auto capitalize
-https://is.gd/JyKZsg
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (setq auto-capitalize-ask nil)
 (autoload 'auto-capitalize-mode "auto-capitalize"
   "Toggle `auto-capitalize' minor mode in this buffer." t)
@@ -537,30 +442,22 @@ https://is.gd/JyKZsg
   "Turn on `auto-capitalize' minor mode in this buffer." t)
 (autoload 'enable-auto-capitalize-mode "auto-capitalize"
   "Enable `auto-capitalize' minor mode in this buffer." t)
-#+END_SRC
-** fix-word
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package fix-word
 :defer t
 :ensure t)
-#+END_SRC
-** wc-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package wc-mode
 :defer 3
 :ensure t)
-#+END_SRC
-** olivetti
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package olivetti
 :defer t
   :ensure t
   :init
   (setq-default olivetti-body-width 90)
   (setq olivetti-body-width 90))
-#+END_SRC
-** markdown
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package markdown-mode
   :defer t
   :ensure t
@@ -607,11 +504,7 @@ https://is.gd/JyKZsg
 
 (use-package markdown-toc
   :ensure t)
-#+END_SRC
-* Buffers
-** saving
-*** savehist
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package savehist
   :init
   (setq history-length 500)
@@ -620,37 +513,26 @@ https://is.gd/JyKZsg
   (setq savehist-additional-variables '(kill-ring search-ring filesets-data))
   :config
   (savehist-mode t))
-#+END_SRC
-*** no littering
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package no-littering
   :ensure t)
-#+END_SRC
-*** saveplace
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package saveplace
   :ensure nil
   :init
   (setq save-place-file "~/.emacs.d/var/save-place.el")
   :config
   (save-place-mode 1))
-#+END_SRC
-** vimrc-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package vimrc-mode
   :defer t
   :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.vim\\'" . vimrc-mode)))
-#+END_SRC
-** vlf
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package vlf
 :ensure t)
-#+END_SRC
-** unkillable scratch
-Maybe I need it in the future.
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package unkillable-scratch
   :ensure t
   :config
@@ -660,18 +542,13 @@ Maybe I need it in the future.
   (setq unkillable-scratch-behavior 'bury)
   :config
   (unkillable-scratch))
-#+END_SRC
-* Movement
-** visual line
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-better-visual-line
   :after evil
   :ensure t
   :config
   (evil-better-visual-line-on))
-#+END_SRC
-** centered cursor
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package centered-cursor-mode
   :defer nil
   :ensure t
@@ -679,15 +556,11 @@ Maybe I need it in the future.
   (setq ccm-step-size 4)
   (setq ccm-step-delay 0.02)
   (setq ccm-recenter-at-end-of-file t))
-#+END_SRC
-** buffer move
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package buffer-move
 :defer t
 :ensure t)
-#+END_SRC
-** Avy
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package avy
   :defer 2
   :ensure t
@@ -718,9 +591,7 @@ Maybe I need it in the future.
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l
 		      ?q ?w ?e ?r ?t ?y ?u))
   (setq avy-all-windows nil))
-#+END_SRC
-** dired
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package dired
   :defer t
   :ensure nil
@@ -740,9 +611,7 @@ Maybe I need it in the future.
   (setq diredp-hide-details-initially-flag t)
   (setq diredp-hide-details-propagate-flag t)
   (diredp-toggle-find-file-reuse-dir t))
-#+END_SRC
-** Ranger
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ranger
   :ensure t
   :init
@@ -827,9 +696,7 @@ Maybe I need it in the future.
    "q" 'kill-this-buffer
    "y" 'my/term-botright))
 
-#+END_SRC
-** windmove
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package windmove
   :config
   (setq windmove-wrap-around nil)
@@ -846,18 +713,7 @@ Maybe I need it in the future.
    "M-h" 'windmove-left
    "M-j" 'windmove-down
    "M-l" 'windmove-right))
-#+END_SRC
-** Ivy
-*** Ivy Tips:
-**** Copy all buffer contents:
-- C-x h :: (mark-whole-buffer)
-- M-w   :: (ivy-kill-ring-save)
-- *Or*:
- Press C-c C-o to generate a new buffer with all
- candidates. You can then copy them as you see fit.
-**** TODO [[https://oremacs.com/swiper/#actions][Put "my/erase-kill-ring" in "counsel-yank-pop"]]
-*** Ivy Package
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ivy
   :init
   (load-file "~/.emacs.d/lisp/functions/ivy_ignore_buffers.el")
@@ -918,9 +774,7 @@ Maybe I need it in the future.
     "M-d" 'ivy-switch-buffer)
 
   (ivy-mode 1))
-#+END_SRC
-*** Counsel
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package counsel
   :ensure t
   :config
@@ -941,9 +795,7 @@ Maybe I need it in the future.
    "M-y" 'counsel-yank-pop)
 
   (counsel-mode 1))
-#+END_SRC
-** eyebrowse
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package eyebrowse
 ;; :defer t
   :ensure t
@@ -988,9 +840,7 @@ Maybe I need it in the future.
   (general-unbind 'eyebrowse-mode-map
     "C-c C-w")
   (eyebrowse-mode t))
-#+END_SRC
-** Ace-window
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ace-window
 :defer t
   :ensure t
@@ -1003,9 +853,7 @@ Maybe I need it in the future.
   :config
   (general-define-key
    "M-ç" 'ace-window))
-#+END_SRC
-** Winner Mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package winner
   :defer 3
   :ensure nil
@@ -1022,10 +870,7 @@ Maybe I need it in the future.
    "M-=" 'winner-redo)
 
   (winner-mode 1))
-#+END_SRC
-** Hydra
-**** hydra declaration
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package hydra
   :ensure t
   :config
@@ -1075,35 +920,20 @@ Maybe I need it in the future.
    "C-s" 'hydra-search/body
    "<f1>" 'hydra-help/body
    "C-M-h" 'hydra-help/body))
-#+END_SRC
-**** ivy-hydra
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package ivy-hydra
 :after hydra
 :ensure t)
-#+END_SRC
-** targets
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package targets
   :load-path "~/.emacs.d/lisp/"
   :config
   (targets-setup t))
-#+END_SRC
-* Utilities
-** clipmon
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package clipmon
   :defer t
   :ensure t)
-#+END_SRC
-** undo-propose
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package undo-propose
-  :defer t
-  :ensure t)
-#+END_SRC
-** disable mouse
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package disable-mouse
   :ensure t
   :config
@@ -1114,9 +944,7 @@ Maybe I need it in the future.
 	      evil-visual-state-map
 	      evil-insert-state-map))
   (global-disable-mouse-mode +1))
-#+END_SRC
-** wordnut
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package wordnut
   :defer t
   :ensure t)
@@ -1124,13 +952,7 @@ Maybe I need it in the future.
 (use-package adaptive-wrap
   :after wordnut
   :ensure t)
-#+END_SRC
-** buffer-expose
 
-- (buffer-expose-show-buffers BLIST) :: function to be create new
-buffer expose commands.
-
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 
 ;; ;; (package-install-file "~/.emacs.d/lisp/buffer-expose/buffer-expose.el")
 ;; (use-package buffer-expose
@@ -1155,17 +977,13 @@ buffer expose commands.
 ;;    "m" 'buffer-expose-choose)
 
 ;;   (buffer-expose-mode 1))
-#+END_SRC
-** sr-sppedbar
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package sr-speedbar
   :defer t
   :init
 (setq sr-speedbar-right-side nil)
   :ensure t)
-#+END_SRC
-** auto compile
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package auto-compile
   :defer t
   :ensure t
@@ -1175,16 +993,12 @@ buffer expose commands.
   (setq load-prefer-newer t)
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
-#+END_SRC
-** restart emacs
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package restart-emacs
 :defer t
 :ensure t
 :ensure t)
-#+END_SRC
-** which key
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package which-key
   :defer t
   :ensure t
@@ -1209,9 +1023,7 @@ buffer expose commands.
    "C-n" nil
    "C-l" 'which-key-abort
    "C-p" nil))
-#+END_SRC
-** elmacro
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package elmacro
   :defer t
   :ensure t
@@ -1219,15 +1031,11 @@ buffer expose commands.
   (general-define-key
    "C-c m l m" 'elmacro-show-last-macro
    "C-c m l c" 'elmacro-show-last-commands))
-#+END_SRC
-** evil swap keys
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package evil-swap-keys
 :defer t
 :ensure t)
-#+END_SRC
-** super-save
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package super-save
   :ensure t
   :config
@@ -1250,9 +1058,7 @@ buffer expose commands.
   (setq super-save-idle-duration 180)
   (setq auto-save-default nil)
   (super-save-mode +1))
-#+END_SRC
-** engine
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package engine-mode
   :defer t
   :ensure t
@@ -1275,9 +1081,7 @@ buffer expose commands.
 
 
 
-#+END_SRC
-** beacon
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package beacon
   :defer t
   :init
@@ -1296,9 +1100,7 @@ buffer expose commands.
   (setq beacon-blink-when-window-scrolls t)
   (setq beacon-blink-when-window-changes t)
   (beacon-mode 1))
-#+END_SRC
-** vertigo
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package vertigo
   :defer 2
   :ensure t
@@ -1310,9 +1112,7 @@ buffer expose commands.
   (setq vertigo-home-row '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?o)))
 
 ;; (setq vertigo-home-row '(?q ?w ?e ?r ?t ?y ?u ?i ?o ?p)
-#+END_SRC
-** god mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package god-mode
 :defer t
 :ensure t)
@@ -1325,32 +1125,22 @@ buffer expose commands.
   ;;   :keymaps 'override
   ;;   "," 'evil-execute-in-god-state)
   (evil-define-key 'god global-map [escape] 'evil-god-state-bail))
-#+END_SRC
-** bug hunt
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package bug-hunter
 :defer t
 :ensure t)
-#+END_SRC
-** recursive narrow
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package recursive-narrow
   :ensure t)
-#+END_SRC
-** caps
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package caps-lock
 :defer t
 :ensure t)
-#+END_SRC
-** aggresive fill
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package aggressive-fill-paragraph
 :defer t
 :ensure t)
-#+END_SRC
-** helpful
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package helpful
   :defer nil
   :ensure t
@@ -1372,9 +1162,7 @@ buffer expose commands.
    :keymaps 'helpful-mode-map
    "M-p" 'my/paragraph-backwards
    "M-n" 'my/paragraph-forward))
-#+END_SRC
-** bench init
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package benchmark-init
   :ensure t
   :init
@@ -1387,19 +1175,14 @@ buffer expose commands.
   (general-unbind 'benchmark-init/tabulated-mode-map
     :with 'quit-window
     [remap my/quiet-save-buffer]))
-#+END_SRC
-* Built-ins
-** filesets
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package filesets
   :init
   (load-file "~/.emacs.d/lisp/functions/filesets.el" )
   :ensure nil
   :config
   (filesets-init))
-#+END_SRC
-** cc mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package c-mode
   :defer t
   :ensure cc-mode
@@ -1442,9 +1225,7 @@ buffer expose commands.
     "<escape>" 'my/quiet-save-buffer-c
     "<M-return>" 'indent-buffer
     "<backspace>" 'hydra-c-mode/body))
-#+END_SRC
-** shell mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package shell
   :defer t
   :ensure nil
@@ -1510,9 +1291,7 @@ buffer expose commands.
   (general-unbind 'shell-mode-map
     :with nil
     [remap hydra-text-main/body]))
-#+END_SRC
-** eshell
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package eshell
   :defer t
   :ensure nil
@@ -1523,9 +1302,7 @@ buffer expose commands.
   (defun my/load-eshell-keybindings ()
     (interactive)
     (load-file "~/.emacs.d/lisp/functions/eshell_keybindings.el")))
-#+END_SRC
-** calc
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package calc
 :defer t
   :ensure nil
@@ -1545,9 +1322,7 @@ buffer expose commands.
     :keymaps 'calc-mode-map
     "C-l" 'calc-reset
     "<escape>" 'calc-quit))
-#+END_SRC
-** compilation-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package compilation-mode
   :defer t
   :ensure nil
@@ -1555,9 +1330,7 @@ buffer expose commands.
   (general-unbind 'compilation-mode-map
     :with 'ignore
     [remap my/quiet-save-buffer]))
-#+END_SRC
-** conf-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package conf-mode
   :defer t
   :ensure nil
@@ -1566,9 +1339,7 @@ buffer expose commands.
    :keymaps 'conf-mode-map
    "M-p" 'my/paragraph-backwards
    "M-n" 'my/paragraph-forward))
-#+END_SRC
-** with-editor
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package with-editor
   :defer t
   :ensure nil
@@ -1577,9 +1348,7 @@ buffer expose commands.
    :keymaps 'with-editor-mode-map
    "<C-return>" 'with-editor-finish
    "<M-return>" 'with-editor-cancel))
-#+END_SRC
-** desktop
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (use-package desktop
 ;;   :ensure nil
 ;;   :init
@@ -1589,9 +1358,7 @@ buffer expose commands.
 ;;   (setq desktop-auto-save-timeout 30)
 ;;   :config
 ;;   (desktop-save-mode t))
-#+END_SRC
-** text mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package text-mode
   :init
   (add-hook 'text-mode-hook 'my/text-hooks)
@@ -1624,9 +1391,7 @@ buffer expose commands.
    "C-c C-k" 'pdf-annot-edit-contents-abort
    "M-p" 'my/paragraph-backwards
    "M-n" 'my/paragraph-forward))
-#+END_SRC
-** custom
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package Custom-mode
   :defer t
   :ensure nil
@@ -1644,18 +1409,14 @@ buffer expose commands.
    "C-j" 'counsel-M-x
    "M-p" 'my/paragraph-backwards
    "M-n" 'my/paragraph-forward))
-#+END_SRC
-** hippie-exp
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package hippie-exp
 :defer t
   :ensure nil
   :config
   (general-imap
     "M-/" 'hippie-expand))
-#+END_SRC
-** term
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package term
 :defer t
   :init
@@ -1726,9 +1487,7 @@ buffer expose commands.
     :keymaps 'term-raw-map
     "C-;" 'kill-buffer-and-window
     "M-r" nil))
-#+END_SRC
-** abbrev
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package abbrev
   :defer t
   :ensure nil
@@ -1743,9 +1502,7 @@ buffer expose commands.
     :keymaps 'edit-abbrevs-mode-map
     [escape] 'abbrev-edit-save-buffer
     "q" 'kill-this-buffer))
-#+END_SRC
-** prog
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package prog-mode
   :defer t
   :ensure nil
@@ -1782,9 +1539,7 @@ buffer expose commands.
    "<C-return>" 'hydra-prog-mode/body
    ;; "C-c u" 'executable-interpret
    "<M-return>" 'indent-buffer))
-#+END_SRC
-** help
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package help-mode
   :defer 1
   :ensure nil
@@ -1811,9 +1566,7 @@ buffer expose commands.
    "M-p" 'my/paragraph-backwards
    "M-n" 'my/paragraph-forward
    "gs" 'evil-ex-nohighlight))
-#+END_SRC
-** man
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package man
   :defer t
   :ensure nil
@@ -1859,76 +1612,57 @@ buffer expose commands.
   (general-unbind 'Man-mode-map
     :with 'ignore
     [remap evil-insert]))
-#+END_SRC
-** misc
-*** scroll-bar
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package scroll-bar
   :defer 1
   :ensure nil
   :config
   (horizontal-scroll-bar-mode -1)
   (scroll-bar-mode -1))
-#+END_SRC
-*** tool-bar
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package tool-bar
   :defer 1
   :ensure nil
   :config
   (setq tool-bar-mode nil)
   (tool-bar-mode -1))
-#+END_SRC
-*** eldoc
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package eldoc
   :defer 1
   :ensure nil
   :config
   (global-eldoc-mode -1))
-#+END_SRC
-*** menu-bar
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package menu-bar
   :defer 1
   :ensure nil
   :config
   (menu-bar-mode -1))
-#+END_SRC
-*** show-paren-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package paren
   :defer 1
   :ensure nil
   :config
   (show-paren-mode 1))
-#+END_SRC
-*** blink-cursor-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package frame
   :defer 1
   :ensure nil
   :config
   (blink-cursor-mode 0))
-#+END_SRC
-*** autorevert
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package autorevert
   :defer 1
   :ensure nil
   :config
   (global-auto-revert-mode 1))
-#+END_SRC
-*** mouse
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package mouse
   :defer 1
   :ensure nil
   :config
   (setq mouse-yank-at-point t))
-#+END_SRC
-*** paragraphs
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (use-package paragraphs
 ;;   :defer 1
 ;;   :ensure nil
@@ -1937,17 +1671,13 @@ buffer expose commands.
 ;;   (setq sentence-end nil))
   (setq sentence-end-double-space nil)
   (setq sentence-end nil)
-#+END_SRC
-*** hl-line
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package hl-line
   :defer 1
   :ensure nil
   :config
   (setq global-hl-line-mode nil))
-#+END_SRC
-*** simple
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package simple
   :ensure nil
   :config
@@ -1968,42 +1698,32 @@ buffer expose commands.
     [remap my/quiet-save-buffer])
 
   (global-visual-line-mode t))
-#+END_SRC
-*** warnings
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package warning
   :defer 1
   :ensure nil
   :config
   (setq warning-minimum-level :emergency))
-#+END_SRC
-*** custom
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package custom
   :defer 1
   :ensure nil
   :config
   (setq custom-safe-themes t))
-#+END_SRC
-*** comint
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package comint
   :defer 1
   :ensure nil
   :config
   (setq comint-prompt-read-only t))
-#+END_SRC
-*** sh-script
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package sh-script
   :defer 1
   :ensure nil
   :config
   (add-to-list 'auto-mode-alist '("\\.inputrc\\'" . sh-mode))
   (add-to-list 'auto-mode-alist '("\\.bash_aliases\\'" . sh-mode)))
-#+END_SRC
-*** files
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package files
   :defer 1
   :ensure nil
@@ -2035,57 +1755,42 @@ buffer expose commands.
   (setq buffer-save-without-query t)
   (setq find-file-suppress-same-file-warnings t)
   )
-#+END_SRC
-*** bookmark
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package files
   :defer 1
   :ensure nil
   :config
   (setq bookmark-save-flag 1))
-#+END_SRC
-*** vc-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package vc-mode
   :defer nil
   :ensure nil
   :init
   (setq vc-follow-symlinks t))
-#+END_SRC
-*** register
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package register
   :defer 1
   :ensure nil
   :config
 (setq register-preview-delay 0.15))
-#+END_SRC
-*** doc-view
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package doc-view
   :defer t
   :ensure nil
   :config
   (setq doc-view-continuous t))
-#+END_SRC
-*** loaddefs
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package loaddefs
   :defer 1
   :ensure nil
   :config
   (setq browse-url-generic-program "google-chrome")
   (setq browse-url-browser-function 'browse-url-generic))
-#+END_SRC
-* Appearance
-** focus
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package focus
   :defer t
   :ensure t)
-#+END_SRC
-** delight
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package delight
   :ensure t
   :config
@@ -2099,9 +1804,7 @@ buffer expose commands.
   (delight 'python-mode " py" " Python")
   (delight 'emacs-lisp-mode " elisp" "Emacs-Lisp")
   (delight 'lisp-interaction-mode " lisp int" "Lisp Interaction"))
-#+END_SRC
-** smart modeline
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package smart-mode-line
   :ensure t
   :defer 0.5
@@ -2148,48 +1851,34 @@ buffer expose commands.
 
 ;; (use-package smart-mode-line-powerline-theme
 ;;   :ensure t)
-#+END_SRC
-** dimmer
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package dimmer
   :unless window-system
   :defer t
   :ensure t
   :init
   (setq dimmer-fraction 0.2))
-#+END_SRC
-** noctilux
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package noctilux-theme
 :ensure t
 :init
 (setq custom-safe-themes t)
 (load-theme 'noctilux))
-#+END_SRC
-** poet
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package poet-theme
   :defer t
   :ensure t)
-#+END_SRC
 
-* Programming
-** emacs-lisp-mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package elisp-mode
   :defer t
   :ensure nil
   :init
   (add-hook 'lisp-interaction-mode-hook 'line-numbers))
-#+END_SRC
-** indent tools
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package indent-tools
   :defer t
   :ensure t)
-#+END_SRC
-** quickrun
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package quickrun
   :defer t
   :ensure t
@@ -2200,10 +1889,7 @@ buffer expose commands.
   (general-unbind 'compilation-mode-map
     :with 'quit-window
     [remap my/quiet-save-buffer]))
-#+END_SRC
-** java
-*** Java Main
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package cc-mode
   :ensure nil
   :init
@@ -2215,10 +1901,7 @@ buffer expose commands.
   (general-nvmap
     :keymaps 'java-mode-map
     "RET" 'hydra-java-mode/body))
-#+END_SRC
-*** Eclim
-**** Eclim Main
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (use-package eclim
 ;;   :defer t
 ;;   :ensure t
@@ -2233,22 +1916,15 @@ buffer expose commands.
 ;;    '(eclimd-default-workspace "~/Java/default-workspace"))
 ;;   :config
 ;;   (eclim-mode 1))
-#+END_SRC
-**** Company Eclim
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (use-package company-emacs-eclim
 ;;  :defer t
 ;;   :ensure t)
-#+END_SRC
-*** lsp-java
-**** lsp-java main
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package lsp-java
 :defer t
 :ensure t)
-#+END_SRC
-**** lsp-java other
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package lsp-mode
   :defer t
   :ensure t)
@@ -2288,11 +1964,7 @@ buffer expose commands.
 (use-package dap-java
   :after (lsp-java))
 
-#+END_SRC
 
-** python
-*** elpy
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package elpy
   :unless window-system
   :defer t
@@ -2309,26 +1981,20 @@ buffer expose commands.
     :with 'ignore
     [remap elpy-shell-send-statement-and-step])
   (elpy-enable))
-#+END_SRC
-*** blacken
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package blacken
   :unless window-system
   :defer t
   :ensure t
   :config
   (setq blacken-line-length 79))
-#+END_SRC
-*** pyenv
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package pyenv-mode
   :unless window-system
   :after python
   :defer t
   :ensure t)
-#+END_SRC
-*** python mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package python
   :defer t
   :ensure nil
@@ -2455,10 +2121,7 @@ buffer expose commands.
     "gk" 'outline-backward-same-level
     "<C-return>" 'python-open-two-line
     "<backspace>" 'hydra-prog-mode/body))
-#+END_SRC
-** projectile
-*** projectile main
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package projectile
   :defer t
   :ensure t
@@ -2489,18 +2152,14 @@ buffer expose commands.
    :keymaps 'projectile-command-map
    "ESC" 'keyboard-quit
    "TAB" 'projectile-project-buffers-other-buffer))
-#+END_SRC
-*** counsel projectile
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package counsel-projectile
   :unless window-system
   :defer t
   :ensure t
   :config
   (counsel-projectile-mode +1))
-#+END_SRC
-** insert shebang
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 ;; (use-package insert-shebang
 ;;   :defer t
 ;;   :init
@@ -2516,9 +2175,7 @@ buffer expose commands.
 ;; 	 ("sh" . "bash")
 ;; 	 ("pl" . "perl")))
 ;;   :ensure t)
-#+END_SRC
-** smart hungry delete
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package smart-hungry-delete
   :defer 5
   :ensure t
@@ -2527,10 +2184,7 @@ buffer expose commands.
     :keymaps 'override
     "X" 'smart-hungry-delete-forward-char)
   (smart-hungry-delete-add-default-hooks))
-#+END_SRC
-** web
-*** web mode
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package web-mode
   :unless window-system
   :defer t
@@ -2547,44 +2201,32 @@ buffer expose commands.
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
-#+END_SRC
-*** emmet
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package emmet-mode
 :unless window-system
 :after web-mode
 :ensure t)
-#+END_SRC
-** smartparens
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package smartparens
   :defer 3
   :ensure t
   :config
   (smartparens-global-mode +1))
-#+END_SRC
-** dumb jump
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package dumb-jump
 :defer t
 :ensure t
 :config
 (setq dumb-jump-selector 'ivy))
-#+END_SRC
-** highlight numbers
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package highlight-numbers
 :defer t
 :ensure t)
-#+END_SRC
-** highlight operators
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package highlight-operators
 :defer t
 :ensure t)
-#+END_SRC
-** string inflection
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package string-inflection
 :defer t
 :ensure t)
@@ -2592,9 +2234,7 @@ buffer expose commands.
 (use-package evil-string-inflection
 :defer t
 :ensure t)
-#+END_SRC
-** flycheck
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package flycheck
   :defer t
   :ensure t
@@ -2612,26 +2252,18 @@ buffer expose commands.
   (setq flymake-mode nil)
   (setq flycheck-clang-pedantic t)
   (setq flycheck-gcc-pedantic t))
-#+END_SRC
-** subword
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package subword
 :defer 3
 :ensure nil
 :config
 (subword-mode +1))
-#+END_SRC
-** elec pair
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package elec-pair
 :defer t
 :config
 (electric-pair-mode))
-#+END_SRC
-** company
-*** company mode
-Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*.
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package company
   :defer 3
   :ensure t
@@ -2712,9 +2344,7 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
     "C-ç" 'company-complete
     "M-/" 'hippie-expand))
   ;; (global-company-mode 1))
-#+END_SRC
-*** company shell
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package company-shell
   :after company
   :ensure t
@@ -2724,27 +2354,21 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   :config
   (setq company-shell-delete-duplicates t)
   (setq company-fish-shell-modes nil))
-#+END_SRC
-*** company quickhelp
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package company-quickhelp
 :after company
 :ensure t
 :config
 (setq company-quickhelp-use-propertized-text t)
 (setq company-quickhelp-delay 3))
-#+END_SRC
-*** company prescient
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package company-prescient
   :after company
   :ensure t)
 (use-package prescient
   :after company
   :ensure t)
-#+END_SRC
-*** post it
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package pos-tip
 :defer t
 :ensure t
@@ -2753,17 +2377,13 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 (setq pos-tip-internal-border-width 3)
 (setq pos-tip-background-color "grey9")
 (setq pos-tip-foreground-color "yellow1"))
-#+END_SRC
-** tab jump out
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package tab-jump-out
   :defer 3
   :ensure t
   :config
   (tab-jump-out-mode t))
-#+END_SRC
-** elec operator
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package electric-operator
 :ensure t
 :config
@@ -2772,17 +2392,13 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
                                       (cons "-" " - ")
                                       (cons "ndd" " and ")
                                       (cons "ntt" " not ")))
-#+END_SRC
-** aggresive indent
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package aggressive-indent
   :defer t
   :ensure t
   :config
   (setq aggressive-indent-sit-for-time 0.05))
-#+END_SRC
-** yasnippets packages
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package yasnippet
   :defer 1
   :ensure t
@@ -2842,23 +2458,16 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 (use-package java-snippets
   :after yasnippet
   :ensure t)
-#+END_SRC
-** rainbow delimiters
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package rainbow-delimiters
 :unless window-system
 :defer t
 :ensure t)
-#+END_SRC
-** highlightindent guides
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package highlight-indent-guides
 :defer t
 :ensure t)
-#+END_SRC
-* Extras
-** pdf tools
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
 (use-package pdf-tools
   :ensure t
   :init
@@ -2876,4 +2485,3 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   (add-hook 'pdf-view-mode-hook 'pdf-history-minor-mode)
   (setq pdf-view-display-size 'fit-page)
   (setq pdf-misc-size-indication-minor-mode t))
-#+END_SRC

@@ -213,23 +213,6 @@
   ("e" my/execute-c-program)
   ("x" my/execute-c-program-shell))
 
-(defhydra hydra-prog-mode (:color blue :hint nil :foreign-keys run)
-  "
-  ^
-       ^Flycheck^
-       -----------------------------------------------
-
-"
-  ("<escape>" nil)
-  ("RET" nil)
-
-  ("g" dumb-jump-go)
-  ("j" hydra-dumb-jump/body)
-  ("q" quickrun)
-  ("h" quickrun-shell)
-
-)
-
 (defhydra hydra-dumb-jump (:color blue :hint nil :foreign-keys run)
   "
   ^

@@ -39,7 +39,7 @@
 (use-package general
   :ensure t
   :config
-  (load-file "~/.emacs.d/lisp/functions/general_shift_avoidance.el")
+  ;; (load-file "~/.emacs.d/lisp/functions/general_shift_avoidance.el")
 
   (general-unbind 'global
     "<C-next>"
@@ -919,7 +919,7 @@
    "M-;" 'hydra-yasnippet/body
    "C-s" 'hydra-search/body
    "<f1>" 'hydra-help/body
-   "C-M-h" 'hydra-help/body)
+   "C-M-h" 'hydra-help/body))
 
 (use-package ivy-hydra
 :after hydra
@@ -931,6 +931,10 @@
   (targets-setup t))
 
 (use-package clipmon
+  :defer t
+  :ensure t)
+
+(use-package undo-propose
   :defer t
   :ensure t)
 
@@ -2342,7 +2346,7 @@
   (general-imap
     :keymaps 'company-mode-map
     "C-ç" 'company-complete
-    "M-/" 'hippie-expand)
+    "M-/" 'hippie-expand))
   ;; (global-company-mode 1))
 
 (use-package company-shell

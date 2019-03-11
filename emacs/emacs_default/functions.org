@@ -738,9 +738,27 @@ return t."
     (message " recompiled")))
 #+END_SRC
 * Editing
-** move lines
-From https://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
-*** my/move-line-up
+** my transposes
+*** my move lines
+[[https://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/][Source]]
+**** my/move-line-up
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+#+END_SRC
+**** my/move-line-down
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
+#+END_SRC
+*** my move paragraphs
+**** my/move-paragraph-up
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/move-line-up ()
   (interactive)
@@ -748,7 +766,7 @@ From https://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
   (forward-line -2)
   (indent-according-to-mode))
 #+END_SRC
-*** my/move-line-down
+**** my/move-paragraph-down
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/move-line-down ()
   "Move down the current line."
@@ -757,6 +775,22 @@ From https://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
   (transpose-lines 1)
   (forward-line -1)
   (indent-according-to-mode))
+#+END_SRC
+*** my move words
+**** my/move-word-backwards
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-word-backwards ()
+  (interactive)
+  (transpose-words 1)
+  (backward-word 2))
+#+END_SRC
+**** my/move-word-forward
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-word-forward ()
+  (interactive)
+  (forward-word 1)
+  (transpose-words 1)
+  (backward-word))
 #+END_SRC
 ** my/insert-bash
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el

@@ -105,9 +105,12 @@
 "C-c L w"   'my/new-theme
 
 ;;;; EDITING ;;;;
+"C-c u" 'undo-propose
 "C-c K" 'avy-goto-char-timer
 "C-S-j" 'my/move-line-down
 "C-S-k" 'my/move-line-up
+"C-M-n" 'my/move-word-forward
+"C-M-p" 'my/move-word-backwards
 "C-c i a" 'align-regexp
 "C-c i e" 'tiny-expand
 "C-c i s" 'transpose-sentences
