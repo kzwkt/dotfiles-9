@@ -46,4 +46,5 @@
 			   "prog_scratch"
 			   "*scratch*"
 			   "*Warning*"
-			   "*Messages*"))
+			   "*Messages*"
+			   "info_keys.org"))

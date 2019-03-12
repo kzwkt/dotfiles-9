@@ -344,6 +344,7 @@
   (add-to-list 'evil-emacs-state-modes 'org-brain-visualize-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
+  (add-to-list 'evil-emacs-state-modes 'info-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
 
 ;; (use-package undo-tree
@@ -555,6 +556,7 @@
 			     "markdown_scratch"
 			     "fundamental_scratch"
 			     "org_scratch"
+			     "info_keys.org"
 			     "prog_scratch"))
   (setq unkillable-scratch-behavior 'bury)
   :config
@@ -1203,6 +1205,13 @@
   :ensure nil
   :config
   (filesets-init))
+
+(use-package info
+  :ensure nil
+  :config
+  (general-unbind 'Info-mode-map
+    :with 'ignore
+    [remap evil-exit-emacs-state]))
 
 (use-package c-mode
   :defer t

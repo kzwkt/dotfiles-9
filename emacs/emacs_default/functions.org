@@ -1,6 +1,13 @@
 #+STARTUP: overview
 
 * buffers
+** my/info
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/info ()
+  (interactive)
+  (info)
+  (evil-emacs-state))
+#+END_SRC
 ** focus
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun focus-emacs ()
@@ -160,6 +167,11 @@ rotate entire document."
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/org/Planning/agenda.org")))
+
+(defun find-info-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/org/Tech/info_keys.org")))
 
 (defun find-evil-keys ()
   (interactive)
@@ -806,6 +818,22 @@ return t."
   (forward-sentence 1)
   (transpose-sentences 1)
   (backward-sentence))
+#+END_SRC
+*** my move sexp
+**** my/move-sexp-backwards
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-sexp-backward ()
+  (interactive)
+  (transpose-sexps 1)
+  (backward-sexp 2))
+#+END_SRC
+**** my/move-sexp-forward
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-sexp-forward ()
+  (interactive)
+  (forward-sexp 1)
+  (transpose-sexps 1)
+  (backward-sexp))
 #+END_SRC
 *** my move characters
 **** my/move-character-backwards

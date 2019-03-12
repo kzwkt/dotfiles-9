@@ -1,3 +1,8 @@
+(defun my/info ()
+  (interactive)
+  (info)
+  (evil-emacs-state))
+
 (defun focus-emacs ()
   (interactive)
   (let ((inhibit-message t))
@@ -136,6 +141,11 @@ rotate entire document."
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/org/Planning/agenda.org")))
+
+(defun find-info-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/org/Tech/info_keys.org")))
 
 (defun find-evil-keys ()
   (interactive)
@@ -728,6 +738,17 @@ return t."
   (forward-sentence 1)
   (transpose-sentences 1)
   (backward-sentence))
+
+(defun my/move-sexp-backward ()
+  (interactive)
+  (transpose-sexps 1)
+  (backward-sexp 2))
+
+(defun my/move-sexp-forward ()
+  (interactive)
+  (forward-sexp 1)
+  (transpose-sexps 1)
+  (backward-sexp))
 
 (defun my/move-character-backward ()
   (interactive)

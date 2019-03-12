@@ -530,13 +530,14 @@
   "
   ^
        ^Motions^
-       ---------------------
-       _l_: line ↓  _w_: word →
-       _L_: line ↑  _W_: word ←
-       _p_: par  ↓  _c_: char →
-       _P_: par  ↑  _C_: char ←
-		  _s_: sentence →
-		  _S_: sentence ←
+       -------------------------
+       _l_: line ↓      _w_: word →
+       _L_: line ↑      _W_: word ←
+       _p_: par  ↓      _c_: char →
+       _P_: par  ↑      _C_: char ←
+       _s_: sentence →  _x_: sexp →
+       _S_: sentence ←  _X_: sexp ←
+
 "
 
   ("<escape>" nil)
@@ -553,10 +554,11 @@
   ("c" my/move-character-forward)
   ("C" my/move-character-backward)
 
-  ("s"my/move-sentence-forward)
-  ("S"my/move-sentence-backward)
+  ("s" my/move-sentence-forward)
+  ("S" my/move-sentence-backward)
 
-  )
+  ("x" my/move-sexp-forward)
+  ("X" my/move-sexp-backward))
 
 (defhydra hydra-text-commands (:color blue :hint nil)
   "
@@ -743,7 +745,7 @@
        ^^Help
        ----------------------------------------
        _f_: function  _k_: key       _i_: info
-       _v_: variable  _l_: key long  _h_: helm-info
+       _v_: variable  _l_: key long
        _e_: package   _w_: where is
        _p_: at point  _a_: apropos
        _m_: major     _d_: docs
@@ -769,8 +771,7 @@
   ("a" counsel-apropos)
   ("c" helpful-command)
   ("d" apropos-documentation)
-  ("i" info)
-  ("h" helm-info))
+  ("i" my/info))
 
 
 (defhydra hydra-find-file (:hint nil :foreign-keys nil :exit t)
@@ -783,7 +784,7 @@
      _b_: scratches  _f_: functions
      _c_: org        _g_: planning
      _d_: dotfiles   _h_: pcc
-		   _i_: matérias
+		   _i_: info keys
 
 "
   ("<escape>" nil)
@@ -798,7 +799,7 @@
   ("f" ranger-find-functions)
   ("g" ranger-find-planning)
   ("h" ranger-find-pcc-dir)
-  ("i" ranger-find-materias)
+  ("i" find-info-keys)
   ("m" find-scratch-markdown))
 
 (defhydra hydra-find-scratches (:hint nil :foreign-keys nil :exit t)
