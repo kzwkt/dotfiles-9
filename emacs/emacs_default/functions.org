@@ -792,14 +792,15 @@ return t."
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/move-word-backwards ()
   (interactive)
+  (backward-to-word 1)
   (transpose-words 1)
-  (backward-word 2))
+  (backward-word-strictly 2))
 #+END_SRC
 **** my/move-word-forward
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/move-word-forward ()
   (interactive)
-  (forward-word 1)
+  (forward-to-word 1)
   (transpose-words 1)
   (backward-word))
 #+END_SRC
@@ -814,6 +815,22 @@ return t."
 **** my/move-sentence-forward
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/move-sentence-forward ()
+  (interactive)
+  (forward-sentence 1)
+  (transpose-sentences 1)
+  (backward-sentence))
+#+END_SRC
+*** my move regions
+**** my/move-region-backwards
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-region-backward ()
+  (interactive)
+  (transpose-sentences 1)
+  (backward-sentence 2))
+#+END_SRC
+**** my/move-region-forward
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/move-region-forward ()
   (interactive)
   (forward-sentence 1)
   (transpose-sentences 1)

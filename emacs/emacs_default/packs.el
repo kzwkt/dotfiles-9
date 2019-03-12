@@ -103,7 +103,7 @@
 				     (evil-insert-state)
 				     (evil-window-move-very-bottom)))
 
-  ;; (add-hook 'org-cycle-hook #'org-cycle-hide-drawers)
+  (add-hook 'org-cycle-hook #'org-cycle-hide-drawers)
   (load-file "~/.emacs.d/lisp/functions/org_func.el")
   :config
   (defun my/org-property-commands ()
@@ -405,7 +405,7 @@
   :config
   (general-define-key
    :keymaps 'pabbrev-mode-map
-   "C-b" 'pabbrev-expand-maybe))
+   "C-l" 'pabbrev-expand-maybe))
 
 (use-package lorem-ipsum
 :defer t
@@ -499,6 +499,8 @@
   (general-nvmap
     :keymaps 'markdown-mode-map
     "C-;" 'hydra-text-main/body
+    ">" 'markdown-promote-subtree
+    "<" 'markdown-demote-subtree
     "}" 'markdown-forward-paragraph
     "RET" 'hydra-spell/body
     "[" 'markdown-previous-link
@@ -510,6 +512,7 @@
   (general-define-key
    :keymaps 'markdown-mode-map
    "C-;" 'hydra-text-main/body
+   "C-c l" 'markdown-toc-generate-or-refresh-toc
    "M-p" 'markdown-backward-paragraph
    "M-n" 'my/markdown-forward-paragraph
    "<tab>" 'markdown-cycle
@@ -603,8 +606,9 @@
     ;; "C-," 'my/avy-char-2-selecting-below
     "f" 'avy-goto-char-2-below
     "F" 'avy-goto-char-2-above
-    "gD" 'evil-find-char-backward
-    "gd" 'evil-find-char)
+    "gF" 'evil-find-char-backward
+    "gf" 'evil-find-char)
+
 
   (setq avy-background t)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l
@@ -731,7 +735,14 @@
    "M-k" 'windmove-up
    "M-h" 'windmove-left
    "M-j" 'windmove-down
-   "M-l" 'windmove-right))
+   "M-l" 'windmove-right)
+
+  (general-define-key
+   :keymaps 'override
+   "<M-up>" 'windmove-up
+   "<M-left>" 'windmove-left
+   "<M-down>" 'windmove-down
+   "<M-right>" 'windmove-right))
 
 (use-package ivy
   :init
@@ -949,6 +960,18 @@
   :config
   (targets-setup t))
 
+(use-package cool-moves
+:load-path "~/.emacs.d/lisp/cool-moves"
+:config
+(general-define-key
+ :keymaps 'override
+"<C-down>" 'cool-moves/paragraph-forward
+"<C-up>" 'cool-moves/paragraph-backward
+"C-S-j" 'cool-moves/line-forward
+"C-S-k" 'cool-moves/line-backward
+"C-M-n" 'cool-moves/word-forward
+"C-M-p" 'cool-moves/word-backwards))
+
 (use-package clipmon
   :defer t
   :ensure t)
@@ -1100,6 +1123,8 @@
   (defengine plato "https://plato.stanford.edu/search/searcher.py?query=%s")
   (defengine translate "https://translate.google.com/?source=osdd#view=home&op=translate&sl=auto&tl=pt&text=%s")
   (defengine urban-dictionary "https://www.urbandictionary.com/define.php?term=%s")
+  (defengine the-free-dictionary "https://www.thefreedictionary.com/%s")
+
   (engine-mode t))
 
 
@@ -1131,7 +1156,7 @@
   (general-nvmap
     "," 'vertigo-visual-jump-down
     "." 'vertigo-visual-jump-up)
-  (setq vertigo-cut-off 3)
+  (setq vertigo-cut-off 4)
   (setq vertigo-home-row '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?o)))
 
 ;; (setq vertigo-home-row '(?q ?w ?e ?r ?t ?y ?u ?i ?o ?p)
@@ -1211,7 +1236,21 @@
   :config
   (general-unbind 'Info-mode-map
     :with 'ignore
-    [remap evil-exit-emacs-state]))
+    [remap evil-exit-emacs-state])
+  (general-define-key
+   :keymaps 'Info-mode-map
+   "C-x i" 'find-info-keys))
+
+;; (use-package bs
+;;   :ensure nil
+;;   :init
+;;   (setq bs-configurations '(("all" nil nil nil nil nil)
+
+;; 			    ("files" nil nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)
+
+;; 			    ("files-and-scratch" "^\\*scratch\\*$" "^info_keys.org$" nil bs-visits-non-file bs-sort-buffer-interns-are-last)
+
+;; 			    ("all-intern-last" nil nil nil nil bs-sort-buffer-interns-are-last))))
 
 (use-package c-mode
   :defer t
@@ -1409,6 +1448,7 @@
     (hl-sentence-mode 1)
     (electric-operator-mode 1)
     (wc-mode 1)
+    (pabbrev-mode 1)
     (message "prose on"))
 
   (general-nvmap

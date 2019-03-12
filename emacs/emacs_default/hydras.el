@@ -200,7 +200,7 @@
   ("b" flycheck-buffer)
   ("l" list-flycheck-errors)
   ("n" flycheck-next-error :exit nil)
-  ("f" flycheck-first-error :exit nil)
+  ("f" flycheck-first-error)
   ("s" flycheck-display-error-at-point)
   ("p" flycheck-previous-error :exit nil)
 
@@ -526,7 +526,7 @@
   ("C-," hydra-org-text-commands/body)
   ("p" hydra-pdf-view/body))
 
-(defhydra hydra-text-motions (:color amaranth :hint nil :exit nil :foreign-keys nil)
+(defhydra hydra-text-motions (:color amaranth :hint nil :foreign-keys nil)
   "
   ^
        ^Motions^
@@ -541,24 +541,25 @@
 "
 
   ("<escape>" nil)
+  ("u" nil)
 
-  ("l" my/move-line-down)
-  ("L" my/move-line-up)
+  ("l" cool-moves/line-forward)
+  ("L" cool-moves/line-backward)
 
-  ("p" my/move-paragraph-down)
-  ("P" my/move-paragraph-up)
+  ("p" cool-moves/paragraph-forward)
+  ("P" cool-moves/paragraph-backward)
 
-  ("w" my/move-word-forward)
-  ("W" my/move-word-backwards)
+  ("w" cool-moves/word-forward)
+  ("W" cool-moves/word-backwards)
 
-  ("c" my/move-character-forward)
-  ("C" my/move-character-backward)
+  ("c" cool-moves/character-forward)
+  ("C" cool-moves/character-backward)
 
-  ("s" my/move-sentence-forward)
-  ("S" my/move-sentence-backward)
+  ("s" cool-moves/sentence-forward)
+  ("S" cool-moves/sentence-backward)
 
-  ("x" my/move-sexp-forward)
-  ("X" my/move-sexp-backward))
+  ("x" cool-moves/sexp-forward)
+  ("X" cool-moves/sexp-backward))
 
 (defhydra hydra-text-commands (:color blue :hint nil)
   "
@@ -632,9 +633,9 @@
        _C-s_: grep/swiper  _u_: substitute  _j_: michaelis
        _s_:   evil         _p_: processes   _L_: dic informal
        _e_:   swiper       _l_: google      _m_: urban dic
-       _c_:   occur        _g_: grep
-       _o_:   outline      _h_: translate
-       _i_:   ouline all   _i_: wordnut
+       _c_:   occur        _g_: grep        _n_: tfree dic
+       _o_:   outline      _h_: translate   _O_: wiki en
+       _i_:   ouline all   _i_: wordnut     _P_: wiki pt
   "
   ("<escape>" nil)
 
@@ -654,7 +655,10 @@
   ("I" wordnut-lookup-current-word)
   ("j" engine/search-michaelis)
   ("L" engine/search-dic-informal)
-  ("m" engine/search-urban-dictionary))
+  ("m" engine/search-urban-dictionary)
+  ("n" engine/search-the-free-dictionary)
+  ("O" engine/search-wiki-en)
+  ("P" engine/search-wiki-pt))
 
 (defhydra hydra-org-clock (:color blue :hint nil :exit nil :foreign-keys nil)
   "

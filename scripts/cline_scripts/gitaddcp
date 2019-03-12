@@ -8,4 +8,5 @@ echo "commiting" &&
 git commit -am "$message" &&
 clear &&
 echo "pushing" &&
-git push
+git push &&
+~/scripts/i3_scripts/hide/hide_only_terms

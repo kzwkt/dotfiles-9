@@ -107,15 +107,6 @@
 ;;;; EDITING ;;;;
 "C-c u" 'undo-propose
 "C-c K" 'avy-goto-char-timer
-
-;;;; MY TRANSPOSES ;;;;
-"<C-down>" 'my/move-paragraph-down
-"<C-up>" 'my/move-paragraph-up
-"C-S-j" 'my/move-line-down
-"C-S-k" 'my/move-line-up
-"C-M-n" 'my/move-word-forward
-"C-M-p" 'my/move-word-backwards
-
 "C-c i a" 'align-regexp
 "C-c i e" 'tiny-expand
 "C-c i s" 'transpose-sentences
@@ -125,6 +116,7 @@
 "C-c i c" 'clipmon-autoinsert-toggle
 
 ;;;; QUICK KEYS ;;;;
+"C-c U" 'universal-argument
 "C-," 'helpful-variable
 "C-." 'helpful-function
 "C-c ç" 'hydra-gro-prjct/body
@@ -134,6 +126,7 @@
 "C-SPC" nil
 "M-s" 'last-buffer
 "M-t" 'transpose-words
+"M-y" 'counsel-yank-pop
 "C-t" 'transpose-chars
 "C-;" 'hydra-text-main/body
 "C-x ," 'my/jump-to-register-91

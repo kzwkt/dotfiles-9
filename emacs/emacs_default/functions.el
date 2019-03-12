@@ -719,12 +719,13 @@ return t."
 
 (defun my/move-word-backwards ()
   (interactive)
+  (backward-to-word 1)
   (transpose-words 1)
-  (backward-word 2))
+  (backward-word-strictly 2))
 
 (defun my/move-word-forward ()
   (interactive)
-  (forward-word 1)
+  (forward-to-word 1)
   (transpose-words 1)
   (backward-word))
 
@@ -734,6 +735,17 @@ return t."
   (backward-sentence 2))
 
 (defun my/move-sentence-forward ()
+  (interactive)
+  (forward-sentence 1)
+  (transpose-sentences 1)
+  (backward-sentence))
+
+(defun my/move-region-backward ()
+  (interactive)
+  (transpose-sentences 1)
+  (backward-sentence 2))
+
+(defun my/move-region-forward ()
   (interactive)
   (forward-sentence 1)
   (transpose-sentences 1)

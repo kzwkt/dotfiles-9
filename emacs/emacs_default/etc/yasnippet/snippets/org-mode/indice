@@ -1,0 +1,4 @@
+# key: indice
+# name: indice
+# --
+#+LATEX_HEADER: \renewcommand*{\contentsname}${1:Índice}
