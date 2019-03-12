@@ -42,6 +42,7 @@
  :keymaps 'pdf-view-mode-map
  "C-c v v" 'pdf-view-set-slice-using-mouse
  "C-c v r" 'pdf-view-reset-slice
+ "C-c C-c" 'pdf-annot-add-highlight-markup-annotation
  "M-o" 'pdf-history-backward
  "M-i" 'pdf-history-forward
  "H" 'pdf-history-backward
@@ -51,9 +52,20 @@
   :with 'pdf-outline
   [remap evil-toggle-fold])
 
+(general-define-key
+ :keymaps 'pdf-annot-edit-contents-minor-mode-map
+ "C-c C-c" 'pdf-annot-edit-contents-abort
+ "<C-return>" 'pdf-annot-edit-contents-commit)
+
+(nvmap :keymaps 'pdf-annot-edit-contents-minor-mode-map
+  "c" 'pdf-annot-edit-contents-abort)
+
 (nvmap :keymaps 'pdf-view-mode-map
+  "I" 'org-noter-insert-note
+  "i" 'org-noter-insert-precise-note
   "0" 'pdf-view-scale-reset
   "C-l" 'counsel-bookmark
+  "C-c C-c" 'pdf-annot-add-highlight-markup-annotation
   "c" 'pdf-annot-add-highlight-markup-annotation
   "M-o" 'pdf-history-backward
   "M-i" 'pdf-history-forward
@@ -85,4 +97,4 @@
   "<right>" 'pdf-view-previous-page
   "C-c h" 'pdf-annot-add-highlight-markup-annotation)
 
-  ;; "s" 'pdf-view-fit-width-to-window
+;; "s" 'pdf-view-fit-width-to-window

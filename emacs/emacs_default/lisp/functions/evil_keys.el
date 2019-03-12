@@ -42,12 +42,16 @@
 
 (general-nvmap
   :keymaps 'override
+  ;; "u" 'undo-only
   "z=" 'endless/ispell-word-then-abbrev
   "C-S-j" 'my/move-line-down
   "C-S-k" 'my/move-line-up
   "C-c k" nil
   "<S-SPC>" nil
   "z," 'evil-repeat
+  "gM" 'evil-set-marker
+  ;; "gm" 'evil-middle-of-visual-line
+  "m" 'hydra-text-motions/body
   "gI" 'evil-insert-line
   "gt" 'fix-word-capitalize
   "gA" 'evil-append-line

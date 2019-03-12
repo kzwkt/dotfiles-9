@@ -137,6 +137,11 @@ rotate entire document."
   (let ((inhibit-message t))
     (find-file "~/org/Planning/agenda.org")))
 
+(defun find-evil-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/lisp/functions/evil_keys.el")))
+
 (defun find-pcc-notes ()
   (interactive)
   (let ((inhibit-message t))
@@ -248,36 +253,32 @@ rotate entire document."
 (defun find-scratch-markdown ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratch.md")))
-
-(defun find-temp-markdown ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/temp.md")
-    (erase-buffer)
-    (yank)
-    (beginning-of-buffer)))
+    (find-file "~/.emacs.d/tmp/scratches/markdown_scratch")))
 
 (defun find-scratch-org ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratch.org")))
+    (find-file "~/.emacs.d/tmp/scratches/org_scratch")))
 
-(defun find-scratch-c ()
+(defun find-scratch-text ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratch.c")))
+    (find-file "~/.emacs.d/tmp/scratches/text_scratch")))
 
-(defun find-scratch-py ()
+(defun find-scratch-prog ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratch.py")))
+    (find-file "~/.emacs.d/tmp/scratches/prog_scratch")))
+
+(defun find-scratch-fundamental ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/tmp/scratches/fundamental_scratch")))
 
 (defun find-bash-aliases ()
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/.bash_aliases.org")))
-
 
 (defun find-bashrc ()
   (interactive)
@@ -587,18 +588,19 @@ return t."
   (shell-command "tangle-py ~/.emacs.d/*.org")
   (message "all files tangled"))
 
+(defun tangle-py-all-debug ()
+  (interactive)
+  (my/save-all)
+  (shell-command "tangle-py ~/.emacs.d/*.org")
+  (quit-windows-on "*Shell Command Output*")
+  (start-process-shell-command "new emacs" nil "emacs --debug-init"))
+
 (defun tangle-py-all-recompile ()
   (interactive)
   (my/save-all)
   (shell-command "tangle-py ~/.emacs.d/*.org")
   (my/recompile)
   (message "all files tangled"))
-
-(defun tangle-py-all-debug ()
-  (interactive)
-  (my/save-all)
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (start-process-shell-command "new emacs" nil "emacs --debug-init"))
 
 (defun tangle-py-all-and-restart ()
   (interactive)
@@ -688,25 +690,22 @@ return t."
   (forward-line -2))
 
 (defun my/move-line-down ()
-  "Move down the current line."
   (interactive)
   (forward-line 1)
   (transpose-lines 1)
   (forward-line -1))
 
-(defun my/move-line-up ()
+(defun my/move-paragraph-down ()
   (interactive)
-  (transpose-lines 1)
-  (forward-line -2)
-  (indent-according-to-mode))
+  (transpose-paragraphs 1)
+  (backward-paragraph)
+  (next-line))
 
-(defun my/move-line-down ()
-  "Move down the current line."
+(defun my/move-paragraph-up ()
   (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1)
-  (indent-according-to-mode))
+  (transpose-paragraphs -1)
+  (backward-paragraph)
+  (next-line))
 
 (defun my/move-word-backwards ()
   (interactive)
@@ -718,6 +717,28 @@ return t."
   (forward-word 1)
   (transpose-words 1)
   (backward-word))
+
+(defun my/move-sentence-backward ()
+  (interactive)
+  (transpose-sentences 1)
+  (backward-sentence 2))
+
+(defun my/move-sentence-forward ()
+  (interactive)
+  (forward-sentence 1)
+  (transpose-sentences 1)
+  (backward-sentence))
+
+(defun my/move-character-backward ()
+  (interactive)
+  (transpose-chars 1)
+  (backward-char 2))
+
+(defun my/move-character-forward ()
+  (interactive)
+  (forward-char 1)
+  (transpose-chars 1)
+  (backward-char))
 
 (defun my/insert-em-dash ()
   (interactive)

@@ -70,7 +70,7 @@
 "C-c m 2 s p" 'org2blog/wp-post-subtree
 "C-c m 2 s u" 'org2blog/wp-post-subtree-and-publish
 
-"C-c m c" 'wc-mode
+"C-c m c" 'clipmon-mode
 "C-c TAB" 'sr-speedbar-toggle
 
 "C-c s" 'hydra-shell/body
@@ -108,7 +108,7 @@
 ;;;; FILESETS ;;;;
 "C-c f o" 'filesets-open
 "C-c f c" 'filesets-close
-"C-c w" 'rename-file-and-buffer
+"C-ç" 'hydra-find-scratches/body
  #+END_SRC
 ** Load and Unload
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keys.el
@@ -129,10 +129,15 @@
 ;;;; EDITING ;;;;
 "C-c u" 'undo-propose
 "C-c K" 'avy-goto-char-timer
+
+;;;; MY TRANSPOSES ;;;;
+"<C-down>" 'my/move-paragraph-down
+"<C-up>" 'my/move-paragraph-up
 "C-S-j" 'my/move-line-down
 "C-S-k" 'my/move-line-up
 "C-M-n" 'my/move-word-forward
 "C-M-p" 'my/move-word-backwards
+
 "C-c i a" 'align-regexp
 "C-c i e" 'tiny-expand
 "C-c i s" 'transpose-sentences
@@ -145,6 +150,8 @@
 ** Quick Keys
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keys.el
 ;;;; QUICK KEYS ;;;;
+"C-," 'helpful-variable
+"C-." 'helpful-function
 "C-c ç" 'hydra-gro-prjct/body
 ;; "C-c x" 'my/kill-buffer-and-workspace
 "M-." 'evil-window-next

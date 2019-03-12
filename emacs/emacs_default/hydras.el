@@ -526,6 +526,38 @@
   ("C-," hydra-org-text-commands/body)
   ("p" hydra-pdf-view/body))
 
+(defhydra hydra-text-motions (:color amaranth :hint nil :exit nil :foreign-keys nil)
+  "
+  ^
+       ^Motions^
+       ---------------------
+       _l_: line ↓  _w_: word →
+       _L_: line ↑  _W_: word ←
+       _p_: par  ↓  _c_: char →
+       _P_: par  ↑  _C_: char ←
+		  _s_: sentence →
+		  _S_: sentence ←
+"
+
+  ("<escape>" nil)
+
+  ("l" my/move-line-down)
+  ("L" my/move-line-up)
+
+  ("p" my/move-paragraph-down)
+  ("P" my/move-paragraph-up)
+
+  ("w" my/move-word-forward)
+  ("W" my/move-word-backwards)
+
+  ("c" my/move-character-forward)
+  ("C" my/move-character-backward)
+
+  ("s"my/move-sentence-forward)
+  ("S"my/move-sentence-backward)
+
+  )
+
 (defhydra hydra-text-commands (:color blue :hint nil)
   "
  ^
@@ -758,7 +790,7 @@
   ("C-o" hydra-find-emacs-files/body)
 
   ("a" my/goto-scratch-buffer)
-  ("b" hydra-find-scratchs/body)
+  ("b" hydra-find-scratches/body)
   ("c" ranger-find-org-dir)
   ("d" hydra-find-dotfiles/body)
 
@@ -769,24 +801,45 @@
   ("i" ranger-find-materias)
   ("m" find-scratch-markdown))
 
-(defhydra hydra-find-scratchs (:hint nil :foreign-keys nil :exit t)
+(defhydra hydra-find-scratches (:hint nil :foreign-keys nil :exit t)
 
   "
 
      ^Scratches^
-     --------------
-     _o_: org
-     _m_: markdown
-     _e_: messages
-     _w_: warnings
+     -----------------------
+     _m_: md    _s_: *scratch*
+     _o_: org   _M_: *messages*
+     _p_: prog  _w_: *warnings*
+     _t_: text
+     _f_: fund
 
 "
   ("<escape>" nil)
 
+  ("s" my/goto-scratch-buffer)
+  ("ç" my/goto-scratch-buffer)
+  ("C-ç" my/goto-scratch-buffer)
+
   ("o" find-scratch-org)
+  ("C-o" find-scratch-org)
+
   ("m" find-scratch-markdown)
-  ("e" my/goto-messages-buffer)
-  ("w" my/goto-warnings-buffer))
+  ("C-m" find-scratch-markdown)
+
+  ("M" my/goto-messages-buffer)
+  ("C-M" my/goto-messages-buffer)
+
+  ("w" my/goto-warnings-buffer)
+  ("C-w" my/goto-warnings-buffer)
+
+  ("p" find-scratch-prog)
+  ("C-p" find-scratch-prog)
+
+  ("t" find-scratch-text)
+  ("C-t" find-scratch-text)
+
+  ("f" find-scratch-fundamental)
+  ("C-f" find-scratch-fundamental))
 
 (defhydra hydra-find-dotfiles (:hint nil :color blue)
   "
@@ -825,7 +878,7 @@
      _i_: init       _n_: init      _c_: custom    _d_: ~/.emacs.d
      _p_: packages   _a_: packs     _b_: gabbrevs  _j_: search pack
      _f_: functions  _u_: functions ^^             _l_: filesets.el
-     _k_: keys       _e_: keys
+     _k_: keys       _e_: keys      ^^             _m_: evil keys
      _m_: misc       _s_: misc
      _r_: macros     _o_: macros
      _h_: hydras     _y_: hydras
@@ -853,4 +906,5 @@
   ("b" find-abbrevs)
   ("d" ranger-find-emacs-dir)
   ("j" my/search-pack)
-  ("l" find-filesets.el))
+  ("l" find-filesets.el)
+  ("m" find-evil-keys))

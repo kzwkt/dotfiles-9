@@ -5,5 +5,6 @@ echo "creating daemon" &&
 emacs --daemon=gui-emacs &>/dev/null &&
 echo "daemon created" &&
 emacsclient --socket-name=gui-emacs --no-wait --create-frame &&
-~/scripts/i3_scripts/hide/hide_all &&
+~/scripts/i3_scripts/hide/hide_all &>/dev/null &&
 i3-msg "[class=Emacs] focus" &>/dev/null 
+echo "frame created"

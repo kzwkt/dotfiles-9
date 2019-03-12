@@ -103,7 +103,7 @@
 				     (evil-insert-state)
 				     (evil-window-move-very-bottom)))
 
-  (remove-hook 'org-cycle-hook #'org-cycle-hide-drawers)
+  ;; (add-hook 'org-cycle-hook #'org-cycle-hide-drawers)
   (load-file "~/.emacs.d/lisp/functions/org_func.el")
   :config
   (defun my/org-property-commands ()
@@ -113,7 +113,7 @@
   (setq org-bookmark-names-plist nil)
   (setq org-agenda-files '("~/org/Planning"))
   (setq org-enforce-todo-checkbox-dependencies nil)
-  (setq org-link-file-path-type 'adaptive)
+  (setq org-link-file-path-type 'relative)
   (setq org-export-with-toc nil)
 
   (defun my/save-archive ()
@@ -233,15 +233,15 @@
 
 (general-define-key
  :keymaps 'org-mode-map
- "C-c C-s" 'org-emphasize
- "C-j" 'counsel-M-x
- "C-M-j" 'org-metadown
  "C-c C-b" nil
- "C-c C-b C-b" 'org-reset-checkbox-state-subtree
- "C-c C-b C-c" 'org-update-checkbox-count
+ "C-j" 'counsel-M-x
+ "C-M-k" 'org-metaup
+ "C-M-j" 'org-metadown
+ "C-c C-s" 'org-emphasize
  "C-c C-b C-t" 'org-toggle-checkbox
  "C-c t" 'org-toggle-timestamp-type
- "C-M-k" 'org-metaup)
+ "C-c C-b C-c" 'org-update-checkbox-count
+ "C-c C-b C-b" 'org-reset-checkbox-state-subtree)
 
 (general-nvmap
   :keymaps 'org-mode-map
@@ -311,6 +311,10 @@
 	   :tags-as-categories nil)))
   :ensure t)
 
+(use-package org-pdfview
+  :defer t
+  :ensure t)
+
 (use-package adoc-mode
 :ensure t
 :init
@@ -341,6 +345,14 @@
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
+
+;; (use-package undo-tree
+;; :after evil
+;; :defer t
+;; :ensure t
+;; :config
+;; (undo-tree-mode -1)
+;; (global-undo-tree-mode -1))
 
 (use-package evil-org
   :ensure t
@@ -538,7 +550,12 @@
   :config
   (setq unkillable-buffers '("^\\*scratch\\*$"
 			     "*Bongo Playlist*"
-			     "*Bongo Library*"))
+			     "*Bongo Library*"
+			     "text_scratch"
+			     "markdown_scratch"
+			     "fundamental_scratch"
+			     "org_scratch"
+			     "prog_scratch"))
   (setq unkillable-scratch-behavior 'bury)
   :config
   (unkillable-scratch))
@@ -580,8 +597,8 @@
   (setq avy-single-candidate-jump t)
 
   (general-nvmap
-    "C-." 'my/avy-char-2-selecting-above
-    "C-," 'my/avy-char-2-selecting-below
+    ;; "C-." 'my/avy-char-2-selecting-above
+    ;; "C-," 'my/avy-char-2-selecting-below
     "f" 'avy-goto-char-2-below
     "F" 'avy-goto-char-2-above
     "gD" 'evil-find-char-backward
@@ -938,16 +955,16 @@
   :defer t
   :ensure t)
 
-(use-package disable-mouse
-  :ensure t
-  :config
-  (setq disable-mouse-mode-global-lighter nil)
-  (mapc #'disable-mouse-in-keymap
-	(list evil-motion-state-map
-	      evil-normal-state-map
-	      evil-visual-state-map
-	      evil-insert-state-map))
-  (global-disable-mouse-mode +1))
+;; (use-package disable-mouse
+;;   :ensure t
+;;   :config
+;;   (setq disable-mouse-mode-global-lighter nil)
+;;   (mapc #'disable-mouse-in-keymap
+;; 	(list evil-motion-state-map
+;; 	      evil-normal-state-map
+;; 	      evil-visual-state-map
+;; 	      evil-insert-state-map))
+;;   (global-disable-mouse-mode +1))
 
 (use-package wordnut
   :defer t

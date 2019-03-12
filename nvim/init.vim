@@ -239,4 +239,13 @@ endfunction
 autocmd BufWritePre *.c,*.vim :call <SID>StripTrailingWhitespaces()
 
 " }}}
+" {{{ open file at point
+function! OpenFileInPrevWindow()
+    let cfile = expand("<cfile>")
+    wincmd p
+    execute "edit " . cfile
+    echo ""
+endfunction
+nmap <c-k> :call OpenFileInPrevWindow()<cr>
+" }}}
 " vim: nowrap
