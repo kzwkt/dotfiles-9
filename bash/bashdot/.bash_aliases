@@ -69,7 +69,6 @@ alias push='clear && git push && ls --color'
 # sudo update-alternatives --config java
 alias p='clear && python3'
 alias gig='clear && nvim .gitignore'
-alias gia='clear && git add .gitignore'
 alias fl='flatpak'
 alias fr='flatpak run'
 alias yt='youtube-dl --all-subs'
