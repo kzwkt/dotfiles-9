@@ -7,8 +7,8 @@
   "g]" 'evil-set-marker
   "zi" 'outline-show-all
   "}" 'my/paragraph-forward
-  "gi" 'my/above-line-macro
-  "go" 'my/below-line-macro
+  "gi" 'cool-moves/open-line-below
+  "go" 'cool-moves/open-line-above
   "{" 'my/paragraph-backwards
   "zj" 'evil-backward-word-end
   "zk" 'evil-backward-WORD-end
@@ -36,6 +36,8 @@
   "C-v " nil)
 
 (general-nvmap
+  "k" 'evil-previous-visual-line
+  "j" 'evil-next-visual-line
   "m" 'hydra-text-motions/body
   "M-e" 'evil-forward-sentence-begin
   "M-a" 'evil-backward-sentence-begin)

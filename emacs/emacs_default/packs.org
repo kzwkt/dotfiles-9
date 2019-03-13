@@ -2986,6 +2986,7 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 
 (use-package pdf-tools
+  :defer 5
   :ensure t
   :init
 

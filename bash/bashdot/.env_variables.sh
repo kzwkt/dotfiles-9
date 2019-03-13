@@ -33,7 +33,7 @@ export FZF_CTRL_T_OPTS="+s --tiebreak=begin"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export MANPAGER="nvim -c 'set ft=man' -c 'set nowrap' -"
-export man="/home/mrbig/.local/share/man/man1"
+export man="/home/dave/.local/share/man/man1"
 export FZF_DEFAULT_COMMAND="ppd=$(pwd) && fd -H -L -d 2 . $ppd"
 export FZF_ALT_C_COMMAND="ppc=$(pwd) && fd -H -L -d 2 -t d \
 -E *\.[Pp]y[Cc]harm* \
