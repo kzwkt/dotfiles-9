@@ -37,6 +37,7 @@
   "M-v " 'evil-paste-from-clipboard)
 
 (general-nvmap
+  "m" 'hydra-text-motions/body
   "M-e" 'evil-forward-sentence-begin
   "M-a" 'evil-backward-sentence-begin)
 
@@ -51,7 +52,6 @@
   "z," 'evil-repeat
   "gM" 'evil-set-marker
   ;; "gm" 'evil-middle-of-visual-line
-  "m" 'hydra-text-motions/body
   "gI" 'evil-insert-line
   "gt" 'fix-word-capitalize
   "gA" 'evil-append-line

@@ -841,8 +841,7 @@
   ("a" counsel-apropos)
   ("c" helpful-command)
   ("d" apropos-documentation)
-  ("i" my/info))
-
+  ("i" info))
 #+END_SRC
 * goto
 ** find file

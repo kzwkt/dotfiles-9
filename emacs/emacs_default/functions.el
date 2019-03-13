@@ -1,3 +1,10 @@
+(defun my/eval-next-sexp ()
+  "Eval next sexp."
+  (interactive)
+  (sp-beginning-of-next-sexp)
+  (sp-end-of-sexp)
+  (eval-last-sexp nil))
+
 (defun my/info ()
   (interactive)
   (info)

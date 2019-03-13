@@ -1,6 +1,15 @@
 #+STARTUP: overview
 
 * buffers
+** my/eval-next-sexp
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/eval-next-sexp ()
+  "Eval next sexp."
+  (interactive)
+  (sp-beginning-of-next-sexp)
+  (sp-end-of-sexp)
+  (eval-last-sexp nil))
+  #+END_SRC
 ** my/info
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/info ()

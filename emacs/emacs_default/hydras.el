@@ -775,8 +775,7 @@
   ("a" counsel-apropos)
   ("c" helpful-command)
   ("d" apropos-documentation)
-  ("i" my/info))
-
+  ("i" info))
 
 (defhydra hydra-find-file (:hint nil :foreign-keys nil :exit t)
 

@@ -344,7 +344,7 @@
   (add-to-list 'evil-emacs-state-modes 'org-brain-visualize-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
-  (add-to-list 'evil-emacs-state-modes 'info-mode)
+  ;; (add-to-list 'evil-emacs-state-modes 'info-mode)
   (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
 
 ;; (use-package undo-tree
@@ -609,8 +609,8 @@
     "gF" 'evil-find-char-backward
     "gf" 'evil-find-char)
 
+  (setq avy-background nil)
 
-  (setq avy-background t)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l
 		      ?q ?w ?e ?r ?t ?y ?u))
   (setq avy-all-windows nil))
@@ -972,6 +972,10 @@
 "C-M-n" 'cool-moves/word-forward
 "C-M-p" 'cool-moves/word-backwards))
 
+(use-package link-hint
+  :defer t
+  :ensure t)
+
 (use-package clipmon
   :defer t
   :ensure t)
@@ -1233,13 +1237,55 @@
 
 (use-package info
   :ensure nil
+  :init
+  (add-hook 'Info-mode-hook 'my/info-hook-commands)
   :config
-  (general-unbind 'Info-mode-map
-    :with 'ignore
-    [remap evil-exit-emacs-state])
+
+  (defun my/info-hook-commands ()
+    (interactive)
+    (line-numbers)
+    (hl-line-mode +1))
+
+  (defun my/info-commands ()
+    (interactive)
+    (counsel-M-x "^Info- "))
+
+  ;; (general-unbind 'Info-mode-map
+  ;;   :with 'ignore
+  ;;   [remap evil-exit-emacs-state])
+
+  ;; (general-unbind 'Info-mode-map
+  ;;   :with 'ignore
+  ;;   [remap evil-normal-state])
+
   (general-define-key
    :keymaps 'Info-mode-map
-   "C-x i" 'find-info-keys))
+   "c" 'my/info-commands
+   "C-x i" 'find-info-keys)
+
+  (general-nvmap
+    :keymaps 'Info-mode-map
+    "m" 'Info-menu
+    "l" 'forward-char
+    "C-c C-c" 'my/eval-next-sexp
+    "h" 'backward-char
+    "H" 'evil-window-top
+    "M" 'evil-window-middle
+    "L" 'evil-window-bottom
+    "c" 'my/info-commands
+    "o" 'link-hint-open-link
+    "C-M-h" 'Info-history-back
+    "C-M-l" 'Info-history-forward))
+
+;; (general-define-key
+;;  :keymaps 'Info-mode-map
+;;  "j" 'next-line
+;;  "k" 'previous-line
+;;  "l" 'Info-history-forward
+;;  "h" 'Info-history-back
+;;  "G" 'end-of-buffer
+;;  "<home>" 'beginning-of-buffer
+;;  "<end>" 'end-of-buffer)
 
 ;; (use-package bs
 ;;   :ensure nil

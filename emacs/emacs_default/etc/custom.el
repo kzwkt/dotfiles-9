@@ -3,17 +3,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(clipmon-mode t)
- '(counsel-mode t)
- '(fci-rule-color "#dedede")
  '(flyspell-abbrev-p t)
  '(flyspell-correct-interface 'flyspell-correct-ivy t)
  '(flyspell-default-dictionary "american")
  '(flyspell-issue-message-flag nil)
  '(flyspell-issue-welcome-flag nil)
- '(ivy-mode t)
- '(line-spacing 0.2)
- '(package-selected-packages '(drag-stuff use-package)))
+ '(package-selected-packages '(link-hint use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
