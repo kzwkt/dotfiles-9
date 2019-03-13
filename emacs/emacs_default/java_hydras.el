@@ -1,14 +1,14 @@
   (defhydra hydra-java-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-  ^Java^
-  --------------------
-  _a_: quickrun
-  _b_: quickrun shell
-  _c_: dumb jump go
-  _d_: flycheck
-  _e_: eclim
-  _f_: flymake
+        ^Java^
+        ---------------
+        _a_: run
+        _b_: run shell
+        _c_: jump go
+        _d_: flycheck
+        _e_: eclim
+        _f_: flymake
 
   "
   ("<escape>" nil)
@@ -25,15 +25,15 @@
   (defhydra hydra-eclim (:color blue :hint nil :foreign-keys run)
   "
   ^
-  ^Find^            ^Project^
-  ---------------------------
-  _a_: type         _g_: build
-  _b_: generic      _h_: close
-  _c_: references   _i_: create
-  _d_: declaration  _j_: delete
-  ^^                _l_: goto
-  ^^                _e_: goto
-  ^^                _f_: create
+        ^Find^            ^Project^
+        ---------------------------
+        _a_: type         _g_: build
+        _b_: generic      _h_: close
+        _c_: references   _i_: create
+        _d_: declaration  _j_: delete
+        ^^                _l_: goto
+        ^^                _e_: goto
+        ^^                _f_: create
 
   "
   ("<escape>" nil)
@@ -54,12 +54,12 @@
   (defhydra hydra-flycheck-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-  ^Flycheck^
-  ---------------------------------------------------
-  _a_: check buffer          _e_: display error at point
-  _b_: go to first error     _f_: explain error at point
-  _c_: go to previous error  _g_: clear errors
-  _d_: go to next error      _h_: flycheck mode
+        ^Flycheck^
+        ---------------------------------------------------
+        _a_: check buffer          _e_: display error at point
+        _b_: go to first error     _f_: explain error at point
+        _c_: go to previous error  _g_: clear errors
+        _d_: go to next error      _h_: flycheck mode
 
   "
   ("q" nil)
@@ -78,13 +78,13 @@
   (defhydra hydra-flycheck-list-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-  ^Flycheck List^
-  ---------------------
-  _a_: show error
-  _b_: explain the error
-  _c_: go to error
-  _d_: previous error
-  _e_: next error
+        ^Flycheck List^
+        ---------------------
+        _a_: show error
+        _b_: explain the error
+        _c_: go to error
+        _d_: previous error
+        _e_: next error
 
   "
   ("q" nil)
@@ -100,12 +100,12 @@
   (defhydra hydra-flymake-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-  ^Flymake^
-  ---------------------------------------------------
-  _a_: go to diagnostic      _e_: show diagnostic buffer
-  _b_: go to previous error  _f_: flymake start
-  _c_: go to next error      _g_: switch to log buffer
-  _d_: show diagnostic       _h_: flymake mode
+        ^Flymake^
+        ---------------------------------------------------
+        _a_: go to diagnostic      _e_: show diagnostic buffer
+        _b_: go to previous error  _f_: flymake start
+        _c_: go to next error      _g_: switch to log buffer
+        _d_: show diagnostic       _h_: flymake mode
 
   "
   ("q" nil)
