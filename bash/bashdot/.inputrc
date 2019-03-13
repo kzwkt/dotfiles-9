@@ -52,6 +52,5 @@ set completion-ignore-case on
 # C-x c cheat sheet
 "c": "\C-k \C-ubat /home/dotfiles/bash/cheat-sheet.sh\n"
 
-
-# Binds C-o to emacs mini
-# "": "\C-k \C-uTERM=xterm-256color ~/maps/emacs/emacs_mini/bin/emacs\n"
+# Binds C-q to quit
+"": "\C-k \C-uexit\n"

@@ -1,5 +1,3 @@
-search el
-search *.elc
 touch a.c
 x
 search nvim
@@ -98,3 +96,5 @@ open_with 1 f
 
 search obj
 touch README_PT.md
+search jjj
+search spel

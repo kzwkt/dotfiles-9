@@ -127,6 +127,8 @@ PS1="\[\e[38;241m[\]\[\e[38;88m\A\]\[\e[38;241m]\]\[\e[38;241m[\]\[\e[38;88m\u\]
 # ranger prompt
 # PS2="\e[38;5;196m[\w]$ \[\e[0m\]"
 # if [ -n "$RANGER_LEVEL" ]; then export PS1="[RANGER]$PS2"; fi
+# from https://github.com/ranger/ranger/issues/1374
+if [ -n "$RANGER_LEVEL" ]; then export PS1="[R]$PS1"; fi
 
 # completion
 if [ -f /etc/bash_completion ]; then
