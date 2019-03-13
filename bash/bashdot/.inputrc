@@ -54,4 +54,4 @@ set completion-ignore-case on
 
 
 # Binds C-o to emacs mini
-"": "\C-k \C-uTERM=xterm-256color ~/maps/emacs/emacs_mini/bin/emacs\n"
+# "": "\C-k \C-uTERM=xterm-256color ~/maps/emacs/emacs_mini/bin/emacs\n"

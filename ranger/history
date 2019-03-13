@@ -1,5 +1,3 @@
-search functions
-search init
 search el
 search *.elc
 touch a.c
@@ -98,3 +96,5 @@ open_with r0 f
 open_with 0 f
 open_with 1 f
 
+search obj
+touch README_PT.md

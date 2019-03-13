@@ -45,7 +45,7 @@ shopt -s histappend
 shopt -s cmdhist
 
 # Record each line as it gets issued
-# PROMPT_COMMAND='history -a'
+PROMPT_COMMAND='history -a'
 
 # Huge history. Doesn't appear to slow things down, so why not?
 HISTSIZE=500000
@@ -96,7 +96,7 @@ source ~/.bash_aliases
 source ~/.git_aliases
 source ~/.env_variables.sh
 source ~/.bash_completion.sh
-source ~/maps/ranger/examples/bash_automatic_cd.sh
+source ~/.config/ranger/bash_automatic_cd.sh
 
 #### DEFAULT EDITOR ####
 
