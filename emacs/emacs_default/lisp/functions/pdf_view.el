@@ -1,8 +1,3 @@
-(defun pdf-occur-goto-quit ()
-  (interactive)
-  (pdf-occur-goto-occurrence)
-  (delete-other-windows))
-
 (general-define-key
  :keymaps 'pdf-outline-minor-mode-map
  "<tab>" 'evil-toggle-fold
@@ -96,5 +91,3 @@
   "<left>" 'pdf-view-next-page
   "<right>" 'pdf-view-previous-page
   "C-c h" 'pdf-annot-add-highlight-markup-annotation)
-
-;; "s" 'pdf-view-fit-width-to-window

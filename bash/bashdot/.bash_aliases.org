@@ -50,18 +50,18 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
 * tasks
 ** timewarrior
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.bash_aliases
-alias ,='clear && timew'
-alias ,s-start='clear && timew :adjust start'
-alias ,o-stop='clear && timew :adjust stop'
-alias ,c-continue='clear && timew :adjust continue'
-alias ,m-summary='clear && timew summary :ids'
-alias ,n-cancel='clear && timew cancel'
-alias ,t-cheat='clear && cat ~/.timewarrior/thh'
-alias ,r-remove-database='clear && mv -f ~/.timewarrior/data/2019* ~/.timewarrior/data.back &>/dev/null'
-alias ,d-delete='timew delete'
-alias ,h-help='clear && timew help'
-alias ,e-shorten='timew shorten'
-alias ,l-lenghten='timew lengthen'
+alias tw='clear && timew'
+alias twstart='clear && timew :adjust start'
+alias twstop='clear && timew :adjust stop'
+alias twcontinue='clear && timew :adjust continue'
+alias twsummary='clear && timew summary :ids'
+alias twcancel='clear && timew cancel'
+alias twcheat='clear && cat ~/.timewarrior/thh'
+alias twclear='clear && mv -f ~/.timewarrior/data/2019* ~/.timewarrior/data.back &>/dev/null'
+alias twdelete='timew delete'
+alias twhelp='clear && timew help'
+alias twshorten='timew shorten'
+alias twlenghten='timew lengthen'
 #+END_SRC
 * emacs
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.bash_aliases
@@ -80,6 +80,8 @@ alias push='clear && git push && ls --color'
 # alias t='~/maps/tldr++/tldr'
 # Markdown to Org
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
+# Change Java:
+# sudo update-alternatives --config java
 alias p='clear && python3'
 alias gig='clear && nvim .gitignore'
 alias fl='flatpak'

@@ -2,6 +2,8 @@
 
 # export PYTHONHOME=/usr/local/bin/python3.5
 # From: https://github.com/DaveDavenport/rofi/issues/584#issuecomment-384555551
+# Limit displayed directories in the prompt
+export PROMPT_DIRTRIM=3
 export SUDO_ASKPASS="~/bin/askpass-rofi rofi -show run"
 export nvim=~/.config/nvim
 export em=~/.emacs.d

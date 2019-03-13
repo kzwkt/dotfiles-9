@@ -19,3 +19,4 @@
 (setq debug-on-error nil)
 (setq use-dialog-box nil)
 (setq window-resize-pixelwise t)
+(add-hook 'after-change-major-mode-hook 'line-numbers)

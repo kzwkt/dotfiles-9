@@ -270,7 +270,7 @@ rotate entire document."
 (defun find-scratch-markdown ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/markdown_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.md")))
 
 (defun find-scratch-org ()
   (interactive)

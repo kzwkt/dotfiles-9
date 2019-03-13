@@ -565,11 +565,11 @@
   :config
   (unkillable-scratch))
 
-(use-package evil-better-visual-line
-  :after evil
-  :ensure t
-  :config
-  (evil-better-visual-line-on))
+;; (use-package evil-better-visual-line
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-better-visual-line-on))
 
 (use-package centered-cursor-mode
   :defer nil
@@ -1265,9 +1265,11 @@
 
   (general-nvmap
     :keymaps 'Info-mode-map
+    "gb" 'counsel-bookmark
     "m" 'Info-menu
     "l" 'forward-char
-    "C-c C-c" 'my/eval-next-sexp
+    "C-j" 'counsel-M-x
+    ;; "C-c C-c" 'my/eval-next-sexp
     "h" 'backward-char
     "H" 'evil-window-top
     "M" 'evil-window-middle
@@ -1626,11 +1628,10 @@
   (add-to-list 'auto-mode-alist '("\\por\\'" . prog-mode))
   (add-hook 'prog-mode-hook 'my/prog-mode-hooks)
   :config
+
   (defun my/prog-mode-hooks ()
     (interactive)
     (electric-operator-mode 1)
-    (highlight-operators-mode 1)
-    (highlight-numbers-mode 1)
     (subword-mode 1)
     (company-mode 1)
     (hl-line-mode 1)
@@ -2029,7 +2030,7 @@
 ;;    '(eclim-eclipse-dirs '("~/maps/eclipse"))
 ;;    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
 ;;    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
-;;    '(eclimd-default-workspace "~/Java/default-workspace"))
+;;    '(eclimd-default-workspace "/home/dave/org/Studying/Programming/Java/.workspace"))
 ;;   :config
 ;;   (eclim-mode 1))
 
@@ -2067,8 +2068,8 @@
   :ensure t
   :after lsp
   :init
-  (setq lsp-java-workspace-dir "~/Java/.workspace")
-  (setq lsp-java-workspace-cache-dir "~/Java/.workspace/.cache/"))
+  (setq lsp-java-workspace-dir "/home/dave/org/Studying/Programming/Java/.workspace")
+  (setq lsp-java-workspace-cache-dir "/home/dave/org/Studying/Programming/Java/.workspace/.cache"))
 
 (use-package dap-mode
   :ensure t
@@ -2584,20 +2585,39 @@
 :defer t
 :ensure t)
 
+
 (use-package pdf-tools
   :ensure t
   :init
-  (setq pdf-view-resize-factor 1.03)
-  (setq pdf-view-continuous nil)
-  (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode)
-  (add-hook 'pdf-view-mode-hook 'pdf-links-minor-mode)
-  (add-hook 'pdf-outline-buffer-mode-hook 'disable-modeline)
-  (add-hook 'pdf-outline-buffer-mode-hook 'outline-minor-mode)
-  (add-hook 'pdf-outline-buffer-mode-hook 'hl-line-mode)
-  (setq pdf-annot-activate-created-annotations t)
+
+  (add-hook 'pdf-view-mode-hook 'my/pdf-view-settings)
   (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+  (add-hook 'pdf-outline-buffer-mode-hook 'my/pdf-outline-settings)
+
   :config
-  (load-file "~/.emacs.d/lisp/functions/pdf_view.el")
-  (add-hook 'pdf-view-mode-hook 'pdf-history-minor-mode)
+
+  (defun pdf-occur-goto-quit ()
+    (interactive)
+    (pdf-occur-goto-occurrence)
+    (delete-other-windows))
+
+  (defun my/pdf-view-settings ()
+    (interactive)
+    (pdf-annot-minor-mode 1)
+    (pdf-links-minor-mode 1)
+    (pdf-history-minor-mode 1))
+
+  (defun my/pdf-outline-settings ()
+    (interactive)
+    (disable-modeline)
+    (outline-minor-mode 1)
+    (hl-line-mode 1))
+
+  (setq pdf-view-continuous nil)
+  (setq pdf-view-resize-factor 1.03)
   (setq pdf-view-display-size 'fit-page)
-  (setq pdf-misc-size-indication-minor-mode t))
+  (setq pdf-misc-size-indication-minor-mode t)
+  (setq pdf-annot-activate-created-annotations t)
+
+  (load-file "~/.emacs.d/lisp/functions/pdf_view.el"))
+

@@ -248,4 +248,7 @@ function! OpenFileInPrevWindow()
 endfunction
 nmap <c-k> :call OpenFileInPrevWindow()<cr>
 " }}}
-" vim: nowrap
+" {{{{ path macro
+let @o = 'mZ:s/\/home\/dave\//\~\/`Z'
+" }}}
+"" vim: nowrap

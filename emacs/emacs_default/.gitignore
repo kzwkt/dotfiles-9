@@ -4,3 +4,11 @@ backups/**
 history
 tmp/**
 lisp/cool-moves/**
+*scratch*
+filesets-cache.el
+flycheck_filesets-cache.el
+info-history
+org-clock-save.el
+projectile-bookmarks.eld
+bookmarks
+teste

@@ -33,8 +33,7 @@
 (general-imap
   :keymaps 'override
   "C-h" 'delete-backward-char
-  "C-v " nil
-  "M-v " 'evil-paste-from-clipboard)
+  "C-v " nil)
 
 (general-nvmap
   "m" 'hydra-text-motions/body

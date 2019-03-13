@@ -1,33 +1,8 @@
 # -* Mode: org; fill-column: 59 -*-
 #+STARTUP: overview
 
-* text macros
+* org macros
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/macros.el
-(fset 'del-ipar-insert
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("ndip" 0 "%d") arg)))
-(fset 'del-par-insert
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("ndap" 0 "%d") arg)))
-(fset 'shorten-home
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([58 37 115 47 92 47 104 111 109 101 92 47 109 114 98 105 103 92 47 backspace 47 126 backspace backspace backspace 47 126 backspace 92 126 left 97 97 backspace backspace right 47 return] 0 "%d") arg)))
-(fset 'disable-package
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 47 112 97 99 107 115 46 101 108 return 67 100 105 115 97 98 108 101 46 101 108 escape] 0 "%d") arg)))
-(fset 'enable-package
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 47 100 105 115 97 98 108 101 46 101 108 return 67 112 97 99 107 115 46 101 108 escape] 0 "%d") arg)))
-(fset 'my/flyspell-insert-word
-   "\244iy")
-(fset 'format-buffer
-   "g]Z\C-xhgq`Z")
-(fset 'timestamp-remove-tail
-   [?g ?_ ?B ?h ?C ?> escape])
-(fset 'my/org-narrow-increase
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([32 111 110 32 119 61 61 escape 32 109 110] 0 "%d") arg)))
-
-(fset 'org-inner-block
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([47 35 92 43 98 101 103 105 110 95 101 120 97 109 112 108 101 return 106 86 47 35 92 43 101 110 100 95 101 120 97 109 112 108 101 return 107] 0 "%d") arg)))
-
-(fset 'org-outer-block
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([47 35 92 43 98 101 103 105 110 95 101 120 97 109 112 108 101 return 86 47 35 92 43 101 110 100 95 101 120 97 109 112 108 101 return] 0 "%d") arg)))
-
 (fset 'org-code
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([escape 96 60 105 126 escape 96 62 97 126 escape] 0 "%d") arg)))
 
@@ -37,7 +12,7 @@
 (fset 'org-bold
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([escape 96 60 105 42 escape 96 62 97 42 escape] 0 "%d") arg)))
 
-  (fset 'org-remove-bold
+(fset 'org-remove-bold
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([58 115 47 42 47 47 103 return] 0 "%d") arg)))
 
 (fset 'org-emphasis
@@ -46,41 +21,8 @@
 (fset 'org-remove-emph
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([58 47 115 backspace backspace 115 47 92 47 47 47 103 return] 0 "%d") arg)))
 
-(fset 'org-hide-all
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([21 tab] 0 "%d")) arg)))
-
-(fset 'org-sort-todos
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("gg]^d" 0 "%d") arg)))
-
-(fset 'my/widen-reset-no-switch
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '(" ow wa ml" 0 "%d") arg)))
-
-(fset 'my/widen-reset
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
-
-(fset 'my/narrow-to-inner-paragraph
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([103 93 122 118 105 112 32 99 110 escape 32 109 110 32 119 61 61 escape 96 122] 0 "%d") arg)))
-
-(fset 'redo-two-changes-insert
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([escape 103 93 122 50 18 96 122 97] 0 "%d") arg)))
-
-(fset 'redo-two-changes-normal
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("2" 0 "%d") arg)))
-
-(fset 'undo-two-changes-insert
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([escape 103 93 122 50 117 96 122 97] 0 "%d") arg)))
-
-(fset 'open-two-below-insert
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([111 return return up] 0 "%d") arg)))
-
-(fset 'open-two-below-normal
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([111 return return up escape] 0 "%d") arg)))
-
-(fset 'evil-paste-from-clipboard
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217848 101 118 105 108 45 112 97 115 116 101 45 102 114 111 109 45 114 101 103 105 115 return 43] 0 "%d") arg)))
-
-(fset 'undo-two-changes-normal
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("uu" 0 "%d") arg)))
+(fset 'org-emph-word
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 105 87 escape 96 60 105 47 escape 96 62 97 47 escape] 0 "%d") arg)))
 
 (fset 'org-emph-word
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 105 87 escape 96 60 105 47 escape 96 62 97 47 escape] 0 "%d") arg)))
@@ -88,7 +30,7 @@
 (fset 'org-bold-word
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 105 87 escape 96 60 105 42 escape 96 62 97 42 escape] 0 "%d") arg)))
 
-  (fset 'org-code-word
+(fset 'org-code-word
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 105 87 escape 96 60 105 126 escape 96 62 97 126 escape] 0 "%d") arg)))
 
 (fset 'org-link-in-WORD
@@ -97,32 +39,31 @@
 (fset 'org-link-in-word
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 105 119 insert insert return return] 0 "%d") arg)))
 
+(fset 'org-hide-all
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([21 tab] 0 "%d")) arg)))
+
+(fset 'org-sort-todos
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("gg]^d" 0 "%d") arg)))
+#+END_SRC
+* text macros
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/macros.el
+(fset 'my/flyspell-insert-word
+   "\244iy")
+
+(fset 'my/widen-reset-no-switch
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '(" ow wa ml" 0 "%d") arg)))
+
+(fset 'my/widen-reset
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
+
+(fset 'my/widen-reset
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
+
 (fset 'insert-link-in-list
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 119 103 114 insert insert return return] 0 "%d") arg)))
 
-(fset 'my/delete-region
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("\"_d" 0 "%d") arg)))
-
-(fset 'select-paragraph
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vap" 0 "%d") arg)))
-
-(fset 'select-inner-paragraph
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vip" 0 "%d") arg)))
-
-(fset 'my/below-line-macro
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([65 return escape] 0 "%d") arg)))
-
-(fset 'my/above-line-macro
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([73 return escape] 0 "%d") arg)))
-
 (fset 'duplicate-line
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("g]zyyp`zj" 0 "%d") arg)))
-
-(fset 'yank-inner-paragraph
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("yip" 0 "%d") arg)))
-
-(fset 'yank-paragraph-macro
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("yap" 0 "%d") arg)))
 
 (fset 'duplicate-a-paragrah
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vapy`>p" 0 "%d") arg)))
