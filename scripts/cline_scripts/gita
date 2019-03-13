@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
 message="$*"
-clear
+
+clear &&
+
 echo "adding files" &&
 git add -A &&
+
 echo "commiting" &&
 git commit -am "$message" &&
-clear &&
+
 echo "pushing" &&
-git push &&
-~/scripts/i3_scripts/hide/hide_only_terms
+git push
+
+# ~/scripts/i3_scripts/hide/hide_only_terms
