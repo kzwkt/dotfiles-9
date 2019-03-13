@@ -7,8 +7,8 @@
   "g]" 'evil-set-marker
   "zi" 'outline-show-all
   "}" 'my/paragraph-forward
-  "gi" 'cool-moves/open-line-below
-  "go" 'cool-moves/open-line-above
+  "go" 'cool-moves/open-line-below
+  "gi" 'cool-moves/open-line-above
   "{" 'my/paragraph-backwards
   "zj" 'evil-backward-word-end
   "zk" 'evil-backward-WORD-end

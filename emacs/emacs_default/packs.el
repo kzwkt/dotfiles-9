@@ -961,7 +961,7 @@
   (targets-setup t))
 
 (use-package cool-moves
-:load-path "~/.emacs.d/lisp/cool-moves"
+:load-path "~/maps/cool-moves"
 :config
 (general-define-key
  :keymaps 'override
@@ -971,6 +971,10 @@
 "C-S-k" 'cool-moves/line-backward
 "C-M-n" 'cool-moves/word-forward
 "C-M-p" 'cool-moves/word-backwards))
+
+(use-package zoom
+  :defer t
+  :ensure t)
 
 (use-package link-hint
   :defer t
@@ -1354,6 +1358,24 @@
 	    (lambda ()
 	      (face-remap-set-base 'comint-highlight-prompt :inherit nil)))
   :config
+
+  (defun my/shell-mode-hooks ()
+    (interactive)
+    (subword-mode 1)
+    (company-mode 1)
+    (smartparens-mode 1)
+    (tab-jump-out-mode 1)
+    (electric-pair-local-mode 1)
+    (my/company-idle-one-prefix-one)
+    (beacon-mode 1)
+    (my/shell-source-bashrc))
+
+  (defun my/shell-source-bashrc ()
+    (interactive)
+    (insert "source ~/.bashrc")
+    (comint-send-input)
+    (comint-clear-buffer))
+
   (general-imap
     :keymaps 'shell-mode-map
     "C-u" 'comint-kill-input
@@ -2013,73 +2035,83 @@
   (add-hook 'java-mode-hook
 	    (lambda ()
 	      (c-set-style "linux")
-	      (lsp)))
+	      (eclim-mode t)
+	      (aggressive-indent-mode t)))
   :config
+
+  (defun my/eclim-commands ()
+    (interactive)
+    (counsel-M-x "^eclim- "))
+
+  (general-define-key
+   :keymaps 'eclim-mode-map
+   "C-x l" 'my/eclim-commands)
+
   (general-nvmap
     :keymaps 'java-mode-map
     "RET" 'hydra-java-mode/body))
 
-;; (use-package eclim
-;;   :defer t
-;;   :ensure t
-;;   :init
-;;   ;; (setq eclimd-autostart nil)
-;;   (setq eclimd-wait-for-process t)
-;;   (add-hook 'eclim-mode-hook 'company-emacs-eclim-setup)
-;;   (custom-set-variables
-;;    '(eclim-eclipse-dirs '("~/maps/eclipse"))
-;;    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
-;;    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
-;;    '(eclimd-default-workspace "/home/dave/org/Studying/Programming/Java/.workspace"))
-;;   :config
-;;   (eclim-mode 1))
+(use-package eclim
+  :defer t
+  :ensure t
+  :init
+  (setq eclimd-autostart t)
+  (setq eclimd-wait-for-process t)
+  (add-hook 'eclim-mode-hook 'company-emacs-eclim-setup)
+  (custom-set-variables
+   '(eclim-eclipse-dirs '("~/maps/eclipse"))
+   '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
+   '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
+   '(eclimd-default-workspace "~/org/Studying/Programming/Java/Core_Java/My_Code"))
+  :config
+  (eclim-mode 1))
 
-;; (use-package company-emacs-eclim
-;;  :defer t
+(use-package company-emacs-eclim
+  :defer t
+  :ensure t)
+
+;; (use-package lsp-java
+;; :defer t
+;; :ensure t)
+
+;; (use-package lsp-mode
+;;   :defer t
 ;;   :ensure t)
 
-(use-package lsp-java
-:defer t
-:ensure t)
+;; (use-package company-lsp
+;;   :defer t
+;;   :ensure t)
 
-(use-package lsp-mode
-  :defer t
-  :ensure t)
+;; (use-package lsp-ui
+;;   :defer t
+;;   :init
+;;   (setq lsp-ui-sideline-delay 3)
+;;   (setq lsp-ui-sideline-ignore-duplicate t)
+;;   (setq lsp-ui-sideline-show-hover t)
+;;   (setq lsp-ui-sideline-show-symbol 't)
+;;   (setq lsp-ui-sideline-show-diagnostics 't)
+;;   (setq lsp-ui-sideline-show-code-actions 't)
+;;   (setq lsp-ui-sideline-show-hover 't)
+;;   (setq lsp-ui-doc-max-width 150)
+;;   (setq lsp-ui-doc-max-height 30)
+;;   :ensure t)
 
-(use-package company-lsp
-  :defer t
-  :ensure t)
+;; (use-package lsp-java
+;;   :ensure t
+;;   :after lsp
+;;   :init
+;;   (setq lsp-java-workspace-dir "/home/dave/org/Studying/Programming/Java/.workspace")
+;;   (setq lsp-java-workspace-cache-dir "/home/dave/org/Studying/Programming/Java/.workspace/.cache"))
 
-(use-package lsp-ui
-  :defer t
-  :init
-  (setq lsp-ui-sideline-delay 3)
-  (setq lsp-ui-sideline-ignore-duplicate t)
-  (setq lsp-ui-sideline-show-hover t)
-  (setq lsp-ui-sideline-show-symbol 't)
-  (setq lsp-ui-sideline-show-diagnostics 't)
-  (setq lsp-ui-sideline-show-code-actions 't)
-  (setq lsp-ui-sideline-show-hover 't)
-  (setq lsp-ui-doc-max-width 150)
-  (setq lsp-ui-doc-max-height 30)
-  :ensure t)
+;; (use-package dap-mode
+;;   :ensure t
+;;   :after lsp-mode
+;;   :config
+;;   (dap-mode t)
+;;   (dap-ui-mode t))
 
-(use-package lsp-java
-  :ensure t
-  :after lsp
-  :init
-  (setq lsp-java-workspace-dir "/home/dave/org/Studying/Programming/Java/.workspace")
-  (setq lsp-java-workspace-cache-dir "/home/dave/org/Studying/Programming/Java/.workspace/.cache"))
-
-(use-package dap-mode
-  :ensure t
-  :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
-
-(use-package dap-java
-  :after (lsp-java))
+;; (use-package dap-java
+;;   :after (lsp-java))
 
 
 (use-package elpy
@@ -2244,6 +2276,10 @@
   :ensure t
   :config
 
+  (defun my/counsel-projectile-commands ()
+    (interactive)
+    (counsel-M-x "^counsel-projectile "))
+
   (general-define-key
    :keymaps 'projectile-mode-map
    "M-[" 'projectile-next-project-buffer
@@ -2252,7 +2288,8 @@
   (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignore_buffers.el")
 
   (setq projectile-globally-ignored-modes '("erc-mode" "help-mode" "completion-list-mode" "Buffer-menu-mode" "gnus-.*-mode" "occur-mode" "org-mode"))
-  (setq projectile-project-search-path '("~/org/" "~/.emacs.d/" "~/PCC"))
+  (setq projectile-project-search-path '("~/org/" "~/.emacs.d/" "~/org/Studying/Programming/Java/Core_Java/My_Code"))
+
   (setq projectile-mode-line-prefix " <p>")
   (setq projectile-mode-line-function '(lambda () (format " <p> [%s]" (projectile-project-name))))
 
