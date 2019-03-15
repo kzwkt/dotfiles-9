@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: long comment
+# key: coll
+# --
+/* $0 */

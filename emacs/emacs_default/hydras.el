@@ -425,7 +425,7 @@
        _a_: tangle          _f_: copy path      _k_: reload keys
        _b_: show date       _g_: copy dir       _s_: eval block
        _c_: check parens    _h_: ivy resume     _r_: eval region
-       _d_: dup line        _i_: define abbrev  _b_: eval buffer
+       _d_: dup line        _i_: define abbrev  _t_: eval buffer
        _e_: sort by length  _J_: del dup lines  _l_: eval line
        _E_: sort lines	  _3_: reload i3      _w_: word count
 
@@ -448,7 +448,7 @@
   ("k" my/tangle-reload-keys)
   ("s" tangle-and-eval-block)
   ("r" eval-region)
-  ("b" eval-buffer)
+  ("t" eval-buffer)
   ("l" eval-line)
   ("w" wc-count)
   ("3" i3-reload))
@@ -541,7 +541,7 @@
 "
 
   ("<escape>" nil)
-  ("u" nil)
+  ("u" undo-tree-undo :exit t)
 
   ("l" cool-moves/line-forward)
   ("L" cool-moves/line-backward)

@@ -405,6 +405,26 @@ bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-
 bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
 #+END_SRC
 * worskpaces
+* output
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+
+bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
+bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
+bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
+
+bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
+bindsym $mod+Control+F3 exec "pactl set-card-profile 0 output:analog-stereo"
+
+bindsym $mod+p workspace prev_on_output
+bindsym $mod+n workspace next_on_output
+
+bindsym $mod+Control+h move container to output left; focus output Left
+bindsym $mod+Control+l move container to output right; focus output Right
+
+bindsym $mod+Control+Left move workspace to output Left
+bindsym $mod+Control+Right move workspace to output Right
+
+#+END_SRC
 ** names
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 set $ws1 "1"
@@ -418,29 +438,6 @@ set $ws8 "8"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-#+END_SRC
-** output
-#+BEGIN_SRC shell :tangle ~/.config/i3/config
-
-bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
-bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
-bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
-
-bindsym $mod+Control+l move workspace to output Right
-bindsym $mod+Control+h move workspace to output Left
-
-bindsym $mod+p workspace prev_on_output
-bindsym $mod+n workspace next_on_output
-
-bindsym $mod+Shift+n move container to output right; focus output Right
-bindsym $mod+Shift+p move container to output left; focus output Left
-
-bindsym $mod+Control+p focus output Left
-bindsym $mod+Control+n focus output Right
-
-bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
-bindsym $mod+Control+F2 exec "pactl set-card-profile 0 output:analog-stereo"
-
 #+END_SRC
 ** move
 #+BEGIN_SRC shell :tangle ~/.config/i3/config

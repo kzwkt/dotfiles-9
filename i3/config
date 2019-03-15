@@ -354,11 +354,29 @@ for_window [class="Pavucontrol"] move to position 375 0
 
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
 bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
-bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
+bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
 bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
 bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
+
+
+bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
+bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
+bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
+
+bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
+bindsym $mod+Control+F3 exec "pactl set-card-profile 0 output:analog-stereo"
+
+bindsym $mod+p workspace prev_on_output
+bindsym $mod+n workspace next_on_output
+
+bindsym $mod+Control+h move container to output left; focus output Left
+bindsym $mod+Control+l move container to output right; focus output Right
+
+bindsym $mod+Control+Left move workspace to output Left
+bindsym $mod+Control+Right move workspace to output Right
+
 
 set $ws1 "1"
 set $ws2 "2"
@@ -371,27 +389,6 @@ set $ws8 "8"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-
-bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
-bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
-bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
-
-bindsym $mod+Control+l move workspace to output Right
-bindsym $mod+Control+h move workspace to output Left
-
-bindsym $mod+p workspace prev_on_output
-bindsym $mod+n workspace next_on_output
-
-bindsym $mod+Shift+n move container to output right; focus output Right
-bindsym $mod+Shift+p move container to output left; focus output Left
-
-bindsym $mod+Control+p focus output Left
-bindsym $mod+Control+n focus output Right
-
-bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
-bindsym $mod+Control+F2 exec "pactl set-card-profile 0 output:analog-stereo"
-
 
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2

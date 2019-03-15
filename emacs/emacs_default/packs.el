@@ -275,8 +275,18 @@
   ;; (setq org-bullets-bullet-list (quote ("◐" "◑" "◒" "◓" "☉" "◎" "◉")))
 
 (use-package org-noter
-:defer t
-:ensure t)
+  :defer t
+  :ensure t
+  :config
+
+  (defun my/org-noter-insert-note ()
+    (interactive)
+    (switch-to-buffer-other-window "Noter")
+    (org-noter-insert-precise-note))
+
+  (general-define-key
+   :keymaps 'org-noter-notes-mode-map
+   "C-x i" 'my/org-noter-insert-note))
 
 (use-package ox-asciidoc
 :after org

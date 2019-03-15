@@ -315,8 +315,18 @@ Easy templates
 ** Org Noter
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package org-noter
-:defer t
-:ensure t)
+  :defer t
+  :ensure t
+  :config
+
+  (defun my/org-noter-insert-note ()
+    (interactive)
+    (switch-to-buffer-other-window "Noter")
+    (org-noter-insert-precise-note))
+
+  (general-define-key
+   :keymaps 'org-noter-notes-mode-map
+   "C-x i" 'my/org-noter-insert-note))
 #+END_SRC
 ** Org Asciidoc
 

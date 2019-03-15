@@ -35,6 +35,7 @@
 
 (general-define-key
  :keymaps 'pdf-view-mode-map
+ "C-x i" 'org-noter-insert-precise-note
  "C-c v v" 'pdf-view-set-slice-using-mouse
  "C-c v r" 'pdf-view-reset-slice
  "C-c C-c" 'pdf-annot-add-highlight-markup-annotation
