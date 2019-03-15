@@ -1,0 +1,4 @@
+# key: v
+# name: simple variable
+# --
+${1:name} = $0

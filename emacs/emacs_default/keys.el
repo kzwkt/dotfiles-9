@@ -10,7 +10,6 @@
  "M-9" 'delete-other-windows
  "<XF86Calculator>" 'quick-calc
  "C-0" 'delete-window
- "C-c 0" 'my/jump-to-register-91
  "<f8>" 'man
  "M-0" 'quit-window
  "M-e" 'evil-forward-sentence-begin
@@ -105,17 +104,12 @@
 "C-c L w"   'my/new-theme
 
 ;;;; EDITING ;;;;
+"C-c i" 'ibuffer
 "C-c u" 'undo-propose
-"C-c K" 'avy-goto-char-timer
-"C-c i a" 'align-regexp
-"C-c i e" 'tiny-expand
-"C-c i s" 'transpose-sentences
-"C-c i l" 'transpose-lines
-"C-c i p" 'transpose-paragraphs
-"C-c i i" 'indent-block
-"C-c i c" 'clipmon-autoinsert-toggle
+"C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
+"<mouse-3>" nil
 "C-c U" 'universal-argument
 "C-," 'helpful-variable
 "C-." 'helpful-function
@@ -128,7 +122,6 @@
 "M-t" 'transpose-words
 "M-y" 'counsel-yank-pop
 "C-t" 'transpose-chars
-"C-;" 'hydra-text-main/body
 "C-x ," 'my/jump-to-register-91
 "C-x ." 'my/jump-to-register-eight
 "C-S-l" 'redraw-display

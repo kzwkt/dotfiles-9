@@ -216,7 +216,8 @@ if [[ ( -z "$INSIDE_EMACS" || "$EMACS_BASH_COMPLETE" = "t" ) &&\
 fi
 
 # Pyenv
+# See  https://github.com/pyenv/pyenv-installer
 
-# export PATH="/home/overlord/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+export PATH="/home/dave/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

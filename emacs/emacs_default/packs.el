@@ -570,7 +570,8 @@
 			     "fundamental_scratch"
 			     "org_scratch"
 			     "info_keys.org"
-			     "prog_scratch"))
+			     "prog_scratch"
+			     "i3keys.org"))
   (setq unkillable-scratch-behavior 'bury)
   :config
   (unkillable-scratch))
@@ -925,9 +926,10 @@
     "z" 'hydra-window/body
     "h" 'split-window-horizontally
     "j" 'my/split-vertically
+    "p" 'hydra-projectile-mode/body
     "l" 'my/split-right
     "k" 'split-window-below
-    ";" 'hydra-text-main/body
+    ";" 'hydra-modes/body
     "m" 'hydra-modes/body
     "c" 'hydra-commands/body
     "o" 'hydra-org-mode/body
@@ -1058,11 +1060,6 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
-(use-package restart-emacs
-:defer t
-:ensure t
-:ensure t)
-
 (use-package which-key
   :defer t
   :ensure t
@@ -1164,8 +1161,7 @@
   (setq beacon-blink-duration 0.2)
   (setq beacon-blink-delay 0.2)
   (setq beacon-blink-when-window-scrolls t)
-  (setq beacon-blink-when-window-changes t)
-  (beacon-mode 1))
+  (setq beacon-blink-when-window-changes t))
 
 (use-package vertigo
   :defer 2
@@ -1242,12 +1238,33 @@
     :with 'quit-window
     [remap my/quiet-save-buffer]))
 
+(use-package hideshow
+  :ensure nil
+  :config
+
+  (general-unbind 'hs-minor-mode-map
+    :with 'hs-toggle-hiding
+    [remap evil-toggle-fold])
+
+  (general-unbind 'hs-minor-mode-map
+    :with 'hs-hide-all
+    [remap evil-close-folds])
+
+  (general-unbind 'hs-minor-mode-map
+    :with 'hs-show-all
+    [remap outline-show-all]))
+
 (use-package filesets
   :init
   (load-file "~/.emacs.d/lisp/functions/filesets.el" )
   :ensure nil
   :config
   (filesets-init))
+
+(use-package ibuffer
+  :ensure nil
+  :init
+  (add-hook 'ibuffer-hook 'my/truncate-on))
 
 (use-package info
   :ensure nil
@@ -1377,7 +1394,6 @@
     (tab-jump-out-mode 1)
     (electric-pair-local-mode 1)
     (my/company-idle-one-prefix-one)
-    (beacon-mode 1)
     (my/shell-source-bashrc))
 
   (defun my/shell-source-bashrc ()
@@ -1568,11 +1584,10 @@
     "M-/" 'hippie-expand))
 
 (use-package term
-:defer t
+  :defer t
   :init
   (defun my/term-mode-hooks ()
     (interactive)
-    (beacon-mode 1)
     (subword-mode 1)
     (dimmer-mode 1)
     (smartparens-mode 1)
@@ -1666,7 +1681,6 @@
     (electric-operator-mode 1)
     (subword-mode 1)
     (company-mode 1)
-    (hl-line-mode 1)
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
@@ -2131,8 +2145,7 @@
   :init
   ;; (setq elpy-autodoc-delay 2)
   (setq python-shell-completion-native-enable t)
-  (setq elpy-rpc-python-command "/usr/bin/python3")
-  (setq python-shell-interpreter "/usr/bin/python3")
+  ;; (remove-hook 'elpy-mode-hook 'my/company-idle-three-prefix-two)
   (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
   (add-hook 'elpy-mode-hook (lambda () (elpy-shell-toggle-dedicated-shell 1)))
   :config
@@ -2165,27 +2178,38 @@
   ;; (remove-hook 'python-mode-hook #'evil-swap-keys-swap-number-row)
   (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
 
+  (defun cool-moves/open-line-below-python (arg)
+    (interactive "p")
+    (end-of-line)
+    (open-line arg)
+    (forward-line 1) (evil-insert-state))
+
   (defun my/python-mode-hooks ()
     (interactive)
     (hl-line-mode 1)
-    (my/company-idle-zero-prefix-two)
-    ;; (blacken-mode 1)
     (flycheck-mode 1)
-    (aggressive-fill-paragraph-mode 1)
     (highlight-numbers-mode 1)
     (electric-operator-mode 1)
+    (blacken-mode 1)
+    (hs-minor-mode 1)
     (rainbow-delimiters-mode 1)
+    (olivetti-mode 1)
     (elpy-mode 1))
 
   (defun my/inferior-python-mode-hooks ()
     (interactive) (line-numbers)
     (tab-jump-out-mode 1)
     (subword-mode 1)
-    (my/company-idle-zero-prefix-one)
     (electric-operator-mode 1)
     (highlight-numbers-mode 1))
 
   :config
+
+  (defun my/python-save-buffer () (interactive)
+	 (evil-ex-nohighlight)
+	 (let ((inhibit-message t))
+	   (delete-trailing-whitespace)
+	   (save-buffer)))
 
   (general-define-key
    :keymaps 'inferior-python-mode-map
@@ -2211,12 +2235,16 @@
     :with 'my/python-shebang
     [remap my/bash-shebang])
 
+  (general-unbind 'python-mode-map
+    :with 'my/python-save-buffer
+    [remap my/quiet-save-buffer])
+
   (general-define-key
    :keymaps 'python-mode-map
    "C-." 'my/indent-tools-hydra/body
    "M-e" 'python-nav-forward-statement
    "M-a" 'python-nav-backward-statement
-   "M-m" 'elpy-autopep8-fix-code)
+   "M-m" 'blacken-buffer)
 
   (general-imap
     :keymaps 'python-mode-map
@@ -2224,23 +2252,7 @@
     "M-a" 'python-nav-backward-statement
     "<S-backspace>" 'python-indent-dedent-line-backspace
     "<M-return>" 'indent-buffer
-    "<C-return>" 'python-open-two-lines-insert)
-
-  (general-unbind 'python-mode-map
-    :with 'my/quiet-save-python
-    [remap my/quiet-save-buffer])
-
-  (defun my/quiet-save-python () (interactive)
-	 (evil-ex-nohighlight)
-	 (let ((inhibit-message t))
-	   (save-buffer)))
-
-  ;; (defun my/quiet-save-python () (interactive)
-  ;; 	 (evil-ex-nohighlight)
-  ;; 	 (let ((inhibit-message t))
-  ;; 	   (progn
-  ;; 	     (elpy-autopep8-fix-code)
-  ;; 	     (save-buffer))))
+    "<C-return>" 'cool-moves/open-line-below-python)
 
   (defun my/python-make-string ()
     (interactive)
@@ -2265,6 +2277,7 @@
   (general-nvmap
     :keymaps 'python-mode-map
     "C-." 'my/indent-tools-hydra/body
+    "o" 'cool-moves/open-line-below-python
     "RET" 'hydra-python-mode/body
     "zm" 'evil-close-folds
     "M-e" 'python-nav-forward-statement
@@ -2290,8 +2303,18 @@
     (interactive)
     (counsel-M-x "^counsel-projectile "))
 
+  (defun my/projectile-show-commands ()
+    (interactive)
+    (counsel-M-x "^projectile- "))
+
+  (general-nvmap
+    :keymaps 'projectile-mode-map
+    "M-d" 'counsel-projectile-switch-to-buffer)
+
   (general-define-key
    :keymaps 'projectile-mode-map
+   "C-c 0" 'my/projectile-show-commands
+   "M-d" 'counsel-projectile-switch-to-buffer
    "M-[" 'projectile-next-project-buffer
    "M-]" 'projectile-previous-project-buffer)
 
@@ -2315,14 +2338,13 @@
   (general-define-key
    :keymaps 'projectile-command-map
    "ESC" 'keyboard-quit
-   "TAB" 'projectile-project-buffers-other-buffer))
+   "TAB" 'projectile-project-buffers-other-buffer)
+  )
 
 (use-package counsel-projectile
   :unless window-system
   :defer t
-  :ensure t
-  :config
-  (counsel-projectile-mode +1))
+  :ensure t)
 
 ;; (use-package insert-shebang
 ;;   :defer t
@@ -2408,12 +2430,11 @@
   (setq flycheck-mode-line nil)
   (setq flycheck-gcc-warnings nil)
   (setq flycheck-clang-warnings nil)
-  (setq flycheck-display-errors-delay 3)
-  (setq flycheck-check-syntax-automatically '(idle-change))
-  (setq flycheck-idle-change-delay 0.5)
-  ;; (setq flycheck-check-syntax-automatically '(save))
+  (setq flycheck-display-errors-delay 0.9)
+  (setq flycheck-idle-change-delay 0.3)
   (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled))
-  (setq flymake-mode nil)
+  ;; (setq flycheck-check-syntax-automatically '(save new-line mode-enabled))
+  ;; (setq flymake-mode nil)
   (setq flycheck-clang-pedantic t)
   (setq flycheck-gcc-pedantic t))
 
@@ -2435,12 +2456,11 @@
   (defun my/company-mode-hooks ()
     (interactive)
     (company-prescient-mode 1)
-    (prescient-persist-mode 1)
-    (company-quickhelp-mode 1))
+    (prescient-persist-mode 1) (company-quickhelp-mode 1))
   (add-hook 'global-company-mode-hook 'my/company-mode-hooks)
   (add-hook 'company-mode-hook 'my/company-mode-hooks)
   (setq company-auto-complete-chars '(40 46 41))
-  (setq company-auto-complete t)
+  (setq company-auto-complete nil)
   ;; (setq company-auto-complete-chars nil)
   (setq company-dabbrev-code-ignore-case t)
   (setq company-show-numbers t)
@@ -2453,7 +2473,8 @@
 
   :config
 
-  (setq company-idle-delay 0.2)
+  (setq company-idle-delay 0.5)
+  (setq-default company-idle-delay 0.5)
   (setq company-tooltip-limit 5)
   (setq company-minimum-prefix-length 2)
   (advice-add 'company-complete-common :before (lambda () (setq my/company-point (point))))
@@ -2473,15 +2494,18 @@
    "9" 'company-complete-number
    "0" 'company-complete-number
    "M-h" 'company-quickhelp-manual-begin
-   "M-d" 'company-filter-candidates
-   "M-h" nil
+   "M-f" 'company-filter-candidates
+   "M-d" 'my/company-complete-paren
    "M-j" nil
    "M-k" nil
    "M-l" nil
+   "M-w" 'company-select-next
+   "M-q" 'company-select-previous
+   "M-e" 'company-complete
    "C-w" 'evil-delete-backward-word
    "C-h" 'delete-backward-char
    "<tab>" 'my/company-complete-first
-   "<escape>" 'company-abort
+   "<escape>" nil
    "<return>" 'company-complete
    ;; "C-h" 'company-complete
    "C-j" 'company-complete
@@ -2505,9 +2529,10 @@
 
   (general-imap
     :keymaps 'company-mode-map
+    "M-r" 'company-complete
     "C-ç" 'company-complete
     "M-/" 'hippie-expand))
-  ;; (global-company-mode 1))
+;; (global-company-mode 1))
 
 (use-package company-shell
   :after company
@@ -2572,6 +2597,8 @@
   (add-hook 'yas-after-exit-snippet-hook 'my/yas-after-hooks)
   :config
 
+  (setq yas-also-auto-indent-first-line t)
+  (setq yas-indent-line 'auto)
   (defun my/yas-before-hooks ()
     (interactive)
     (electric-operator-mode -1))
@@ -2582,7 +2609,7 @@
 
   (general-define-key
    :keymaps 'yas-minor-mode-map
-    "M-u" 'ivy-yasnippet)
+   "M-u" 'ivy-yasnippet)
 
   (general-imap
     :keymaps 'yas-minor-mode-map

@@ -5,6 +5,16 @@
   (sp-end-of-sexp)
   (eval-last-sexp nil))
 
+(defun make-region-read-only (start end)
+  (interactive "*r")
+  (let ((inhibit-read-only t))
+    (put-text-property start end 'read-only t)))
+
+(defun make-region-read-write (start end)
+  (interactive "*r")
+  (let ((inhibit-read-only t))
+    (put-text-property start end 'read-only nil)))
+
 (defun my/info ()
   (interactive)
   (info)
@@ -153,6 +163,11 @@ rotate entire document."
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/org/Tech/info_keys.org")))
+
+(defun find-i3-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/tmp/i3keys.org")))
 
 (defun find-evil-keys ()
   (interactive)
@@ -578,19 +593,12 @@ return t."
   (shell-command foo)
   (message "this file was tangled"))
 
-(defun tangle-and-eval-block ()
-  (interactive)
-  (indent-block)
-  (eval-src-block)
-  (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org"))
-
 (defun tangle-and-eval-block-narrowed ()
   (interactive)
   (indent-block)
   (widenToCenter)
   (eval-src-block)
   (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
-
   (recursive-narrow-or-widen-dwim))
 
 (defun my/reset-keys ()
@@ -605,6 +613,13 @@ return t."
   (shell-command "tangle-py ~/.emacs.d/*.org")
   (message "all files tangled"))
 
+(defun tangle-and-eval-block ()
+  (interactive)
+  (indent-block)
+  (my/save-all)
+  (eval-src-block)
+  (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org"))
+
 (defun tangle-py-all-debug ()
   (interactive)
   (my/save-all)
@@ -612,19 +627,20 @@ return t."
   (quit-windows-on "*Shell Command Output*")
   (start-process-shell-command "new emacs" nil "emacs --debug-init"))
 
-(defun tangle-py-all-recompile ()
-  (interactive)
-  (my/save-all)
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (my/recompile)
-  (message "all files tangled"))
+;; (defun tangle-py-all-recompile ()
+;;   (interactive)
+;;   (my/save-all)
+;;   (shell-command "tangle-py ~/.emacs.d/*.org")
+;;   (my/recompile)
+;;   (message "all files tangled"))
 
 (defun tangle-py-all-and-restart ()
   (interactive)
   (progn
     (my/save-all)
     (shell-command "tangle-py ~/.emacs.d/*.org")
-    (restart-emacs)))
+    (sit-for 0.5)
+    (shell-command "~/scripts/emacs_scripts/rel")))
 
 (defun i3-reload ()
   (interactive)
@@ -673,10 +689,6 @@ return t."
   (setq current-prefix-arg '(4))
   (call-interactively 'save-some-buffers))
 
-;; (defun restart-emacs ()
-;;   (interactive)
-;;   (shell-command "~/scripts/emacs_scripts/rel"))
-
 (defun tangle-py-all-recompile-new-instance ()
   (interactive)
   (progn
@@ -685,14 +697,6 @@ return t."
     (my/recompile)
     (async-shell-command "emacs")
     (delete-windows-on "*Async Shell Command*")))
-
-(defun tangle-py-all-recompile-restart ()
-  (interactive)
-  (progn
-    (my/save-all)
-    (shell-command "tangle-py ~/.emacs.d/*.org")
-    (my/recompile)
-    (restart-emacs)))
 
 (defun my/recompile ()
   (interactive)
@@ -896,6 +900,20 @@ return t."
   (let ((inhibit-message t))
     (shell-command "~/scripts/i3_scripts/paste_to_chrome.sh")))
 
+(defun copy-to-reddit ()
+  "Paste buffer on reddit"
+  (interactive)
+  (copy-whole-buffer)
+  (let ((inhibit-message t))
+    (shell-command "python3 ~/org/Studying/Programming/Python/GUI/copy_to_reddit.py")))
+
+(defun copy-to-tildes ()
+  "Paste buffer on reddit"
+  (interactive)
+  (copy-whole-buffer)
+  (let ((inhibit-message t))
+    (shell-command "python3 ~/org/Studying/Programming/Python/GUI/copy_to_tildes.py")))
+
 (defun copy-to-messenger ()
   (interactive)
   (copy-whole-buffer)
@@ -1003,6 +1021,11 @@ return t."
 (interactive)
 (setq truncate-lines nil))
 
+(defun my/truncate-on ()
+(interactive)
+(setq truncate-lines t))
+
+
 (defun my/company-ispell-en ()
   (interactive)
   (set (make-local-variable 'company-backends)
@@ -1038,6 +1061,10 @@ return t."
   (message " company-prose"))
 
 
+
+(defun my/company-show-options ()
+  (interactive)
+  (counsel-M-x "^my/company-idle-"))
 
 (defun my/company-show-options ()
   (interactive)
@@ -1092,11 +1119,56 @@ return t."
   (setq-local company-minimum-prefix-length 2)
   (message "idle delay: 0.2, minimun prefix length: 2"))
 
+(defun my/company-idle-three-prefix-one ()
+  (interactive)
+  (setq-local company-idle-delay 0.3)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 1)
+  (message "idle delay: 0.3, minimun prefix length: 1"))
+
+(defun my/company-idle-three-prefix-two ()
+  (interactive)
+  (setq-local company-idle-delay 0.3)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2)
+  (message "idle delay: 0.3, minimun prefix length: 2"))
+
+(defun my/company-idle-four-prefix-two ()
+  (interactive)
+  (setq-local company-idle-delay 0.4)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2)
+  (message "idle delay: 0.4, minimun prefix length: 2"))
+
+(defun my/company-idle-four-prefix-two-silent ()
+  (interactive)
+  (setq-local company-idle-delay 0.4)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2))
+
+(defun my/company-idle-five-prefix-two ()
+  (interactive)
+  (setq-local company-idle-delay 0.5)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2)
+  (message "idle delay: 0.5, minimun prefix length: 2"))
+
+(defun my/company-idle-five-prefix-two-silent ()
+  (interactive)
+  (setq-local company-idle-delay 0.5)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2))
+
 
 (defun my/company-complete ()
   (interactive)
   (company-complete)
   (insert " "))
+
+(defun my/company-complete-paren ()
+  (interactive)
+  (company-complete)
+  (insert "()"))
 
 (defun my/company-complete-first ()
   (interactive)
@@ -1150,29 +1222,23 @@ return t."
 (evil-visual-char)
 (evil-last-non-blank))
 
-
 (defun my/bash-shebang ()
   (interactive)
   (beginning-of-buffer)
-  (let ((inhibit-message t))
-    (kill-buffer-contents)
-    (sh-mode)
-    (insert "#!/usr/bin/env bash")
-    (sh-set-shell "bash")
-    (my/quiet-save-buffer-markdown)
-    (newline nil 1)
-    (newline nil 1)
-    (evil-insert-state)))
+  (insert "#!/usr/bin/env bash\n\n\n")
+  (sh-mode)
+  (sh-set-shell "bash")
+  (previous-line)
+  (delete-blank-lines)
+  (forward-to-indentation))
 
 (defun my/python-shebang ()
   (interactive)
   (beginning-of-buffer)
-  (let ((inhibit-message t))
-    (kill-buffer-contents)
-    (insert "#!/usr/bin/env python3")
-    (newline nil 1)
-    (newline nil 1)))
-
+  (insert "#!/usr/bin/env python3\n\n\n")
+  (previous-line)
+  (delete-blank-lines)
+  (forward-to-indentation))
 
 (defun toggle-camelcase-underscores ()
   "Toggle between camelcase and underscore notation for the symbol at point."

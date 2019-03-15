@@ -11,7 +11,7 @@
  '(flyspell-default-dictionary "american")
  '(flyspell-issue-message-flag nil)
  '(flyspell-issue-welcome-flag nil)
- '(package-selected-packages '(company-emacs-eclim use-package)))
+ '(package-selected-packages '(use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

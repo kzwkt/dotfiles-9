@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 message="Add or refresh gitignore"
 
 clear &&

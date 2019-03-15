@@ -1,0 +1,8 @@
+# key: clasp
+# name: class parent with my doc style
+# --
+class ${1:ClassName}(${2:object}):
+    """${3:Documentation for $1} """
+    def __init__(self${4:, args}):
+        ${4:$(elpy-snippet-init-assignments yas-text)}
+        $0

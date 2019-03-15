@@ -12,6 +12,7 @@
   "{" 'my/paragraph-backwards
   "zj" 'evil-backward-word-end
   "zk" 'evil-backward-WORD-end
+  "X" 'whack-whitespace
   "ge" 'evil-end-of-visual-line
   [escape] 'my/quiet-save-buffer)
 
@@ -32,6 +33,7 @@
 
 (general-imap
   :keymaps 'override
+  "M-/" 'hippie-expand
   "C-h" 'delete-backward-char
   "C-v " nil)
 

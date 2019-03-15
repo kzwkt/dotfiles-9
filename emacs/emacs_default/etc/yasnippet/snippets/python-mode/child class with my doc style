@@ -1,0 +1,10 @@
+# key: clas
+# name: child class with my doc style
+# --
+class ${1:ClassName}(${2:objects}):
+    """${3:docstring}."""
+
+    def __init__(self${4: ${5:, args}}):
+        super().__init__($4)
+
+	$0

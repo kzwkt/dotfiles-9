@@ -135,6 +135,8 @@ mode "$launch" {
     bindsym p exec pavucontrol; mode default
     bindsym t exec thunar; mode default
     bindsym r exec xfce4-taskmanager; mode default
+    bindsym Shift+r exec python3 ~/org/Studying/Programming/Python/GUI/copy_to_chrome.py
+
     bindsym Menu mode default; exec "~/scripts/i3_scripts/my_rofy_run"
 
     bindsym z exec google-chrome-stable; mode default
@@ -311,6 +313,11 @@ for_window [title="term-up"] floating enable sticky enable
 for_window [title="term-up"] move scratchpad
 for_window [title="term-up"] resize set 1920 450; move to position 0 0
 
+for_window [title="term-right"] border none
+for_window [title="term-right"] floating enable sticky enable
+for_window [title="term-right"] move scratchpad
+for_window [title="term-right"] resize set 1000 1080; move to position 0 0
+
 for_window [title="term-ranger"] border none
 for_window [title="term-ranger"] floating enable sticky enable
 for_window [title="term-ranger"] move scratchpad
@@ -355,28 +362,11 @@ for_window [class="Pavucontrol"] move to position 375 0
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
 bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
 bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
-bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
+bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
+# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
 bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
 bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
-
-
-bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
-bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
-bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
-
-bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
-bindsym $mod+Control+F3 exec "pactl set-card-profile 0 output:analog-stereo"
-
-bindsym $mod+p workspace prev_on_output
-bindsym $mod+n workspace next_on_output
-
-bindsym $mod+Control+h move container to output left; focus output Left
-bindsym $mod+Control+l move container to output right; focus output Right
-
-bindsym $mod+Control+Left move workspace to output Left
-bindsym $mod+Control+Right move workspace to output Right
-
 
 set $ws1 "1"
 set $ws2 "2"
@@ -423,6 +413,18 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+bindsym $mod+p workspace prev_on_output
+bindsym $mod+n workspace next_on_output
+
+bindsym $mod+Control+h move container to output left; focus output Left
+bindsym $mod+Control+l move container to output right; focus output Right
+
+bindsym $mod+Control+Left move workspace to output Left
+bindsym $mod+Control+Right move workspace to output Right
+
+bindsym $mod+Control+F1 exec "pactl set-card-profile 0 output:hdmi-stereo"
+bindsym $mod+Control+F3 exec "pactl set-card-profile 0 output:analog-stereo"
+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym Mod1+XF86AudioLowerVolume exec spotifycli --prev
@@ -432,6 +434,12 @@ bindsym XF86AudioLowerVolume exec amixer set Master 10%-
 bindsym $mod+XF86AudioRaiseVolume exec amixer set Master 200%+
 bindsym $mod+Mod1+XF86AudioRaiseVolume exec amixer set Master 5%+
 bindsym $mod+Mod1+XF86AudioLowerVolume exec amixer set Master 5%-
+
+exec --no-startup-id i3-msg workspace 1
+
+bindsym $mod+Shift+F1 exec "~/scripts/screen/mx-big.sh"
+bindsym $mod+Shift+F3 exec "~/scripts/screen/mx-dual.sh"
+bindsym $mod+Shift+F2 exec "~/scripts/screen/mx-small.sh"
 
 assign [class="Kodi"] $ws3
 # assign [class="qBittorrent"] $ws4
@@ -450,7 +458,5 @@ for_window [class="Xfrun4"] floating enable resize set 520 200
 for_window [class="File-roller"] floating enable resize set 720 400
 for_window [class="Inkscape" title="Preferences"]  floating enable resize set 720 400  move position 650 0
 for_window [class="Inkscape" title="Document Properties"]  floating enable resize set 720 400  move position 650
-
-exec --no-startup-id i3-msg workspace 1
 
 # bindsym $mod+period exec /usr/bin/snippy.sh

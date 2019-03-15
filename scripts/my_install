@@ -17,6 +17,7 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
     xsel xdotool zenity lxde-settings-daemon \
 
     # Pyenv dependencies
+    # See https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
     make build-essential libssl-dev zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \

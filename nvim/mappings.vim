@@ -101,7 +101,7 @@ nnoremap <m-space> :s/\s\+/ /g<cr>W:noh<cr>:echo ""<cr>
 nnoremap <m-.> .
 nnoremap go o<esc>
 nnoremap gi O<esc>
-vnoremap <silent> <leader>cl :SortByWidth<cr>
+vnoremap <silent> <leader>ce :SortByWidth<cr>
 nnoremap <silent> <leader>cd mzyyp`zj
 nnoremap <silent> <esc> :silent! wa!<cr>:noh<cr>:echo ""<cr>
 

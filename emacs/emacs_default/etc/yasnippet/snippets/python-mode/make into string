@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make into string
+# key: s
+# --
+str($0)

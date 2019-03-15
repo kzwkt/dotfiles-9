@@ -1,5 +1,4 @@
-(setq buffer-expose-rescale-factor 0.6)
-(setq buffer-expose-hide-regexes '(".*Log.*"
+(setq projectile-globally-ignored-files '(".*Log.*"
 				   ".*log.*"
 				   ".*help.*"
 				   "^#.*#$"
@@ -41,6 +40,7 @@
 				   "^links.org$"
 				   "^custom.el$"
 				   "*Flycheck error messages*"
+				   "*Flymake log*"
 				   "*company-documentation*"
 				   "^.archive.org$"
 				   ".*magit.*"

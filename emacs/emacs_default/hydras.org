@@ -43,25 +43,24 @@
   ^
        ^Buffer^         ^Window^
        --------------------------
-       _h_: this        _q_: quit
-       _j_: +window     _d_: delete
-       _k_: +workspace
-       _l_: all
-       _o_: other
+       _a_: this        _f_: quit
+       _b_: +window     _g_: delete
+       _c_: +workspace
+       _d_: all
+       _e_: other
 "
 
   ("<escape>" nil)
   ;; ("C-S-k" kill-this-buffer)
 
-  ("h" kill-this-buffer)
-  ("K" kill-this-buffer)
-  ("j" kill-buffer-and-window)
-  ("k" my/kill-buffer-and-workspace)
-  ("l" kill-all-buffers)
-  ("o" kill-other-buffers)
+  ("a" kill-this-buffer)
+  ("b" kill-buffer-and-window)
+  ("c" my/kill-buffer-and-workspace)
+  ("d" kill-all-buffers)
+  ("e" kill-other-buffers)
 
-  ("q" quit-window)
-  ("d" delete-window))
+  ("f" quit-window)
+  ("g" delete-window))
 #+END_SRC
 * shell
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
@@ -179,12 +178,13 @@
 (defhydra hydra-python-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-       ^Python^
-       -------------------------------
-       _a_: run             _e_: input()
-       _b_: run sh          _f_: company
-       _c_: run sh simple   _q_: quickrun
-       _d_: str()           _s_: quick shell
+       ^Run^
+       -------------------------------------------------
+       _a_: run        _f_: str()       _l_: go to definition
+       _b_: sh         _g_: input()     _m_: go to assignment
+       _c_: sh simple  _h_: company
+       _d_: quick      _i_: run black
+       _e_: quick sh   _j_: projectile
 "
   ("<escape>" nil)
   ("RET" hydra-prog-mode/body)
@@ -192,47 +192,77 @@
   ("a" execute-python-program)
   ("b" my/execute-python-program-shell)
   ("c" my/execute-python-program-shell-simple)
+  ("d" quickrun)
+  ("e" quickrun-shell)
 
-  ("d" my/python-make-string)
-  ("e" my/python-make-input)
-  ("f" hydra-company/body)
-  ("q" quickrun)
-  ("s" quickrun-shell))
+  ("f" my/python-make-string)
+  ("g" my/python-make-input)
+  ("h" hydra-company/body)
+  ("i" blacken-buffer)
+  ("j" hydra-projectile-mode/body)
+  ("l" elpy-goto-definition)
+  ("m" elpy-goto-assignment)
+  ("L" elpy-goto-definition-other-window)
+  ("M" elpy-goto-assignment-other-window))
+#+END_SRC
+** projectile mode
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
+(defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
+  "
+  ^
+       ^Projectile^
+       --------------------------
+       _a_: ag      _f_: kill all
+       _b_: dir     _g_: project
+       _c_: file    _h_: counsel mode
+       _d_: grep    _i_: proj. mode
+       _e_: buffer
+
+"
+  ("<escape>" nil)
+  ("RET" hydra-prog-mode/body)
+
+  ("a" counsel-projectile-ag)
+  ("b" counsel-projectile-find-dir)
+  ("c" counsel-projectile-find-file-dwim)
+  ("d" counsel-projectile-grep)
+  ("e" counsel-projectile-switch-to-buffer)
+
+  ("f" projectile-kill-buffers)
+  ("g" counsel-projectile-switch-project)
+  ("h" counsel-projectile-mode)
+  ("i" projectile-mode))
 #+END_SRC
 ** prog mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-prog-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-       ^Flycheck^   ^Other^
-       -----------------------------------------------
-       _p_: prev    _j_: jump more    _x_: execute c shell
-       _n_: next    _o_: prog mods
-       _f_: first   _g_: jump go
-       _m_: mode    _n_: progs on
-       _b_: buffer  _q_: quick
-       _s_: show    _h_: quick shell
-       _l_: list    _e_: execute c
+       ^Flycheck^   ^Others^
+       ----------------------------
+       _a_: first   _h_: flymake prev
+       _b_: prev    _i_: flymake next
+       _c_: next    _j_: hide-show
+       _d_: show
+       _e_: buffer
+       _f_: clear
+       _g_: mode
 
 "
   ("<escape>" nil)
-  ("RET" nil)
-  ("m" flycheck-mode)
-  ("b" flycheck-buffer)
-  ("l" list-flycheck-errors)
-  ("n" flycheck-next-error :exit nil)
-  ("f" flycheck-first-error)
-  ("s" flycheck-display-error-at-point)
-  ("p" flycheck-previous-error :exit nil)
+  ("RET" hydra-flymake-mode/body)
 
-  ("o" hydra-prog-modes/body)
-  ("g" dumb-jump-go)
-  ("j" hydra-dumb-jump/body)
-  ("n" my/prog-mode-hooks)
-  ("q" quickrun)
-  ("h" quickrun-shell)
-  ("e" my/execute-c-program)
-  ("x" my/execute-c-program-shell))
+  ("a" flycheck-first-error)
+  ("b" flycheck-next-error :exit nil)
+  ("c" flycheck-previous-error :exit nil)
+  ("d" flycheck-display-error-at-point)
+  ("e" flycheck-buffer)
+  ("f" flycheck-clear)
+  ("g" flycheck-mode)
+
+  ("h" flymake-goto-prev-error)
+  ("i" flymake-goto-next-error)
+  ("j" hs-minor-mode))
 #+END_SRC
 ** dumb jump mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
@@ -466,7 +496,7 @@
        _a_: tangle          _f_: copy path      _k_: reload keys
        _b_: show date       _g_: copy dir       _s_: eval block
        _c_: check parens    _h_: ivy resume     _r_: eval region
-       _d_: dup line        _i_: define abbrev  _t_: eval buffer
+       _d_: dup line        _i_: define abbrev  _B_: eval buffer
        _e_: sort by length  _J_: del dup lines  _l_: eval line
        _E_: sort lines	  _3_: reload i3      _w_: word count
 
@@ -489,7 +519,7 @@
   ("k" my/tangle-reload-keys)
   ("s" tangle-and-eval-block)
   ("r" eval-region)
-  ("t" eval-buffer)
+  ("B" eval-buffer)
   ("l" eval-line)
   ("w" wc-count)
   ("3" i3-reload))
@@ -543,9 +573,9 @@
        _i_: duplicate inner paragraph    _t_: toggle truncate lines
        _z_: capitalize word or region    _h_: highlight sentences
        _d_: delete blank lines           _,_: org text hydra
-       _c_: copy do chrome               _._: prose hydra
+       _c_: copy to chrome               _._: prose hydra
        _w_: copy to messenger            _p_: PDF
-       ^^
+       _x_: copy to reddit               _s_: copy to tildes
 "
 
   ("<escape>" nil)
@@ -563,14 +593,15 @@
   ("t" toggle-truncate-lines)
 
   ("f" auto-fill-mode)
-  ("s" show-fill-column)
   ("h" hl-sentence-mode)
   ("." hydra-prose/body)
   ("C-." hydra-prose/body)
   ("l" auto-capitalize-mode)
   ("," hydra-org-text-commands/body)
   ("C-," hydra-org-text-commands/body)
-  ("p" hydra-pdf-view/body))
+  ("p" hydra-pdf-view/body)
+  ("x" copy-to-reddit)
+  ("s" copy-to-tildes))
 #+END_SRC
 
 ** text motions
@@ -856,7 +887,7 @@
      _b_: scratches  _f_: functions
      _c_: org        _g_: planning
      _d_: dotfiles   _h_: pcc
-		   _i_: info keys
+		   _i_: i3 keys
 
 "
   ("<escape>" nil)
@@ -871,7 +902,7 @@
   ("f" ranger-find-functions)
   ("g" ranger-find-planning)
   ("h" ranger-find-pcc-dir)
-  ("i" find-info-keys)
+  ("i" find-i3-keys)
   ("m" find-scratch-markdown))
 #+END_SRC
 ** find scratches

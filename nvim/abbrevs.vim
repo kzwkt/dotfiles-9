@@ -18,12 +18,6 @@ cabbrev path! let @+ = expand("%:p") <bar> echo "path yanked"
 cabbrev runthis write! <bar> silent !%:p <bar> echo "file executed"
 cabbrev deletethisfile :!sudo trash-put % <bar> echo "file deleted"
 
-cabbrev ms messages
-cabbrev cl colorscheme
-
-cabbrev mc messages clear<cr>
-cabbrev ccl set conceallevel=<c-r>=Eatchar('\m\s\<bar>/')<cr>
-
 cabbrev nurnu set nu rnu
 cabbrev nonu set nonu nornu
 cabbrev wrap! set wrap! linebreak! nolist!

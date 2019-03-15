@@ -1,0 +1,5 @@
+# key: st
+# name: string methods
+# --
+${1:name}.${2:$$(yas-choose-value '("title()" "capitalize()" "lower()" "upper()" "isupper()" "islower()"))}
+ca

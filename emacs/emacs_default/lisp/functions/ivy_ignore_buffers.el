@@ -47,4 +47,5 @@
 			   "*scratch*"
 			   "*Warning*"
 			   "*Messages*"
+			   "i3keys.org"
 			   "info_keys.org"))

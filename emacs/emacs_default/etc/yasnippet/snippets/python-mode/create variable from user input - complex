@@ -1,0 +1,4 @@
+# key: vari
+# name: create variable from user input - complex
+# --
+${1:name} = ${2:$$(yas-choose-value '("int" "float"))}(input("${3:value}"))

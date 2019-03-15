@@ -3,21 +3,21 @@
   "C-u" 'backward-kill-line
   "C-j" 'counsel-M-x
   "C-l" 'eshell/clear
-  "C-;" 'kill-buffer-and-window)
+  "C-;" 'kill-this-buffer)
 
 (nvmap
   :keymaps 'eshell-mode-map
   "C-u" 'backward-kill-line
   "C-j" 'counsel-M-x
   "C-l" 'comint-clear-buffer
-  "C-;" 'kill-buffer-and-window)
+  "C-;" 'kill-this-buffer)
 
 (general-define-key
  :keymaps 'eshell-command-map
  "C-u" 'backward-kill-line
  "C-j" 'counsel-M-x
  "C-l" 'eshell/clear
- "C-;" 'kill-buffer-and-window)
+ "C-;" 'kill-this-buffer)
 
 (general-unbind 'eshell-mode-map
   :with 'ignore
