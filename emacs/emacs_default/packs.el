@@ -2032,6 +2032,18 @@
   :defer t
   :ensure t)
 
+;; (use-package outshine
+;;   :defer t
+;;   :init
+;;   (defvar outline-minor-mode-prefix "\M-#")
+;;   (general-nvmap
+;;     :keymaps 'outshine-mode-map
+;;     "za" 'outshine-cycle)
+;; (general-unbind 'outshine-mode-map
+;;   :with 'outshine-cycle
+;;   [remap evil-toggle-fold])
+;; )
+
 (use-package elisp-mode
   :defer t
   :ensure nil

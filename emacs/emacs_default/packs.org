@@ -2351,6 +2351,20 @@ buffer expose commands.
 #+END_SRC
 
 * Programming
+** outshine
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+;; (use-package outshine
+;;   :defer t
+;;   :init
+;;   (defvar outline-minor-mode-prefix "\M-#")
+;;   (general-nvmap
+;;     :keymaps 'outshine-mode-map
+;;     "za" 'outshine-cycle)
+;; (general-unbind 'outshine-mode-map
+;;   :with 'outshine-cycle
+;;   [remap evil-toggle-fold])
+;; )
+#+END_SRC
 ** emacs-lisp-mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package elisp-mode
