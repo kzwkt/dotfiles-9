@@ -123,7 +123,7 @@ bindsym $mod+Pause mode "$mode_system"
 # bindsym XF86MonBrightnessDown mode "$launch"; exec notify-send --expire-time=20 "launch mode"
 
 
-bindsym F10 mode "$launch"
+bindsym Menu mode "$launch"
 
 mode "$launch" {
 
@@ -137,7 +137,7 @@ mode "$launch" {
     bindsym r exec xfce4-taskmanager; mode default
     bindsym Shift+r exec "python3 ~/org/Studying/Programming/Python/GUI/copy_to_chrome.py"
 
-    bindsym F10 mode default; exec "~/scripts/i3_scripts/my_rofy_run"
+    bindsym Menu mode default; exec "~/scripts/i3_scripts/my_rofy_run"
 
     bindsym z exec google-chrome-stable; mode default
     bindsym Shift+C exec "xdotool key Caps_Lock"; mode default

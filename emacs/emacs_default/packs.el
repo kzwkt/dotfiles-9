@@ -1563,7 +1563,7 @@
     (wc-mode 1)
     (pabbrev-mode 1)
     (my/ispell-dict-options)
-    (setq word-wrap t)
+    (setq truncate-lines nil)
     (message "prose on"))
 
   (defun my/ispell-dict-options ()
