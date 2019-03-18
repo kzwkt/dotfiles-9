@@ -69,7 +69,7 @@
   "L" 'pdf-history-forward
   "C-j" 'counsel-M-x
   "S" 'pdf-occur
-  "q" 'last-buffer
+  ;; "q" 'last-buffer
   "gf" 'find-pdf-keys
   "TAB" 'pdf-outline
   "D" 'pdf-annot-delete

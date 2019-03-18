@@ -12,8 +12,6 @@
 #+END_SRC
 * Variables
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/misc.el
-(setq-default word-wrap t)
-(setq word-wrap t)
 (put 'narrow-to-region 'disabled nil)
 (setq scroll-conservatively 0)
 (setq-default display-line-numbers nil)

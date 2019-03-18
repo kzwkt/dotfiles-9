@@ -27,6 +27,7 @@ map [fullscreen] j scroll half-down
 map [fullscreen] k scroll half-up
 
 map [normal] ; focus_inputbar :
+map [normal] a toggle_statusbar
 map [normal] ct toggle_statusbar
 map [normal] cp toggle_page_mode
 

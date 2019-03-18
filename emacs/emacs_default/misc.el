@@ -5,8 +5,6 @@
 (defalias 'cug 'customize-group)
 (defalias 'path 'prelude-copy-file-name-to-clipboard)
 
-(setq-default word-wrap t)
-(setq word-wrap t)
 (put 'narrow-to-region 'disabled nil)
 (setq scroll-conservatively 0)
 (setq-default display-line-numbers nil)

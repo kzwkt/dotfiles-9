@@ -198,6 +198,16 @@ rotate entire document."
   (let ((inhibit-message t))
     (find-file "/home/mrbig/PCC/pcc_notes/pcc_notes.org")))
 
+(defun find-pt-spell ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.aspell.pt_BR.pws")))
+
+(defun find-en-spell ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.aspell.en.pws")))
+
 (defun my/find-scratch-buffer ()
   (interactive)
   (evil-save-state
@@ -642,8 +652,7 @@ return t."
 (defun tangle-py-all-debug ()
   (interactive)
   (my/save-all)
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (quit-windows-on "*Shell Command Output*")
+  (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
   (start-process-shell-command "new emacs" nil "emacs --debug-init"))
 
 ;; (defun tangle-py-all-recompile ()
@@ -924,14 +933,14 @@ return t."
   (interactive)
   (copy-whole-buffer)
   (let ((inhibit-message t))
-    (shell-command "python3 ~/org/Studying/Programming/Python/GUI/copy_to_reddit.py")))
+    (shell-command "/home/dave/org/Studying/Prog/Python/GUI/copy_to_reddit.py")))
 
 (defun copy-to-tildes ()
   "Paste buffer on reddit"
   (interactive)
   (copy-whole-buffer)
   (let ((inhibit-message t))
-    (shell-command "python3 ~/org/Studying/Programming/Python/GUI/copy_to_tildes.py")))
+    (shell-command "/home/dave/org/Studying/Prog/Python/GUI/copy_to_tildes.py")))
 
 (defun copy-to-messenger ()
   (interactive)
@@ -1882,8 +1891,8 @@ time is displayed."
 
 (defun my/enable-ivy-counsel ()
   (interactive)
-  (ivy-mode 1)
-  (counsel-mode 1)
+  (ivy-mode +1)
+  (counsel-mode +1)
   (message "ivy on"))
 
 (defun my/disable-ivy-counsel ()

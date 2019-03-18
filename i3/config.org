@@ -323,8 +323,98 @@ mode "$float_small_steps" {
 #+END_SRC
 * strachpads main
 ** scratchpads big
-# *** general
-# #+BEGIN_SRC shell :tangle ~/.config/i3/config
+*** general
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+bindsym $mod+equal scratchpad show
+bindsym $mod+Shift+minus move scratchpad; mode default
+bindsym $mod+minus exec ~/scripts/i3_scripts/hide/hide_all mode; mode default
+
+# for_window [class="SpeedCrunch"] move to position 650 0
+# for_window [class="SpeedCrunch"] border none
+# for_window [class="SpeedCrunch"] floating enable sticky enable
+# for_window [class="SpeedCrunch"] move scratchpad
+# for_window [class="SpeedCrunch"] resize set 620 550
+
+# bindsym $mod+comma exec ~/scripts/i3_scripts/hide/hide_all; [class="Zathura" title="emacs_refcard.pdf"] scratchpad show; move to position 0 0
+for_window [class="Zathura" title="emacs_refcard.pdf"] border none, floating enable, sticky enable, resize set 1920 1980, move to position 0 0, move scratchpad; mode default
+
+# bindsym $mod+period exec ~/scripts/i3_scripts/hide/hide_all; [class="feh" title="ch-gimp.jpg"] scratchpad show; move to position 0 0
+for_window [class="feh" title="ch-gimp.jpg"] border none, floating enable, sticky enable, move to position 0 0, move scratchpad; mode default
+
+bindsym $mod+bracketleft exec ~/scripts/i3_scripts/hide/term_hide_others    ; [class="keepassxc"] scratchpad show; move to position 525 0
+for_window [class="keepassxc"] border none
+for_window [class="keepassxc"] floating enable sticky enable
+for_window [class="keepassxc"] move scratchpad
+for_window [class="keepassxc"] resize set 920 600
+for_window [class="keepassxc"] move to position 650 0
+
+for_window [title="term-up"] border none
+for_window [title="term-up"] floating enable sticky enable
+for_window [title="term-up"] move scratchpad
+for_window [title="term-up"] resize set 1920 450; move to position 0 0
+
+for_window [title="term-right"] border none
+for_window [title="term-right"] floating enable sticky enable
+for_window [title="term-right"] move scratchpad
+for_window [title="term-right"] resize set 1000 1080; move to position 0 0
+
+for_window [title="term-ranger"] border none
+for_window [title="term-ranger"] floating enable sticky enable
+for_window [title="term-ranger"] move scratchpad
+for_window [title="term-ranger"] resize set 1920 450; move to position 0 0
+
+for_window [title="term-music"] border none
+for_window [title="term-music"] floating enable sti
+for_window [title="term-music"] move scratchpad
+for_window [title="term-music"] resize set 920 600
+
+# for_window [title="term-ranger"] border none
+# for_window [title="term-ranger"] floating enable sticky enable
+# for_window [title="term-ranger"] move scratchpad
+# for_window [title="term-ranger"] resize set 1050 500
+
+for_window [title="mrblack" class="Hexchat"] move to position 650 0
+for_window [title="mrblack" class="Hexchat"] border none
+for_window [title="mrblack" class="Hexchat"] floating enable sticky enable
+for_window [title="mrblack" class="Hexchat"] move scratchpad
+for_window [title="mrblack" class="Hexchat"] resize set 920 600
+for_window [title="mrblack" class="Hexchat"] move to position 650 0
+
+for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
+for_window [title="Task Manager" class="Xfce4-taskmanager"] border none
+for_window [title="Task Manager" class="Xfce4-taskmanager"] floating enable sticky enable
+for_window [title="Task Manager" class="Xfce4-taskmanager"] move scratchpad
+for_window [title="Task Manager" class="Xfce4-taskmanager"] resize set 920 600
+for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
+
+for_window [class="Pavucontrol"] move to position 375 0
+for_window [class="Pavucontrol"] border none
+for_window [class="Pavucontrol"] floating enable sticky enable
+for_window [class="Pavucontrol"] move scratchpad
+for_window [class="Pavucontrol"] resize set 920 600
+for_window [class="Pavucontrol"] move to position 375 0
+# for_window [class="Pavucontrol"] floating enable resize set 720 400  move position 650 0
+#+END_SRC
+*** toggle
+**** small
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+# bindsym $mod+i [class="sranger"] scratchpad show; move to position 250 0; resize set 920 400
+# bindsym $mod+o [class="Hexchat"] scratchpad show; move to position 250 0; resize set 920 400
+#+END_SRC
+**** large
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
+bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
+bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
+bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
+# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
+bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
+bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
+bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
+#+END_SRC
+** scratchpads small
+*** general
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
 # bindsym $mod+equal scratchpad show
 # bindsym $mod+Shift+minus move scratchpad; mode default
 # bindsym $mod+minus exec ~/scripts/i3_scripts/hide/hide_all mode; mode default
@@ -351,17 +441,17 @@ mode "$float_small_steps" {
 # for_window [title="term-up"] border none
 # for_window [title="term-up"] floating enable sticky enable
 # for_window [title="term-up"] move scratchpad
-# for_window [title="term-up"] resize set 1920 450; move to position 0 0
+# for_window [title="term-up"] resize set 1367 450; move to position 0 0
 
 # for_window [title="term-right"] border none
 # for_window [title="term-right"] floating enable sticky enable
 # for_window [title="term-right"] move scratchpad
-# for_window [title="term-right"] resize set 1000 1080; move to position 0 0
+# for_window [title="term-right"] resize set 683 768; move to position 0 0
 
 # for_window [title="term-ranger"] border none
 # for_window [title="term-ranger"] floating enable sticky enable
 # for_window [title="term-ranger"] move scratchpad
-# for_window [title="term-ranger"] resize set 1920 450; move to position 0 0
+# for_window [title="term-ranger"] resize set 1367 450; move to position 0 0
 
 # for_window [title="term-music"] border none
 # for_window [title="term-music"] floating enable sti
@@ -395,108 +485,17 @@ mode "$float_small_steps" {
 # for_window [class="Pavucontrol"] move to position 375 0
 # # for_window [class="Pavucontrol"] floating enable resize set 720 400  move position 650 0
 
-# #+END_SRC
-# *** toggle
-# **** small
-# #+BEGIN_SRC shell :tangle ~/.config/i3/config
-# # bindsym $mod+i [class="sranger"] scratchpad show; move to position 250 0; resize set 920 400
-# # bindsym $mod+o [class="Hexchat"] scratchpad show; move to position 250 0; resize set 920 400
-# #+END_SRC
-# **** large
-# #+BEGIN_SRC shell :tangle ~/.config/i3/config
-# bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
-# bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
-# bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
-# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
-# # bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
-# bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
-# bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
-# bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
-# #+END_SRC
-** scratchpads small
-*** general
-#+BEGIN_SRC shell :tangle ~/.config/i3/config
-bindsym $mod+equal scratchpad show
-bindsym $mod+Shift+minus move scratchpad; mode default
-bindsym $mod+minus exec ~/scripts/i3_scripts/hide/hide_all mode; mode default
-
-# for_window [class="SpeedCrunch"] move to position 650 0
-# for_window [class="SpeedCrunch"] border none
-# for_window [class="SpeedCrunch"] floating enable sticky enable
-# for_window [class="SpeedCrunch"] move scratchpad
-# for_window [class="SpeedCrunch"] resize set 620 550
-
-# bindsym $mod+comma exec ~/scripts/i3_scripts/hide/hide_all; [class="Zathura" title="emacs_refcard.pdf"] scratchpad show; move to position 0 0
-for_window [class="Zathura" title="emacs_refcard.pdf"] border none, floating enable, sticky enable, resize set 1920 1980, move to position 0 0, move scratchpad; mode default
-
-# bindsym $mod+period exec ~/scripts/i3_scripts/hide/hide_all; [class="feh" title="ch-gimp.jpg"] scratchpad show; move to position 0 0
-for_window [class="feh" title="ch-gimp.jpg"] border none, floating enable, sticky enable, move to position 0 0, move scratchpad; mode default
-
-bindsym $mod+bracketleft exec ~/scripts/i3_scripts/hide/term_hide_others    ; [class="keepassxc"] scratchpad show; move to position 525 0
-for_window [class="keepassxc"] border none
-for_window [class="keepassxc"] floating enable sticky enable
-for_window [class="keepassxc"] move scratchpad
-for_window [class="keepassxc"] resize set 920 600
-for_window [class="keepassxc"] move to position 650 0
-
-for_window [title="term-up"] border none
-for_window [title="term-up"] floating enable sticky enable
-for_window [title="term-up"] move scratchpad
-for_window [title="term-up"] resize set 1367 450; move to position 0 0
-
-for_window [title="term-right"] border none
-for_window [title="term-right"] floating enable sticky enable
-for_window [title="term-right"] move scratchpad
-for_window [title="term-right"] resize set 683 768; move to position 0 0
-
-for_window [title="term-ranger"] border none
-for_window [title="term-ranger"] floating enable sticky enable
-for_window [title="term-ranger"] move scratchpad
-for_window [title="term-ranger"] resize set 1367 450; move to position 0 0
-
-for_window [title="term-music"] border none
-for_window [title="term-music"] floating enable sti
-for_window [title="term-music"] move scratchpad
-for_window [title="term-music"] resize set 920 600
-
-# for_window [title="term-ranger"] border none
-# for_window [title="term-ranger"] floating enable sticky enable
-# for_window [title="term-ranger"] move scratchpad
-# for_window [title="term-ranger"] resize set 1050 500
-
-for_window [title="mrblack" class="Hexchat"] move to position 650 0
-for_window [title="mrblack" class="Hexchat"] border none
-for_window [title="mrblack" class="Hexchat"] floating enable sticky enable
-for_window [title="mrblack" class="Hexchat"] move scratchpad
-for_window [title="mrblack" class="Hexchat"] resize set 920 600
-for_window [title="mrblack" class="Hexchat"] move to position 650 0
-
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
-for_window [title="Task Manager" class="Xfce4-taskmanager"] border none
-for_window [title="Task Manager" class="Xfce4-taskmanager"] floating enable sticky enable
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move scratchpad
-for_window [title="Task Manager" class="Xfce4-taskmanager"] resize set 920 600
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
-
-for_window [class="Pavucontrol"] move to position 375 0
-for_window [class="Pavucontrol"] border none
-for_window [class="Pavucontrol"] floating enable sticky enable
-for_window [class="Pavucontrol"] move scratchpad
-for_window [class="Pavucontrol"] resize set 920 600
-for_window [class="Pavucontrol"] move to position 375 0
-# for_window [class="Pavucontrol"] floating enable resize set 720 400  move position 650 0
-
 #+END_SRC
 *** toggle
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
-bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
-bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
-bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
-bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 685 0
-# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
-bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
-bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
-bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
+# bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
+# bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
+# bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
+# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 685 0
+# # bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
+# # bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
+# bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
+# bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
 #+END_SRC
 * worskpaces
 ** workspace names

@@ -491,29 +491,29 @@
        _u_: unload theme  _o_: org brain      _g_: goto spotify
        _i_: install pack  _a_: disable pack   _f_: define abbrev
        _d_: delete pack   _s_: enable pack    _t_: list packages
-       _e_: describe pack _b_: eddit abbrevs
+       _e_: describe pack _b_: eddit abbrevs  _F_: define mode abbrev
   "
-("<escape>" nil)
+  ("<escape>" nil)
 
-("i" package-install)
-("d" package-delete)
-("e" describe-package)
-("r" package-refresh-contents)
+  ("i" package-install)
+  ("d" package-delete)
+  ("e" describe-package)
+  ("r" package-refresh-contents)
 
-("l" load-theme)
-("u" disable-theme)
-("o" org-brain-visualize)
+  ("l" load-theme)
+  ("u" disable-theme)
+  ("o" org-brain-visualize)
 
-("a" disable-package)
-("s" enable-package)
+  ("a" disable-package)
+  ("s" enable-package)
 
+  ("b" edit-abbrevs)
+  ("m" abbrev-mode)
 
-("b" edit-abbrevs)
-("m" abbrev-mode)
-
-("g" goto-spotify)
-("f" define-global-abbrev)
-("t" (package-list-packages)))
+  ("g" goto-spotify)
+  ("f" define-global-abbrev)
+  ("F" define-mode-abbrev)
+  ("t" package-list-packages))
 
 (defhydra hydra-text-main (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -724,8 +724,8 @@
     _b_: agenda     _i_: sort       _q_: property commands
     _c_: align tags _l_: store link _r_: insert link for url
     _d_: archive    _m_: tags tree  _s_: cycle list bullets
-    _e_: deadline   _n_: todo
-    _g_: refile     _o_: tags
+    _e_: deadline   _n_: todo       _t_: hide markup
+    _g_: refile     _o_: tags       _u_: show markup
 
 "
   ("<escape>" nil)
@@ -746,7 +746,9 @@
   ("p" org-capture-goto-last-stored)
   ("q" my/org-property-commands)
   ("r" org-web-tools-insert-link-for-url)
-  ("s" org-cycle-list-bullet))
+  ("s" org-cycle-list-bullet)
+  ("t" org-hide-emphasis)
+  ("u" org-show-emphasis))
 
 (defhydra hydra-org-agenda (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -901,7 +903,8 @@
   ("z" find-zathurarc)
   ("c" ranger-find-config-dir)
   ("s" ranger-find-scripts-dir)
-  ("3" find-i3-config))
+  ("3" find-i3-config)
+  ("#" my/goto-i3-screen-configs))
 
 (defhydra hydra-find-emacs-files (:hint nil :foreign-keys nil :exit t)
   "
@@ -911,7 +914,7 @@
      _i_: init       _n_: init      _c_: custom    _d_: ~/.emacs.d
      _p_: packages   _a_: packs     _b_: gabbrevs  _j_: search pack
      _f_: functions  _u_: functions ^^             _l_: filesets.el
-     _k_: keys       _e_: keys      ^^             _m_: evil keys
+     _k_: keys       _e_: keys      ^^             _M_: evil keys
      _m_: misc       _s_: misc
      _r_: macros     _o_: macros
      _h_: hydras     _y_: hydras
@@ -940,4 +943,4 @@
   ("d" ranger-find-emacs-dir)
   ("j" my/search-pack)
   ("l" find-filesets.el)
-  ("m" find-evil-keys))
+  ("M" find-evil-keys))

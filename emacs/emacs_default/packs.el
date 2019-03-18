@@ -80,6 +80,11 @@
    :keymaps 'global
    "M-n" 'my/paragraph-forward
    "M-p" 'my/paragraph-backwards)
+
+  (general-define-key
+   :keymaps 'minibuffer-local-map
+   "C-w" 'backward-kill-word)
+
   (general-evil-setup t))
 
 (use-package org
@@ -151,8 +156,8 @@
 (setq org-pretty-entities-include-sub-superscripts nil)
 (setq org-format-latex-options
       (plist-put org-format-latex-options :scale 1.3))
-(setq org-archive-location "~/org/Info/Config/archive.org::* From %s")
-;; (setq org-archive-location "::* Archived")
+;; (setq org-archive-location "~/org/Planning/Info/Config/archive.org::* From %s")
+(setq org-archive-location "::* Archived")
 (setq org-export-html-postamble nil)
 (setq org-indent-mode t)
 (setq org-link-frame-setup ( quote ((file . find-file))))
@@ -445,6 +450,10 @@
     :keymaps 'override
     "z-" 'my/flyspell-insert-word))
 
+ (general-define-key
+  :keymaps 'flyspell-mode-map
+  "C-;" 'hydra-text-main/body)
+
 (use-package flyspell-correct-ivy
   :after flyspell
   :custom
@@ -670,7 +679,7 @@
 
   (setq ranger-cleanup-eagerly t)
   (setq ranger-cleanup-on-disable t)
-  (setq ranger-return-to-ranger t)
+  (setq ranger-return-to-ranger nil)
 
   (setq ranger-width-parents 0.20)
   (setq ranger-max-parent-width 0.45)
@@ -800,7 +809,7 @@
    [escape] 'abort-recursive-edit
    "M-d" 'ivy-next-line
    "M-u" 'ivy-previous-line
-   "C-w" 'evil-delete-backward-word
+   "C-w" 'ivy-backward-kill-word
    "C-u" 'backward-kill-line
    "<XF86Calculator>" 'abort-recursive-edit)
 
@@ -1097,6 +1106,11 @@
   :after evil
   :ensure t
   :config
+
+  (defun my/evil-swap-keys-commands ()
+    (interactive)
+    (counsel-M-x "^evil-swap-keys "))
+
   (global-evil-swap-keys-mode t)
   (evil-swap-keys-swap-double-single-quotes))
 
@@ -1548,7 +1562,21 @@
     (electric-operator-mode 1)
     (wc-mode 1)
     (pabbrev-mode 1)
+    (my/ispell-dict-options)
+    (setq word-wrap t)
     (message "prose on"))
+
+  (defun my/ispell-dict-options ()
+    (interactive)
+    (counsel-M-x "^my/ispell-ask-dict "))
+
+  (defun my/ispell-ask-dict-br ()
+    (interactive)
+    (ispell-change-dictionary "brasileiro"))
+
+  (defun my/ispell-ask-dict-en ()
+    (interactive)
+    (ispell-change-dictionary "american"))
 
   (general-nvmap
     :keymaps 'text-mode-map
@@ -1847,9 +1875,14 @@
 (use-package simple
   :ensure nil
   :config
+
+  (setq word-wrap t)
+  (setq kill-whole-line t)
+  (setq truncate-lines nil)
+  (setq-default word-wrap t)
+  (setq-default truncate-lines nil)
   (setq save-interprogram-paste-before-kill nil)
   (setq backward-delete-char-untabify-method 'hungry)
-  (setq kill-whole-line t)
 
   (general-unbind 'special-mode-map
     :with 'ignore
@@ -2688,7 +2721,7 @@
   (defun pdf-occur-goto-quit ()
     (interactive)
     (pdf-occur-goto-occurrence)
-    (delete-other-windows))
+    (quit-windows-on "*PDF-Occur*"))
 
   (defun my/pdf-view-settings ()
     (interactive)
@@ -2703,7 +2736,7 @@
     (hl-line-mode 1))
 
   (setq pdf-view-continuous nil)
-  (setq pdf-view-resize-factor 1.03)
+  (setq pdf-view-resize-factor 1.15)
   (setq pdf-view-display-size 'fit-page)
   (setq pdf-misc-size-indication-minor-mode t)
   (setq pdf-annot-activate-created-annotations t)

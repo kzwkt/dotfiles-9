@@ -30,7 +30,7 @@ q : exit
 	    ('d "~/scripts")
 	    ('e "~/.config")
 	    ('f "~/.emacs.d")
-	    ('h "~/PCC/pcc_code/pcc_my_code")
+	    ('h "~/org/Studying/Prog/Python/PCC/pcc_code/pcc_my_code")
 	    ('i "~/links")
 	    ('j "~/org/Planning")
 	    ('q nil)))

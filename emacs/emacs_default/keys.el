@@ -24,11 +24,10 @@
 "C-c m h v"     'describe-variable
 "C-c m i"     'lisp-interaction-mode
 "C-c m b"     'beacon-mode
-"C-c m s"     'evil-swap-keys-mode
-"C-c m o"     'org-mode
-"C-c m n"     'org-noter
+"C-c s"     'my/evil-swap-keys-commands
 "C-c m l l"   'elmacro-mode
 "C-c m m"     'magit-status
+"C-c m n"     'org-noter
 "C-c m y"     'yas-global-mode
 "C-c m Y"     'yas-minor-mode-on
 "C-c m f"     'flyspell-mode
@@ -60,7 +59,7 @@
 "C-c m c" 'clipmon-mode
 "C-c TAB" 'sr-speedbar-toggle
 
-"C-c s" 'hydra-shell/body
+;; "C-c s" 'hydra-shell/body
 
 
 ;;;; FILE COMMANDS ;;;;
