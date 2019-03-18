@@ -7,7 +7,7 @@
 # A simple command for demonstration purposes follows.
 # -----------------------------------------------------------------------------
 
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
 
 # You can import any python module as needed.
 import os
@@ -64,6 +64,7 @@ class my_edit(Command):
         # content of the current directory.
         return self._tab_directory_content()
 
+
 # This command uses fasd to jump to a frequently visited directory with a
 # given substring of its path.
 
@@ -78,14 +79,17 @@ class fasd(Command):
 
     def execute(self):
         import subprocess
+
         arg = self.rest(1)
         if arg:
             directory = subprocess.check_output(
-                ["fasd", "-d"] + arg.split(), universal_newlines=True).strip()
+                ["fasd", "-d"] + arg.split(), universal_newlines=True
+            ).strip()
             self.fm.cd(directory)
 
 
 # mcd
+
 
 class mcd(Command):
 
@@ -104,23 +108,27 @@ class mcd(Command):
         if not lexists(dirname):
             makedirs(dirname)
 
-            match = re.search('^/|^~[^/]*/', dirname)
+            match = re.search("^/|^~[^/]*/", dirname)
             if match:
                 self.fm.cd(match.group(0))
-                dirname = dirname[match.end(0):]
+                dirname = dirname[match.end(0) :]
 
-            for m in re.finditer('[^/]+', dirname):
+            for m in re.finditer("[^/]+", dirname):
                 s = m.group(0)
-                if s == '..' or (s.startswith('.') and not self.fm.settings['show_hidden']):
+                if s == ".." or (
+                    s.startswith(".") and not self.fm.settings["show_hidden"]
+                ):
                     self.fm.cd(s)
                 else:
                     # We force ranger to load content before calling `scout`.
                     self.fm.thisdir.load_content(schedule=False)
-                    self.fm.execute_console('scout -ae ^{}$'.format(s))
+                    self.fm.execute_console("scout -ae ^{}$".format(s))
         else:
             self.fm.notify("file/directory exists!", bad=True)
 
+
 # go to path in the clipboard
+
 
 class goclip(Command):
     """:goclip
@@ -128,24 +136,18 @@ class goclip(Command):
     cd to the contents of the clipboard
     """
 
-
     def execute(self):
         import subprocess
 
         def clipboards():
             from ranger.ext.get_executables import get_executables
+
             clipboard_managers = {
-                'xclip': [
-                    ['xclip', '-selection', 'clipboard', '-o'],
-                ],
-                'xsel': [
-                    ['xsel', '-b', '-o'],
-                ],
-                'pbpaste': [
-                    ['pbpaste'],
-                ],
+                "xclip": [["xclip", "-selection", "clipboard", "-o"]],
+                "xsel": [["xsel", "-b", "-o"]],
+                "pbpaste": [["pbpaste"]],
             }
-            ordered_managers = ['pbpaste', 'xclip', 'xsel']
+            ordered_managers = ["pbpaste", "xclip", "xsel"]
             executables = get_executables()
             for manager in ordered_managers:
                 if manager in executables:
@@ -155,10 +157,12 @@ class goclip(Command):
         clipboard_commands = clipboards()
 
         for command in clipboard_commands[:1]:
-            process = subprocess.Popen(command, universal_newlines=True,
-                                       stdout=subprocess.PIPE)
+            process = subprocess.Popen(
+                command, universal_newlines=True, stdout=subprocess.PIPE
+            )
             (clipcontents, _) = process.communicate()
             self.fm.cd(clipcontents)
+
 
 # Search with fd
 # fd is a great replacement for the venerable find. Put the following code in
@@ -170,7 +174,10 @@ class goclip(Command):
 # https://github.com/ranger/ranger/wiki/Custom-Commands
 
 from collections import deque
+
 fd_deq = deque()
+
+
 class fd_search(Command):
     """:fd_search [-d<depth>] <query>
 
@@ -182,15 +189,16 @@ class fd_search(Command):
     def execute(self):
         import subprocess
         from ranger.ext.get_executables import get_executables
-        if not 'fd' in get_executables():
+
+        if not "fd" in get_executables():
             self.fm.notify("Couldn't find fd on the PATH.", bad=True)
             return
         if self.arg(1):
-            if self.arg(1)[:2] == '-d':
+            if self.arg(1)[:2] == "-d":
                 depth = self.arg(1)
                 target = self.rest(2)
             else:
-                depth = '-d1'
+                depth = "-d1"
                 target = self.rest(1)
         else:
             self.fm.notify(":fd_search needs a query.", bad=True)
@@ -200,19 +208,29 @@ class fd_search(Command):
         # fd's behavior from splitting results by \0, which allows for newlines
         # in your filenames to splitting results by \n, which allows for \0 in
         # filenames.
-        null_sep = {'arg': '-0', 'split': '\0'}
-        nl_sep = {'arg': '', 'split': '\n'}
+        null_sep = {"arg": "-0", "split": "\0"}
+        nl_sep = {"arg": "", "split": "\n"}
         result_sep = null_sep
 
-        process = subprocess.Popen(['fd', result_sep['arg'], depth, target],
-                    universal_newlines=True, stdout=subprocess.PIPE)
+        process = subprocess.Popen(
+            ["fd", result_sep["arg"], depth, target],
+            universal_newlines=True,
+            stdout=subprocess.PIPE,
+        )
         (search_results, _err) = process.communicate()
         global fd_deq
-        fd_deq = deque((self.fm.thisdir.path + os.sep + rel for rel in
-            sorted(search_results.split(result_sep['split']), key=str.lower)
-            if rel != ''))
+        fd_deq = deque(
+            (
+                self.fm.thisdir.path + os.sep + rel
+                for rel in sorted(
+                    search_results.split(result_sep["split"]), key=str.lower
+                )
+                if rel != ""
+            )
+        )
         if len(fd_deq) > 0:
             self.fm.select_file(fd_deq[0])
+
 
 class fd_next(Command):
     """:fd_next
@@ -222,10 +240,11 @@ class fd_next(Command):
 
     def execute(self):
         if len(fd_deq) > 1:
-            fd_deq.rotate(-1) # rotate left
+            fd_deq.rotate(-1)  # rotate left
             self.fm.select_file(fd_deq[0])
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
+
 
 class fd_prev(Command):
     """:fd_prev
@@ -235,13 +254,14 @@ class fd_prev(Command):
 
     def execute(self):
         if len(fd_deq) > 1:
-            fd_deq.rotate(1) # rotate right
+            fd_deq.rotate(1)  # rotate right
             self.fm.select_file(fd_deq[0])
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
 
 
 # fzf integration
+
 
 class fzf_select(Command):
     """
@@ -253,22 +273,70 @@ class fzf_select(Command):
 
     See: https://github.com/junegunn/fzf
     """
+
     def execute(self):
         import subprocess
         import os.path
+
         if self.quantifier:
             # match only directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command = "find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
             -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
         else:
             # match files and directories
-            command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
+            command = "find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
             -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m"
-        fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
+        fzf = self.fm.execute_command(
+            command, universal_newlines=True, stdout=subprocess.PIPE
+        )
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.rstrip('\n'))
+            fzf_file = os.path.abspath(stdout.rstrip("\n"))
             if os.path.isdir(fzf_file):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
+
+# Source : https://wiki.archlinux.org/index.php/ranger#Compression
+
+import os
+from ranger.core.loader import CommandLoader
+
+
+class compress(Command):
+    def execute(self):
+        """ Compress marked files to current directory """
+        cwd = self.fm.thisdir
+        marked_files = cwd.get_selection()
+
+        if not marked_files:
+            return
+
+        def refresh(_):
+            cwd = self.fm.get_directory(original_path)
+            cwd.load_content()
+
+        original_path = cwd.path
+        parts = self.line.split()
+        au_flags = parts[1:]
+
+        descr = "compressing files in: " + os.path.basename(parts[1])
+        obj = CommandLoader(
+            args=["apack"]
+            + au_flags
+            + [os.path.relpath(f.path, cwd.path) for f in marked_files],
+            descr=descr,
+        )
+
+        obj.signal_bind("after", refresh)
+        self.fm.loader.add(obj)
+
+    def tab(self):
+        """ Complete with current folder name """
+
+        extension = [".zip", ".tar.gz", ".rar", ".7z"]
+        return [
+            "compress " + os.path.basename(self.fm.thisdir.path) + ext
+            for ext in extension
+        ]

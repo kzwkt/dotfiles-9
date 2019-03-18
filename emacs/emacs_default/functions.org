@@ -29,6 +29,14 @@
   (info)
   (evil-emacs-state))
 #+END_SRC
+** my/kill-this-buffer
+[[http://pragmaticemacs.com/emacs/dont-kill-buffer-my/kill-this-buffer-instead/][Source]].
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/kill-this-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-buffer (current-buffer)))
+#+END_SRC
 ** focus
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun focus-emacs ()
@@ -69,7 +77,7 @@
   (interactive)
   (widen)
   (my/save-all)
-  (kill-this-buffer)
+  (my/kill-this-buffer)
   (eyebrowse-close-window-config))
 #+END_SRC
 ** org to docx
@@ -131,6 +139,22 @@
     (find-file "~/.emacs.d/packs.org")
     (widen)
     (counsel-outline)))
+#+END_SRC
+** my my i3
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/search-pack ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/packs.org")
+    (widen)
+    (counsel-outline)))
+
+(defun my/goto-i3-screen-configs ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.config/i3/config.org")
+    (widen)
+    (swiper "strachpads main")))
 #+END_SRC
 ** pdf rotation
 https://is.gd/leDMD5
@@ -534,7 +558,7 @@ Emacs session."
   (progn
     (my/save-all)
     (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
-    (kill-this-buffer)
+    (my/kill-this-buffer)
     (delete-other-windows)
     (message " all buffers killed")))
 #+END_SRC
@@ -2291,7 +2315,7 @@ return t."
 (defun abbrev-edit-save-close ()
   (interactive)
   (abbrev-edit-save-buffer)
-  (kill-this-buffer))
+  (my/kill-this-buffer))
 #+END_SRC
 ** sh mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el

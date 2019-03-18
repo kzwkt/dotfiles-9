@@ -46,7 +46,7 @@
   ("<escape>" nil)
   ;; ("C-S-k" kill-this-buffer)
 
-  ("a" kill-this-buffer)
+  ("a" my/kill-this-buffer)
   ("b" kill-buffer-and-window)
   ("c" my/kill-buffer-and-workspace)
   ("d" kill-all-buffers)
@@ -820,7 +820,7 @@
 
 "
   ("<escape>" nil)
-  ("C-o" hydra-find-emacs-files/body)
+  ("C-o" hydra-find-dotfiles/body)
 
   ("a" my/goto-scratch-buffer)
   ("b" hydra-find-scratches/body)
@@ -877,14 +877,14 @@
 (defhydra hydra-find-dotfiles (:hint nil :color blue)
   "
 
-     ^Bash^                   ^Others^
-     -----------------------------------
-     _i_: ~/.inputrc           _c_: $conf
-     _p_: ~/.profile           _s_: ~/scripts
-     _b_: ~/.bashrc            _n_: $conf/nvim
-     _a_: ~/.bash aliases      _t_: ~/.tmux.conf
-     _r_: ~/.bash profile      _3_: $conf/i3/config
-     _d_: bashdot              _z_: $conf/zathura/zathurarc
+     ^Bash^             ^Others^
+     --------------------------------
+     _i_: inputrc       _c_: config
+     _p_: profile       _s_: scripts
+     _b_: bashrc        _n_: conf/nvim
+     _a_: bash aliases  _t_: tmux.conf
+     _r_: bash profile  _3_: i3/config
+     _d_: bash files    _z_: zathurarc
 "
 
   ("<escape>" nil)

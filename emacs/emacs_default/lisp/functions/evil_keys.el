@@ -47,6 +47,7 @@
 (general-nvmap
   :keymaps 'override
   ;; "u" 'undo-only
+  "!" 'delete-frame
   "z=" 'endless/ispell-word-then-abbrev
   "C-S-j" 'my/move-line-down
   "C-S-k" 'my/move-line-up

@@ -321,7 +321,7 @@ mode "$float_small_steps" {
     bindsym $mod+apostrophe mode default
 }
 #+END_SRC
-* strachpads
+* strachpads main
 ** scratchpads big
 # *** general
 # #+BEGIN_SRC shell :tangle ~/.config/i3/config

@@ -14,6 +14,7 @@ nnoremap <silent> <leader>ws :sp<cr>
 nnoremap <silent> <leader>wo :only<cr>
 nnoremap <silent> <leader>0 :silent close<cr>
 nnoremap <leader>' :qa!<cr>
+nnoremap ! :qa!<cr>
 nnoremap Q :wqa!<cr>
 
 nnoremap <leader>q :bunload<cr>

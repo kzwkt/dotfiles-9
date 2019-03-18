@@ -20,6 +20,11 @@
   (info)
   (evil-emacs-state))
 
+(defun my/kill-this-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-buffer (current-buffer)))
+
 (defun focus-emacs ()
   (interactive)
   (let ((inhibit-message t))
@@ -54,7 +59,7 @@
   (interactive)
   (widen)
   (my/save-all)
-  (kill-this-buffer)
+  (my/kill-this-buffer)
   (eyebrowse-close-window-config))
 
 (defun ox-export-to-docx-and-open ()
@@ -106,6 +111,20 @@
     (find-file "~/.emacs.d/packs.org")
     (widen)
     (counsel-outline)))
+
+(defun my/search-pack ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/packs.org")
+    (widen)
+    (counsel-outline)))
+
+(defun my/goto-i3-screen-configs ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.config/i3/config.org")
+    (widen)
+    (swiper "strachpads main")))
 
 (defun my/pdf-view--rotate (&optional counterclockwise-p page-p)
   "Rotate PDF 90 degrees.  Requires pdftk to work.\n
@@ -477,7 +496,7 @@ Emacs session."
   (progn
     (my/save-all)
     (mapc 'kill-buffer (delq (current-buffer) (buffer-list)))
-    (kill-this-buffer)
+    (my/kill-this-buffer)
     (delete-other-windows)
     (message " all buffers killed")))
 
@@ -2040,7 +2059,7 @@ return t."
 (defun abbrev-edit-save-close ()
   (interactive)
   (abbrev-edit-save-buffer)
-  (kill-this-buffer))
+  (my/kill-this-buffer))
 
 
 (defun my/sh-mode-hooks ()

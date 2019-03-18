@@ -66,7 +66,7 @@
     "l" 'my/split-right
     "b" 'my/evil-botright
     "k" 'split-window-below
-    "q" 'kill-this-buffer
+    "q" 'my/kill-this-buffer
     "0" 'delete-window
     "y" 'my/term-botright
     "j" 'my/split-vertically
@@ -111,7 +111,7 @@
     (counsel-M-x "^org property "))
   (plist-put org-format-latex-options :scale 2.0)
   (setq org-bookmark-names-plist nil)
-  (setq org-agenda-files '("~/org/Planning"))
+  (setq org-agenda-files '("~/org/Planning/Agenda"))
   (setq org-enforce-todo-checkbox-dependencies nil)
   (setq org-link-file-path-type 'relative)
   (setq org-export-with-toc nil)
@@ -151,7 +151,7 @@
 (setq org-pretty-entities-include-sub-superscripts nil)
 (setq org-format-latex-options
       (plist-put org-format-latex-options :scale 1.3))
-(setq org-archive-location "~/org/Config/archive.org::* From %s")
+(setq org-archive-location "~/org/Info/Config/archive.org::* From %s")
 ;; (setq org-archive-location "::* Archived")
 (setq org-export-html-postamble nil)
 (setq org-indent-mode t)
@@ -219,12 +219,12 @@
 	;; ("a" "Arquitetura" entry (file+headline "~/Matérias/arquitetura_de_computatores.org" "Refile") "** %u %i%?" :empty-lines 1)
 	;; ("p" "POO" entry (file+headline "~/Matérias/programacao_orientada_a_objetos.org" "Refile") "** %t %i%?" :empty-lines 1)
 	("s" "Social" entry  (file+headline "~/org/Creative/Social/Public/social_public.org" "Refile") "* %u %i%?")
-	("r" "Refile" entry  (file+headline "~/org/Planning/planning.org" "Refile") "* %u %i%?")
-	("0" "Daily"  entry  (file+headline "~/org/Planning/planning.org" "Daily")  "* TODO %u %i%?")
-	("1" "Agora"  entry  (file+headline "~/org/Planning/planning.org" "Agora")  "* TODO %u %i%?")
-	("2" "Logo"   entry  (file+headline "~/org/Planning/planning.org" "Logo")   "* TODO %u %i%?")
-	("3" "Depois" entry  (file+headline "~/org/Planning/planning.org" "Depois") "* TODO %u %i%?")
-	("4" "Um Dia" entry  (file+headline "~/org/Planning/planning.org" "Um Dia") "* TODO %u %i%?")))
+	("r" "Refile" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Refile") "* %u %i%?")
+	("0" "Daily"  entry  (file+headline "~/org/Planning/Agenda/planning.org" "Daily")  "* TODO %u %i%?")
+	("1" "Agora"  entry  (file+headline "~/org/Planning/Agenda/planning.org" "Agora")  "* TODO %u %i%?")
+	("2" "Logo"   entry  (file+headline "~/org/Planning/Agenda/planning.org" "Logo")   "* TODO %u %i%?")
+	("3" "Depois" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Depois") "* TODO %u %i%?")
+	("4" "Um Dia" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Um Dia") "* TODO %u %i%?")))
 
 
 (general-define-key
@@ -727,7 +727,7 @@
    "a" 'hydra-org-clock/body
    "d" 'hydra-quick-commands/body
    "b" 'my/evil-botright
-   "q" 'kill-this-buffer
+   "q" 'my/kill-this-buffer
    "y" 'my/term-botright))
 
 
@@ -937,7 +937,7 @@
     "a" 'hydra-org-clock/body
     "d" 'hydra-quick-commands/body
     "b" 'my/evil-botright
-    "q" 'kill-this-buffer
+    "q" 'my/kill-this-buffer
     "y" 'my/term-botright)
 
   (general-define-key
@@ -1660,16 +1660,16 @@
   :defer t
   :ensure nil
   :config
-(setq-default abbrev-mode t)
-(setq save-abbrevs 'silently)
-;; (setq abbrev-file-name "~/.emacs.d/etc/abbrev_defs")
-(general-define-key
- :keymaps 'edit-abbrevs-map
- "<C-return>" 'abbrev-edit-save-close)
+  (setq-default abbrev-mode t)
+  (setq save-abbrevs 'silently)
+  ;; (setq abbrev-file-name "~/.emacs.d/etc/abbrev_defs")
+  (general-define-key
+   :keymaps 'edit-abbrevs-map
+   "<C-return>" 'abbrev-edit-save-close)
   (general-nvmap
     :keymaps 'edit-abbrevs-mode-map
     [escape] 'abbrev-edit-save-buffer
-    "q" 'kill-this-buffer))
+    "q" 'my/kill-this-buffer))
 
 (use-package prog-mode
   :defer t
