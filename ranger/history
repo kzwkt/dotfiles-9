@@ -1,7 +1,3 @@
-x
-search nvim
-md Self_Help
-touch blog_posts.org
 md evil_keys.el
 touch evil_keys.el
 search ranger
@@ -98,3 +94,7 @@ touch README_PT.md
 search jjj
 search spel
 md home
+search prog
+md JAva
+rename java
+rename Java

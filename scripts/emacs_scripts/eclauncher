@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ~/scripts/i3_scripts/hide/hide_only_terms
+
 emacsclient --socket-name=gui-emacs -n -e "(if (> (length (frame-list)) 1) 't)" | grep t
 if [ "$?" = "1" ]; then
     if [ "$DISPLAY" = "" ]; then
@@ -15,3 +16,5 @@ else
         emacsclient --socket-name=gui-emacs -n -a "" "$@"
     fi
 fi
+
+i3-msg [class='Emacs'] focus

@@ -763,7 +763,7 @@
   (setq ivy-wrap t)
   (setq ivy-on-del-error-function #'ignore)
   (setq counsel-ag-base-command "ag --nocolor --group -f --skip-vcs-ignores %s")
-  (setq ivy-use-virtual-buffers nil)
+  (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
   (setq counsel-bookmark-avoid-dired t)
   (setq counsel-find-file-at-point t)
@@ -1094,8 +1094,11 @@
    "C-c m l c" 'elmacro-show-last-commands))
 
 (use-package evil-swap-keys
-:defer t
-:ensure t)
+  :after evil
+  :ensure t
+  :config
+  (global-evil-swap-keys-mode t)
+  (evil-swap-keys-swap-double-single-quotes))
 
 (use-package super-save
   :ensure t
@@ -2006,7 +2009,7 @@
 			" ACap" " Ind" " yas" " ," " s-/"
 			" company" " es" " SP" " h-i-g" " _+_" " PDFView"
 			" Helpful" " :master" " Shell-script" " P/???"
-			" Flymake[0 0]" " Flymake:Wait[0 0]" " Elpy" " Pabbrev" " Olv" " Fly" " WE" " Fill" " super-save" " Emmet"))
+			" Flymake[0 0]" " Flymake:Wait[0 0]" " Elpy" " Pabbrev" " Olv" " Fly" " WE" " Fill" " super-save" " Emmet" " !1"))
   (sml/setup))
 
 ;; (use-package smart-mode-line-atom-one-dark-theme

@@ -6,7 +6,7 @@
 # the last visited one after ranger quits.
 # To undo the effect of this function, you can type "cd -" to return to the
 # original directory.
-# 
+#
 # On OS X 10 or later, replace `usr/bin/ranger` with `/usr/local/bin/ranger`.
 
 function ranger-cd {
@@ -21,7 +21,6 @@ function ranger-cd {
 
 # This binds Ctrl-O to ranger-cd:
 bind '"\C-o":"\C-k \C-uclear && ranger-cd\C-m"'
-  
+
 
 alias d='ranger-cd'
-
