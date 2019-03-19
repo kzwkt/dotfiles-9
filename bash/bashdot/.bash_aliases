@@ -44,6 +44,7 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
 alias t='task'
 alias ta='task add'
 alias td='task done'
+alias tm='task modify'
 alias ttd='task delete'
 
 alias nnn='emacs -nw'
