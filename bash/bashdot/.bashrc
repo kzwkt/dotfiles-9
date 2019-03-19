@@ -100,7 +100,7 @@ source ~/.bash_completion.sh
 #### DEFAULT EDITOR ####
 
 export VISUAL=nvim
-export VISUAL EDITOR=nvim
+export EDITOR=nvim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

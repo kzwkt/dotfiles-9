@@ -1,21 +1,9 @@
 let mapleader ="\<space>"
-
-" {{{ windows
-
-nnoremap <silent> <m-h> <c-w>h
-nnoremap <silent> <m-h> <c-w>h
-nnoremap <silent> <m-l> <c-w>l
-nnoremap <silent> <m-j> <c-w>j
-nnoremap <silent> <m-k> <c-w>k
-
-nnoremap <silent> <leader>wv :vs<cr>
-nnoremap <silent> <leader>ws :sp<cr>
-nnoremap <silent> <leader>ws :sp<cr>
-nnoremap <silent> <leader>wo :only<cr>
-nnoremap <silent> <leader>0 :silent close<cr>
-nnoremap <leader>' :qa!<cr>
+" {{{ buffers
 nnoremap ! :qa!<cr>
 nnoremap Q :wqa!<cr>
+nnoremap <c-q> :wqa!<cr>
+nnoremap gQ Q
 
 nnoremap <leader>q :bunload<cr>
 nnoremap <leader>x :bd!<cr>
@@ -24,16 +12,29 @@ nnoremap <silent> ç <c-w>w
 nnoremap <silent> <m-9> :only<cr>
 nnoremap <silent> <m-0> :bunload<cr>
 nnoremap <silent> <leader>0 :close<cr>
+" }}}
+" {{{ windows
 
-nnoremap <silent> <leader>k :split<cr><c-w>
-nnoremap <silent> <leader>j :split<cr>
-nnoremap <silent> <leader>h :vsplit<cr><c-w>w
-nnoremap <silent> <leader>l :vsplit<cr>
+" nnoremap <silent> <m-h> <c-w>h
+" nnoremap <silent> <m-h> <c-w>h
+" nnoremap <silent> <m-l> <c-w>l
+" nnoremap <silent> <m-j> <c-w>j
+" nnoremap <silent> <m-k> <c-w>k
 
-nnoremap <silent> <leader>K :botright split<cr><c-w>
-nnoremap <silent> <leader>J :botright split<cr>
-nnoremap <silent> <leader>H :botright vsplit<cr><c-w>w
-nnoremap <silent> <leader>L :botright vsplit<cr>
+" nnoremap <silent> <leader>wv :vs<cr>
+" nnoremap <silent> <leader>ws :sp<cr>
+" nnoremap <silent> <leader>ws :sp<cr>
+" nnoremap <silent> <leader>wo :only<cr>
+" nnoremap <silent> <leader>0 :silent close<cr>
+" nnoremap <silent> <leader>k :split<cr><c-w>
+" nnoremap <silent> <leader>j :split<cr>
+" nnoremap <silent> <leader>h :vsplit<cr><c-w>w
+" nnoremap <silent> <leader>l :vsplit<cr>
+
+" nnoremap <silent> <leader>K :botright split<cr><c-w>
+" nnoremap <silent> <leader>J :botright split<cr>
+" nnoremap <silent> <leader>H :botright vsplit<cr><c-w>w
+" nnoremap <silent> <leader>L :botright vsplit<cr>
 
 " RESIZE WINDOWS
 " <c-w>=    balance windows
@@ -63,7 +64,7 @@ nnoremap <c-x>l :LinuxCodingStyle<cr>:echo "Linux Coding Style"<cr>
 nnoremap <c-x>r :w!<cr>:so %<cr>:echo " file loaded"<cr>
 nnoremap <M-o> <c-o>
 nnoremap <M-i> <c-i>
-nnoremap <M-d> :Buffers<cr>
+nnoremap <M-d> :b<space>
 nnoremap <M-u> :Ag<cr>
 nnoremap <leader>r :Ranger<cr><c-\><c-n>:set nonu nornu<cr>:echo ""<cr>i
 nnoremap j mzj`z
@@ -162,10 +163,6 @@ nnoremap <silent> <c-M-p> :silent bprev<cr><c-\><c-n>:echo ""<cr>
 nnoremap <silent> <c-x><c-x> :wqa!<cr>
 inoremap <silent> <c-x><c-x> <c-o>:wqa!<cr>
 
-nnoremap gf f
-nnoremap gF F
-nmap f <plug>(easymotion-lineanywhere)
-vmap f <plug>(easymotion-lineanywhere)
 nmap ga <Plug>Titlecase
 vmap ga <Plug>Titlecase
 nmap gT <Plug>TitlecaseLine

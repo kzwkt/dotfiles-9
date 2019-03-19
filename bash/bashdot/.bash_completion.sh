@@ -340,3 +340,4 @@ complete -F _complete_alias td
 complete -F _complete_alias tt
 complete -F _complete_alias tm
 complete -F _complete_alias ttd
+complete -F _complete_alias bb

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+id="$*"
+task delete "$id" &&
+clear &&
+task    

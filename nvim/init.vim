@@ -85,6 +85,77 @@ set incsearch
 set showmatch
 set ignorecase
 ""}}}"}}}
+" {{{ statusbar
+set laststatus=2
+hi statusLine ctermfg=yellow
+hi statusline ctermbg=black
+
+" set statusline=\ %f\ %y
+" set statusline+=\ \|\ %(%{strftime('%a\ \|\ %eⁿᵈ\ \|\ %H:%M')}%)
+" set statusline+=\ \|\ \ %m
+" set statusline+=%=
+" set statusline+=\ \|\ %02vᶜ
+" set statusline+=\ \|\ %02pᵖ
+" set statusline+=\ \|\ %03l/%-L\
+
+" function! StatusWordCount()
+" 	set laststatus=2
+" 	set statusline=%f%y%m
+" 	set statusline+=%=
+" 	set statusline+=%{WordCount()}ʷ
+" 	set statusline+=\ \|\ %02vᶜ
+" 	set statusline+=\ \|\ %02pᵖ
+" 	set statusline+=\ \|\ %03l/%-L\
+" endfunction
+
+" function! StatusNoWordCount()
+" 	set laststatus=2
+" 	set statusline=%f%y%m
+" 	set statusline+=%=
+" 	set statusline+=\ \|\ %02vᶜ
+" 	set statusline+=\ \|\ %02pᵖ
+" 	set statusline+=\ \|\ %03l/%-L\
+" endfunction
+
+" function! StatusOff()
+" 	setlocal laststatus=0
+" 	setlocal statusline=
+" endfunction
+
+" function! StatusLight()
+" 	set laststatus=2
+" 	set statusline=\ %f\ %m
+" endfunction
+
+" function! WordCount()
+" 	let lnum = 1
+" 	let n = 0
+" 	while lnum <= line('$')
+" 		let n = n + len(split(getline(lnum)))
+" 		let lnum = lnum + 1
+" 	endwhile
+" 	return n
+" endfunction
+
+" function! InsertStatuslineColor(mode)
+" 	if a:mode == 'i'
+" 		hi statusline ctermbg=darkgrey
+" 		hi statusline ctermfg=yellow
+" 	elseif a:mode == 'r'
+" 		hi statusline ctermbg=red
+" 	else
+" 		hi statusline ctermbg=black
+" 	endif
+" endfunction
+
+" augroup status
+" 	autocmd!
+" 	autocmd InsertEnter * call InsertStatuslineColor(v:insertmode)
+" 	autocmd InsertChange * call InsertStatuslineColor(v:insertmode)
+" 	autocmd InsertLeave * hi statusline ctermbg=black
+" 	autocmd InsertLeave * hi statusline ctermfg=yellow
+" augroup END
+" }}}
 " {{{ functions
 " {{{ eatchar
 func! Eatchar(pat)
@@ -93,7 +164,83 @@ func! Eatchar(pat)
 endfunc
 iabbr <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
 " }}}
-" {{{ autosave
+" {{{ cursor position
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
+" }}}
+" }}}
+" {{{ disabled
+" " {{{ sameline
+" " nnoremap <c-a> /Sim\\|Não/1<cr>Ji,<esc>:noh<cr>
+
+" function SameLine()
+"     execute "normal! gg/foo\<cr>dd"
+" endfunction
+
+" " }}}
+" " " {{{ jump to last position
+" if has("autocmd")
+"   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" endif
+" " " }}}
+" " {{{ avoid nesting
+" " if has('nvim')
+" "   let $VISUAL = 'nvr -cc split --remote-wait'
+" "   let $EDITOR = 'nvr -cc split --remote-wait'
+" " endif
+" " }}}
+" " {{{ path macro
+" let @o = 'mZ:s/\/home\/dave\//\~\/`Z'
+" " }}}
+" " {{{ remove menus from GUI
+" let did_install_default_menus = 1
+" " }}}
+" " {{{ st fix
+" " if &term =~ '256color'
+" "     " disable Background Color Erase (BCE) so that color schemes
+" "     " render properly when inside 256-color tmux and GNU screen.
+" "     " see also http://sunaku.github.io/vim-256color-bce.html
+" "     set t_ut=
+" " endif
+" " " }}}
+" " {{{ term insert
+" " augroup nterm
+" " 	autocmd!
+" "         autocmd BufWinEnter,WinEnter term://* startinsert
+" "         autocmd BufLeave term://* stopinsert
+" " augroup END
+" augroup TermExtra
+"   autocmd!
+"   autocmd BufEnter term://* start!
+" augroup end
+" " }}}
+" " {{{ term macro
+" " function! <SID>StripTrailingWhitespaces()
+" "     " Preparation: save last search, and cursor position.
+" "     let _s=@/
+" "     let l = line(".")
+" "     let c = col(".")
+" "     " Remove Trailling ws
+" "     %s/\s\+$//e
+" "     " Clean up: restore previous search history, and cursor position
+" "     let @/=_s
+" "     call cursor(l, c)
+" " endfunction
+
+" " autocmd BufWritePre *.c,*.vim :call <SID>StripTrailingWhitespaces()
+" " }}}
+" " {{{ open file at point
+" function! OpenFileInPrevWindow()
+"     let cfile = expand("<cfile>")
+"     wincmd p
+"     execute "edit " . cfile
+"     echo ""
+" endfunction
+" nmap <c-k> :call OpenFileInPrevWindow()<cr>
+" " }}}
+" " {{{ autosave
 " augroup AutoSave
 " 	autocmd!
 " 	autocmd FocusLost   *  :silent! wall
@@ -103,152 +250,6 @@ iabbr <silent> if if ()<Left><C-R>=Eatchar('\s')<CR>
 " 	autocmd CmdlineLeave * :silent! wall
 " 	autocmd CmdlineLeave * :noh
 " augroup END
-" }}}
-" {{{ status
-set laststatus=2
-hi statusLine ctermfg=yellow
-hi statusline ctermbg=black
-
-set statusline=\ %f\ %y
-set statusline+=\ \|\ %(%{strftime('%a\ \|\ %eⁿᵈ\ \|\ %H:%M')}%)
-set statusline+=\ \|\ \ %m
-set statusline+=%=
-set statusline+=\ \|\ %02vᶜ
-set statusline+=\ \|\ %02pᵖ
-set statusline+=\ \|\ %03l/%-L\
-
-function! StatusWordCount()
-	set laststatus=2
-	set statusline=%f%y%m
-	set statusline+=%=
-	set statusline+=%{WordCount()}ʷ
-	set statusline+=\ \|\ %02vᶜ
-	set statusline+=\ \|\ %02pᵖ
-	set statusline+=\ \|\ %03l/%-L\
-endfunction
-
-function! StatusNoWordCount()
-	set laststatus=2
-	set statusline=%f%y%m
-	set statusline+=%=
-	set statusline+=\ \|\ %02vᶜ
-	set statusline+=\ \|\ %02pᵖ
-	set statusline+=\ \|\ %03l/%-L\
-endfunction
-
-function! StatusOff()
-	setlocal laststatus=0
-	setlocal statusline=
-endfunction
-
-function! StatusLight()
-	set laststatus=2
-	set statusline=\ %f\ %m
-endfunction
-
-function! WordCount()
-	let lnum = 1
-	let n = 0
-	while lnum <= line('$')
-		let n = n + len(split(getline(lnum)))
-		let lnum = lnum + 1
-	endwhile
-	return n
-endfunction
-
-function! InsertStatuslineColor(mode)
-	if a:mode == 'i'
-		hi statusline ctermbg=darkgrey
-		hi statusline ctermfg=yellow
-	elseif a:mode == 'r'
-		hi statusline ctermbg=red
-	else
-		hi statusline ctermbg=black
-	endif
-endfunction
-
-augroup status
-	autocmd!
-	autocmd InsertEnter * call InsertStatuslineColor(v:insertmode)
-	autocmd InsertChange * call InsertStatuslineColor(v:insertmode)
-	autocmd InsertLeave * hi statusline ctermbg=black
-	autocmd InsertLeave * hi statusline ctermfg=yellow
-augroup END
-" }}}
-" {{{ term insert
-" augroup nterm
-" 	autocmd!
-"         autocmd BufWinEnter,WinEnter term://* startinsert
-"         autocmd BufLeave term://* stopinsert
-" augroup END
-augroup TermExtra
-  autocmd!
-  autocmd BufEnter term://* start!
-augroup end
-" }}}
-" {{{ cursor position
-if v:version >= 700
-  au BufLeave * let b:winview = winsaveview()
-  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
-endif
-" }}}
-" {{{ st fix
-" if &term =~ '256color'
-"     " disable Background Color Erase (BCE) so that color schemes
-"     " render properly when inside 256-color tmux and GNU screen.
-"     " see also http://sunaku.github.io/vim-256color-bce.html
-"     set t_ut=
-" endif
 " " }}}
-" {{{ remove menus from GUI
-let did_install_default_menus = 1
-" }}}
-" {{{ avoid nesting
-" if has('nvim')
-"   let $VISUAL = 'nvr -cc split --remote-wait'
-"   let $EDITOR = 'nvr -cc split --remote-wait'
-" endif
-" }}}
-" " {{{ jump to last position
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-" " }}}
-" {{{ sameline
-" nnoremap <c-a> /Sim\\|Não/1<cr>Ji,<esc>:noh<cr>
-
-function SameLine()
-    execute "normal! gg/foo\<cr>dd"
-endfunction
-
-" }}}
-" {{{ term macro
-
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Remove Trailling ws
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-autocmd BufWritePre *.c,*.vim :call <SID>StripTrailingWhitespaces()
-
-" }}}
-" {{{ open file at point
-function! OpenFileInPrevWindow()
-    let cfile = expand("<cfile>")
-    wincmd p
-    execute "edit " . cfile
-    echo ""
-endfunction
-nmap <c-k> :call OpenFileInPrevWindow()<cr>
-" }}}
-" {{{{ path macro
-let @o = 'mZ:s/\/home\/dave\//\~\/`Z'
 " }}}
 "" vim: nowrap

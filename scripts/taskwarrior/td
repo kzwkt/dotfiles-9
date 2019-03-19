@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+parameters="$*"
+done_command="done"
+task done "$parameters" &&
+clear &&
+task    

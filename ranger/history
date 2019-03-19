@@ -1,9 +1,3 @@
-md projectile
-open_with
-rename keyfreq_upper.el
-search org
-search which
-touch my_rofy_run
 touch archive.org
 cd 
 open_with kjk f
@@ -31,7 +25,6 @@ search packs
 md Watchmen_Ultimate
 md image
 search dream
-search 
 search best
 md last_question
 search complete
@@ -79,7 +72,6 @@ open_with nvim
 open_with r0 f
 open_with 0 f
 open_with 1 f
-
 search obj
 touch README_PT.md
 search jjj
@@ -98,3 +90,11 @@ md Agenda
 rename Prog
 shell !
 shell 
+search nvim
+shell zp
+
+search 
+search nvi
+search task
+rename task
+rename .task

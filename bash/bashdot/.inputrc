@@ -22,38 +22,8 @@ set completion-ignore-case on
 
 #  keybindings
 
-# C-p: Go Backwards
-# "": "\C-k \C-ub\n"
-
-# M-p: Clear and list
-"p": "\C-k \C-uclear && ls --color=always\n"
-
-# C-/: Clear and list
-# "": "\C-k \C-uclear && ls --color=always\n"
-
-# M-;: list
-# ";": "\C-k \C-uls --color=always\n"
-
-# M-;: timewarrior
-# ";": "\C-k \C-u~/scripts/cline_scripts/tw_line\n,\C-i"
-
 # M-u: Go Up
-# "u": "\C-k \C-ue ..\n"
-
-# M-p: Go Backwards
-# "p": "\C-k \C-ub\n"
-
-# M-p: tw summary
-# "p": "\C-k \C-u~/scripts/cline_scripts/tw_summary\n"
-
-# C-t: Go last
-# "": "\C-k \C-ub\n"
-
-# C-x c cheat sheet
-# "c": "\C-k \C-ubat /home/dotfiles/bash/cheat-sheet.sh\n"
-
-# C-x C-x tasks
-"": "\C-k \C-uclear && task\n"
+"u": "\C-k \C-uclear && task\n"
 
 # # Binds C-q to quit
 # "": "\C-k \C-uexit\n"

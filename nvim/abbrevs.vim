@@ -24,7 +24,7 @@ cabbrev wrap! set wrap! linebreak! nolist!
 cabbrev ic! set ignorecase! <bar> set ignorecase?
 
 cabbrev nostatus call StatusOff()
-cabbrev status call StatusWordCount()
+cabbrev status! call StatusWordCount()
 cabbrev lightstatus silent call StatusLight()
 
 cabbrev blank g/^\_$\n\_^$/d

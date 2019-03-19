@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+parameters="S*"
+task add "$parameters" &&
+clear &&
+task    

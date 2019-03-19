@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+rm -rf ./startup.log startup_sorted.log &&
+nvim --headless --startuptime startup.log -c ":wqa!" &&
+cat startup.log | sort -rk 2 > startup_sorted.log &&
+nvim -c ":bufdo execute 'normal! G'" startup.log startup_sorted.log -c ":buffer 1" -c ":echo """

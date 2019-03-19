@@ -42,10 +42,10 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
                         ~/.config/ranger/rc.conf'
 
 alias t='task'
-alias ta='task add'
-alias td='task done'
-alias tm='task modify'
-alias ttd='task delete'
+# alias ta='task add'
+# alias td='task done'
+# alias tm='task modify'
+# alias ttd='task delete'
 
 alias nnn='emacs -nw'
 
@@ -60,6 +60,11 @@ alias push='clear && git push && ls --color'
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
 # Change Java:
 # sudo update-alternatives --config java
+alias time='/usr/bin/time'
+alias v='nvi'
+alias alternatives_editor='sudo update-alternatives --config editor'
+alias alternatives='sudo update-alternatives --config'
+alias bb='bat'
 alias free='clear && free -h'
 alias p='clear && python3'
 alias gig='clear && nvim .gitignore'

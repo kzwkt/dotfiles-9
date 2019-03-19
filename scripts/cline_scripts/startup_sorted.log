@@ -1,0 +1,79 @@
+ clock   self+sourced   self:  sourced script
+times in msec
+ clock   elapsed:              other lines
+077.133  066.581  001.666: sourcing /home/dave/.config/nvim/init.vim
+057.939  047.151  019.082: sourcing /home/dave/.config/nvim/plugins.vim
+056.082  017.138  017.138: sourcing /usr/local/share/nvim/runtime/filetype.vim
+076.543  015.538  014.697: sourcing /home/dave/.config/nvim/colors/badwolf.vim
+020.849  009.839  009.839: sourcing /home/dave/.config/nvim/autoload/plug.vim
+009.763  004.139: init highlight
+091.869  002.441  002.177: sourcing /home/dave/.config/nvim/plugins/plugged/tabular/after/plugin/TabularMaps.vim
+089.229  002.326: loading plugins
+003.639  002.119: inits 1
+001.520  001.474: locale set
+060.290  001.465  000.321: sourcing /usr/local/share/nvim/runtime/syntax/syntax.vim
+093.433  001.432: reading ShaDa
+095.046  001.288: BufEnter autocommands
+004.817  001.119: parsing arguments
+078.339  001.033  001.033: sourcing /home/dave/.config/nvim/plugins/plugged/vim-sneak/plugin/sneak.vim
+084.495  000.957  000.957: sourcing /home/dave/.config/nvim/plugins/plugged/vim-buftabline/plugin/buftabline.vim
+057.730  000.953  000.244: sourcing /usr/local/share/nvim/runtime/syntax/syntax.vim
+081.537  000.929  000.929: sourcing /home/dave/.config/nvim/plugins/plugged/CamelCaseMotion/plugin/camelcasemotion.vim
+082.824  000.874  000.874: sourcing /home/dave/.config/nvim/plugins/plugged/vim-eunuch/plugin/eunuch.vim
+077.137  000.794: sourcing vimrc file(s)
+060.224  000.768  000.422: sourcing /usr/local/share/nvim/runtime/syntax/synload.vim
+080.106  000.740  000.740: sourcing /home/dave/.config/nvim/plugins/plugged/auto-pairs/plugin/auto-pairs.vim
+057.684  000.708  000.356: sourcing /usr/local/share/nvim/runtime/syntax/synload.vim
+005.427  000.610: expanding arguments
+087.482  000.565  000.565: sourcing /usr/local/share/nvim/runtime/plugin/matchit.vim
+088.263  000.550  000.550: sourcing /usr/local/share/nvim/runtime/plugin/netrwPlugin.vim
+085.449  000.520  000.520: sourcing /home/dave/.config/nvim/plugins/plugged/vim-surround/plugin/surround.vim
+058.471  000.502  000.502: sourcing /home/dave/.config/nvim/mappings.vim
+062.625  000.500  000.500: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+059.288  000.375  000.375: sourcing /usr/local/share/nvim/runtime/syntax/nosyntax.vim
+079.044  000.356  000.356: sourcing /home/dave/.config/nvim/plugins/plugged/vim-vertigo/plugin/vertigo.vim
+057.503  000.352  000.352: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+059.976  000.346  000.346: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+063.816  000.341  000.341: sourcing /usr/local/share/nvim/runtime/syntax/syncolor.vim
+093.758  000.310: opening buffers
+084.867  000.290  000.290: sourcing /home/dave/.config/nvim/plugins/plugged/tabular/plugin/Tabular.vim
+083.199  000.267  000.267: sourcing /home/dave/.config/nvim/plugins/plugged/vim-rsi/plugin/rsi.vim
+089.880  000.264  000.264: sourcing /home/dave/.config/nvim/plugins/plugged/tabular/autoload/tabular.vim
+086.303  000.251  000.251: sourcing /home/dave/.config/nvim/plugins/plugged/incsearch.vim/plugin/incsearch.vim
+085.727  000.213  000.213: sourcing /home/dave/.config/nvim/plugins/plugged/VimCompletesMe/plugin/VimCompletesMe.vim
+005.624  000.197: inits 2
+078.608  000.197  000.197: sourcing /home/dave/.config/nvim/plugins/plugged/targets.vim/plugin/targets.vim
+086.744  000.194  000.194: sourcing /usr/local/share/nvim/runtime/plugin/gzip.vim
+087.695  000.193  000.193: sourcing /usr/local/share/nvim/runtime/plugin/matchparen.vim
+089.222  000.190  000.190: sourcing /usr/local/share/nvim/runtime/plugin/zipPlugin.vim
+083.469  000.187  000.187: sourcing /home/dave/.config/nvim/plugins/plugged/vim-husk/plugin/husk.vim
+085.990  000.186  000.186: sourcing /home/dave/.config/nvim/plugins/plugged/vim-commentary/plugin/commentary.vim
+091.991  000.185: loading after plugins
+088.849  000.182  000.182: sourcing /usr/local/share/nvim/runtime/plugin/tarPlugin.vim
+080.446  000.172  000.172: sourcing /home/dave/.config/nvim/plugins/plugged/vim-titlecase/plugin/titlecase.vim
+079.297  000.170  000.170: sourcing /home/dave/.config/nvim/plugins/plugged/vim-lastplace/plugin/vim-lastplace.vim
+088.452  000.166  000.166: sourcing /usr/local/share/nvim/runtime/plugin/rplugin.vim
+058.660  000.165  000.165: sourcing /home/dave/.config/nvim/abbrevs.vim
+088.598  000.129  000.129: sourcing /usr/local/share/nvim/runtime/plugin/shada.vim
+088.972  000.100  000.100: sourcing /usr/local/share/nvim/runtime/plugin/tohtml.vim
+089.320  000.091: loading packages
+086.903  000.086  000.086: sourcing /usr/local/share/nvim/runtime/plugin/man.vim
+056.395  000.077  000.077: sourcing /usr/local/share/nvim/runtime/ftplugin.vim
+056.670  000.063  000.063: sourcing /usr/local/share/nvim/runtime/indent.vim
+003.698  000.059: window checked
+000.046  000.046: --- NVIM STARTING ---
+091.986  000.044  000.044: sourcing /home/dave/.config/nvim/after/plugin/overrides.vim
+088.650  000.032  000.032: sourcing /usr/local/share/nvim/runtime/plugin/spellfile.vim
+060.903  000.032  000.032: sourcing /usr/local/share/nvim/runtime/ftplugin.vim
+060.543  000.030  000.030: sourcing /usr/local/share/nvim/runtime/filetype.vim
+089.016  000.027  000.027: sourcing /usr/local/share/nvim/runtime/plugin/tutor.vim
+093.448  000.015: clearing screen
+076.683  000.013  000.013: sourcing /usr/local/share/nvim/runtime/filetype.vim
+086.771  000.012  000.012: sourcing /usr/local/share/nvim/runtime/plugin/health.vim
+092.001  000.010: inits 3
+076.820  000.010  000.010: sourcing /usr/local/share/nvim/runtime/ftplugin.vim
+076.945  000.009  000.009: sourcing /usr/local/share/nvim/runtime/indent.vim
+095.050  000.003: editing files in windows
+
+
+
