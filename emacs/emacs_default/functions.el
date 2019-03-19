@@ -1757,43 +1757,6 @@ Repeated invocations toggle between the two most recently open buffers."
   (comint-send-input))
 
 
-
-(defun execute-python-program ()
-  (interactive)
-  (my/window-to-register-91)
-  (my/quiet-save-buffer)
-  (defvar foo)
-  (setq foo (concat "python3 " (buffer-file-name)))
-  (other-window 1)
-  (switch-to-buffer-other-window "*Async Shell Command*")
-  (shell-command foo))
-
-(defun my/execute-python-program-shell-simple  ()
-  (interactive)
-  (my/window-to-register-91)
-  (my/quiet-save-buffer)
-  (defvar foo)
-  (setq foo (concat "python3 " (prelude-copy-file-name-to-clipboard)))
-  (shell-command foo))
-
-(defun my/execute-python-program-shell ()
-  (interactive)
-  (progn
-    (my/quiet-save-buffer)
-    (prelude-copy-file-name-to-clipboard)
-    (shell)
-    (sit-for 0.3)
-    (insert "source ~/scripts/cline_scripts/smallprompt.sh")
-    (comint-send-input)
-    (insert "python3 ")
-    (yank)
-    (comint-send-input)
-    (evil-insert-state)
-    (sit-for 0.3)
-    (comint-clear-buffer)
-    (company-mode -1)))
-
-
 (defun ipython ()
   (interactive)
   (term "/home/dotfiles/scripts/cline_scripts/ipython-no-banner"))

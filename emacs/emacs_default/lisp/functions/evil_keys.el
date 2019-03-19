@@ -48,6 +48,7 @@
   :keymaps 'override
   ;; "u" 'undo-only
   "!" 'delete-frame
+  "Q" 'save-buffers-kill-terminal
   "z=" 'endless/ispell-word-then-abbrev
   "C-S-j" 'my/move-line-down
   "C-S-k" 'my/move-line-up

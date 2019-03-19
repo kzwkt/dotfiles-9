@@ -1,0 +1,3 @@
+#!/bin/bash
+
+emacsclient --socket-name=term-emacs -nw --alternate-editor="" $*

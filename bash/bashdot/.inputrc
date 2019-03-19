@@ -50,7 +50,12 @@ set completion-ignore-case on
 # "": "\C-k \C-ub\n"
 
 # C-x c cheat sheet
-"c": "\C-k \C-ubat /home/dotfiles/bash/cheat-sheet.sh\n"
+# "c": "\C-k \C-ubat /home/dotfiles/bash/cheat-sheet.sh\n"
 
-# Binds C-q to quit
-"": "\C-k \C-uexit\n"
+# C-x C-x tasks
+"": "\C-k \C-uclear && task\n"
+
+# # Binds C-q to quit
+# "": "\C-k \C-uexit\n"
+
+

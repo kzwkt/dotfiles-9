@@ -96,7 +96,6 @@ source ~/.bash_aliases
 source ~/.git_aliases
 source ~/.env_variables.sh
 source ~/.bash_completion.sh
-source ~/.config/ranger/bash_automatic_cd.sh
 
 #### DEFAULT EDITOR ####
 
@@ -123,12 +122,6 @@ shopt -s checkwinsize
 # default prompt
 # PS1="\[\e[38;5;241m[\]\[\e[38;5;88m\A\]\[\e[38;5;241m]\]\[\e[38;5;241m[\]\[\e[38;5;88m\u\]\[\e[38;5;241m]\]\n\[\e[38;5;241m[\e[38;5;88m\w\e[38;5;241m]\e[38;5;241m\]\n\$ \[\e[0m\]"
 PS1="\[\e[38;241m[\]\[\e[38;88m\A\]\[\e[38;241m]\]\[\e[38;241m[\]\[\e[38;88m\u\]\[\e[38;241m]\]\n\[\e[38;241m[\e[38;88m\w\e[38;241m]\e[38;241m\]\n\$ \[\e[0m\]"
-
-# ranger prompt
-# PS2="\e[38;5;196m[\w]$ \[\e[0m\]"
-# if [ -n "$RANGER_LEVEL" ]; then export PS1="[RANGER]$PS2"; fi
-# from https://github.com/ranger/ranger/issues/1374
-if [ -n "$RANGER_LEVEL" ]; then export PS1="[R]$PS1"; fi
 
 # completion
 if [ -f /etc/bash_completion ]; then
@@ -214,10 +207,3 @@ if [[ ( -z "$INSIDE_EMACS" || "$EMACS_BASH_COMPLETE" = "t" ) &&\
      -f /etc/bash_completion ]]; then
   . /etc/bash_completion
 fi
-
-# Pyenv
-# See  https://github.com/pyenv/pyenv-installer
-
-export PATH="/home/dave/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"

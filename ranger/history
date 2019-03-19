@@ -1,5 +1,3 @@
-md info
-search projectile
 md projectile
 open_with
 rename keyfreq_upper.el
@@ -98,3 +96,5 @@ rename .timewarrior.cfg
 md Others
 md Agenda
 rename Prog
+shell !
+shell 

@@ -143,13 +143,4 @@
      key="F"
      modifiers="Ctrl"
      action="SelectionUnGroup" />
-  <bind
-     key="o"
-     modifiers="Ctrl,Alt"
-     action="AlignVerticalHorizontalCenter"
-     display="true" />
-  <bind
-     key="O"
-     modifiers="Ctrl,Alt"
-     action="AlignVerticalHorizontalCenter" />
 </keys>

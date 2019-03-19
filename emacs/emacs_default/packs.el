@@ -36,6 +36,15 @@
 ;; (load-file "~/.emacs.d/etc/custom.el")
 
 
+
+(use-package general
+  :ensure t
+  :if window-system
+  :config
+  (general-define-key
+   "M-[" 'bs-cycle-next
+   "M-]" 'bs-cycle-previous))
+
 (use-package general
   :ensure t
   :config
@@ -48,8 +57,14 @@
     "M-u"
     "M-h"
     "M-o"
+    "s-i"
     "S-SPC"
     "C-o")
+
+  (general-unbind 'override
+    :with 'ignore
+    "s-i"
+    "s-u")
 
   (general-unbind 'lisp-interaction-mode-map
     :with 'evil-ex-nohighlight
@@ -350,25 +365,8 @@
   :config
   (evil-mode 1)
   (load-file "~/.emacs.d/lisp/functions/evil_keys.el")
-
   (setq evil-insert-state-message nil)
-  (setq evil-respect-visual-line-mode nil)
-
-  (add-to-list 'evil-normal-state-modes 'lisp-interaction-mode)
-  (add-to-list 'evil-insert-state-modes 'org-journal-mode)
-  (add-to-list 'evil-emacs-state-modes 'org-brain-visualize-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
-  ;; (add-to-list 'evil-emacs-state-modes 'info-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
-
-;; (use-package undo-tree
-;; :after evil
-;; :defer t
-;; :ensure t
-;; :config
-;; (undo-tree-mode -1)
-;; (global-undo-tree-mode -1))
+  (setq evil-respect-visual-line-mode nil))
 
 (use-package evil-org
   :ensure t
@@ -1009,17 +1007,6 @@
   :defer t
   :ensure t)
 
-;; (use-package disable-mouse
-;;   :ensure t
-;;   :config
-;;   (setq disable-mouse-mode-global-lighter nil)
-;;   (mapc #'disable-mouse-in-keymap
-;; 	(list evil-motion-state-map
-;; 	      evil-normal-state-map
-;; 	      evil-visual-state-map
-;; 	      evil-insert-state-map))
-;;   (global-disable-mouse-mode +1))
-
 (use-package wordnut
   :defer t
   :ensure t)
@@ -1271,17 +1258,23 @@
     :with 'hs-show-all
     [remap outline-show-all]))
 
-(use-package filesets
-  :init
-  (load-file "~/.emacs.d/lisp/functions/filesets.el" )
+;; (use-package filesets
+;;   :init
+;;   (load-file "~/.emacs.d/lisp/functions/filesets.el" )
+;;   :ensure nil
+;;   :config
+;;   (filesets-init))
+
+(use-package select
+  :if (not window-system)
   :ensure nil
   :config
-  (filesets-init))
+  (setq x-select-enable-primary t))
 
 (use-package ibuffer
   :ensure nil
   :init
-  (add-hook 'ibuffer-hook 'my/truncate-on))
+  (remove-hook 'ibuffer-hook 'my/truncate-on))
 
 (use-package info
   :ensure nil
@@ -1563,7 +1556,6 @@
     (wc-mode 1)
     (pabbrev-mode 1)
     (my/ispell-dict-options)
-    (setq truncate-lines nil)
     (message "prose on"))
 
   (defun my/ispell-dict-options ()
@@ -1625,7 +1617,6 @@
     (tab-jump-out-mode 1)
     (electric-pair-local-mode 1))
 
-  (add-hook 'term-load-hook 'evil-insert-state)
   (add-hook 'term-mode-hook 'my/term-mode-hooks)
   (setq comint-terminfo-terminal "ansi")
   :defer t
@@ -1876,11 +1867,11 @@
   :ensure nil
   :config
 
-  (setq word-wrap t)
-  (setq kill-whole-line t)
-  (setq truncate-lines nil)
-  (setq-default word-wrap t)
-  (setq-default truncate-lines nil)
+  ;; (setq word-wrap t)
+  ;; (setq kill-whole-line t)
+  ;; (setq truncate-lines nil)
+  ;; (setq-default word-wrap t)
+  ;; (setq-default truncate-lines nil)
   (setq save-interprogram-paste-before-kill nil)
   (setq backward-delete-char-untabify-method 'hungry)
 
@@ -2225,12 +2216,14 @@
   (add-hook 'python-mode-hook #'evil-swap-keys-swap-colon-semicolon)
   ;; (remove-hook 'python-mode-hook #'evil-swap-keys-swap-number-row)
   (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
+  :config
 
   (defun cool-moves/open-line-below-python (arg)
     (interactive "p")
     (end-of-line)
     (open-line arg)
-    (forward-line 1) (evil-insert-state))
+    (forward-line 1)
+    (evil-insert-state))
 
   (defun my/python-mode-hooks ()
     (interactive)
@@ -2251,7 +2244,44 @@
     (electric-operator-mode 1)
     (highlight-numbers-mode 1))
 
-  :config
+  (defun execute-python-program ()
+    (interactive)
+    (my/window-to-register-91)
+    (my/quiet-save-buffer)
+    (defvar foo)
+    (setq foo (concat "python3 " (buffer-file-name)))
+    (other-window 1)
+    (switch-to-buffer-other-window "*Async Shell Command*")
+    (shell-command foo))
+
+  (defun my/ex-python-run ()
+    (interactive)
+    (evil-ex "w !python3"))
+
+  (defun my/execute-python-program-shell-simple  ()
+    (interactive)
+    (my/window-to-register-91)
+    (my/quiet-save-buffer)
+    (defvar foo)
+    (setq foo (concat "python3 " (prelude-copy-file-name-to-clipboard)))
+    (shell-command foo))
+
+  (defun my/execute-python-program-shell ()
+    (interactive)
+    (progn
+      (my/quiet-save-buffer)
+      (prelude-copy-file-name-to-clipboard)
+      (shell)
+      (sit-for 0.3)
+      (insert "source ~/scripts/cline_scripts/smallprompt.sh")
+      (comint-send-input)
+      (insert "python3 ")
+      (yank)
+      (comint-send-input)
+      (evil-insert-state)
+      (sit-for 0.3)
+      (comint-clear-buffer)
+      (company-mode -1)))
 
   (defun my/python-save-buffer () (interactive)
 	 (evil-ex-nohighlight)
@@ -2342,6 +2372,17 @@
     "<C-return>" 'python-open-two-line
     "<backspace>" 'hydra-prog-mode/body))
 
+
+(use-package projectile
+  :if window-system
+  :defer t
+  :ensure t
+  :config
+  (general-define-key
+  :keymaps 'projectile-mode-map
+  "M-[" 'projectile-next-project-buffer
+  "M-]" 'projectile-previous-project-buffer))
+
 (use-package projectile
   :defer t
   :ensure t
@@ -2362,9 +2403,7 @@
   (general-define-key
    :keymaps 'projectile-mode-map
    "C-c 0" 'my/projectile-show-commands
-   "M-d" 'counsel-projectile-switch-to-buffer
-   "M-[" 'projectile-next-project-buffer
-   "M-]" 'projectile-previous-project-buffer)
+   "M-d" 'counsel-projectile-switch-to-buffer)
 
   (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignore_buffers.el")
 
@@ -2390,7 +2429,7 @@
   )
 
 (use-package counsel-projectile
-  :unless window-system
+  :if window-system
   :defer t
   :ensure t)
 
@@ -2420,7 +2459,7 @@
   (smart-hungry-delete-add-default-hooks))
 
 (use-package web-mode
-  :unless window-system
+  :if window-system
   :defer t
   :ensure t
   :init
@@ -2437,7 +2476,7 @@
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
 
 (use-package emmet-mode
-:unless window-system
+:if window-system
 :after web-mode
 :ensure t)
 
@@ -2709,6 +2748,7 @@
 
 
 (use-package pdf-tools
+  :if window-system
   :ensure t
   :init
 
@@ -2721,6 +2761,10 @@
   (defun pdf-occur-goto-quit ()
     (interactive)
     (pdf-occur-goto-occurrence)
+    (quit-windows-on "*PDF-Occur*"))
+
+  (defun my/pdf-delete-occur-window ()
+    (interactive)
     (quit-windows-on "*PDF-Occur*"))
 
   (defun my/pdf-view-settings ()

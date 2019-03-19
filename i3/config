@@ -21,7 +21,7 @@ bar {
 
 
 exec google-chrome
-exec "~/scripts/emacs_scripts/live"
+exec --no-startup-id "~/scripts/emacs_scripts/emacs-daemons"
 exec --no-startup-id ~/scripts/i3_scripts/fehlaunch
 exec --no-startup-id "feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper/Abstract/allblack.png"
 exec --no-startup-id  "~/scripts/screen/mx-big.sh"
@@ -360,7 +360,7 @@ for_window [class="Pavucontrol"] move to position 375 0
 
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
 bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
-bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others    ; [title="term-up"] scratchpad show; move to position 0 0
+bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 0 0
 bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
 # bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0

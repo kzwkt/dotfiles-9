@@ -46,6 +46,15 @@
 * Main
 ** General
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
+(use-package general
+  :ensure t
+  :if window-system
+  :config
+  (general-define-key
+   "M-[" 'bs-cycle-next
+   "M-]" 'bs-cycle-previous))
+
 (use-package general
   :ensure t
   :config
@@ -58,8 +67,14 @@
     "M-u"
     "M-h"
     "M-o"
+    "s-i"
     "S-SPC"
     "C-o")
+
+  (general-unbind 'override
+    :with 'ignore
+    "s-i"
+    "s-u")
 
   (general-unbind 'lisp-interaction-mode-map
     :with 'evil-ex-nohighlight
@@ -411,27 +426,8 @@ Ver: https://github.com/org2blog/org2blog/wiki
   :config
   (evil-mode 1)
   (load-file "~/.emacs.d/lisp/functions/evil_keys.el")
-
   (setq evil-insert-state-message nil)
-  (setq evil-respect-visual-line-mode nil)
-
-  (add-to-list 'evil-normal-state-modes 'lisp-interaction-mode)
-  (add-to-list 'evil-insert-state-modes 'org-journal-mode)
-  (add-to-list 'evil-emacs-state-modes 'org-brain-visualize-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-library-mode)
-  ;; (add-to-list 'evil-emacs-state-modes 'info-mode)
-  (add-to-list 'evil-emacs-state-modes 'bongo-playlist-mode) (add-to-list 'evil-emacs-state-modes 'bongo-progressive-playback-mode) (add-to-list 'evil-emacs-state-modes 'bongo-sprinkle-mode) (add-to-list 'evil-emacs-state-modes 'bongo-header-line-mode))
-#+END_SRC
-*** Undo-Tree
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-;; (use-package undo-tree
-;; :after evil
-;; :defer t
-;; :ensure t
-;; :config
-;; (undo-tree-mode -1)
-;; (global-undo-tree-mode -1))
+  (setq evil-respect-visual-line-mode nil))
 #+END_SRC
 *** Evil Org
 ***** Evil Org Text Objects
@@ -1185,19 +1181,6 @@ Maybe I need it in the future.
   :defer t
   :ensure t)
 #+END_SRC
-** disable mouse
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-;; (use-package disable-mouse
-;;   :ensure t
-;;   :config
-;;   (setq disable-mouse-mode-global-lighter nil)
-;;   (mapc #'disable-mouse-in-keymap
-;; 	(list evil-motion-state-map
-;; 	      evil-normal-state-map
-;; 	      evil-visual-state-map
-;; 	      evil-insert-state-map))
-;;   (global-disable-mouse-mode +1))
-#+END_SRC
 ** wordnut
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package wordnut
@@ -1494,19 +1477,27 @@ buffer expose commands.
 #+END_SRC
 ** filesets
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package filesets
-  :init
-  (load-file "~/.emacs.d/lisp/functions/filesets.el" )
+;; (use-package filesets
+;;   :init
+;;   (load-file "~/.emacs.d/lisp/functions/filesets.el" )
+;;   :ensure nil
+;;   :config
+;;   (filesets-init))
+#+END_SRC
+** select
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package select
+  :if (not window-system)
   :ensure nil
   :config
-  (filesets-init))
+  (setq x-select-enable-primary t))
 #+END_SRC
 ** ibuffer
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ibuffer
   :ensure nil
   :init
-  (add-hook 'ibuffer-hook 'my/truncate-on))
+  (remove-hook 'ibuffer-hook 'my/truncate-on))
 #+END_SRC
 ** info
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -1810,7 +1801,6 @@ buffer expose commands.
     (wc-mode 1)
     (pabbrev-mode 1)
     (my/ispell-dict-options)
-    (setq truncate-lines nil)
     (message "prose on"))
 
   (defun my/ispell-dict-options ()
@@ -1878,7 +1868,6 @@ buffer expose commands.
     (tab-jump-out-mode 1)
     (electric-pair-local-mode 1))
 
-  (add-hook 'term-load-hook 'evil-insert-state)
   (add-hook 'term-mode-hook 'my/term-mode-hooks)
   (setq comint-terminfo-terminal "ansi")
   :defer t
@@ -2160,11 +2149,11 @@ buffer expose commands.
   :ensure nil
   :config
 
-  (setq word-wrap t)
-  (setq kill-whole-line t)
-  (setq truncate-lines nil)
-  (setq-default word-wrap t)
-  (setq-default truncate-lines nil)
+  ;; (setq word-wrap t)
+  ;; (setq kill-whole-line t)
+  ;; (setq truncate-lines nil)
+  ;; (setq-default word-wrap t)
+  ;; (setq-default truncate-lines nil)
   (setq save-interprogram-paste-before-kill nil)
   (setq backward-delete-char-untabify-method 'hungry)
 
@@ -2575,12 +2564,14 @@ buffer expose commands.
   (add-hook 'python-mode-hook #'evil-swap-keys-swap-colon-semicolon)
   ;; (remove-hook 'python-mode-hook #'evil-swap-keys-swap-number-row)
   (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
+  :config
 
   (defun cool-moves/open-line-below-python (arg)
     (interactive "p")
     (end-of-line)
     (open-line arg)
-    (forward-line 1) (evil-insert-state))
+    (forward-line 1)
+    (evil-insert-state))
 
   (defun my/python-mode-hooks ()
     (interactive)
@@ -2601,7 +2592,44 @@ buffer expose commands.
     (electric-operator-mode 1)
     (highlight-numbers-mode 1))
 
-  :config
+  (defun execute-python-program ()
+    (interactive)
+    (my/window-to-register-91)
+    (my/quiet-save-buffer)
+    (defvar foo)
+    (setq foo (concat "python3 " (buffer-file-name)))
+    (other-window 1)
+    (switch-to-buffer-other-window "*Async Shell Command*")
+    (shell-command foo))
+
+  (defun my/ex-python-run ()
+    (interactive)
+    (evil-ex "w !python3"))
+
+  (defun my/execute-python-program-shell-simple  ()
+    (interactive)
+    (my/window-to-register-91)
+    (my/quiet-save-buffer)
+    (defvar foo)
+    (setq foo (concat "python3 " (prelude-copy-file-name-to-clipboard)))
+    (shell-command foo))
+
+  (defun my/execute-python-program-shell ()
+    (interactive)
+    (progn
+      (my/quiet-save-buffer)
+      (prelude-copy-file-name-to-clipboard)
+      (shell)
+      (sit-for 0.3)
+      (insert "source ~/scripts/cline_scripts/smallprompt.sh")
+      (comint-send-input)
+      (insert "python3 ")
+      (yank)
+      (comint-send-input)
+      (evil-insert-state)
+      (sit-for 0.3)
+      (comint-clear-buffer)
+      (company-mode -1)))
 
   (defun my/python-save-buffer () (interactive)
 	 (evil-ex-nohighlight)
@@ -2695,6 +2723,17 @@ buffer expose commands.
 ** projectile
 *** projectile main
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+
+(use-package projectile
+  :if window-system
+  :defer t
+  :ensure t
+  :config
+  (general-define-key
+  :keymaps 'projectile-mode-map
+  "M-[" 'projectile-next-project-buffer
+  "M-]" 'projectile-previous-project-buffer))
+
 (use-package projectile
   :defer t
   :ensure t
@@ -2715,9 +2754,7 @@ buffer expose commands.
   (general-define-key
    :keymaps 'projectile-mode-map
    "C-c 0" 'my/projectile-show-commands
-   "M-d" 'counsel-projectile-switch-to-buffer
-   "M-[" 'projectile-next-project-buffer
-   "M-]" 'projectile-previous-project-buffer)
+   "M-d" 'counsel-projectile-switch-to-buffer)
 
   (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignore_buffers.el")
 
@@ -2745,7 +2782,7 @@ buffer expose commands.
 *** counsel projectile
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package counsel-projectile
-  :unless window-system
+  :if window-system
   :defer t
   :ensure t)
 #+END_SRC
@@ -2782,7 +2819,7 @@ buffer expose commands.
 *** web mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package web-mode
-  :unless window-system
+  :if window-system
   :defer t
   :ensure t
   :init
@@ -2801,7 +2838,7 @@ buffer expose commands.
 *** emmet
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package emmet-mode
-:unless window-system
+:if window-system
 :after web-mode
 :ensure t)
 #+END_SRC
@@ -3116,6 +3153,7 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 
 (use-package pdf-tools
+  :if window-system
   :ensure t
   :init
 
@@ -3128,6 +3166,10 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   (defun pdf-occur-goto-quit ()
     (interactive)
     (pdf-occur-goto-occurrence)
+    (quit-windows-on "*PDF-Occur*"))
+
+  (defun my/pdf-delete-occur-window ()
+    (interactive)
     (quit-windows-on "*PDF-Occur*"))
 
   (defun my/pdf-view-settings ()

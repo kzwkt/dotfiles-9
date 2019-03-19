@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+emacs --daemon=gui-emacs
+emacs --daemon=term-emacs

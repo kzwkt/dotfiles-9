@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+id="$1"
+priority="$2"
+task "$id" modify priority:"$2"

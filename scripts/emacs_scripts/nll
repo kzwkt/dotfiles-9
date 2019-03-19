@@ -1,0 +1,7 @@
+#!/bin/bash
+
+clear &&
+pkill -fi "emacs --daemon=term-emacs" &
+clear &&
+sleep 1 &&
+emacsclient --socket-name=term-emacs -nw --alternate-editor="" $*

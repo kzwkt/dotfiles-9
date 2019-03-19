@@ -132,10 +132,10 @@
          id="rect"
          style="fill:blue;"
          usecurrent="0"
-         width="3416"
-         height="1128"
+         width="525.279"
+         height="129.3"
          rx="0"
-         ry="0" />
+         ry="46.467" />
       <eventcontext
          id="3dbox"
          style="stroke:none;stroke-linejoin:round;"
@@ -168,7 +168,7 @@
       <eventcontext
          id="arc"
          style="fill:red;"
-         end="305.287"
+         end="0"
          start="0"
          usecurrent="1" />
       <eventcontext
@@ -578,7 +578,7 @@
        page="0"
        x="0"
        y="0"
-       w="388"
+       w="352"
        h="475"
        visible="1"
        state="2"
@@ -611,11 +611,11 @@
        panel_border="0"
        x="0"
        y="0"
-       w="341"
-       h="522"
-       visible="0"
+       w="352"
+       h="475"
+       visible="1"
        state="2"
-       placement="1"
+       placement="5"
        align-to="4" />
     <group
        id="xml" />
@@ -647,10 +647,10 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="1132"
-       y="989"
+       x="1329"
+       y="107"
        w="587"
-       h="791"
+       h="943"
        visible="0"
        placement="1" />
     <group
@@ -661,10 +661,10 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="2"
-       y="36"
-       w="956"
-       h="1023"
+       x="0"
+       y="0"
+       w="1920"
+       h="1080"
        page="26" />
     <group
        id="gradienteditor" />
@@ -694,7 +694,7 @@
        panel_border="0"
        x="0"
        y="0"
-       w="388"
+       w="352"
        h="475"
        visible="1"
        state="2"
@@ -896,7 +896,7 @@
        value="12" />
     <group
        id="cursortolerance"
-       value="8.0" />
+       value="8" />
     <group
        id="dragtolerance"
        value="4.0" />
@@ -1070,7 +1070,6 @@
        masks="65535" />
     <group
        id="svgoutput"
-       disable_optimizations="0"
        usenamedcolors="0"
        numericprecision="8"
        minimumexponent="-8"
@@ -1087,7 +1086,8 @@
        check_on_reading="0"
        check_on_editing="0"
        check_on_writing="0"
-       sort_attributes="0" />
+       sort_attributes="0"
+       disable_optimizations="0" />
     <group
        id="externalresources">
       <group
@@ -1140,7 +1140,7 @@
        id="rendering" />
     <group
        id="kbshortcuts"
-       value="bucket" />
+       value="align" />
   </group>
   <group
      id="extensions"
@@ -1168,15 +1168,31 @@
      org.inkscape.effect.filter.ColorDropShadow.type="outer"
      org.inkscape.effect.filter.ColorDropShadow.__live_effect__="0"
      org.inkscape.effect.filter.ColorDropShadow.tab="coltab"
-     org.inkscape.effect.filter.ColorDropShadow.objcolor="0" />
+     org.inkscape.effect.filter.ColorDropShadow.objcolor="0"
+     org.inkscape.render.empty_video.size="Custom"
+     org.inkscape.render.empty_video.width="1920"
+     org.inkscape.render.empty_video.height="1080"
+     math.univ-lille1.barraud.pathScatter.space="0"
+     math.univ-lille1.barraud.pathScatter.noffset="0"
+     math.univ-lille1.barraud.pathScatter.toffset="0"
+     math.univ-lille1.barraud.pathScatter.copymode="move"
+     math.univ-lille1.barraud.pathScatter.pickmode="seq"
+     math.univ-lille1.barraud.pathScatter.__live_effect__="0"
+     math.univ-lille1.barraud.pathScatter.follow="0"
+     math.univ-lille1.barraud.pathScatter.stretch="1"
+     math.univ-lille1.barraud.pathScatter.vertical="0"
+     math.univ-lille1.barraud.pathScatter.duplicate="1"
+     math.univ-lille1.barraud.pathScatter.tab="Options"
+     org.inkscape.effect.voronoi.diagram-type="Voronoi"
+     org.inkscape.effect.voronoi.clip-box="Page" />
   <group
      id="desktop"
-     style="fill:#0022ff;opacity:0.776;paint-order:normal;fill-opacity:1;stroke-width:9.147;stroke-miterlimit:4;stroke-dasharray:none;stroke:#0022ff;stroke-opacity:1;stroke-dashoffset:0;font-size:80px;-inkscape-font-specification:'Josefin Sans Bold';font-family:'Josefin Sans';font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;line-height:1.25">
+     style="fill:none;opacity:0.776;paint-order:normal;fill-opacity:0.82535887;stroke-width:1.75;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:0.83568072;stroke-dashoffset:0;font-size:80px;-inkscape-font-specification:'Josefin Sans Bold';font-family:'Josefin Sans';font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;line-height:1.25">
     <group
-       width="1362"
-       height="712"
+       width="1916"
+       height="1011"
        x="0"
-       y="54"
+       y="44"
        fullscreen="0"
        id="geometry"
        maximized="0" />

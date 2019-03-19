@@ -1,5 +1,7 @@
+IOIOIOIOIO
 #!/bin/bash
 
 echo "killing emacs"
 pkill -fi "^emacs --daemon=gui-emacs$" &
+
 ~/scripts/emacs_scripts/live

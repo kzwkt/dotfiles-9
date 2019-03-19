@@ -1,6 +1,0 @@
-#!/bin/bash
-clear
-$1
-emacsclient --socket-name=gui-debug --no-wait --create-frame --alternate-editor="" $1 --eval "(show-server)" &>/dev/null
-i3-msg [class='scratchterm'] move scratchpad &>/dev/null
-i3-msg [class='sranger'] move scratchpad &>/dev/null

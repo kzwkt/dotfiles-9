@@ -9,16 +9,14 @@
 * General
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keys.el
 (general-define-key
- "C-c E m" 'evil-record-macro
- "C-c E e" 'evil-execute-macro
- "C-c DEL" 'my/bash-shebang
- "M-[" 'bs-cycle-next
- "M-]" 'bs-cycle-previous
- "M-9" 'delete-other-windows
- "<XF86Calculator>" 'quick-calc
- "C-0" 'delete-window
  "<f8>" 'man
  "M-0" 'quit-window
+ "C-0" 'delete-window
+ "C-c DEL" 'my/bash-shebang
+ "M-9" 'delete-other-windows
+ "C-c E m" 'evil-record-macro
+ "C-c E e" 'evil-execute-macro
+ "<XF86Calculator>" 'quick-calc
  "M-e" 'evil-forward-sentence-begin
  "M-a" 'evil-backward-sentence-begin)
  #+END_SRC

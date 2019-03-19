@@ -331,12 +331,10 @@ _complete_alias () {
 }
 
 # Set alias completions.
-#
+
 # Uncomment and edit these lines to add your own alias completions.
-#
-#complete -F _complete_alias myalias1
-#complete -F _complete_alias myalias2
-#complete -F _complete_alias myalias3
-complete -F _complete_alias fl
-complete -F _complete_alias fr
-complete -F _complete_alias ap
+
+complete -F _complete_alias t
+complete -F _complete_alias ta
+complete -F _complete_alias td
+complete -F _complete_alias ttd

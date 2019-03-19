@@ -69,6 +69,7 @@
   "L" 'pdf-history-forward
   "C-j" 'counsel-M-x
   "S" 'pdf-occur
+  "ss" 'my/pdf-delete-occur-window
   ;; "q" 'last-buffer
   "gf" 'find-pdf-keys
   "TAB" 'pdf-outline
