@@ -41,7 +41,8 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
 			 $nv/abbrevs.vim                          \
                         ~/.config/ranger/rc.conf'
 
-alias t='task'
+alias tc='clear && task completed'
+# alias t='task'
 # alias ta='task add'
 # alias td='task done'
 # alias tm='task modify'

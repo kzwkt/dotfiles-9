@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 parameters="$*"
-task add "$parameters" &&
+task "$parameters"
 clear &&
 task    

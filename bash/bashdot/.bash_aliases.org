@@ -49,7 +49,8 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
 #+END_SRC
 * taskwarrior
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.bash_aliases
-alias t='task'
+alias tc='clear && task completed'
+# alias t='task'
 # alias ta='task add'
 # alias td='task done'
 # alias tm='task modify'

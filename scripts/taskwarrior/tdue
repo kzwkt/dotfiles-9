@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+task_id="$1"
+time="${@:2}"
+task "$task_id" modify due:"$time" &&
+clear &&
+task    

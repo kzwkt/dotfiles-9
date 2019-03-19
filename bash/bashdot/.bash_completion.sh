@@ -338,6 +338,7 @@ complete -F _complete_alias t
 complete -F _complete_alias ta
 complete -F _complete_alias td
 complete -F _complete_alias tt
+complete -F _complete_alias tc
 complete -F _complete_alias tm
 complete -F _complete_alias ttd
 complete -F _complete_alias bb

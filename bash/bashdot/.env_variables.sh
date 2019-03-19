@@ -3,7 +3,7 @@
 # From: https://github.com/DaveDavenport/rofi/issues/584#issuecomment-384555551
 # Limit displayed directories in the prompt
 # export CLASSPATH=/home/dave/maps/java/my_classes:.:/home/dave/maps/java/my_jar/my.jar
-export PROMPT_DIRTRIM=3
+export PROMPT_DIRTRIM=2
 export SUDO_ASKPASS="~/bin/askpass-rofi rofi -show run"
 export nvim=~/.config/nvim
 export em=~/.emacs.d
