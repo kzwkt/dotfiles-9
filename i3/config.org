@@ -351,7 +351,8 @@ for_window [class="keepassxc"] move to position 650 0
 for_window [title="term-up"] border none
 for_window [title="term-up"] floating enable sticky enable
 for_window [title="term-up"] move scratchpad
-for_window [title="term-up"] resize set 1920 450; move to position 0 0
+for_window [title="term-up"] resize set 1250 450; move to position 350 0
+bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0
 
 for_window [title="term-right"] border none
 for_window [title="term-right"] floating enable sticky enable
@@ -361,7 +362,8 @@ for_window [title="term-right"] resize set 1000 1080; move to position 0 0
 for_window [title="term-ranger"] border none
 for_window [title="term-ranger"] floating enable sticky enable
 for_window [title="term-ranger"] move scratchpad
-for_window [title="term-ranger"] resize set 1920 450; move to position 0 0
+for_window [title="term-ranger"] resize set 1250 450; move to position 350 0
+bindsym $mod+i exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 350 0
 
 for_window [title="term-music"] border none
 for_window [title="term-music"] floating enable sti
@@ -404,8 +406,6 @@ for_window [class="Pavucontrol"] move to position 375 0
 **** large
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
-bindsym $mod+i      exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 0 0
-bindsym $mod+u      exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 0 0
 bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
 # bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
