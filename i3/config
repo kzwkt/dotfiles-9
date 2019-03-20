@@ -63,7 +63,6 @@ bindsym $mod+Mod1+l focus output Right
 bindsym Mod1+Shift+c focus child;exec notify-send 'parent focus'
 bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
 
-
 # bindsym Mod4+F1 exec ~/scripts/keyboard/init_keys.sh; exec notify-send --expire-time=1 "init keys on"
 # bindsym $mod+Shift+Menu exec ~/scripts/keyboard/reset_keys.sh; exec notify-send "init keys off"
 bindsym Mod4+F2 exec "xdotool key Caps_Lock"; mode default
@@ -135,7 +134,7 @@ mode "$launch" {
     bindsym p exec pavucontrol; mode default
     bindsym t exec thunar; mode default
     bindsym r exec xfce4-taskmanager; mode default
-    bindsym Shift+r exec "python3 ~/org/Studying/Programming/Python/GUI/copy_to_chrome.py"
+    bindsym Shift+r exec "/home/dotfiles/scripts/cline_scripts/repeat"
 
     bindsym Menu mode default; exec "~/scripts/i3_scripts/my_rofy_run"
 

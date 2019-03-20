@@ -1,0 +1,3 @@
+#!/bin/bash
+
+i3-msg [title='term-up'] focus &>/dev/null

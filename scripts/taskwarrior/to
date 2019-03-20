@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+id="$1"
+task "$id" stop &&
+clear &&
+task    

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+while true; do
+    ~/maps/taskwarrior-notifications/task-popup.sh;
+    sleep 600;
+done
