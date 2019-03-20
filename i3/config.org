@@ -151,7 +151,11 @@ bindsym Menu mode "$launch"
 
 mode "$launch" {
 
-    bindsym n exec st; mode default
+    bindsym n exec exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0; "/home/dave/scripts/i3_scripts/tw_focus"; mode default
+
+i3-msg "[title=term-up]" focus
+
+bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0
 
     bindsym a exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none; mode default
     bindsym x exec terminator --borderless; border none; mode default

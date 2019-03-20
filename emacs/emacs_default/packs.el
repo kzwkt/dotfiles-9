@@ -403,6 +403,15 @@
   :config
   (evil-rsi-mode))
 
+(use-package evil-exchange
+  :after evil
+  :ensure t
+  :config
+  (setq evil-exchange-key "cx")
+  (general-nvmap
+    "gx" 'evil-exchange)
+  (evil-exchange-cx-install))
+
 (use-package evil-numbers
   :defer t
   :ensure t

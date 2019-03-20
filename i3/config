@@ -126,7 +126,7 @@ bindsym Menu mode "$launch"
 
 mode "$launch" {
 
-    bindsym n exec st; mode default
+    bindsym n exec exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0; exec "clear && task"; mode default
 
     bindsym a exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none; mode default
     bindsym x exec terminator --borderless; border none; mode default

@@ -2,3 +2,6 @@
 
 i3-msg "[title=term-up]" move scratchpad &>/dev/null
 i3-msg "[title=term-up]" focus &>/dev/null
+clear
+task
+echo -n "task"

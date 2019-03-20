@@ -482,6 +482,17 @@ Ver: https://github.com/org2blog/org2blog/wiki
   :config
   (evil-rsi-mode))
 #+END_SRC
+*** Evil Exchange
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package evil-exchange
+  :after evil
+  :ensure t
+  :config
+  (setq evil-exchange-key "cx")
+  (general-nvmap
+    "gx" 'evil-exchange)
+  (evil-exchange-cx-install))
+#+END_SRC
 *** Evil Numbers
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package evil-numbers
