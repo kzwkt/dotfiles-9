@@ -23,12 +23,13 @@ alias 9='clear && tmux attach -t 9 &>/dev/null || tmux switch-client -t 9 &>/dev
 
 alias pfix='pulseaudio -k && sleep 3 && pulseaudio --start &'
 alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
-  	       	        ~/.bashrc                                 \
+  	       	          ~/.bashrc                                 \
                         ~/.profile                                \
                         ~/.inputrc                                \
                         ~/.bash_profile                           \
                         ~/.env_variables.sh                       \
                         ~/.tmux.conf                              \
+                        ~/.taskrc                                 \
                         $nv/mappings.vim                          \
                         $nv/plugins.vim                           \
                         $nv/init.vim                              \
@@ -36,17 +37,14 @@ alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
                         /home/dotfiles/bash/bashdot/.bash_aliases \
                         ~/.bashrc                                 \
                         ~/.config/i3/config                       \
-                         $nv/mappings.vim                         \
-			 $nv/init.vim                             \
-			 $nv/abbrevs.vim                          \
+                        $nv/mappings.vim                          \
+			  $nv/init.vim                              \
+			  $nv/abbrevs.vim                           \
                         ~/.config/ranger/rc.conf'
 
+alias t='task'
 alias tc='clear && task completed'
-# alias t='task'
 # alias ta='task add'
-# alias td='task done'
-# alias tm='task modify'
-# alias ttd='task delete'
 
 alias nnn='emacs -nw'
 
@@ -141,7 +139,3 @@ alias web_with_parent='wget --mirror --convert-links --adjust-extension --page-r
 alias createusb='echo -n "dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync" | xclip -selection clipboard'
 alias fixusb='echo -n "sudo dd if=/dev/zero of=/dev/sdb bs=2048 count=32" | x && echo "sudo dd if=/dev/zero of=/dev/sdb bs=2048 count=32"'
 alias lp='clear && export PS1="\[\e[38;5;241m[\]\[\e[38;5;88m\A\]\[\e[38;5;241m]\]\[\e[38;5;241m[\]\[\e[38;5;88m\u\]\[\e[38;5;241m]\]\n\[\e[38;5;241m[\e[38;5;88m\w\e[38;5;241m]\e[38;5;241m\]\n\$ \[\e[0m\]"'
-
-alias pp='patch -Np1 -i'
-alias pa='cp -f ./backup/config.* /home/maps/suckless/source/st'
-alias pa='cp -f ./backup/config.* /home/maps/suckless/source/st'

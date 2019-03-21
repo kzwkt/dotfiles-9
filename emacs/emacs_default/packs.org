@@ -1,7 +1,5 @@
 # -*- mode: org; fill-column: 59 -*-
 
-* TODO
-[[https://github.com/alphapapa/outshine/][Outshine]]
 * Init
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (require 'package)
@@ -910,16 +908,9 @@ Maybe I need it in the future.
    "<M-down>" 'windmove-down
    "<M-right>" 'windmove-right))
 #+END_SRC
-** Ivy
-*** Ivy Tips:
-**** Copy all buffer contents:
-- C-x h :: (mark-whole-buffer)
-- M-w   :: (ivy-kill-ring-save)
-- *Or*:
- Press C-c C-o to generate a new buffer with all
- candidates. You can then copy them as you see fit.
-**** TODO [[https://oremacs.com/swiper/#actions][Put "my/erase-kill-ring" in "counsel-yank-pop"]]
-*** Ivy Package
+** Ivy & Counsel
+- Copy Minibuffer Contents :: C-c C-o
+*** Ivy
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ivy
   :init
@@ -1086,8 +1077,7 @@ Maybe I need it in the future.
 
   (winner-mode 1))
 #+END_SRC
-** Hydra
-**** hydra declaration
+** hydra
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package hydra
   :ensure t
@@ -1097,7 +1087,7 @@ Maybe I need it in the future.
   (general-nvmap
     :keymaps 'override
     :prefix "SPC"
-    "f" 'hydra-find-file/body'
+    "f" 'hydra-eval/body
     "0" 'delete-window
     "v" 'hydra-more-commands/body
     "z" 'hydra-window/body
@@ -1140,7 +1130,7 @@ Maybe I need it in the future.
    "<f1>" 'hydra-help/body
    "C-M-h" 'hydra-help/body))
 #+END_SRC
-**** ivy-hydra
+** ivy hydra
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ivy-hydra
 :after hydra
@@ -1960,7 +1950,7 @@ buffer expose commands.
   :defer t
   :ensure nil
   :init
-  (add-to-list 'auto-mode-alist '("\\por\\'" . prog-mode))
+  (add-to-list 'auto-mode-alist '("\\prog\\'" . prog-mode))
   (add-hook 'prog-mode-hook 'my/prog-mode-hooks)
   :config
 
@@ -1974,6 +1964,7 @@ buffer expose commands.
     (flycheck-mode 1)
     (electric-pair-local-mode 1)
     (yas-minor-mode 1)
+    (my/company-idle-one-prefix-one-quiet)
     (highlight-indent-guides-mode 1))
 
   (general-imap
@@ -2158,8 +2149,9 @@ buffer expose commands.
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package simple
   :ensure nil
+  :init
+  (add-to-list 'auto-mode-alist '("\\fund\\'" . fundamental-mode))
   :config
-
   ;; (setq word-wrap t)
   ;; (setq kill-whole-line t)
   ;; (setq truncate-lines nil)
@@ -2594,7 +2586,8 @@ buffer expose commands.
     (hs-minor-mode 1)
     (rainbow-delimiters-mode 1)
     (olivetti-mode 1)
-    (elpy-mode 1))
+    (elpy-mode 1)
+    (my/company-idle-one-prefix-one))
 
   (defun my/inferior-python-mode-hooks ()
     (interactive) (line-numbers)
@@ -3011,8 +3004,8 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
     :keymaps 'company-mode-map
     "M-r" 'company-complete
     "C-ç" 'company-complete
-    "M-/" 'hippie-expand))
-;; (global-company-mode 1))
+    "M-/" 'hippie-expand)
+  (global-company-mode 1))
 #+END_SRC
 *** company shell
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -3164,7 +3157,6 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 
 (use-package pdf-tools
-  :if window-system
   :ensure t
   :init
 

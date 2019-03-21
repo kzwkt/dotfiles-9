@@ -112,6 +112,16 @@
     (widen)
     (counsel-outline)))
 
+(defun my/search-outline ()
+  (interactive)
+  (let ((inhibit-message t))
+    (widen)
+    (counsel-outline)))
+(defun my/goto-ouline-and-narrow ()
+(interactive)
+(my/search-outline)
+(org-narrow-to-subtree))
+
 (defun my/search-pack ()
   (interactive)
   (let ((inhibit-message t))
@@ -319,22 +329,22 @@ rotate entire document."
 (defun find-scratch-org ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/org_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.org")))
 
 (defun find-scratch-text ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/text_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.txt")))
 
 (defun find-scratch-prog ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/prog_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.prog")))
 
 (defun find-scratch-fundamental ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/fundamental_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.fund")))
 
 (defun find-bash-aliases ()
   (interactive)
@@ -1125,6 +1135,12 @@ return t."
   (setq-local company-tooltip-limit 5)
   (setq-local company-minimum-prefix-length 1)
   (message "idle delay: 0.1, minimun prefix length: 1"))
+
+(defun my/company-idle-one-prefix-one-quiet ()
+  (interactive)
+  (setq-local company-idle-delay 0.1)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 1))
 
 (defun my/company-idle-one-prefix-two ()
   (interactive)

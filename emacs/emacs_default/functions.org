@@ -140,6 +140,18 @@
     (widen)
     (counsel-outline)))
 #+END_SRC
+** my search outline
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/search-outline ()
+  (interactive)
+  (let ((inhibit-message t))
+    (widen)
+    (counsel-outline)))
+(defun my/goto-ouline-and-narrow ()
+(interactive)
+(my/search-outline)
+(org-narrow-to-subtree))
+#+END_SRC
 ** my my i3
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/search-pack ()
@@ -354,22 +366,22 @@ rotate entire document."
 (defun find-scratch-org ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/org_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.org")))
 
 (defun find-scratch-text ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/text_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.txt")))
 
 (defun find-scratch-prog ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/prog_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.prog")))
 
 (defun find-scratch-fundamental ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/fundamental_scratch")))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.fund")))
 
 (defun find-bash-aliases ()
   (interactive)
@@ -1264,6 +1276,12 @@ Prevents some operations to send content to the clipboard.
   (setq-local company-tooltip-limit 5)
   (setq-local company-minimum-prefix-length 1)
   (message "idle delay: 0.1, minimun prefix length: 1"))
+
+(defun my/company-idle-one-prefix-one-quiet ()
+  (interactive)
+  (setq-local company-idle-delay 0.1)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 1))
 
 (defun my/company-idle-one-prefix-two ()
   (interactive)

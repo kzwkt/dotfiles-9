@@ -445,6 +445,28 @@
 
 )
 
+(defhydra hydra-eval (:color blue :hint nil :exit nil :foreign-keys nil)
+  "
+  ^
+       ^Eval^
+       ------------
+       _a_: block
+       _b_: region
+       _c_: buffer
+       _d_: line
+       _e_: keys
+       _i_: i3
+
+"
+  ("<escape>" nil)
+
+  ("a" tangle-and-eval-block)
+  ("b" eval-region)
+  ("c" eval-buffer)
+  ("d" eval-line)
+  ("e" my/tangle-reload-keys)
+  ("i" i3-reload))
+
 (defhydra hydra-commands (:color blue :hint nil :exit nil :foreign-keys nil)
   "
   ^
@@ -672,7 +694,7 @@
   ("s" evil-ex-search-forward)
   ("e" swiper)
   ("c" occur)
-  ("o" counsel-org-goto)
+  ("o" my/search-outline)
   ("i" counsel-org-goto-all)
 
   ("p" counsel-list-processes)
@@ -794,7 +816,7 @@
 
   ("f" helpful-callable)
   ("e" describe-package)
-  ("v" helpful-variable)
+  ("v" counsel-describe-variable)
   ("p" helpful-at-point)
   ("m" show-major-mode)
   ("o" describe-mode)
@@ -852,8 +874,6 @@
   ("<escape>" nil)
 
   ("s" my/goto-scratch-buffer)
-  ("ç" my/goto-scratch-buffer)
-  ("C-ç" my/goto-scratch-buffer)
 
   ("o" find-scratch-org)
   ("C-o" find-scratch-org)

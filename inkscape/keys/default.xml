@@ -122,15 +122,6 @@
      modifiers="Ctrl,Alt"
      action="FitCanvasToSelectionOrDrawing" />
   <bind
-     key="v"
-     modifiers="Ctrl,Alt"
-     action="AlignVerticalCenter"
-     display="true" />
-  <bind
-     key="V"
-     modifiers="Ctrl,Alt"
-     action="AlignVerticalCenter" />
-  <bind
      key="F6"
      action="ToolPen"
      display="true" />
@@ -144,12 +135,30 @@
      modifiers="Ctrl"
      action="SelectionUnGroup" />
   <bind
-     key="o"
-     modifiers="Ctrl,Alt"
+     key="a"
+     modifiers="Ctrl,Shift"
+     action="DialogAlignDistribute"
+     display="true" />
+  <bind
+     key="A"
+     modifiers="Ctrl,Shift"
+     action="DialogAlignDistribute" />
+  <bind
+     key="e"
+     modifiers="Ctrl,Shift"
      action="AlignVerticalHorizontalCenter"
      display="true" />
   <bind
-     key="O"
-     modifiers="Ctrl,Alt"
+     key="E"
+     modifiers="Ctrl,Shift"
      action="AlignVerticalHorizontalCenter" />
+  <bind
+     key="v"
+     modifiers="Ctrl,Alt"
+     action="LayerMoveTo"
+     display="true" />
+  <bind
+     key="V"
+     modifiers="Ctrl,Alt"
+     action="LayerMoveTo" />
 </keys>

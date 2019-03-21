@@ -2,5 +2,5 @@
 
 while true; do
     ~/maps/taskwarrior-notifications/task-popup.sh;
-    sleep 600;
+    sleep 900;
 done

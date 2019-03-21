@@ -207,3 +207,9 @@ if [[ ( -z "$INSIDE_EMACS" || "$EMACS_BASH_COMPLETE" = "t" ) &&\
      -f /etc/bash_completion ]]; then
   . /etc/bash_completion
 fi
+
+# Pyenv
+# See  https://github.com/pyenv/pyenv-installer
+export PATH="/home/dave/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

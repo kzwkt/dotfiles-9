@@ -936,7 +936,7 @@
   (general-nvmap
     :keymaps 'override
     :prefix "SPC"
-    "f" 'hydra-find-file/body'
+    "f" 'hydra-eval/body
     "0" 'delete-window
     "v" 'hydra-more-commands/body
     "z" 'hydra-window/body
@@ -1703,7 +1703,7 @@
   :defer t
   :ensure nil
   :init
-  (add-to-list 'auto-mode-alist '("\\por\\'" . prog-mode))
+  (add-to-list 'auto-mode-alist '("\\prog\\'" . prog-mode))
   (add-hook 'prog-mode-hook 'my/prog-mode-hooks)
   :config
 
@@ -1717,6 +1717,7 @@
     (flycheck-mode 1)
     (electric-pair-local-mode 1)
     (yas-minor-mode 1)
+    (my/company-idle-one-prefix-one-quiet)
     (highlight-indent-guides-mode 1))
 
   (general-imap
@@ -1874,8 +1875,9 @@
 
 (use-package simple
   :ensure nil
+  :init
+  (add-to-list 'auto-mode-alist '("\\fund\\'" . fundamental-mode))
   :config
-
   ;; (setq word-wrap t)
   ;; (setq kill-whole-line t)
   ;; (setq truncate-lines nil)
@@ -2244,7 +2246,8 @@
     (hs-minor-mode 1)
     (rainbow-delimiters-mode 1)
     (olivetti-mode 1)
-    (elpy-mode 1))
+    (elpy-mode 1)
+    (my/company-idle-one-prefix-one))
 
   (defun my/inferior-python-mode-hooks ()
     (interactive) (line-numbers)
@@ -2627,8 +2630,8 @@
     :keymaps 'company-mode-map
     "M-r" 'company-complete
     "C-ç" 'company-complete
-    "M-/" 'hippie-expand))
-;; (global-company-mode 1))
+    "M-/" 'hippie-expand)
+  (global-company-mode 1))
 
 (use-package company-shell
   :after company
@@ -2757,7 +2760,6 @@
 
 
 (use-package pdf-tools
-  :if window-system
   :ensure t
   :init
 

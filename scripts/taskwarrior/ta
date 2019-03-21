@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-parameters="$*"
-task add "$parameters" &&
+input=("$*")
+
+clear
+description=${input/%due*/""}
+parameters=${input/$description/""}
+
+task add "$description" "$parameters"
 clear &&
-task    
+task
