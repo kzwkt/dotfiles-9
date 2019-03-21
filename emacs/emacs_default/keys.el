@@ -106,6 +106,8 @@
 "C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
+"M-]" 'bs-cycle-next
+"M-[" 'bs-cycle-previous
 "<mouse-3>" nil
 "C-c U" 'universal-argument
 "C-," 'helpful-variable

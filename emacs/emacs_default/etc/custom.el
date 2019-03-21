@@ -11,7 +11,7 @@
  '(flyspell-default-dictionary "american")
  '(flyspell-issue-message-flag nil)
  '(flyspell-issue-welcome-flag nil)
- '(package-selected-packages '(smartparens lispyville use-package)))
+ '(package-selected-packages '(smartparens use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

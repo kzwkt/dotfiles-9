@@ -816,7 +816,7 @@
 
   ("f" helpful-callable)
   ("e" describe-package)
-  ("v" counsel-describe-variable)
+  ("v" helpful-variable)
   ("p" helpful-at-point)
   ("m" show-major-mode)
   ("o" describe-mode)

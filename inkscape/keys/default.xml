@@ -144,15 +144,6 @@
      modifiers="Ctrl,Shift"
      action="DialogAlignDistribute" />
   <bind
-     key="e"
-     modifiers="Ctrl,Shift"
-     action="AlignVerticalHorizontalCenter"
-     display="true" />
-  <bind
-     key="E"
-     modifiers="Ctrl,Shift"
-     action="AlignVerticalHorizontalCenter" />
-  <bind
      key="v"
      modifiers="Ctrl,Alt"
      action="LayerMoveTo"
@@ -161,4 +152,13 @@
      key="V"
      modifiers="Ctrl,Alt"
      action="LayerMoveTo" />
+  <bind
+     key="e"
+     modifiers="Ctrl,Shift"
+     action="DialogExport"
+     display="true" />
+  <bind
+     key="E"
+     modifiers="Ctrl,Shift"
+     action="DialogExport" />
 </keys>

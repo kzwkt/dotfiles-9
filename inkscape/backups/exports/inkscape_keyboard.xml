@@ -43,15 +43,6 @@
      modifiers="Alt"
      action="DialogsToggle" />
   <bind
-     key="n"
-     modifiers="Ctrl,Alt"
-     action="org.ekips.filter.addnodes"
-     display="true" />
-  <bind
-     key="N"
-     modifiers="Ctrl,Alt"
-     action="org.ekips.filter.addnodes" />
-  <bind
      key="t"
      modifiers="Ctrl,Alt"
      action="math.triangle"
@@ -122,12 +113,52 @@
      modifiers="Ctrl,Shift"
      action="FitCanvasToSelection" />
   <bind
-     key="g"
-     modifiers="Alt"
+     key="s"
+     modifiers="Ctrl,Alt"
+     action="FitCanvasToSelectionOrDrawing"
+     display="true" />
+  <bind
+     key="S"
+     modifiers="Ctrl,Alt"
+     action="FitCanvasToSelectionOrDrawing" />
+  <bind
+     key="F6"
+     action="ToolPen"
+     display="true" />
+  <bind
+     key="f"
+     modifiers="Ctrl"
      action="SelectionUnGroup"
      display="true" />
   <bind
-     key="G"
-     modifiers="Alt"
+     key="F"
+     modifiers="Ctrl"
      action="SelectionUnGroup" />
+  <bind
+     key="a"
+     modifiers="Ctrl,Shift"
+     action="DialogAlignDistribute"
+     display="true" />
+  <bind
+     key="A"
+     modifiers="Ctrl,Shift"
+     action="DialogAlignDistribute" />
+  <bind
+     key="e"
+     modifiers="Ctrl,Shift"
+     action="AlignVerticalHorizontalCenter"
+     display="true" />
+  <bind
+     key="E"
+     modifiers="Ctrl,Shift"
+     action="AlignVerticalHorizontalCenter" />
+  <bind
+     key="v"
+     modifiers="Ctrl,Alt"
+     action="LayerMoveTo"
+     display="true" />
+  <bind
+     key="V"
+     modifiers="Ctrl,Alt"
+     action="LayerMoveTo" />
 </keys>

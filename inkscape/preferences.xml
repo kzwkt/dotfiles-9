@@ -13,10 +13,10 @@
        state="1" />
     <group
        id="commands"
-       state="0" />
+       state="1" />
     <group
        id="snaptoolbox"
-       state="0" />
+       state="1" />
     <group
        id="toppanel"
        state="1" />
@@ -131,9 +131,9 @@
       <eventcontext
          id="rect"
          style="fill:blue;"
-         usecurrent="0"
-         width="1417.14"
-         height="897.143"
+         usecurrent="1"
+         width="0"
+         height="0"
          rx="0"
          ry="0" />
       <eventcontext
@@ -173,19 +173,18 @@
          usecurrent="1" />
       <eventcontext
          id="star"
-         magnitude="4"
+         magnitude="5"
          style="fill:yellow;"
          usecurrent="1"
-         proportion="0.570952"
+         proportion="0.5"
          rounded="0"
-         randomized="0"
-         isflatsided="1" />
+         randomized="0" />
       <eventcontext
          id="spiral"
          style="fill:none;stroke:black"
          expansion="1"
          usecurrent="0"
-         revolution="5.297"
+         revolution="3"
          t0="0" />
     </group>
     <group
@@ -333,9 +332,8 @@
        gradientdrag="1"
        font_sample="AaBbCcIiPpQq12369$€¢?.;/()"
        show_sample_in_list="1"
-       style="fill:black;fill-opacity:1;stroke:none;font-family:'Josefin Sans';font-style:normal;font-weight:normal;font-size:80px;line-height:1.25;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Josefin Sans';font-stretch:normal;font-variant:normal"
-       selcue="1"
-       outer_style="0">
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"
+       selcue="1">
       <group
          display_unit="0"
          id="lineheight" />
@@ -374,8 +372,7 @@
        doh="1"
        dos="1"
        dol="1"
-       doo="1"
-       mode="0" />
+       doo="1" />
     <eventcontext
        id="spray"
        selcue="1"
@@ -415,7 +412,7 @@
        id="connector"
        style="fill:none;fill-rule:evenodd;stroke:black;stroke-opacity:1;stroke-linejoin:miter;stroke-width:1px;stroke-linecap:butt;"
        selcue="1"
-       curvature="0"
+       curvature="3"
        length="100" />
     <eventcontext
        id="paintbucket"
@@ -551,7 +548,7 @@
   </group>
   <group
      id="colorselector"
-     page="3" />
+     page="0" />
   <group
      id="embedded">
     <group
@@ -578,74 +575,24 @@
        page="0"
        x="0"
        y="0"
-       w="333"
-       h="520"
+       w="339"
+       h="430"
        visible="1"
        state="2"
        placement="1" />
     <group
        id="filtereffects" />
     <group
-       id="textandfont"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="348"
-       h="475"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="textandfont" />
     <group
        id="transformation"
-       applyseparately="0"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       rotateCounterClockwise="1"
-       x="0"
-       y="0"
-       w="359"
-       h="234"
-       visible="0"
-       state="2"
-       placement="1" />
+       applyseparately="0" />
     <group
-       id="align"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="333"
-       h="520"
-       visible="1"
-       state="2"
-       placement="1"
-       align-to="0" />
+       id="align" />
     <group
        id="xml" />
     <group
-       id="find"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="341"
-       h="428"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="find" />
     <group
        id="spellcheck"
        w="200"
@@ -654,18 +601,7 @@
        ignorenumbers="1" />
     <group
        id="documentoptions"
-       state="1"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="897"
-       y="59"
-       w="587"
-       h="805"
-       visible="0"
-       placement="1" />
+       state="1" />
     <group
        id="preferences"
        state="1"
@@ -674,27 +610,15 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       x="0"
-       y="0"
-       w="1920"
-       h="1080"
-       page="26" />
+       page="24"
+       x="194"
+       y="34"
+       w="1531"
+       h="1012" />
     <group
        id="gradienteditor" />
     <group
-       id="object"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="341"
-       h="288"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="object" />
     <group
        id="export"
        default=""
@@ -707,31 +631,30 @@
        panel_border="0"
        x="0"
        y="0"
-       w="357"
-       h="475"
-       visible="0"
+       w="339"
+       h="477"
+       visible="1"
        state="2"
-       placement="1">
+       placement="2">
       <group
          id="exportarea"
          value="drawing" />
       <group
-         id="defaultxdpi"
-         value="96" />
+         id="defaultxdpi" />
     </group>
     <group
        id="save_as"
        default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="1"
-       path="/home/Documents/Org/Creative/Blog/posts/prep/all_you_zombies/charts"
+       path=""
        use_current_dir="1" />
     <group
        id="save_copy"
-       default="org.inkscape.output.svg.inkscape"
+       default=""
        append_extension="1"
        enable_preview="1"
-       path="/home/Documents/Org/Creative/Blog/posts/prep/all_you_zombies/charts" />
+       path="" />
     <group
        id="open"
        enable_preview="1"
@@ -739,11 +662,10 @@
     <group
        id="import"
        enable_preview="1"
-       path="/home/overlord/Unifacs/Monitoria/Resolucoes/01-fluxogramas/resolucoes_imagens/"
+       path=""
        ask="1"
-       link="embed"
-       scale="auto"
-       forcexdpi="0" />
+       link="link"
+       scale="optimizeSpeed" />
     <group
        id="debug"
        redirect="0" />
@@ -760,33 +682,9 @@
     <group
        id="messages" />
     <group
-       id="swatches"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="345"
-       h="66"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="swatches" />
     <group
-       id="iconpreview"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="324"
-       h="268"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="iconpreview" />
     <group
        id="aboutextensions" />
     <group
@@ -806,66 +704,12 @@
     <group
        id="colorpickerwindow" />
     <group
-       id="undo-history"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="352"
-       h="475"
-       visible="0"
-       state="2"
-       placement="1" />
+       id="undo-history" />
     <group
        id="transparency"
        on-focus="1.0"
        on-blur="0.50"
        animate-time="100" />
-    <group
-       id="inputdevices"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="350"
-       h="418"
-       visible="0"
-       state="2"
-       placement="1" />
-    <group
-       id="objects"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="243"
-       h="248"
-       visible="0"
-       state="2"
-       placement="1" />
-    <group
-       id="symbols"
-       panel_size="1"
-       panel_ratio="100"
-       panel_mode="1"
-       panel_wrap="0"
-       panel_border="0"
-       x="0"
-       y="0"
-       w="458"
-       h="308"
-       visible="0"
-       state="2"
-       placement="1" />
   </group>
   <group
      id="printing">
@@ -909,7 +753,7 @@
        value="12" />
     <group
        id="cursortolerance"
-       value="8" />
+       value="8.0" />
     <group
        id="dragtolerance"
        value="4.0" />
@@ -964,7 +808,7 @@
        value="0" />
     <group
        id="transientpolicy"
-       value="1" />
+       value="2" />
     <group
        id="scrollingacceleration"
        value="0.4" />
@@ -1029,7 +873,7 @@
        value="2" />
     <group
        id="transform"
-       stroke="0"
+       stroke="1"
        rectcorners="1"
        pattern="1"
        gradient="1" />
@@ -1099,8 +943,7 @@
        check_on_reading="0"
        check_on_editing="0"
        check_on_writing="0"
-       sort_attributes="0"
-       disable_optimizations="0" />
+       sort_attributes="0" />
     <group
        id="externalresources">
       <group
@@ -1151,62 +994,21 @@
        partialdynamic="0" />
     <group
        id="rendering" />
-    <group
-       value="rectangle"
-       id="kbshortcuts" />
   </group>
   <group
      id="extensions"
-     org.ekips.filter.markers.strokepaint.type="solid"
-     org.inkscape.render.empty_desktop.size="Custom"
-     org.inkscape.render.empty_desktop.width="1920"
-     org.inkscape.render.empty_desktop.height="1080"
-     org.ekips.filter.addnodes.method="bymax"
-     org.ekips.filter.addnodes.max="10"
-     org.ekips.filter.addnodes.segments="2"
-     math.triangle.s_a="100"
-     math.triangle.s_b="100"
-     math.triangle.s_c="100"
-     math.triangle.a_a="60"
-     math.triangle.a_b="30"
-     math.triangle.a_c="90"
-     math.triangle.mode="3_sides"
-     com.nerdson.split.splittype="line"
-     com.nerdson.split.__live_effect__="0"
-     com.nerdson.split.tab="Options"
-     com.nerdson.split.preserve="0"
-     org.inkscape.effect.filter.ColorDropShadow.blur="63.8"
-     org.inkscape.effect.filter.ColorDropShadow.xoffset="1.6"
-     org.inkscape.effect.filter.ColorDropShadow.yoffset="-2.2"
-     org.inkscape.effect.filter.ColorDropShadow.type="outer"
-     org.inkscape.effect.filter.ColorDropShadow.__live_effect__="0"
-     org.inkscape.effect.filter.ColorDropShadow.tab="coltab"
-     org.inkscape.effect.filter.ColorDropShadow.objcolor="0"
      org.inkscape.render.empty_video.size="Custom"
      org.inkscape.render.empty_video.width="1920"
-     org.inkscape.render.empty_video.height="1080"
-     math.univ-lille1.barraud.pathScatter.space="0"
-     math.univ-lille1.barraud.pathScatter.noffset="0"
-     math.univ-lille1.barraud.pathScatter.toffset="0"
-     math.univ-lille1.barraud.pathScatter.copymode="move"
-     math.univ-lille1.barraud.pathScatter.pickmode="seq"
-     math.univ-lille1.barraud.pathScatter.__live_effect__="0"
-     math.univ-lille1.barraud.pathScatter.follow="0"
-     math.univ-lille1.barraud.pathScatter.stretch="1"
-     math.univ-lille1.barraud.pathScatter.vertical="0"
-     math.univ-lille1.barraud.pathScatter.duplicate="1"
-     math.univ-lille1.barraud.pathScatter.tab="Options"
-     org.inkscape.effect.voronoi.diagram-type="Voronoi"
-     org.inkscape.effect.voronoi.clip-box="Page" />
+     org.inkscape.render.empty_video.height="1080" />
   <group
      id="desktop"
-     style="fill:none;opacity:0.776;paint-order:normal;fill-opacity:0.99607843;stroke-width:100;stroke-miterlimit:4;stroke-dasharray:none;stroke:#ff0806;stroke-opacity:1;stroke-dashoffset:0;font-size:80px;-inkscape-font-specification:'Josefin Sans Bold';font-family:'Josefin Sans';font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;line-height:1.25">
+     style="line-height:1.25">
     <group
-       width="1916"
-       height="1033"
-       x="0"
-       y="22"
-       fullscreen="0"
+       width="956"
+       height="1034"
+       x="960"
+       y="44"
+       fullscreen="1"
        id="geometry"
        maximized="0" />
     <group

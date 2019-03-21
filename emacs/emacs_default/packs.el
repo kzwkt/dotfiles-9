@@ -87,9 +87,18 @@
     "j" 'my/split-vertically
     "h" 'split-window-horizontally
     "W" 'widenToCenter
-    "e" 'widen
-    "n" 'recursive-narrow-or-widen-dwim
-    "w" 'recursive-widen)
+    "e" 'widen)
+
+  (leader
+    :states '(normal visual)
+    :keymaps 'prog-mode-map
+    "w" 'widenToCenter
+    "n" 'narrow-to-defun)
+
+  (leader
+    :states '(normal visual)
+    "w" 'recursive-widen
+    "n" 'recursive-narrow-or-widen-dwim)
 
   (general-define-key
    :keymaps 'global
@@ -208,10 +217,10 @@
 
 
 (setq org-file-apps (quote ((auto-mode . emacs)
-                            ("\\.mm\\'" . default)
-                            ("\\.x?html?\\'" . default)
-                            ("\\.jpg\\'" . "viewnior %s")
-                            ("\\.pdf\\'" . default))))
+			    ("\\.mm\\'" . default)
+			    ("\\.x?html?\\'" . default)
+			    ("\\.jpg\\'" . "my_feh %s")
+			    ("\\.pdf\\'" . default))))
 
 ;; (setq org-file-apps (quote ((auto-mode . emacs)
 ;;                             ("\\.mm\\'" . default)
@@ -2044,14 +2053,10 @@
 			" ACap" " Ind" " yas" " ," " s-/"
 			" company" " es" " SP" " h-i-g" " _+_" " PDFView"
 			" Helpful" " :master" " Shell-script" " P/???"
-			" Flymake[0 0]" " Flymake:Wait[0 0]" " Elpy" " Pabbrev" " Olv" " Fly" " WE" " Fill" " super-save" " Emmet" " !1"))
+			" Flymake[0 0]" " Flymake:Wait[0 0]" " Elpy" " Pabbrev"
+			" Olv" " Fly" " WE" " Fill" " super-save" " Emmet" " !1"
+			" LYVLE"))
   (sml/setup))
-
-;; (use-package smart-mode-line-atom-one-dark-theme
-;;   :ensure t)
-
-;; (use-package smart-mode-line-powerline-theme
-;;   :ensure t)
 
 (use-package dimmer
   :unless window-system
@@ -2412,9 +2417,9 @@
   :ensure t
   :config
   (general-define-key
-  :keymaps 'projectile-mode-map
-  "M-[" 'projectile-next-project-buffer
-  "M-]" 'projectile-previous-project-buffer))
+   :keymaps 'projectile-mode-map
+   "M-[" 'projectile-next-project-buffer
+   "M-]" 'projectile-previous-project-buffer))
 
 (use-package projectile
   :defer t
@@ -2429,9 +2434,9 @@
     (interactive)
     (counsel-M-x "^projectile- "))
 
-  (general-nvmap
-    :keymaps 'projectile-mode-map
-    "M-d" 'counsel-projectile-switch-to-buffer)
+  ;; (general-nvmap
+  ;;   :keymaps 'projectile-mode-map
+  ;;   "M-d" 'counsel-projectile-switch-to-buffer)
 
   (general-define-key
    :keymaps 'projectile-mode-map
@@ -2441,7 +2446,7 @@
   (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignore_buffers.el")
 
   (setq projectile-globally-ignored-modes '("erc-mode" "help-mode" "completion-list-mode" "Buffer-menu-mode" "gnus-.*-mode" "occur-mode" "org-mode"))
-  (setq projectile-project-search-path '("~/org/" "~/.emacs.d/" "~/org/Studying/Programming/Java/Core_Java/My_Code"))
+  (setq projectile-project-search-path '("~"))
 
   (setq projectile-mode-line-prefix " <p>")
   (setq projectile-mode-line-function '(lambda () (format " <p> [%s]" (projectile-project-name))))

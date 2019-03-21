@@ -22,7 +22,6 @@ bar {
 
 exec google-chrome
 exec --no-startup-id "~/scripts/emacs_scripts/emacs-daemons"
-exec --no-startup-id ~/scripts/i3_scripts/fehlaunch
 exec --no-startup-id "feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper/Abstract/allblack.png"
 exec --no-startup-id  "~/scripts/screen/mx-big.sh"
 exec --no-startup-id  exec "st -e sudo apt update"
@@ -30,16 +29,16 @@ exec --no-startup-id "xset mouse 7/5 0"
 exec --no-startup-id redshift
 exec --no-startup-id indicator-keylock
 exec --no-startup-id nm-applet
-exec --no-startup-id xset dpms 600
-# exec --no-startup-id xset -dpms
-# exec --no-startup-id dropbox start
-# exec --no-startup-id google-chrome-stable
 exec --no-startup-id "~/scripts/i3_scripts/scratch.sh"
 exec --no-startup-id "~/scripts/keyboard/init_keys.sh"
 exec --no-startup-id "~/scripts/i3_scripts/last_window.sh"
 exec --no-startup-id "unclutter -display :0.0 -idle 2"
 exec --no-startup-id "~/scripts/cline_scripts/sessions.sh"
 exec --no-startup-id synclient TapButton1=1 TouchpadOff=0 PalmDetect=1
+# exec --no-startup-id xset -dpms
+# exec --no-startup-id dropbox start
+# exec --no-startup-id xset dpms 600
+# exec --no-startup-id google-chrome-stable
 
 bindsym $mod+k focus Up
 bindsym $mod+Up focus Up
@@ -99,7 +98,6 @@ bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
 
-# bindsym $mod+F5 mode "$system"; exec notify-send --expire-time=20 "system"
 bindsym $mod+F5 exec --no-startup-id $Locker; mode "default"
 
 # mode "system" {
@@ -114,29 +112,20 @@ bindsym $mod+F5 exec --no-startup-id $Locker; mode "default"
 #     bindsym Escape exec notify-send 'default'; mode default
 
 # }
-
-bindsym $mod+Pause mode "$mode_system"
-
-
-# bindsym $mod+Tab mode "$launch"; exec notify-send --expire-time=20 "launch mode"
-# bindsym XF86MonBrightnessDown mode "$launch"; exec notify-send --expire-time=20 "launch mode"
-
+# bindsym $mod+Pause mode "$mode_system"
 
 bindsym Menu mode "$launch"
 
 mode "$launch" {
 
-    bindsym n exec exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0; exec "clear && task"; mode default
+    bindsym n exec exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0; "/home/dave/scripts/i3_scripts/tw_focus"; mode default
 
-    bindsym a exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none; mode default
-    bindsym x exec terminator --borderless; border none; mode default
+    bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0
 
-    bindsym p exec pavucontrol; mode default
     bindsym t exec thunar; mode default
-    bindsym r exec xfce4-taskmanager; mode default
     bindsym Shift+r exec "/home/dotfiles/scripts/cline_scripts/repeat"
 
-    bindsym Menu mode default; exec "~/scripts/i3_scripts/my_rofy_run"
+    bindsym Menu [title="term-ranger"] move scratchpad; [title="term-up"] move scratchpad; exec rofi -show run; mode default
 
     bindsym z exec google-chrome-stable; mode default
     bindsym Shift+C exec "xdotool key Caps_Lock"; mode default
@@ -147,7 +136,6 @@ mode "$launch" {
 
     bindsym Shift+b exec ~/scripts/i3_scripts/black_bg.sh; mode default
     bindsym Shift+w exec feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper; mode default
-
 
     bindsym e exec "~/scripts/emacs_scripts/new-i3"; mode default
 
@@ -284,28 +272,10 @@ mode "$float_small_steps" {
     bindsym $mod+apostrophe mode default
 }
 
+
 bindsym $mod+equal scratchpad show
 bindsym $mod+Shift+minus move scratchpad; mode default
 bindsym $mod+minus exec ~/scripts/i3_scripts/hide/hide_all mode; mode default
-
-# for_window [class="SpeedCrunch"] move to position 650 0
-# for_window [class="SpeedCrunch"] border none
-# for_window [class="SpeedCrunch"] floating enable sticky enable
-# for_window [class="SpeedCrunch"] move scratchpad
-# for_window [class="SpeedCrunch"] resize set 620 550
-
-# bindsym $mod+comma exec ~/scripts/i3_scripts/hide/hide_all; [class="Zathura" title="emacs_refcard.pdf"] scratchpad show; move to position 0 0
-for_window [class="Zathura" title="emacs_refcard.pdf"] border none, floating enable, sticky enable, resize set 1920 1980, move to position 0 0, move scratchpad; mode default
-
-# bindsym $mod+period exec ~/scripts/i3_scripts/hide/hide_all; [class="feh" title="ch-gimp.jpg"] scratchpad show; move to position 0 0
-for_window [class="feh" title="ch-gimp.jpg"] border none, floating enable, sticky enable, move to position 0 0, move scratchpad; mode default
-
-bindsym $mod+bracketleft exec ~/scripts/i3_scripts/hide/term_hide_others    ; [class="keepassxc"] scratchpad show; move to position 525 0
-for_window [class="keepassxc"] border none
-for_window [class="keepassxc"] floating enable sticky enable
-for_window [class="keepassxc"] move scratchpad
-for_window [class="keepassxc"] resize set 920 600
-for_window [class="keepassxc"] move to position 650 0
 
 for_window [title="term-up"] border none
 for_window [title="term-up"] floating enable sticky enable
@@ -324,44 +294,11 @@ for_window [title="term-ranger"] move scratchpad
 for_window [title="term-ranger"] resize set 1250 450; move to position 350 0
 bindsym $mod+i exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 350 0
 
-for_window [title="term-music"] border none
-for_window [title="term-music"] floating enable sti
-for_window [title="term-music"] move scratchpad
-for_window [title="term-music"] resize set 920 600
-
-# for_window [title="term-ranger"] border none
-# for_window [title="term-ranger"] floating enable sticky enable
-# for_window [title="term-ranger"] move scratchpad
-# for_window [title="term-ranger"] resize set 1050 500
-
-for_window [title="mrblack" class="Hexchat"] move to position 650 0
-for_window [title="mrblack" class="Hexchat"] border none
-for_window [title="mrblack" class="Hexchat"] floating enable sticky enable
-for_window [title="mrblack" class="Hexchat"] move scratchpad
-for_window [title="mrblack" class="Hexchat"] resize set 920 600
-for_window [title="mrblack" class="Hexchat"] move to position 650 0
-
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
-for_window [title="Task Manager" class="Xfce4-taskmanager"] border none
-for_window [title="Task Manager" class="Xfce4-taskmanager"] floating enable sticky enable
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move scratchpad
-for_window [title="Task Manager" class="Xfce4-taskmanager"] resize set 920 600
-for_window [title="Task Manager" class="Xfce4-taskmanager"] move to position 375 0
-
-for_window [class="Pavucontrol"] move to position 375 0
-for_window [class="Pavucontrol"] border none
-for_window [class="Pavucontrol"] floating enable sticky enable
-for_window [class="Pavucontrol"] move scratchpad
-for_window [class="Pavucontrol"] resize set 920 600
-for_window [class="Pavucontrol"] move to position 375 0
-# for_window [class="Pavucontrol"] floating enable resize set 720 400  move position 650 0
-
 # bindsym $mod+i [class="sranger"] scratchpad show; move to position 250 0; resize set 920 400
 # bindsym $mod+o [class="Hexchat"] scratchpad show; move to position 250 0; resize set 920 400
 
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
 bindsym $mod+o      exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 0
-# bindsym $mod+o      exec ~/scripts/i3_scripts/hide/hexchat_hide_others ; [class="Hexchat"] scratchpad show; move to position 525 0
 bindsym $mod+comma  exec ~/scripts/i3_scripts/taskmanager_hide_others ; [title="Task Manager" class="Xfce4-taskmanager"] scratchpad show; move to position 525 0
 bindsym $mod+period  exec ~/scripts/i3_scripts/music_hide_others ; [title="term-music"] scratchpad show; move to position 525 0
 bindsym $mod+semicolon  exec ~/scripts/i3_scripts/music_hide_others ; [class="Pavucontrol"] scratchpad show; move to position 250 0
@@ -529,12 +466,13 @@ for_window [class="Gimp"] border normal
 for_window [class="Emacs"] border normal
 
 for_window [class="calibre"] floating disable
-for_window [class="feh"] floating enable border none
+for_window [class="feh"] floating disable
 for_window [class="Viewnior"] floating enable border none
 for_window [title="term Preferences"] floating enable
 for_window [class="Xfrun4"] floating enable resize set 520 200
 for_window [class="File-roller"] floating enable resize set 720 400
 for_window [class="Inkscape" title="Preferences"]  floating enable resize set 720 400  move position 650 0
-for_window [class="Inkscape" title="Document Properties"]  floating enable resize set 720 400  move position 650
+for_window [class="Inkscape" title="Document Properties"]  floating disable resize set 720 400  move position 650
+for_window [class="Inkscape" title="Preferences"]  floating disable resize set 720 400  move position 650
 
 # bindsym $mod+period exec /usr/bin/snippy.sh

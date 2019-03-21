@@ -131,6 +131,8 @@
 ** Quick Keys
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/keys.el
 ;;;; QUICK KEYS ;;;;
+"M-]" 'bs-cycle-next
+"M-[" 'bs-cycle-previous
 "<mouse-3>" nil
 "C-c U" 'universal-argument
 "C-," 'helpful-variable
