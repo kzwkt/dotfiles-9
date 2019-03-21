@@ -163,7 +163,7 @@
        -------------------------------------------------
        _a_: run        _f_: str()       _l_: go to definition
        _b_: sh         _g_: input()     _m_: go to assignment
-       _c_: sh simple  _h_: company
+       _c_: sh simple  _h_: company     _o_: dumb jump go
        _d_: quick      _i_: run black
        _e_: quick sh   _j_: projectile
 "
@@ -184,33 +184,33 @@
   ("l" elpy-goto-definition)
   ("m" elpy-goto-assignment)
   ("L" elpy-goto-definition-other-window)
-  ("M" elpy-goto-assignment-other-window))
+  ("M" elpy-goto-assignment-other-window)
+  ("o" dumb-jump-go))
 
 (defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
        ^Projectile^
-       --------------------------
-       _a_: ag      _f_: kill all
-       _b_: dir     _g_: project
-       _c_: file    _h_: counsel mode
-       _d_: grep    _i_: proj. mode
-       _e_: buffer
+       ---------------------------
+       _a_: ag       _c_: counsel
+       _g_: grep     _m_: projectile
+       _f_: file
+       _k_: kill
+       _b_: buffer
+       _p_: project
 
 "
   ("<escape>" nil)
   ("RET" hydra-prog-mode/body)
 
   ("a" counsel-projectile-ag)
-  ("b" counsel-projectile-find-dir)
-  ("c" counsel-projectile-find-file-dwim)
-  ("d" counsel-projectile-grep)
-  ("e" counsel-projectile-switch-to-buffer)
-
-  ("f" projectile-kill-buffers)
-  ("g" counsel-projectile-switch-project)
-  ("h" counsel-projectile-mode)
-  ("i" projectile-mode))
+  ("g" counsel-projectile-grep)
+  ("f" counsel-projectile-find-file-dwim)
+  ("k" projectile-kill-buffers)
+  ("b" counsel-projectile-switch-to-buffer)
+  ("p" counsel-projectile-switch-project)
+  ("c" counsel-projectile-mode)
+  ("m" projectile-mode))
 
 (defhydra hydra-prog-mode (:color blue :hint nil :foreign-keys run)
   "

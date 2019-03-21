@@ -1470,7 +1470,7 @@ buffer expose commands.
     [remap my/quiet-save-buffer]))
 #+END_SRC
 * Built-ins
-** hideshow
+** hideshow hs-minor-mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package hideshow
   :ensure nil
@@ -1984,6 +1984,10 @@ buffer expose commands.
     :keymaps 'prog-mode-map
     "RET" 'hydra-prog-mode/body)
 
+  (general-nvmap
+   :keymaps 'prog-mode-map
+    "<tab>" 'hs-toggle-hiding)
+
   (general-define-key
    :keymaps 'prog-mode-map
    "M-p" 'my/paragraph-backwards
@@ -2385,6 +2389,24 @@ buffer expose commands.
 #+END_SRC
 
 * Programming
+** shebang
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package insert-shebang
+  :ensure t
+  :init
+  (setq insert-shebang-ignore-extensions '("txt" "org" "pdf"))
+  :config
+  (setq insert-shebang-file-types
+	'(("py" . "python3")
+	  ("groovy" . "groovy")
+	  ("fish" . "fish")
+	  ("robot" . "robot")
+	  ("rb" . "ruby")
+	  ("lua" . "lua")
+	  ("php" . "php")
+	  ("sh" . "bash")
+	  ("pl" . "perl"))))
+#+END_SRC
 ** parens
 *** smartparens
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -2743,6 +2765,7 @@ buffer expose commands.
   (general-nvmap
     :keymaps 'python-mode-map
     "C-." 'my/indent-tools-hydra/body
+    "<tab>" 'hs-toggle-hiding
     "o" 'cool-moves/open-line-below-python
     "RET" 'hydra-python-mode/body
     "zm" 'evil-close-folds
@@ -2825,24 +2848,6 @@ buffer expose commands.
   :if window-system
   :defer t
   :ensure t)
-#+END_SRC
-** insert shebang
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-;; (use-package insert-shebang
-;;   :defer t
-;;   :init
-;;   (setq insert-shebang-ignore-extensions '("txt" "org" "pdf"))
-;;   (setq insert-shebang-file-types '
-;; 	(("py" . "python3")
-;; 	 ("groovy" . "groovy")
-;; 	 ("fish" . "fish")
-;; 	 ("robot" . "robot")
-;; 	 ("rb" . "ruby")
-;; 	 ("lua" . "lua")
-;; 	 ("php" . "php")
-;; 	 ("sh" . "bash")
-;; 	 ("pl" . "perl")))
-;;   :ensure t)
 #+END_SRC
 ** smart hungry delete
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el

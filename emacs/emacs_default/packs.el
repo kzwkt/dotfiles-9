@@ -1736,6 +1736,10 @@
     :keymaps 'prog-mode-map
     "RET" 'hydra-prog-mode/body)
 
+  (general-nvmap
+   :keymaps 'prog-mode-map
+    "<tab>" 'hs-toggle-hiding)
+
   (general-define-key
    :keymaps 'prog-mode-map
    "M-p" 'my/paragraph-backwards
@@ -2075,6 +2079,22 @@
   :defer t
   :ensure t)
 
+(use-package insert-shebang
+  :ensure t
+  :init
+  (setq insert-shebang-ignore-extensions '("txt" "org" "pdf"))
+  :config
+  (setq insert-shebang-file-types
+	'(("py" . "python3")
+	  ("groovy" . "groovy")
+	  ("fish" . "fish")
+	  ("robot" . "robot")
+	  ("rb" . "ruby")
+	  ("lua" . "lua")
+	  ("php" . "php")
+	  ("sh" . "bash")
+	  ("pl" . "perl"))))
+
 (use-package smartparens
   :defer 3
   :ensure t
@@ -2393,6 +2413,7 @@
   (general-nvmap
     :keymaps 'python-mode-map
     "C-." 'my/indent-tools-hydra/body
+    "<tab>" 'hs-toggle-hiding
     "o" 'cool-moves/open-line-below-python
     "RET" 'hydra-python-mode/body
     "zm" 'evil-close-folds
@@ -2470,22 +2491,6 @@
   :if window-system
   :defer t
   :ensure t)
-
-;; (use-package insert-shebang
-;;   :defer t
-;;   :init
-;;   (setq insert-shebang-ignore-extensions '("txt" "org" "pdf"))
-;;   (setq insert-shebang-file-types '
-;; 	(("py" . "python3")
-;; 	 ("groovy" . "groovy")
-;; 	 ("fish" . "fish")
-;; 	 ("robot" . "robot")
-;; 	 ("rb" . "ruby")
-;; 	 ("lua" . "lua")
-;; 	 ("php" . "php")
-;; 	 ("sh" . "bash")
-;; 	 ("pl" . "perl")))
-;;   :ensure t)
 
 (use-package smart-hungry-delete
   :defer 5
