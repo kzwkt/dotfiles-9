@@ -776,6 +776,7 @@
   (load-file "~/.emacs.d/lisp/functions/ivy_ignore_buffers.el")
   :ensure t
   :config
+
   (setq ivy-wrap t)
   (setq ivy-on-del-error-function #'ignore)
   (setq counsel-ag-base-command "ag --nocolor --group -f --skip-vcs-ignores %s")
@@ -810,6 +811,7 @@
    :keymaps 'ivy-minibuffer-map
    "<insert>" 'clipboard-yank
    "TAB" 'ivy-alt-done
+   "C-c -" 'my/ivy-done-and-narrow
    "M-m" 'ivy-done
    "C-m" 'ivy-done
    "C-c o" 'ivy-kill-ring-save
@@ -1709,13 +1711,11 @@
 
   (defun my/prog-mode-hooks ()
     (interactive)
-    (electric-operator-mode 1)
     (subword-mode 1)
     (company-mode 1)
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
-    (electric-pair-local-mode 1)
     (yas-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
     (highlight-indent-guides-mode 1))
@@ -2068,6 +2068,27 @@
 
 (use-package poet-theme
   :defer t
+  :ensure t)
+
+(use-package smartparens
+  :defer 3
+  :ensure t
+  :config
+  (smartparens-global-mode +1))
+
+;; (use-package evil-smartparens
+;;   :defer 3
+;;   :ensure t)
+
+(use-package elec-pair
+  :defer t
+  :config
+  (electric-pair-mode))
+
+(use-package lispyville
+  :init
+  (add-hook 'lisp-mode-hook #'lispyville-mode)
+  (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
   :ensure t)
 
 ;; (use-package outshine
@@ -2492,12 +2513,6 @@
 :after web-mode
 :ensure t)
 
-(use-package smartparens
-  :defer 3
-  :ensure t
-  :config
-  (smartparens-global-mode +1))
-
 (use-package dumb-jump
 :defer t
 :ensure t
@@ -2542,11 +2557,6 @@
 :ensure nil
 :config
 (subword-mode +1))
-
-(use-package elec-pair
-:defer t
-:config
-(electric-pair-mode))
 
 (use-package company
   :defer 3

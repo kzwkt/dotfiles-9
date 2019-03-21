@@ -686,7 +686,7 @@
        _e_:   swiper       _l_: google      _m_: urban dic
        _c_:   occur        _g_: grep        _n_: tfree dic
        _o_:   outline      _h_: translate   _O_: wiki en
-       _i_:   ouline all   _i_: wordnut     _P_: wiki pt
+       _i_:   ouline all   _I_: wordnut     _P_: wiki pt
   "
   ("<escape>" nil)
 
@@ -694,16 +694,16 @@
   ("s" evil-ex-search-forward)
   ("e" swiper)
   ("c" occur)
-  ("o" my/search-outline)
-  ("i" counsel-org-goto-all)
+  ("o" counsel-outline)
+  ("i" my/search-outline)
 
   ("p" counsel-list-processes)
   ("l" engine/search-google)
   ("u" my/evil-substitute)
   ("g" counsel-grep)
   ("h" engine/search-translate)
-  ("i" wordnut-search)
-  ("I" wordnut-lookup-current-word)
+  ("I" wordnut-search)
+  ("W" wordnut-lookup-current-word)
   ("j" engine/search-michaelis)
   ("L" engine/search-dic-informal)
   ("m" engine/search-urban-dictionary)

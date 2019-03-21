@@ -910,6 +910,7 @@ Maybe I need it in the future.
 #+END_SRC
 ** Ivy & Counsel
 - Copy Minibuffer Contents :: C-c C-o
+- C-M-j :: empty input (for autoinsert)
 *** Ivy
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ivy
@@ -917,6 +918,7 @@ Maybe I need it in the future.
   (load-file "~/.emacs.d/lisp/functions/ivy_ignore_buffers.el")
   :ensure t
   :config
+
   (setq ivy-wrap t)
   (setq ivy-on-del-error-function #'ignore)
   (setq counsel-ag-base-command "ag --nocolor --group -f --skip-vcs-ignores %s")
@@ -951,6 +953,7 @@ Maybe I need it in the future.
    :keymaps 'ivy-minibuffer-map
    "<insert>" 'clipboard-yank
    "TAB" 'ivy-alt-done
+   "C-c -" 'my/ivy-done-and-narrow
    "M-m" 'ivy-done
    "C-m" 'ivy-done
    "C-c o" 'ivy-kill-ring-save
@@ -1956,13 +1959,11 @@ buffer expose commands.
 
   (defun my/prog-mode-hooks ()
     (interactive)
-    (electric-operator-mode 1)
     (subword-mode 1)
     (company-mode 1)
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
-    (electric-pair-local-mode 1)
     (yas-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
     (highlight-indent-guides-mode 1))
@@ -2379,6 +2380,36 @@ buffer expose commands.
 #+END_SRC
 
 * Programming
+** parens
+*** smartparens
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package smartparens
+  :defer 3
+  :ensure t
+  :config
+  (smartparens-global-mode +1))
+#+END_SRC
+*** evil-smartparens
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+;; (use-package evil-smartparens
+;;   :defer 3
+;;   :ensure t)
+#+END_SRC
+*** elec pair
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package elec-pair
+  :defer t
+  :config
+  (electric-pair-mode))
+#+END_SRC
+*** lispyville
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package lispyville
+  :init
+  (add-hook 'lisp-mode-hook #'lispyville-mode)
+  (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
+  :ensure t)
+#+END_SRC
 ** outshine
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 ;; (use-package outshine
@@ -2846,14 +2877,6 @@ buffer expose commands.
 :after web-mode
 :ensure t)
 #+END_SRC
-** smartparens
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package smartparens
-  :defer 3
-  :ensure t
-  :config
-  (smartparens-global-mode +1))
-#+END_SRC
 ** dumb jump
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package dumb-jump
@@ -2910,13 +2933,6 @@ buffer expose commands.
 :ensure nil
 :config
 (subword-mode +1))
-#+END_SRC
-** elec pair
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package elec-pair
-:defer t
-:config
-(electric-pair-mode))
 #+END_SRC
 ** company
 *** company mode
