@@ -511,12 +511,16 @@
   :ensure t
   :init
   (add-hook 'markdown-mode-hook 'prose-enable)
-  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url)
-  (setq markdown-hide-urls t)
-  (setq markdown-hide-markup nil)
+  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url) (setq markdown-hide-urls t) (setq markdown-hide-markup nil)
   (setq-default markdown-hide-markup nil)
   (setq markdown-enable-wiki-links t)
   :config
+
+  (defun my/markdown-copy-buffer ()
+    (interactive)
+    (save-excursion
+      (my/markdown-copy-buffer-macro)))
+
   (setq markdown-css-paths '("/home/mrbig/org/Creative/Web/md_themes/retro/css/retro.css"))
 
   (defun my/counsel-markdown-commands ()
@@ -546,6 +550,7 @@
 
   (general-define-key
    :keymaps 'markdown-mode-map
+   "C-x y" 'my/markdown-copy-buffer
    "C-;" 'hydra-text-main/body
    "C-c l" 'markdown-toc-generate-or-refresh-toc
    "M-p" 'markdown-backward-paragraph
@@ -2348,7 +2353,7 @@
   (defun my/run-python-external ()
     (interactive)
     (progn
-      (prelude-copy-file-name-to-clipboard)
+      (prelude-copy-file-name-to-clipboard)))
       (sit-for 1)
       (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right")))
 

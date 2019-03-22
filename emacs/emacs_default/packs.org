@@ -618,12 +618,16 @@ https://is.gd/JyKZsg
   :ensure t
   :init
   (add-hook 'markdown-mode-hook 'prose-enable)
-  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url)
-  (setq markdown-hide-urls t)
-  (setq markdown-hide-markup nil)
+  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url) (setq markdown-hide-urls t) (setq markdown-hide-markup nil)
   (setq-default markdown-hide-markup nil)
   (setq markdown-enable-wiki-links t)
   :config
+
+  (defun my/markdown-copy-buffer ()
+    (interactive)
+    (save-excursion
+      (my/markdown-copy-buffer-macro)))
+
   (setq markdown-css-paths '("/home/mrbig/org/Creative/Web/md_themes/retro/css/retro.css"))
 
   (defun my/counsel-markdown-commands ()
@@ -653,6 +657,7 @@ https://is.gd/JyKZsg
 
   (general-define-key
    :keymaps 'markdown-mode-map
+   "C-x y" 'my/markdown-copy-buffer
    "C-;" 'hydra-text-main/body
    "C-c l" 'markdown-toc-generate-or-refresh-toc
    "M-p" 'markdown-backward-paragraph

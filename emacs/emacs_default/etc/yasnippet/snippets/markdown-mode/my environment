@@ -1,0 +1,10 @@
+# key: myenv
+# name: my environment
+# --
+#### Runtime Environment
+
+- MX Linux 18
+- GNU Emacs 27.0.50
+- `(evil-version)`
+- [.emacs.d](https://github.com/mrbig033/dotfiles/tree/master/emacs/emacs_default)
+- [packages](https://github.com/mrbig033/dotfiles/blob/master/emacs/emacs_default/packs.el)

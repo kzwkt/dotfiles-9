@@ -41,28 +41,30 @@
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("gg]^d" 0 "%d") arg)))
 
 (fset 'my/flyspell-insert-word
-   "\244iy")
+      "\244iy")
+(fset 'my/markdown-copy-buffer-macro
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("gg2jyG" 0 "%d") arg)))
 
 (fset 'my/widen-reset-no-switch
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '(" ow wa ml" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '(" ow wa ml" 0 "%d") arg)))
 
 (fset 'my/widen-reset
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
 
 (fset 'my/widen-reset
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("nw ml wazz\363" 0 "%d") arg)))
 
 (fset 'insert-link-in-list
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 119 103 114 insert insert return return] 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 119 103 114 insert insert return return] 0 "%d") arg)))
 
 (fset 'duplicate-line
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("g]zyyp`zj" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("g]zyyp`zj" 0 "%d") arg)))
 
 (fset 'duplicate-a-paragrah
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vapy`>p" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vapy`>p" 0 "%d") arg)))
 
 (fset 'duplicate-inner-paragraph
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vipy`>gop" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vipy`>gop" 0 "%d") arg)))
 
 
 (fset 'my/show-variable-at-point
