@@ -2324,6 +2324,10 @@
     (setq foo (concat "python3 " (prelude-copy-file-name-to-clipboard)))
     (shell-command foo))
 
+  (defun my/ex-python-run ()
+    (interactive)
+    (evil-ex "w !python3"))
+
   (defun my/execute-python-program-shell ()
     (interactive)
     (progn
@@ -2340,6 +2344,13 @@
       (sit-for 0.3)
       (comint-clear-buffer)
       (company-mode -1)))
+
+  (defun my/run-python-external ()
+    (interactive)
+    (progn
+      (prelude-copy-file-name-to-clipboard)
+      (sit-for 1)
+      (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right")))
 
   (defun my/python-save-buffer () (interactive)
 	 (evil-ex-nohighlight)

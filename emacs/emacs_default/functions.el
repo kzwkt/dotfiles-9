@@ -1212,7 +1212,8 @@ return t."
 (defun my/company-complete-paren ()
   (interactive)
   (company-complete)
-  (insert "()"))
+  (insert "()")
+  (backward-char))
 
 (defun my/company-complete-first ()
   (interactive)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pkill -fi term-up                    || true
-# pkill -fi term-right                 || true
+pkill -fi term-right                 || true
 # pkill -fi term-ranger                || true
 pkill -fi Xfce4-terminal               || true
 

@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: create variable from user input - simple
-# key: vari
+# key: i
 # --
 ${1:name} = input(${2:"${3:Text}"})$0

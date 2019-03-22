@@ -16,10 +16,6 @@ alias 2='clear && tmux attach -t 2 &>/dev/null || tmux switch-client -t 2 &>/dev
 alias 3='clear && tmux attach -t 3 &>/dev/null || tmux switch-client -t 3 &>/dev/null'
 alias 4='clear && tmux attach -t 4 &>/dev/null || tmux switch-client -t 4 &>/dev/null'
 alias 5='clear && tmux attach -t 5 &>/dev/null || tmux switch-client -t 5 &>/dev/null'
-alias 6='clear && tmux attach -t 6 &>/dev/null || tmux switch-client -t 6 &>/dev/null'
-alias 7='clear && tmux attach -t 7 &>/dev/null || tmux switch-client -t 7 &>/dev/null'
-alias 8='clear && tmux attach -t 8 &>/dev/null || tmux switch-client -t 8 &>/dev/null'
-alias 9='clear && tmux attach -t 9 &>/dev/null || tmux switch-client -t 9 &>/dev/null'
 
 alias pfix='pulseaudio -k && sleep 3 && pulseaudio --start &'
 alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \

@@ -167,6 +167,8 @@
        _G_: other window      _m_: mode
        _a_: go to assignment
        _A_: other window
+       _w_: my shell
+       _x_: ext shell
 
 "
   ("<escape>" nil)
@@ -189,8 +191,8 @@
   ("N" flymake-goto-prev-error)
   ("P" flymake-goto-next-error)
   ("M" flymake-mode)
-
-  )
+  ("w" my/execute-python-program-shell)
+  ("x" my/run-python-external))
 
 (defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
   "
