@@ -22,7 +22,7 @@
 "C-c m h v"     'describe-variable
 "C-c m i"     'lisp-interaction-mode
 "C-c m b"     'beacon-mode
-"C-c s"     'my/evil-swap-keys-commands
+;; "C-c s"     'my/evil-swap-keys-commands
 "C-c m l l"   'elmacro-mode
 "C-c m m"     'magit-status
 "C-c m n"     'org-noter
@@ -110,6 +110,7 @@
 "M-[" 'bs-cycle-previous
 "<mouse-3>" nil
 "C-c U" 'universal-argument
+"C-c s" 'hydra-shell/body
 "C-," 'helpful-variable
 "C-." 'helpful-function
 "C-c ç" 'hydra-gro-prjct/body

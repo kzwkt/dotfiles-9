@@ -1,3 +1,22 @@
+(defun my/save-all ()
+  (interactive)
+  (setq current-prefix-arg '(4))
+  (call-interactively 'save-some-buffers))
+
+(defun my/quiet-save-buffer () (interactive)
+       (save-excursion
+	 (evil-ex-nohighlight)
+	 (let ((inhibit-message t))
+	   (delete-trailing-whitespace)
+	   (save-buffer))))
+
+(defun my/quiet-save-buffer-markdown () (interactive)
+       (save-excursion
+	 (evil-ex-nohighlight)
+	 (let ((inhibit-message t))
+	   (save-buffer))))
+
+
 (defun my/eval-next-sexp ()
   "Eval next sexp."
   (interactive)
@@ -198,11 +217,6 @@ rotate entire document."
   (let ((inhibit-message t))
     (find-file "~/.emacs.d/tmp/i3keys.org")))
 
-(defun find-evil-keys ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/lisp/functions/evil_keys.el")))
-
 (defun find-pcc-notes ()
   (interactive)
   (let ((inhibit-message t))
@@ -228,98 +242,9 @@ rotate entire document."
   (let ((inhibit-message t))
     (find-file "~/.config/i3/config.org")))
 
-(defun find-init ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/init.org")))
-
-(defun find-vertigo ()
-  (interactive)
-  (let ((inhibit-message t))
-    (my/evil-botright)
-    (find-file "~/.emacs.d/tmp/vertigo_cheat_sheet")
-    (adjust-vertigo-cheat-sheet)
-    (disable-modeline)
-    (disable-cursor)
-    (other-window -1)))
-
 (fset 'adjust-vertigo-cheat-sheet
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([32 116 106 106 106 escape 24 67108912 61 61 escape] 0 "%d") arg)))
 
-(defun find-pdf-keys ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/lisp/functions/pdf_view.el")))
-
-(defun find-abbrevs ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/etc/abbrev_defs")))
-
-(defun find-init.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/init.el")))
-
-(defun find-packs ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/packs.org")))
-
-(defun find-packs.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/packs.el")))
-
-(defun find-keys ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/keys.org")))
-
-(defun find-keys.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/keys.el")))
-
-(defun find-misc ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/misc.org")))
-
-(defun find-misc.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/misc.el")))
-
-(defun find-functions ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/functions.org")))
-
-(defun find-functions.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/functions.el")))
-
-(defun find-hydras ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/hydras.org")))
-
-(defun find-hydras.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/hydras.el")))
-
-(defun find-macros ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/macros.org")))
-
-(defun find-macros.el ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/macros.el")))
 
 (defun find-scratch-markdown ()
   (interactive)
@@ -399,10 +324,108 @@ rotate entire document."
     (disable-cursor)
     (link-hint-open-link)))
 
+(defun find-pdf-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/lisp/functions/pdf_view.el")))
+
+(defun find-vertigo ()
+  (interactive)
+  (let ((inhibit-message t))
+    (my/evil-botright)
+    (find-file "~/.emacs.d/tmp/vertigo_cheat_sheet")
+    (adjust-vertigo-cheat-sheet)
+    (disable-modeline)
+    (disable-cursor)
+    (other-window -1)))
+
+
+
+(defun find-abbrevs ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/etc/abbrev_defs")))
+
 (defun find-emacs-custom ()
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/.emacs.d/etc/custom.el")))
+
+(defun find-evil-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/lisp/functions/evil_keys.el")))
+
+(defun find-functions ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/functions.org")))
+
+(defun find-functions.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/functions.el")))
+
+(defun find-hydras ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/hydras.org")))
+
+(defun find-hydras.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/hydras.el")))
+
+(defun find-init ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/init.org")))
+
+(defun find-init.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/init.el")))
+
+(defun find-keys ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/keys.org")))
+
+(defun find-keys.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/keys.el")))
+
+(defun find-macros ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/macros.org")))
+
+(defun find-macros.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/macros.el")))
+
+(defun find-misc ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/misc.org")))
+
+(defun find-misc.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/misc.el")))
+
+(defun find-packs ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/packs.org")))
+
+(defun find-packs.el ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/packs.el")))
+
 
 (defun my/goto-scratch-buffer ()
 (interactive)
@@ -608,12 +631,33 @@ return t."
   (delete-frame))
 
 
+(defun tangle-py-all ()
+  (interactive)
+  (my/save-all)
+  (measure-time
+   (shell-command "tangle-py ~/.emacs.d/*.org")
+   (message "all files tangled")))
+
+(defun tangle-py-all-and-restart ()
+  (interactive)
+  (progn
+    (my/save-all)
+    (shell-command "tangle-py ~/.emacs.d/*.org")
+    (sit-for 0.5)
+    (shell-command "~/scripts/emacs_scripts/rel")))
+
 (defun my/tangle-default ()
   (interactive)
   (widenToCenter)
   (my/quiet-save-buffer)
   (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
   (message "this file was tangled"))
+
+(defun tangle-py-all-debug ()
+  (interactive)
+  (my/save-all)
+  (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
+  (start-process-shell-command "new emacs" nil "emacs --debug-init"))
 
 (defun my/tangle-reload-keys ()
   (interactive)
@@ -624,33 +668,19 @@ return t."
   (load-file "~/.emacs.d/keys.el")
   (message "keys reloaded"))
 
-(defun tangle-py ()
-  (interactive)
-  (my/quiet-save-buffer)
-  (defvar foo)
-  (setq foo (concat "tangle-py " (prelude-copy-file-name-to-clipboard)))
-  (shell-command foo)
-  (message "this file was tangled"))
-
-(defun tangle-and-eval-block-narrowed ()
-  (interactive)
-  (indent-block)
-  (widenToCenter)
-  (eval-src-block)
-  (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
-  (recursive-narrow-or-widen-dwim))
-
 (defun my/reset-keys ()
   (interactive)
   (my/save-all)
   (shell-command "~/scripts/keyboard/init_keys.sh")
   (message "the keys were reseted"))
 
-(defun tangle-py-all ()
+(defun my/tangle-this-file ()
   (interactive)
-  (my/save-all)
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (message "all files tangled"))
+  (my/quiet-save-buffer)
+  (defvar foo)
+  (setq foo (concat "tangle-py " (prelude-copy-file-name-to-clipboard)))
+  (start-process-shell-command "tangle" nil "tangle-py" foo )
+  (message " this file was tangled"))
 
 (defun tangle-and-eval-block ()
   (interactive)
@@ -659,89 +689,15 @@ return t."
   (eval-src-block)
   (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org"))
 
-(defun tangle-py-all-debug ()
-  (interactive)
-  (my/save-all)
-  (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
-  (start-process-shell-command "new emacs" nil "emacs --debug-init"))
-
-;; (defun tangle-py-all-recompile ()
-;;   (interactive)
-;;   (my/save-all)
-;;   (shell-command "tangle-py ~/.emacs.d/*.org")
-;;   (my/recompile)
-;;   (message "all files tangled"))
-
-(defun tangle-py-all-and-restart ()
-  (interactive)
-  (progn
-    (my/save-all)
-    (shell-command "tangle-py ~/.emacs.d/*.org")
-    (sit-for 0.5)
-    (shell-command "~/scripts/emacs_scripts/rel")))
-
 (defun i3-reload ()
   (interactive)
   (my/save-all)
-
   (shell-command "tangle-py ~/.config/i3/*.org")
   (let ((inhibit-message t))
     (shell-command "i3-msg fullscreen disable ")
     (shell-command "i3-msg restart"))
   (message "i3 reloaded"))
 
-(defun tangle-py-all-bug-hunter-init ()
-  (interactive)
-  (my/save-all)
-
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (load-file user-init-file)
-  (bug-hunter-init-file)
-  (message "all files were tangled"))
-
-(defun tangle-py-all-and-load ()
-  (interactive)
-  (my/save-all)
-
-  (shell-command "tangle-py ~/.emacs.d/*.org")
-  (load-file user-init-file)
-  (message "all files tangled and loaded"))
-
-(defun my/reload-init ()
-  (interactive)
-  (load-file user-init-file)
-  (message "reloaded"))
-
-;;;; TRIPLE CHECK ;;;;
-
-(defun tangle-py-all-with-messages ()
-  (interactive)
-  (my/save-all)
-  (async-shell-command "tangle-py ~/.emacs.d/*.org")
-  (other-window -1)
-  (evil-window-move-very-bottom)
-  (adjust-term-c))
-
-(defun my/save-all ()
-  (interactive)
-  (setq current-prefix-arg '(4))
-  (call-interactively 'save-some-buffers))
-
-(defun tangle-py-all-recompile-new-instance ()
-  (interactive)
-  (progn
-    (my/save-all)
-    (shell-command "tangle-py ~/.emacs.d/*.org")
-    (my/recompile)
-    (async-shell-command "emacs")
-    (delete-windows-on "*Async Shell Command*")))
-
-(defun my/recompile ()
-  (interactive)
-  (progn
-    (byte-recompile-directory "~/.emacs.d")
-    (delete-windows-on "*Compile-Log*")
-    (message " recompiled")))
 
 (defun my/move-line-up ()
   (interactive)
@@ -1712,68 +1668,6 @@ Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (let ((current-prefix-arg 10))))
 
-(defun my/evil-shell-bottom ()
-  (interactive)
-  (end-of-buffer)
-  (evil-insert-state)
-  (comint-clear-buffer)
-  (message " "))
-
-(defun my/shell-resync ()
-  (interactive)
-  (comint-kill-whole-line 1)
-  (shell-resync-dirs)
-  (comint-clear-buffer)
-  (insert "ls")
-  (comint-send-input))
-
-
-(defun my/shell-list ()
-  (interactive)
-  (insert "ls")
-  (comint-send-input))
-
-(defun my/shell-clear-and-list ()
-  (interactive)
-  (comint-clear-buffer)
-  (insert "ls")
-  (comint-send-input))
-
-(defun my/shell-go-up ()
-  (interactive)
-  (insert "cd ..")
-  (comint-send-input)
-  (comint-clear-buffer)
-  (insert "ls")
-  (comint-send-input))
-
-(defun my/shell-go-back ()
-  (interactive)
-  (comint-clear-buffer)
-  (insert "cd - && ls")
-  (comint-send-input))
-
-(defun my/shell-fasd-start ()
-  (interactive)
-  (insert "jj "))
-
-(defun my/shell-fasd-complete ()
-  (interactive)
-  (comint-send-input)
-  (comint-clear-buffer)
-  (insert "ls")
-  (comint-send-input))
-
-(defun my/shell-go-previous ()
-  (interactive)
-  (comint-clear-buffer)
-  (insert "my-shell-go-previous")
-  (comint-send-input)
-  (comint-clear-buffer)
-  (insert "ls")
-  (comint-send-input))
-
-
 (defun ipython ()
   (interactive)
   (term "/home/dotfiles/scripts/cline_scripts/ipython-no-banner"))
@@ -2550,27 +2444,11 @@ Skips inferior frames, that is, those without a minibuffer (eg. speedbar). "
   ad-do-it
   (kill-org-agenda-files))
 
-(defun my/quiet-save-buffer () (interactive)
-       (save-excursion
-	 (evil-ex-nohighlight)
-	 (let ((inhibit-message t))
-	   (delete-trailing-whitespace)
-	   (save-buffer))))
-
-(defun my/quiet-save-buffer-markdown () (interactive)
-       (save-excursion
-	 (evil-ex-nohighlight)
-	 (let ((inhibit-message t))
-	   (save-buffer))))
-
-;; (defun my/quiet-save-python () (interactive)
-;;        (evil-ex-nohighlight)
-;;        (let ((inhibit-message t))
-;; 	 (progn
-;; 	   (elpy-autopep8-fix-code)
-;; 	   (elpy-black-fix-code)
-;; 	   (save-buffer))))
-
+(defmacro measure-time (&rest body)
+  "Measure the time it takes to evaluate BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (message "%.06f" (float-time (time-since time)))))
 
 (defun my/date ()
   (interactive)

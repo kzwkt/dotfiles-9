@@ -83,17 +83,18 @@
   (leader
     :states '(normal visual)
     :keymaps 'override
-    ;; "SPC" 'projectile-command-map
-    "u" 'counsel-org-capture
-    "s" 'my/split-below
-    "l" 'my/split-right
-    "b" 'my/evil-botright
+    ;;;; SPLITTING ;;;;
+    "h" 'split-window-horizontally
+    "j" 'my/split-vertically
     "k" 'split-window-below
+    "l" 'my/split-right
+    ;; "s" 'my/split-below
+    ;; "b" 'my/evil-botright
+    ;; "y" nil
+
+    "u" 'counsel-org-capture
     "q" 'my/kill-this-buffer
     "0" 'delete-window
-    "y" 'my/term-botright
-    "j" 'my/split-vertically
-    "h" 'split-window-horizontally
     "W" 'widenToCenter
     "e" 'widen)
 
@@ -1509,11 +1510,11 @@ buffer expose commands.
 #+END_SRC
 ** select
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package select
-  :if (not window-system)
-  :ensure nil
-  :config
-  (setq x-select-enable-primary t))
+;; (use-package select
+;;   :if (not window-system)
+;;   :ensure nil
+;;   :config
+;;   (setq x-select-enable-primary nil))
 #+END_SRC
 ** ibuffer
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -1642,84 +1643,9 @@ buffer expose commands.
   :defer t
   :ensure nil
   :init
-  (setq comint-terminfo-terminal "ansi")
-  (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-  (add-hook 'shell-mode-hook 'my/shell-mode-hooks)
-  (add-hook 'shell-mode-hook
-	    (lambda ()
-	      (face-remap-set-base 'comint-highlight-prompt :inherit nil)))
+  (load-file "~/.emacs.d/etc/shell_extras/shell_init.el")
   :config
-
-  (defun my/shell-mode-hooks ()
-    (interactive)
-    (subword-mode 1)
-    (company-mode 1)
-    (smartparens-mode 1)
-    (tab-jump-out-mode 1)
-    (electric-pair-local-mode 1)
-    (my/company-idle-one-prefix-one)
-    (my/shell-source-bashrc))
-
-  (defun my/shell-source-bashrc ()
-    (interactive)
-    (insert "source ~/.bashrc")
-    (comint-send-input)
-    (comint-clear-buffer))
-
-  (general-imap
-    :keymaps 'shell-mode-map
-    "C-u" 'comint-kill-input
-    "C-p" 'comint-previous-input
-    "C-n" 'comint-next-input
-    "C-c u" 'universal-argument
-    "C-l" 'comint-clear-buffer
-    "M-u" 'my/shell-go-up
-    "C-t" 'my/shell-go-back
-    "C-c ;" 'kill-buffer-and-window
-    "C-/" 'my/shell-clear-and-list
-    "M-p" 'my/shell-go-previous
-    "C-c j" 'my/evil-shell-bottom)
-
-  (vmap
-    :keymaps 'shell-mode-map
-    "C-;" 'my/yank-shell-to-notes)
-
-  (nvmap
-    :keymaps 'shell-mode-map
-    "C-c u" 'universal-argument
-    "C-l" 'comint-clear-buffer
-    "M-u" 'my/shell-go-up
-    "C-t" 'my/shell-go-back
-    "C-c ;" 'kill-buffer-and-window
-    "M-p" 'my/shell-go-previous
-    "C-/" 'my/shell-clear-and-list
-    "C-c ;" 'kill-buffer-and-window
-    "C-j" 'counsel-M-x)
-
-  (general-define-key
-   :keymaps 'shell-mode-map
-   "C-j" 'counsel-M-x
-   "M-u" 'my/shell-go-up
-   "C-u" 'comint-kill-input
-   "<M-return>" nil
-   "C-;" 'kill-buffer-and-window
-   "C-t" 'my/shell-go-back
-   "C-c 0" 'my/jump-to-register-91
-   "M-e" 'counsel-shell-history
-   "C-n" 'comint-next-input
-   "C-l" 'comint-clear-buffer
-   "C-c u" 'universal-argument
-   "M-p" 'my/shell-go-previous
-   "C-p" 'comint-previous-input
-   "C-c j" 'my/evil-shell-bottom)
-
-  (general-unbind 'shell-mode-map
-    :with 'ignore
-    [remap my/quiet-save-buffer])
-
-  (general-unbind 'shell-mode-map
-    :with nil
-    [remap hydra-text-main/body]))
+  (load-file "~/.emacs.d/etc/shell_extras/shell_extras.el"))
 #+END_SRC
 ** eshell
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -2629,96 +2555,9 @@ buffer expose commands.
   :defer t
   :ensure nil
   :init
-  (setq python-indent-offset 4)
-  (add-hook 'python-mode-hook 'my/python-mode-hooks)
-  (add-hook 'python-mode-hook #'evil-swap-keys-swap-double-single-quotes)
-  (add-hook 'python-mode-hook #'evil-swap-keys-swap-colon-semicolon)
-  (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
+  (load-file "~/.emacs.d/etc/python_extras/python_init.el")
   :config
-  (load-file "~/.emacs.d/etc/python_extras/python_extras.el")
-  (general-define-key
-   :keymaps 'inferior-python-mode-map
-   "M-e" 'counsel-shell-history
-   "C-c j" 'my/evil-shell-bottom
-   "C-c u" 'universal-argument
-   "C-u" 'comint-kill-input
-   "C-l" 'comint-clear-buffer
-   "C-j" 'counsel-M-x
-   "C-;" 'kill-buffer-and-window
-   "C-n" 'comint-next-input
-   "C-p" 'comint-previous-input)
-
-  (general-nvmap
-    :keymaps 'inferior-python-mode-map
-    "C-j" 'counsel-M-x)
-
-  (general-unbind 'inferior-python-mode-map
-    :with 'ignore
-    [remap my/quiet-save-buffer])
-
-  (general-unbind 'python-mode-map
-    :with 'my/python-shebang
-    [remap my/bash-shebang])
-
-  (general-unbind 'python-mode-map
-    :with 'my/python-save-buffer
-    [remap my/quiet-save-buffer])
-
-  (general-define-key
-   :keymaps 'python-mode-map
-   "C-." 'my/indent-tools-hydra/body
-   "M-e" 'python-nav-forward-statement
-   "M-a" 'python-nav-backward-statement
-   "M-m" 'blacken-buffer)
-
-  (general-imap
-    :keymaps 'python-mode-map
-    "M-e" 'python-nav-forward-statement
-    "M-a" 'python-nav-backward-statement
-    "<S-backspace>" 'python-indent-dedent-line-backspace
-    "<M-return>" 'indent-buffer
-    "<C-return>" 'cool-moves/open-line-below-python)
-
-  (defun my/python-make-string ()
-    (interactive)
-    (set-mark-command nil)
-    (end-of-visual-line 1)
-    (insert ")")
-    (exchange-point-and-mark nil)
-    (insert "str(")
-    (left-char)
-    (set-mark-command nil))
-
-  (defun my/python-make-input ()
-    (interactive)
-    (set-mark-command nil)
-    (end-of-visual-line 1)
-    (insert ")")
-    (exchange-point-and-mark nil)
-    (insert "input(")
-    (left-char)
-    (set-mark-command nil))
-
-  (general-nvmap
-    :keymaps 'python-mode-map
-    "C-." 'my/indent-tools-hydra/body
-    "<tab>" 'hs-toggle-hiding
-    "o" 'cool-moves/open-line-below-python
-    "RET" 'hydra-python-mode/body
-    "zm" 'evil-close-folds
-    "M-e" 'python-nav-forward-statement
-    "M-a" 'python-nav-backward-statement
-    "gh" 'outline-up-heading
-    "gl" 'outline-next-heading
-    "zl" 'outline-show-subtree
-    "<M-return>" 'indent-buffer
-    "<" 'python-indent-shift-left
-    "M-m" 'blacken-buffer
-    ">" 'python-indent-shift-right
-    "gj" 'outline-forward-same-level
-    "gk" 'outline-backward-same-level
-    "<C-return>" 'python-open-two-line
-    "<backspace>" 'hydra-prog-mode/body))
+  (load-file "~/.emacs.d/etc/python_extras/python_extras.el"))
 #+END_SRC
 ** projectile
 *** projectile main

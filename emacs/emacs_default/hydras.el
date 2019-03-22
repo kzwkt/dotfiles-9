@@ -59,7 +59,7 @@
   "
   ^
        ^Shells^
-       ----------------------
+       ----------------------------
        _s_: small     _p_: python shell
        _j_: bellow    _a_: python async
        _h_: far left
@@ -227,7 +227,7 @@
        _f_: first   _N_: flymake prev
        _p_: prev    _P_: flymake next
        _n_: next    _h_: hide-show
-       _s_: show
+       _d_: display _s_: shell
        _b_: buffer
        _c_: clear
        _m_: mode
@@ -239,14 +239,15 @@
   ("f" flycheck-first-error)
   ("p" flycheck-next-error :exit nil)
   ("n" flycheck-previous-error :exit nil)
-  ("s" flycheck-display-error-at-point)
+  ("d" flycheck-display-error-at-point)
   ("b" flycheck-buffer)
   ("c" flycheck-clear)
   ("m" flycheck-mode)
 
   ("N" flymake-goto-prev-error)
   ("P" flymake-goto-next-error)
-  ("h" hs-minor-mode))
+  ("h" hs-minor-mode)
+  ("s" hydra-shell/body))
 
 (defhydra hydra-dumb-jump (:color blue :hint nil :foreign-keys run)
   "
@@ -404,16 +405,13 @@
        _b_: all & res
        _c_: default
        _d_: debug
-       _e_: recompile
-       _f_: restart
+       _e_: this file
 "
   ("a" tangle-py-all)
   ("b" tangle-py-all-and-restart)
   ("c" my/tangle-default)
   ("d" tangle-py-all-debug)
-  ("e" tangle-py-all-recompile)
-  ("f" restart-emacs))
-
+  ("e" my/tangle-this-file))
 
 (defhydra hydra-modes (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -934,6 +932,45 @@
   ("#" my/goto-i3-screen-configs))
 
 (defhydra hydra-find-emacs-files (:hint nil :foreign-keys nil :exit t)
+  "
+  ^
+     ^Org^           ^Elisp^                     ^Others^
+     -------------------------------------------------------------
+     _i_: init       _n_: init      _c_: custom    _d_: ~/.emacs.d
+     _p_: packages   _a_: packs     _b_: gabbrevs  _j_: search pack
+     _f_: functions  _u_: functions ^^             _l_: filesets.el
+     _k_: keys       _e_: keys      ^^             _M_: evil keys
+     _m_: misc       _s_: misc
+     _r_: macros     _o_: macros
+     _h_: hydras     _y_: hydras
+"
+  ("<escape>" nil)
+  ("C-," nil)
+  ("C-o" my/search-pack)
+
+  ("i" find-init)
+  ("n" find-init.el)
+  ("p" find-packs)
+  ("ṕ" find-packs)
+  ("a" find-packs.el)
+  ("f" find-functions)
+  ("u" find-functions.el)
+  ("h" find-hydras)
+  ("y" find-hydras.el)
+  ("k" find-keys)
+  ("e" find-keys.el)
+  ("m" find-misc)
+  ("s" find-misc.el)
+  ("r" find-macros)
+  ("o" find-macros.el)
+  ("c" find-emacs-custom)
+  ("b" find-abbrevs)
+  ("d" ranger-find-emacs-dir)
+  ("j" my/search-pack)
+  ("l" find-filesets.el)
+  ("M" find-evil-keys))
+
+(defhydra hydra-find-emacs-outline (:hint nil :foreign-keys nil :exit t)
   "
   ^
      ^Org^           ^Elisp^                     ^Others^

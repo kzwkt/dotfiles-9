@@ -69,6 +69,70 @@
   (electric-operator-mode 1)
   (highlight-numbers-mode 1))
 
+(general-define-key
+ :keymaps 'inferior-python-mode-map
+ "M-e" 'counsel-shell-history
+ "C-c j" 'my/evil-shell-bottom
+ "C-c u" 'universal-argument
+ "C-u" 'comint-kill-input
+ "C-l" 'comint-clear-buffer
+ "C-j" 'counsel-M-x
+ "C-;" 'kill-buffer-and-window
+ "C-n" 'comint-next-input
+ "C-p" 'comint-previous-input)
+
+(general-nvmap
+  :keymaps 'inferior-python-mode-map
+  "C-j" 'counsel-M-x)
+
+(general-unbind 'inferior-python-mode-map
+  :with 'ignore
+  [remap my/quiet-save-buffer])
+
+(general-unbind 'python-mode-map
+  :with 'my/python-shebang
+  [remap my/bash-shebang])
+
+(general-unbind 'python-mode-map
+  :with 'my/python-save-buffer
+  [remap my/quiet-save-buffer])
+
+(general-define-key
+ :keymaps 'python-mode-map
+ "C-." 'my/indent-tools-hydra/body
+ "M-e" 'python-nav-forward-statement
+ "M-a" 'python-nav-backward-statement
+ "M-m" 'blacken-buffer)
+
+(general-nvmap
+  :keymaps 'python-mode-map
+  "C-." 'my/indent-tools-hydra/body
+  "<tab>" 'hs-toggle-hiding
+  "o" 'cool-moves/open-line-below-python
+  "RET" 'hydra-python-mode/body
+  "zm" 'evil-close-folds
+  "M-e" 'python-nav-forward-statement
+  "M-a" 'python-nav-backward-statement
+  "gh" 'outline-up-heading
+  "gl" 'outline-next-heading
+  "zl" 'outline-show-subtree
+  "<M-return>" 'indent-buffer
+  "<" 'python-indent-shift-left
+  "M-m" 'blacken-buffer
+  ">" 'python-indent-shift-right
+  "gj" 'outline-forward-same-level
+  "gk" 'outline-backward-same-level
+  "<C-return>" 'python-open-two-line
+  "<backspace>" 'hydra-prog-mode/body)
+
+(general-imap
+  :keymaps 'python-mode-map
+  "M-e" 'python-nav-forward-statement
+  "M-a" 'python-nav-backward-statement
+  "<S-backspace>" 'python-indent-dedent-line-backspace
+  "<M-return>" 'indent-buffer
+  "<C-return>" 'cool-moves/open-line-below-python)
+
 (defun my/python-save-buffer () (interactive)
        (evil-ex-nohighlight)
        (let ((inhibit-message t))
@@ -80,4 +144,24 @@
   (end-of-line)
   (open-line arg)
   (forward-line 1)
-  (evil-insert-state))
+  (evil-insert-state)
+
+  (defun my/python-make-string ()
+    (interactive)
+    (set-mark-command nil)
+    (end-of-visual-line 1)
+    (insert ")")
+    (exchange-point-and-mark nil)
+    (insert "str(")
+    (left-char)
+    (set-mark-command nil))
+
+  (defun my/python-make-input ()
+    (interactive)
+    (set-mark-command nil)
+    (end-of-visual-line 1)
+    (insert ")")
+    (exchange-point-and-mark nil)
+    (insert "input(")
+    (left-char)
+    (set-mark-command nil)))

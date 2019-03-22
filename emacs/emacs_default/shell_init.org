@@ -1,0 +1,1 @@
+/home/dave/.emacs.d/etc/shell_extras/shell_init.org

@@ -1,0 +1,4 @@
+# key: beg
+# name: begin block
+# --
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/${1:file}
