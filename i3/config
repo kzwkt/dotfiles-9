@@ -286,7 +286,7 @@ bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"
 for_window [title="term-right"] border none
 for_window [title="term-right"] floating enable sticky enable
 for_window [title="term-right"] move scratchpad
-for_window [title="term-right"] resize set 1000 1034; move to position 0 0
+for_window [title="term-right"] resize set 1000 1013; move to position 0 0
 bindsym $mod+o exec ~/scripts/i3_scripts/hide/term_right_hide_others ; [title="term-right"] scratchpad show; move to position 960 22
 
 for_window [title="term-ranger"] border none
