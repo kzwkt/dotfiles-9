@@ -519,7 +519,8 @@
   (defun my/markdown-copy-buffer ()
     (interactive)
     (save-excursion
-      (my/markdown-copy-buffer-macro)))
+      (my/markdown-copy-buffer-macro)
+      (message " buffer yanked without title")))
 
   (setq markdown-css-paths '("/home/mrbig/org/Creative/Web/md_themes/retro/css/retro.css"))
 
@@ -2353,9 +2354,9 @@
   (defun my/run-python-external ()
     (interactive)
     (progn
-      (prelude-copy-file-name-to-clipboard)))
-      (sit-for 1)
-      (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right")))
+      (prelude-copy-file-name-to-clipboard))
+    (sit-for 1)
+    (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right"))
 
   (defun my/python-save-buffer () (interactive)
 	 (evil-ex-nohighlight)
@@ -2833,4 +2834,3 @@
   (setq pdf-annot-activate-created-annotations t)
 
   (load-file "~/.emacs.d/lisp/functions/pdf_view.el"))
-
