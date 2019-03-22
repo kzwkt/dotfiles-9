@@ -161,4 +161,13 @@
      key="E"
      modifiers="Ctrl,Shift"
      action="DialogExport" />
+  <bind
+     key="e"
+     modifiers="Ctrl"
+     action="AlignVerticalHorizontalCenter"
+     display="true" />
+  <bind
+     key="E"
+     modifiers="Ctrl"
+     action="AlignVerticalHorizontalCenter" />
 </keys>

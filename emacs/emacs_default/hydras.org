@@ -173,38 +173,44 @@
   ("i" my/company-show-prefix-length))
 
 #+END_SRC
-** python mode
+** python
+*** python mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-python-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-       ^Run^
-       -------------------------------------------------
-       _a_: run        _f_: str()       _l_: go to definition
-       _b_: sh         _g_: input()     _m_: go to assignment
-       _c_: sh simple  _h_: company     _o_: dumb jump go
-       _d_: quick      _i_: run black
-       _e_: quick sh   _j_: projectile
+       ^Python^               ^Flycheck^  ^Flymake^
+       --------------------------------------
+       _q_: quickrun          _f_: first  _N_: prev
+       _s_: quickrun shell    _p_: prev   _P_: next
+       _g_: go to definition  _n_: next   _M_: mode
+       _G_: other window      _m_: mode
+       _a_: go to assignment
+       _A_: other window
+
 "
   ("<escape>" nil)
   ("RET" hydra-prog-mode/body)
 
-  ("a" execute-python-program)
-  ("b" my/execute-python-program-shell)
-  ("c" my/execute-python-program-shell-simple)
-  ("d" quickrun)
-  ("e" quickrun-shell)
+  ("q" quickrun)
+  ("s" quickrun-shell)
 
-  ("f" my/python-make-string)
-  ("g" my/python-make-input)
-  ("h" hydra-company/body)
-  ("i" blacken-buffer)
-  ("j" hydra-projectile-mode/body)
-  ("l" elpy-goto-definition)
-  ("m" elpy-goto-assignment)
-  ("L" elpy-goto-definition-other-window)
-  ("M" elpy-goto-assignment-other-window)
-  ("o" dumb-jump-go))
+  ("g" elpy-goto-definition)
+  ("G" elpy-goto-assignment)
+
+  ("a" elpy-goto-definition-other-window)
+  ("A" elpy-goto-assignment-other-window)
+
+  ("f" flycheck-first-error)
+  ("p" flycheck-next-error :exit nil)
+  ("n" flycheck-previous-error :exit nil)
+  ("m" flycheck-mode)
+
+  ("N" flymake-goto-prev-error)
+  ("P" flymake-goto-next-error)
+  ("M" flymake-mode)
+
+  )
 #+END_SRC
 ** projectile mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
@@ -240,29 +246,29 @@
   ^
        ^Flycheck^   ^Others^
        ----------------------------
-       _a_: first   _h_: flymake prev
-       _b_: prev    _i_: flymake next
-       _c_: next    _j_: hide-show
-       _d_: show
-       _e_: buffer
-       _f_: clear
-       _g_: mode
+       _f_: first   _N_: flymake prev
+       _p_: prev    _P_: flymake next
+       _n_: next    _h_: hide-show
+       _s_: show
+       _b_: buffer
+       _c_: clear
+       _m_: mode
 
 "
   ("<escape>" nil)
   ("RET" hydra-flymake-mode/body)
 
-  ("a" flycheck-first-error)
-  ("b" flycheck-next-error :exit nil)
-  ("c" flycheck-previous-error :exit nil)
-  ("d" flycheck-display-error-at-point)
-  ("e" flycheck-buffer)
-  ("f" flycheck-clear)
-  ("g" flycheck-mode)
+  ("f" flycheck-first-error)
+  ("p" flycheck-next-error :exit nil)
+  ("n" flycheck-previous-error :exit nil)
+  ("s" flycheck-display-error-at-point)
+  ("b" flycheck-buffer)
+  ("c" flycheck-clear)
+  ("m" flycheck-mode)
 
-  ("h" flymake-goto-prev-error)
-  ("i" flymake-goto-next-error)
-  ("j" hs-minor-mode))
+  ("N" flymake-goto-prev-error)
+  ("P" flymake-goto-next-error)
+  ("h" hs-minor-mode))
 #+END_SRC
 ** dumb jump mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el

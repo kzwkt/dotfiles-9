@@ -335,8 +335,8 @@
        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"
        selcue="1">
       <group
-         display_unit="0"
-         id="lineheight" />
+         id="lineheight"
+         display_unit="0" />
     </eventcontext>
     <eventcontext
        id="nodes"
@@ -354,8 +354,8 @@
        live_outline="1"
        live_objects="1"
        show_helperpath="0"
-       x="0"
-       y="0"
+       x="139.379"
+       y="296.627"
        edit_clipping_paths="0"
        edit_masks="0" />
     <eventcontext
@@ -412,7 +412,7 @@
        id="connector"
        style="fill:none;fill-rule:evenodd;stroke:black;stroke-opacity:1;stroke-linejoin:miter;stroke-width:1px;stroke-linecap:butt;"
        selcue="1"
-       curvature="3"
+       curvature="0"
        length="100" />
     <eventcontext
        id="paintbucket"
@@ -422,12 +422,12 @@
        offset="0"
        offsetunits="cm" />
     <group
-       unit="px"
-       offset="5"
-       scale="100"
-       precision="2"
+       id="measure"
        fontsize="10"
-       id="measure" />
+       precision="2"
+       scale="100"
+       offset="5"
+       unit="px" />
   </group>
   <group
      id="palette">
@@ -575,7 +575,7 @@
        page="0"
        x="0"
        y="0"
-       w="339"
+       w="320"
        h="430"
        visible="1"
        state="2"
@@ -588,7 +588,20 @@
        id="transformation"
        applyseparately="0" />
     <group
-       id="align" />
+       id="align"
+       panel_size="1"
+       panel_ratio="100"
+       panel_mode="1"
+       panel_wrap="0"
+       panel_border="0"
+       align-to="0"
+       x="0"
+       y="0"
+       w="320"
+       h="522"
+       visible="1"
+       state="2"
+       placement="1" />
     <group
        id="xml" />
     <group
@@ -610,11 +623,11 @@
        panel_mode="1"
        panel_wrap="0"
        panel_border="0"
-       page="24"
-       x="194"
-       y="34"
-       w="1531"
-       h="1012" />
+       page="26"
+       x="770"
+       y="55"
+       w="1148"
+       h="989" />
     <group
        id="gradienteditor" />
     <group
@@ -631,11 +644,11 @@
        panel_border="0"
        x="0"
        y="0"
-       w="339"
+       w="341"
        h="477"
-       visible="1"
+       visible="0"
        state="2"
-       placement="2">
+       placement="1">
       <group
          id="exportarea"
          value="drawing" />
@@ -651,10 +664,10 @@
        use_current_dir="1" />
     <group
        id="save_copy"
-       default=""
+       default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="1"
-       path="" />
+       path="/home/dave/org/Creative/Social/Private" />
     <group
        id="open"
        enable_preview="1"
@@ -873,7 +886,7 @@
        value="2" />
     <group
        id="transform"
-       stroke="1"
+       stroke="0"
        rectcorners="1"
        pattern="1"
        gradient="1" />
@@ -994,6 +1007,9 @@
        partialdynamic="0" />
     <group
        id="rendering" />
+    <group
+       value="center"
+       id="kbshortcuts" />
   </group>
   <group
      id="extensions"
@@ -1002,13 +1018,13 @@
      org.inkscape.render.empty_video.height="1080" />
   <group
      id="desktop"
-     style="line-height:1.25">
+     style="line-height:1.25;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none">
     <group
-       width="956"
-       height="1034"
-       x="960"
-       y="44"
-       fullscreen="1"
+       width="1148"
+       height="1033"
+       x="768"
+       y="22"
+       fullscreen="0"
        id="geometry"
        maximized="0" />
     <group
