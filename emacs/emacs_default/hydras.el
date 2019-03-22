@@ -192,7 +192,7 @@
   ("P" flymake-goto-next-error)
   ("M" flymake-mode)
   ("w" my/execute-python-program-shell)
-  ("x" my/run-python-external))
+  ("x" my/run-python-externally))
 
 (defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
   "

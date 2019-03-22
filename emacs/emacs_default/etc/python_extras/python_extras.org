@@ -49,11 +49,15 @@
   (interactive)
   (progn
     (prelude-copy-file-name-to-clipboard)
-    (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right")))
+    (start-process-shell-command
+     "call term" nil
+     "~/scripts/i3_scripts/show_term_right")))
+
+
+
 #+END_SRC
 * Hooks
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_extras.el
-
   (defun my/python-mode-hooks ()
     (interactive)
     (hl-line-mode 1)
@@ -141,7 +145,7 @@
     "<M-return>" 'indent-buffer
     "<C-return>" 'cool-moves/open-line-below-python)
 #+END_SRC
-* Other
+* Functions
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_extras.el
 (defun my/python-save-buffer () (interactive)
        (evil-ex-nohighlight)
@@ -175,4 +179,18 @@
     (insert "input(")
     (left-char)
     (set-mark-command nil)))
+
+(defun my/run-python-externally ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+		      default-directory
+		    (buffer-file-name))))
+    (when filename
+      (kill-new (concat "python3 " filename))))
+  (start-process-shell-command
+   "call term"
+   nil
+   "~/scripts/i3_scripts/show_term_right"))
+
 #+END_SRC

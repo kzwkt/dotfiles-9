@@ -45,7 +45,11 @@
   (interactive)
   (progn
     (prelude-copy-file-name-to-clipboard)
-    (start-process-shell-command "call term" nil "~/scripts/i3_scripts/show_term_right")))
+    (start-process-shell-command
+     "call term" nil
+     "~/scripts/i3_scripts/show_term_right")))
+
+
 
 
 (defun my/python-mode-hooks ()
@@ -165,3 +169,17 @@
     (insert "input(")
     (left-char)
     (set-mark-command nil)))
+
+(defun my/run-python-externally ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+		      default-directory
+		    (buffer-file-name))))
+    (when filename
+      (kill-new (concat "python3 " filename))))
+  (start-process-shell-command
+   "call term"
+   nil
+   "~/scripts/i3_scripts/show_term_right"))
+

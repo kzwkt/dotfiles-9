@@ -48,68 +48,7 @@
 (use-package general
   :ensure t
   :config
-  ;; (load-file "~/.emacs.d/lisp/functions/general_shift_avoidance.el")
-
-  (general-unbind 'global
-    "<C-next>"
-    "C-w"
-    "C-c w"
-    "M-u"
-    "M-h"
-    "M-o"
-    "s-i"
-    "S-SPC"
-    "C-o")
-
-  (general-unbind 'override
-    :with 'ignore
-    "s-i"
-    "s-u")
-
-  (general-unbind 'lisp-interaction-mode-map
-    :with 'evil-ex-nohighlight
-    [remap my/quiet-save-buffer])
-
-  (general-create-definer leader
-    :prefix "SPC")
-  (leader
-    :states '(normal visual)
-    :keymaps 'override
-    ;;;; SPLITTING ;;;;
-    "h" 'split-window-horizontally
-    "j" 'my/split-vertically
-    "k" 'split-window-below
-    "l" 'my/split-right
-    ;; "s" 'my/split-below
-    ;; "b" 'my/evil-botright
-    ;; "y" nil
-
-    "u" 'counsel-org-capture
-    "q" 'my/kill-this-buffer
-    "0" 'delete-window
-    "W" 'widenToCenter
-    "e" 'widen)
-
-  (leader
-    :states '(normal)
-    :keymaps 'prog-mode-map
-    "w" 'widenToCenter
-    "n" 'narrow-to-defun)
-
-  (leader
-    :states '(normal visual)
-    "w" 'recursive-widen
-    "n" 'recursive-narrow-or-widen-dwim)
-
-  (general-define-key
-   :keymaps 'global
-   "M-n" 'my/paragraph-forward
-   "M-p" 'my/paragraph-backwards)
-
-  (general-define-key
-   :keymaps 'minibuffer-local-map
-   "C-w" 'backward-kill-word)
-
+  (load-file "~/.emacs.d/etc/general_extras/general_keybindings.el")
   (general-evil-setup t))
 
 (use-package org
@@ -713,7 +652,7 @@
   (leader
     :states '(normal visual)
     :keymaps 'override
-    "SPC" 'ranger-find-links-dir
+    ;; "SPC" 'ranger-find-links-dir
     "r" 'ranger)
 
   (general-define-key
@@ -2037,32 +1976,17 @@
   :config
   (smartparens-global-mode +1))
 
-;; (use-package evil-smartparens
-;;   :defer 3
-;;   :ensure t)
-
 (use-package elec-pair
   :defer t
   :config
   (electric-pair-mode))
 
 (use-package lispyville
+  :defer t
   :init
   (add-hook 'lisp-mode-hook #'lispyville-mode)
   (add-hook 'emacs-lisp-mode-hook #'lispyville-mode)
   :ensure t)
-
-;; (use-package outshine
-;;   :defer t
-;;   :init
-;;   (defvar outline-minor-mode-prefix "\M-#")
-;;   (general-nvmap
-;;     :keymaps 'outshine-mode-map
-;;     "za" 'outshine-cycle)
-;; (general-unbind 'outshine-mode-map
-;;   :with 'outshine-cycle
-;;   [remap evil-toggle-fold])
-;; )
 
 (use-package elisp-mode
   :defer t
@@ -2554,43 +2478,10 @@
 :defer t
 :ensure t)
 
-
 (use-package pdf-tools
+  :defer 1
   :ensure t
-  :init
-
-  (add-hook 'pdf-view-mode-hook 'my/pdf-view-settings)
-  (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
-  (add-hook 'pdf-outline-buffer-mode-hook 'my/pdf-outline-settings)
-
   :config
-
-  (defun pdf-occur-goto-quit ()
-    (interactive)
-    (pdf-occur-goto-occurrence)
-    (quit-windows-on "*PDF-Occur*"))
-
-  (defun my/pdf-delete-occur-window ()
-    (interactive)
-    (quit-windows-on "*PDF-Occur*"))
-
-  (defun my/pdf-view-settings ()
-    (interactive)
-    (pdf-annot-minor-mode 1)
-    (pdf-links-minor-mode 1)
-    (pdf-history-minor-mode 1))
-
-  (defun my/pdf-outline-settings ()
-    (interactive)
-    (disable-modeline)
-    (outline-minor-mode 1)
-    (hl-line-mode 1))
-
-  (setq pdf-view-continuous nil)
-  (setq pdf-view-resize-factor 1.15)
-  (setq pdf-view-display-size 'fit-page)
-  (setq pdf-misc-size-indication-minor-mode t)
-  (setq pdf-annot-activate-created-annotations t)
-
-  (load-file "~/.emacs.d/lisp/functions/pdf_view.el"))
-
+  (load-file "~/.emacs.d/etc/pdf_extras/pdf_extras.el")
+  (load-file "~/.emacs.d/etc/pdf_extras/pdf_init.el")
+  (pdf-loader-install))

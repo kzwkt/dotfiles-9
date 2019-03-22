@@ -122,7 +122,7 @@
 
 (general-unbind 'shell-mode-map
   :with nil
-  [remap hydra-text-main/body]))
+  [remap hydra-text-main/body])
 
 (defun my/shell-resync ()
   (interactive)

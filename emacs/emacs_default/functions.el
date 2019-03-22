@@ -471,6 +471,18 @@ rotate entire document."
       (kill-new filename))
 (message filename)))
 
+(defun my/copy-python-path ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename))))
+
+
+
+
 (defun rename-file-and-buffer ()
   "Rename the current buffer and file it is visiting."
   (interactive)
@@ -630,13 +642,11 @@ return t."
   (Man-kill)
   (delete-frame))
 
-
 (defun tangle-py-all ()
   (interactive)
   (my/save-all)
-  (measure-time
-   (shell-command "tangle-py ~/.emacs.d/*.org")
-   (message "all files tangled")))
+  (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
+  (message "all files tangled"))
 
 (defun tangle-py-all-and-restart ()
   (interactive)
@@ -679,7 +689,7 @@ return t."
   (my/quiet-save-buffer)
   (defvar foo)
   (setq foo (concat "tangle-py " (prelude-copy-file-name-to-clipboard)))
-  (start-process-shell-command "tangle" nil "tangle-py" foo )
+  (shell-command foo)
   (message " this file was tangled"))
 
 (defun tangle-and-eval-block ()
@@ -698,6 +708,9 @@ return t."
     (shell-command "i3-msg restart"))
   (message "i3 reloaded"))
 
+(defun my/reload-init-file ()
+  (interactive)
+  (load-file user-init-file))
 
 (defun my/move-line-up ()
   (interactive)

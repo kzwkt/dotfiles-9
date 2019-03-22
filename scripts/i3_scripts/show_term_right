@@ -1,4 +1,4 @@
 #!/bin/bash
 
 i3-msg [title="term-right"] scratchpad show &&
-$(xclip -o)
+python3 /home/Documents/Org/Studying/Prog/Python/GUI/up.py

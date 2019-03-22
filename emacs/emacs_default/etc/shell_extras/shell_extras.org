@@ -132,7 +132,7 @@
 
   (general-unbind 'shell-mode-map
     :with nil
-    [remap hydra-text-main/body]))
+    [remap hydra-text-main/body])
 #+END_SRC
 * Other
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/shell_extras/shell_extras.el

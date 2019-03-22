@@ -1,3 +1,56 @@
+;;; pdf_extras.el --- PDF Extras                 -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2019
+
+;; Author: (defun my/evil-shell-bottom () <dave@perk>
+;; Keywords:
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;;
+
+;;; Code:
+
+(setq pdf-view-continuous nil)
+(setq pdf-view-resize-factor 1.15)
+(setq pdf-view-display-size 'fit-page)
+(setq pdf-misc-size-indication-minor-mode t)
+(setq pdf-annot-activate-created-annotations t)
+
+(defun pdf-occur-goto-quit ()
+  (interactive)
+  (pdf-occur-goto-occurrence)
+  (quit-windows-on "*PDF-Occur*"))
+
+(defun my/pdf-delete-occur-window ()
+  (interactive)
+  (quit-windows-on "*PDF-Occur*"))
+
+(defun my/pdf-view-settings ()
+  (interactive)
+  (pdf-annot-minor-mode 1)
+  (pdf-links-minor-mode 1)
+  (pdf-history-minor-mode 1))
+
+(defun my/pdf-outline-settings ()
+  (interactive)
+  (disable-modeline)
+  (outline-minor-mode 1)
+  (hl-line-mode 1))
+
 (general-define-key
  :keymaps 'pdf-outline-minor-mode-map
  "<tab>" 'evil-toggle-fold

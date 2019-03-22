@@ -212,7 +212,7 @@
   ("P" flymake-goto-next-error)
   ("M" flymake-mode)
   ("w" my/execute-python-program-shell)
-  ("x" my/run-python-external))
+  ("x" my/run-python-externally))
 #+END_SRC
 ** projectile mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
