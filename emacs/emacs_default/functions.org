@@ -332,7 +332,7 @@ rotate entire document."
 (defun find-inputrc ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.inputrc")))
+    (find-file "~/.inputrc.org")))
 
 (defun find-bash-profile ()
   (interactive)
@@ -722,7 +722,7 @@ return t."
   (interactive)
   (my/save-all)
   (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
-  (message "all files tangled"))
+  (message " all files tangled"))
 
 (defun tangle-py-all-and-restart ()
   (interactive)
@@ -766,7 +766,7 @@ return t."
   (defvar foo)
   (setq foo (concat "tangle-py " (prelude-copy-file-name-to-clipboard)))
   (shell-command foo)
-  (message " this file was tangled"))
+  (message " file tangled"))
 
 (defun tangle-and-eval-block ()
   (interactive)
@@ -2785,6 +2785,13 @@ Provides a major-mode for the i3/config file.
   (kill-org-agenda-files))
 #+END_SRC
 * misc
+** measure time
+Message disable key
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+(defun my/disabled-key ()
+  (interactive)
+  (message " disabled key"))
+#+END_SRC
 ** measure time
 [[https://stackoverflow.com/questions/23622296/emacs-timing-execution-of-function-calls-in-emacs-lisp][Source]]
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el

@@ -28,6 +28,7 @@
     "j" 'my/split-vertically
     "k" 'split-window-below
     "l" 'my/split-right
+    "t" 'hydra-tangle/body
     ;; "s" 'my/split-below
     ;; "b" 'my/evil-botright
     ;; "y" nil

@@ -25,6 +25,7 @@
   "J" 'evil-window-move-very-bottom)
 
 (general-imap
+"<C-SPC>" 'caps-lock-mode
   "C-u" 'backward-kill-line
   "C-c u" nil
   "C-c SPC" 'fix-word-capitalize
@@ -33,6 +34,7 @@
 
 (general-imap
   :keymaps 'override
+  "<backspace>" 'my/disabled-key
   "M-/" 'hippie-expand
   "C-h" 'delete-backward-char
   "C-v " nil)
@@ -87,3 +89,9 @@
 (general-define-key
  :keymaps 'evil-emacs-state-map
  "<escape>" 'evil-normal-state)
+
+ (general-define-key
+  :keymaps '(evil-ex-search-keymap evil-ex-completion-map)
+  "C-h" 'delete-backward-char
+  "C-h" 'delete-backward-char
+  "<backspace>" 'my/disabled-key)

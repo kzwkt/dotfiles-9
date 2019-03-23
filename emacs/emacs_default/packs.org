@@ -545,9 +545,14 @@ https://is.gd/JyKZsg
 ** olivetti
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package olivetti
-:defer t
+  :defer t
   :ensure t
   :init
+
+  (general-define-key
+   :keymaps 'olivetti-mode-map
+   "C-c m m" 'olivetti-toggle-hide-mode-line)
+
   (setq-default olivetti-body-width 90)
   (setq olivetti-body-width 90))
 #+END_SRC
@@ -911,6 +916,8 @@ Maybe I need it in the future.
   (general-define-key
    :keymaps 'ivy-minibuffer-map
    "<insert>" 'clipboard-yank
+   "<backspace>" 'my/disabled-key
+   "C-h" 'ivy-backward-delete-char
    "TAB" 'ivy-alt-done
    "C-c -" 'my/ivy-done-and-narrow
    "M-m" 'ivy-done
@@ -1083,9 +1090,12 @@ Maybe I need it in the future.
   (general-define-key
    "C-o" 'hydra-find-file/body)
 
+  (general-nvmap
+    :keymaps 'override
+    "C-h" 'hydra-help/body)
+
   (general-define-key
    :keymaps 'override
-   "C-h" 'hydra-help/body
    ;; "C-c u" 'counsel-org-capture
    "M-;" 'hydra-yasnippet/body
    "C-s" 'hydra-search/body
@@ -1120,6 +1130,12 @@ Maybe I need it in the future.
 "C-M-p" 'cool-moves/word-backwards))
 #+END_SRC
 * Utilities
+** url-shortener
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package url-shortener
+  :defer 1
+  :ensure t)
+#+END_SRC
 ** zoom
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package zoom
@@ -1420,7 +1436,7 @@ buffer expose commands.
     [remap my/quiet-save-buffer]))
 #+END_SRC
 * Built-ins
-** hideshow hs-minor-mode
+** hs-minor-mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package hideshow
   :ensure nil
@@ -1446,6 +1462,16 @@ buffer expose commands.
 ;;   :ensure nil
 ;;   :config
 ;;   (filesets-init))
+#+END_SRC
+** minibuffer-inactive-mode
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package minibuffer
+  :ensure nil
+  :config
+  (general-define-key
+   :keymaps 'minibuffer-local-map
+   "C-h" 'delete-backward-char
+   "<backspace>" 'my/disabled-key))
 #+END_SRC
 ** select
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -2114,11 +2140,11 @@ buffer expose commands.
 	delete-old-versions t		;; Do not aks to delete excess backup versions
 	backup-by-copying-when-linked t	;; Copy linked files, don't rename.
 	backup-directory-alist
-	'(("." . "~/.emacs.d/backups"))
+	'(("." . "~/.emacs.d/.backups"))
 
 	vc-make-backup-files t
 	auto-save-visited-mode t
-	auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-save-list/" t))
+	auto-save-file-name-transforms `((".*" "~/.emacs.d/.auto-save-list/" t))
 	auto-save-default t)
 
   (defun force-backup-of-buffer ()
@@ -2372,7 +2398,6 @@ buffer expose commands.
   (custom-set-variables
    '(eclim-eclipse-dirs '("~/maps/eclipse"))
    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
-   '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
    '(eclimd-default-workspace "~/org/Studying/Programming/Java/Core_Java/My_Code"))
   :config
   (eclim-mode 1))
@@ -2459,7 +2484,7 @@ buffer expose commands.
   :defer t
   :ensure t
   :config
-  (setq blacken-line-length 79))
+  (setq blacken-line-length 70))
 #+END_SRC
 *** pyenv
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -2807,6 +2832,11 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   (add-hook 'yas-before-expand-snippet-hook 'my/yas-before-hooks)
   (add-hook 'yas-after-exit-snippet-hook 'my/yas-after-hooks)
   :config
+
+  (defun my/yas-load-other-window ()
+    (interactive)
+    (yas-load-snippet-buffer)
+    (other-window -1))
 
   (setq yas-also-auto-indent-first-line t)
   (setq yas-indent-line 'auto)

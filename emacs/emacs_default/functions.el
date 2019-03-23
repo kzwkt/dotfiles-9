@@ -289,7 +289,7 @@ rotate entire document."
 (defun find-inputrc ()
   (interactive)
   (let ((inhibit-message t))
-    (find-file "~/.inputrc")))
+    (find-file "~/.inputrc.org")))
 
 (defun find-bash-profile ()
   (interactive)
@@ -646,7 +646,7 @@ return t."
   (interactive)
   (my/save-all)
   (start-process-shell-command "tangle init" nil "tangle-py ~/.emacs.d/*.org")
-  (message "all files tangled"))
+  (message " all files tangled"))
 
 (defun tangle-py-all-and-restart ()
   (interactive)
@@ -690,7 +690,7 @@ return t."
   (defvar foo)
   (setq foo (concat "tangle-py " (prelude-copy-file-name-to-clipboard)))
   (shell-command foo)
-  (message " this file was tangled"))
+  (message " file tangled"))
 
 (defun tangle-and-eval-block ()
   (interactive)
@@ -2456,6 +2456,10 @@ Skips inferior frames, that is, those without a minibuffer (eg. speedbar). "
   (opened-org-agenda-files)
   ad-do-it
   (kill-org-agenda-files))
+
+(defun my/disabled-key ()
+  (interactive)
+  (message " disabled key"))
 
 (defmacro measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."

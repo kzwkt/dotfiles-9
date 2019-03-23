@@ -1,0 +1,4 @@
+# key: buff
+# name: org in buffer settings
+# --
+# -*- mode: org; ${1:mode or variable}: ${2:value} -*-

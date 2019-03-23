@@ -173,6 +173,7 @@
 (defun my/run-python-externally ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
+  (my/python-save-buffer)
   (let ((filename (if (equal major-mode 'dired-mode)
 		      default-directory
 		    (buffer-file-name))))

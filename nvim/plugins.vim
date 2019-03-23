@@ -75,4 +75,7 @@ let g:sneak#label = 1
 let g:sneak#s_next = 1
 let g:sneak#target_labels = "asdfhjklqwertyu"
 " }}}
+" {{{ commentary
+autocmd FileType cfg setlocal commentstring=#\ %s
+" }}}
 "vim: set filetype=vim:

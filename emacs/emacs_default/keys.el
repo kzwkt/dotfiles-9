@@ -4,6 +4,10 @@
 (general-define-key
  "<f8>" 'man
  "M-0" 'quit-window
+;; "M-]" 'bs-cycle-next
+;; "M-[" 'bs-cycle-previous
+   "M-]" 'projectile-next-project-buffer
+   "M-[" 'projectile-previous-project-buffer
  "C-0" 'delete-window
  "C-c DEL" 'my/bash-shebang
  "M-9" 'delete-other-windows
@@ -20,11 +24,12 @@
 
 "C-c c"       'caps-lock-mode
 "C-c m h v"     'describe-variable
+"<C-SPC>" 'caps-lock-mode
 "C-c m i"     'lisp-interaction-mode
 "C-c m b"     'beacon-mode
 ;; "C-c s"     'my/evil-swap-keys-commands
 "C-c m l l"   'elmacro-mode
-"C-c m m"     'magit-status
+;; "C-c m m"     'magit-status
 "C-c m n"     'org-noter
 "C-c m y"     'yas-global-mode
 "C-c m Y"     'yas-minor-mode-on
@@ -102,12 +107,10 @@
 
 ;;;; EDITING ;;;;
 "C-c i" 'ibuffer
-"C-c u" 'undo-propose
+"C-c u" 'yas-insert-snippet
 "C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
-"M-]" 'bs-cycle-next
-"M-[" 'bs-cycle-previous
 "<mouse-3>" nil
 "C-c U" 'universal-argument
 "C-c s" 'hydra-shell/body

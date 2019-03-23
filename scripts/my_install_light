@@ -18,7 +18,7 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems				\
     xsel xdotool zenity lxde-settings-daemon okular						\
     make build-essential libssl-dev zlib1g-dev libbz2-dev					\
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev		\
-    xz-utils tk-dev libffi-dev liblzma-dev python-openssl &&
+    xz-utils tk-dev libffi-dev liblzma-dev python-openssl w3m-img &&
 apt -y build-dep emacs25 &&
 apt -y autoremove &&
 apt -y autoclean &&

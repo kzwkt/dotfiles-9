@@ -184,9 +184,7 @@
        _q_: quickrun          _f_: first  _N_: prev
        _s_: quickrun shell    _p_: prev   _P_: next
        _g_: go to definition  _n_: next   _M_: mode
-       _G_: other window      _m_: mode
-       _a_: go to assignment
-       _A_: other window
+       _a_: dumb jump go      _m_: mode
        _w_: my shell
        _x_: ext shell
 
@@ -198,10 +196,7 @@
   ("s" quickrun-shell)
 
   ("g" elpy-goto-definition)
-  ("G" elpy-goto-assignment)
-
-  ("a" elpy-goto-definition-other-window)
-  ("A" elpy-goto-assignment-other-window)
+  ("a" dumb-jump-go)
 
   ("f" flycheck-first-error)
   ("p" flycheck-next-error :exit nil)
@@ -252,7 +247,7 @@
        _p_: prev    _P_: flymake next
        _n_: next    _h_: hide-show
        _d_: display _s_: shell
-       _b_: buffer
+       _b_: buffer  _u_: shorten url
        _c_: clear
        _m_: mode
 
@@ -271,7 +266,8 @@
   ("N" flymake-goto-prev-error)
   ("P" flymake-goto-next-error)
   ("h" hs-minor-mode)
-  ("s" hydra-shell/body))
+  ("s" hydra-shell/body)
+  ("u" bitly-url-shorten))
 #+END_SRC
 ** dumb jump mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
@@ -349,26 +345,22 @@
 ** yasnippet
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-yasnippet (:color blue :hint nil :exit nil :foreign-keys nil)
-"
+  "
        ^
        ^YASnippet^
        --------------------
-       _i_ insert  _r_eload
-       _m_ mode    _l_oad
-       _n_ new
-       _y_ ivy
-       _v_ visit
-       _f_ finish
+       _;_: visit _r_eload
+       _._: new   _l_oad
+
 "
-("M-;" nil)
-("r" yas-reload-all)
-("i" yas-insert-snippet)
-("y" ivy-yasnippet)
-("m" yas-minor-mode)
-("f" yas-load-snippet-buffer-and-close)
-("l" yas-load-snippet-buffer)
-("v" yas-visit-snippet-file)
-("n" yas-new-snippet))
+  ("M-;" yas-visit-snippet-file)
+  (";" yas-visit-snippet-file)
+
+  ("." yas-new-snippet)
+  ("M-." yas-new-snippet)
+
+  ("r" yas-reload-all)
+  ("l" my/yas-load-other-window))
 #+END_SRC
 * buffers
 ** narrow

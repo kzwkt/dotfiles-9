@@ -440,9 +440,14 @@
 :ensure t)
 
 (use-package olivetti
-:defer t
+  :defer t
   :ensure t
   :init
+
+  (general-define-key
+   :keymaps 'olivetti-mode-map
+   "C-c m m" 'olivetti-toggle-hide-mode-line)
+
   (setq-default olivetti-body-width 90)
   (setq olivetti-body-width 90))
 
@@ -769,6 +774,8 @@
   (general-define-key
    :keymaps 'ivy-minibuffer-map
    "<insert>" 'clipboard-yank
+   "<backspace>" 'my/disabled-key
+   "C-h" 'ivy-backward-delete-char
    "TAB" 'ivy-alt-done
    "C-c -" 'my/ivy-done-and-narrow
    "M-m" 'ivy-done
@@ -931,9 +938,12 @@
   (general-define-key
    "C-o" 'hydra-find-file/body)
 
+  (general-nvmap
+    :keymaps 'override
+    "C-h" 'hydra-help/body)
+
   (general-define-key
    :keymaps 'override
-   "C-h" 'hydra-help/body
    ;; "C-c u" 'counsel-org-capture
    "M-;" 'hydra-yasnippet/body
    "C-s" 'hydra-search/body
@@ -960,6 +970,10 @@
 "C-S-k" 'cool-moves/line-backward
 "C-M-n" 'cool-moves/word-forward
 "C-M-p" 'cool-moves/word-backwards))
+
+(use-package url-shortener
+  :defer 1
+  :ensure t)
 
 (use-package zoom
   :defer t
@@ -1234,6 +1248,14 @@
 ;;   :ensure nil
 ;;   :config
 ;;   (filesets-init))
+
+(use-package minibuffer
+  :ensure nil
+  :config
+  (general-define-key
+   :keymaps 'minibuffer-local-map
+   "C-h" 'delete-backward-char
+   "<backspace>" 'my/disabled-key))
 
 ;; (use-package select
 ;;   :if (not window-system)
@@ -1829,11 +1851,11 @@
 	delete-old-versions t		;; Do not aks to delete excess backup versions
 	backup-by-copying-when-linked t	;; Copy linked files, don't rename.
 	backup-directory-alist
-	'(("." . "~/.emacs.d/backups"))
+	'(("." . "~/.emacs.d/.backups"))
 
 	vc-make-backup-files t
 	auto-save-visited-mode t
-	auto-save-file-name-transforms `((".*" "~/.emacs.d/auto-save-list/" t))
+	auto-save-file-name-transforms `((".*" "~/.emacs.d/.auto-save-list/" t))
 	auto-save-default t)
 
   (defun force-backup-of-buffer ()
@@ -2041,7 +2063,6 @@
   (custom-set-variables
    '(eclim-eclipse-dirs '("~/maps/eclipse"))
    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
-   '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
    '(eclimd-default-workspace "~/org/Studying/Programming/Java/Core_Java/My_Code"))
   :config
   (eclim-mode 1))
@@ -2115,7 +2136,7 @@
   :defer t
   :ensure t
   :config
-  (setq blacken-line-length 79))
+  (setq blacken-line-length 70))
 
 (use-package pyenv-mode
   :unless window-system
@@ -2415,6 +2436,11 @@
   (add-hook 'yas-before-expand-snippet-hook 'my/yas-before-hooks)
   (add-hook 'yas-after-exit-snippet-hook 'my/yas-after-hooks)
   :config
+
+  (defun my/yas-load-other-window ()
+    (interactive)
+    (yas-load-snippet-buffer)
+    (other-window -1))
 
   (setq yas-also-auto-indent-first-line t)
   (setq yas-indent-line 'auto)
