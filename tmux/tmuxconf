@@ -1,5 +1,4 @@
 # {{{ settings
-
 set -g mouse on
 set escape-time 0
 set -g base-index 1
@@ -50,6 +49,12 @@ bind-key - switch-client -t 10_k
 
 bind-key v split-window -h
 bind-key s split-window -v
+
+# }}}
+# {{{ send all
+bind c command-prompt -p "send to all:" \
+       "run \"tmux list-panes -a -F '##{session_name}:##{window_index}.##{pane_index}' \
+              | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
 
 # }}}
 # {{{ status

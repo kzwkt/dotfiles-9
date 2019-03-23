@@ -69,6 +69,7 @@ alias push='clear && git push && ls --color'
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
 # Change Java:
 # sudo update-alternatives --config java
+alias ipyvi='ipython --TerminalInteractiveShell.editing_mode=vi'
 alias time='/usr/bin/time'
 alias v='nvi'
 alias alternatives_editor='sudo update-alternatives --config editor'
@@ -121,8 +122,7 @@ alias beet_config='beet config -e'
 alias bee='beet import -q -p -i'
 alias chmode='chmod -Rc 755'
 alias restore='sudo restore-trash'
-alias pi2='pip2 install --user'
-alias pi3='pip3 install --user'
+alias pi='pip install'
 alias k='clear && xbindkeys -k'
 alias chowne='chown -Rhc $USER'
 alias ss='clear && exec "$BASH"'

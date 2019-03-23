@@ -423,11 +423,14 @@ Ver: https://github.com/org2blog/org2blog/wiki
 #+END_SRC
 *** Evil Rsi
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-(use-package evil-rsi
-  :after evil
-  :ensure t
-  :config
-  (evil-rsi-mode))
+;; (use-package evil-rsi
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;  (general-imap
+;;   :keymaps 'evil-rsi-mode-map
+;;   "C-v" 'ignore)
+;;   (evil-rsi-mode))
 #+END_SRC
 *** Evil Exchange
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el

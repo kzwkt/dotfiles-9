@@ -346,11 +346,14 @@
   (global-evil-surround-mode 1))
 
 
-(use-package evil-rsi
-  :after evil
-  :ensure t
-  :config
-  (evil-rsi-mode))
+;; (use-package evil-rsi
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;  (general-imap
+;;   :keymaps 'evil-rsi-mode-map
+;;   "C-v" 'ignore)
+;;   (evil-rsi-mode))
 
 (use-package evil-exchange
   :after evil

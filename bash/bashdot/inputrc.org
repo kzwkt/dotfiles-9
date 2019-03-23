@@ -23,7 +23,7 @@ set completion-ignore-case on
 ** commands
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.inputrc
 # <C-S-backspace>: kill whole line
-"": "\C-k \C-u"
+# "": "\C-k \C-u"
 #+END_SRC
 ** unbindings
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.inputrc
