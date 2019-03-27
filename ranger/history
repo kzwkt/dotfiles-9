@@ -1,7 +1,3 @@
-touch archive.org
-cd 
-open_with kjk f
-rename Books
 md default-workspace
 md java_hydras.org
 search java_hydras.org
@@ -98,3 +94,7 @@ search task
 rename task
 rename .task
 shell 
+md Ragnarok
+rename Its_Always_Sunny_in_Philadelphia
+search boy
+search 15

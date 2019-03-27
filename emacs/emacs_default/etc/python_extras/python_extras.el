@@ -8,10 +8,6 @@
   (switch-to-buffer-other-window "*Async Shell Command*")
   (shell-command foo))
 
-(defun my/ex-python-run ()
-  (interactive)
-  (evil-ex "w !python3"))
-
 (defun my/execute-python-program-shell-simple  ()
   (interactive)
   (my/window-to-register-91)
@@ -50,28 +46,21 @@
      "~/scripts/i3_scripts/show_term_right")))
 
 
-
-
 (defun my/python-mode-hooks ()
   (interactive)
   (hl-line-mode 1)
-  (flycheck-mode 1)
   (highlight-numbers-mode 1)
   (electric-operator-mode 1)
-  (blacken-mode 1)
   (hs-minor-mode 1)
-  (rainbow-delimiters-mode 1)
-  (olivetti-mode 1)
-  (elpy-mode 1)
-  (my/company-idle-one-prefix-one))
-
+  (my/company-idle-two-prefix-two-quiet)
+  (blacken-mode))
 
 (defun my/inferior-python-mode-hooks ()
-  (interactive) (line-numbers)
+  (interactive)
+  (line-numbers)
   (tab-jump-out-mode 1)
-  (subword-mode 1)
-  (electric-operator-mode 1)
-  (highlight-numbers-mode 1))
+  (subword-mode 1))
+
 
 (general-define-key
  :keymaps 'inferior-python-mode-map
@@ -103,16 +92,16 @@
 
 (general-define-key
  :keymaps 'python-mode-map
+ "C-c -" 'my/python-insert-command
+ "C--" 'quickrun
  "C-." 'my/indent-tools-hydra/body
  "M-e" 'python-nav-forward-statement
- "M-a" 'python-nav-backward-statement
- "M-m" 'blacken-buffer)
+ "M-a" 'python-nav-backward-statement)
 
 (general-nvmap
   :keymaps 'python-mode-map
   "C-." 'my/indent-tools-hydra/body
   "<tab>" 'hs-toggle-hiding
-  "o" 'cool-moves/open-line-below-python
   "RET" 'hydra-python-mode/body
   "zm" 'evil-close-folds
   "M-e" 'python-nav-forward-statement
@@ -122,7 +111,6 @@
   "zl" 'outline-show-subtree
   "<M-return>" 'indent-buffer
   "<" 'python-indent-shift-left
-  "M-m" 'blacken-buffer
   ">" 'python-indent-shift-right
   "gj" 'outline-forward-same-level
   "gk" 'outline-backward-same-level
@@ -184,3 +172,15 @@
    nil
    "~/scripts/i3_scripts/show_term_right"))
 
+(defun my/python-insert-command ()
+  (interactive)
+  (evil-visual-char)
+  (evil-last-non-blank)
+  (evil-exit-visual-state)
+  (evil-append 1)
+  (insert ")")
+  (evil-goto-mark 60)
+  (backward-to-word 1)
+  (forward-to-word 1)
+  (insert "(")
+  (backward-char))

@@ -71,7 +71,6 @@
   (add-hook 'org-capture-mode-hook (lambda ()
 				     (evil-insert-state)
 				     (evil-window-move-very-bottom)))
-
   (add-hook 'org-cycle-hook #'org-cycle-hide-drawers)
   (load-file "~/.emacs.d/lisp/functions/org_func.el")
   :config
@@ -108,13 +107,23 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)))
+
+(setq org-edit-src-content-indentation 1)
+(setq org-src-preserve-indentation t)
+(setq org-edit-src-persistent-message nil)
+(setq org-edit-src-auto-save-idle-delay 1)
+
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
 (setq org-confirm-babel-evaluate t)
 (setq org-babel-no-eval-on-ctrl-c-ctrl-c t)
-(setq org-src-preserve-indentation t)
-(setq org-edit-src-content-indentation 1)
 (setq org-src-ask-before-returning-to-edit-buffer nil)
+
+(defun my/org-edit-special ()
+  (interactive)
+(measure-time
+  (org-edit-special)
+  (delete-other-windows)))
 
 
 (setq org-pretty-entities-include-sub-superscripts nil)
@@ -195,8 +204,11 @@
 	("3" "Depois" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Depois") "* TODO %u %i%?")
 	("4" "Um Dia" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Um Dia") "* TODO %u %i%?")))
 
-
 (general-define-key
+ :keymaps 'org-src-mode-map
+ "M-m" 'org-edit-src-exit)
+
+(general-nvmap
  :keymaps 'org-src-mode-map
  "M-m" 'org-edit-src-exit)
 
@@ -212,11 +224,15 @@
  "C-c C-b C-c" 'org-update-checkbox-count
  "C-c C-b C-b" 'org-reset-checkbox-state-subtree)
 
+(general-imap
+  :keymaps 'org-mode-map
+  "M-m" 'my/org-edit-special)
+
 (general-nvmap
   :keymaps 'org-mode-map
   "zm" 'org-hide-all
   "C-j" 'counsel-M-x
-  "M-m" 'org-edit-special
+  "M-m" 'my/org-edit-special
   "<insert>" 'org-insert-link
   "M-n" 'org-forward-paragraph
   "RET" 'hydra-spell/body
@@ -233,10 +249,7 @@
 
 (general-unbind 'org-capture-mode-map
   :with 'org-capture-kill
-  [remap my/quiet-save-buffer])
-
-
-)
+  [remap my/quiet-save-buffer]))
 
 (use-package org-bullets
 :ensure t)
@@ -756,9 +769,9 @@
 		     (horz (file "/home/Documents/Org/Studying/Programming/Python/PCC/pcc_notes/pcc_book.pdf")
 			   (file "/home/overlord/PCC/pcc_notes/pcc_notes.org")))))
 
-  (general-unbind 'ivy-minibuffer-map
-    :with 'ivy-immediate-done
-    [remap ivy-alt-done])
+  ;; (general-unbind 'ivy-minibuffer-map
+  ;;   :with 'ivy-immediate-done
+  ;;   [remap ivy-alt-done])
 
   (general-unbind 'ivy-minibuffer-map
     :with 'ignore
@@ -777,7 +790,6 @@
   (general-define-key
    :keymaps 'ivy-minibuffer-map
    "<insert>" 'clipboard-yank
-   "<backspace>" 'my/disabled-key
    "C-h" 'ivy-backward-delete-char
    "TAB" 'ivy-alt-done
    "C-c -" 'my/ivy-done-and-narrow
@@ -825,11 +837,11 @@
   (counsel-mode 1))
 
 (use-package eyebrowse
-;; :defer t
+  ;; :defer t
   :ensure t
   :config
   (setq eyebrowse-new-workspace nil)
-  (setq eyebrowse-wrap-around nil)
+  (setq eyebrowse-wrap-around t)
   (setq eyebrowse-new-workspace t)
   (setq eyebrowse-mode-line-style 'smart)
   (setq eyebrowse-switch-back-and-forth nil)
@@ -848,9 +860,8 @@
     "5" 'eyebrowse-switch-to-window-config-5)
 
   (general-define-key
-   :keymaps 'override
-   "M-w" 'eyebrowse-next-window-config
    "M-q" 'eyebrowse-prev-window-config
+   "M-r" 'eyebrowse-next-window-config
    "M-1" 'eyebrowse-switch-to-window-config-1
    "M-2" 'eyebrowse-switch-to-window-config-2
    "M-3" 'eyebrowse-switch-to-window-config-3
@@ -858,7 +869,6 @@
    "M-5" 'eyebrowse-switch-to-window-config-5)
 
   (general-nvmap
-    :keymaps 'override
     "M-1" 'eyebrowse-switch-to-window-config-1
     "M-2" 'eyebrowse-switch-to-window-config-2
     "M-3" 'eyebrowse-switch-to-window-config-3
@@ -975,8 +985,10 @@
 "C-M-p" 'cool-moves/word-backwards))
 
 (use-package url-shortener
-  :defer 1
-  :ensure t)
+  :defer t
+  :ensure t
+  :config
+  (setq bitly-access-token "3026d7e8b1a0f89da10740c69fd77b4b3293151e"))
 
 (use-package zoom
   :defer t
@@ -1085,8 +1097,8 @@
     (interactive)
     (counsel-M-x "^evil-swap-keys "))
 
-  (global-evil-swap-keys-mode t)
-  (evil-swap-keys-swap-double-single-quotes))
+  (evil-swap-keys-swap-double-single-quotes)
+  (global-evil-swap-keys-mode t))
 
 (use-package super-save
   :ensure t
@@ -1251,14 +1263,6 @@
 ;;   :ensure nil
 ;;   :config
 ;;   (filesets-init))
-
-(use-package minibuffer
-  :ensure nil
-  :config
-  (general-define-key
-   :keymaps 'minibuffer-local-map
-   "C-h" 'delete-backward-char
-   "<backspace>" 'my/disabled-key))
 
 ;; (use-package select
 ;;   :if (not window-system)
@@ -1636,16 +1640,18 @@
     :keymaps 'prog-mode-map
     "RET" 'hydra-prog-mode/body)
 
+  (general-nmap
+    :keymaps 'prog-mode-map
+    "M-p" 'my/paragraph-backwards
+    "M-n" 'my/paragraph-forward)
+
   (general-nvmap
-   :keymaps 'prog-mode-map
+    :keymaps 'prog-mode-map
     "<tab>" 'hs-toggle-hiding)
 
   (general-define-key
    :keymaps 'prog-mode-map
-   "M-p" 'my/paragraph-backwards
-   "M-n" 'my/paragraph-forward
    "<C-return>" 'hydra-prog-mode/body
-   ;; "C-c u" 'executable-interpret
    "<M-return>" 'indent-buffer))
 
 (use-package help-mode
@@ -1908,6 +1914,7 @@
 (use-package delight
   :ensure t
   :config
+  (delight 'projectile-mode " <p>" "Projectile")
   (delight 'sh-mode " sh " "Shell-script[bash]")
   (delight 'org-mode " org" "Org")
   (delight 'special-mode " special" "special")
@@ -1959,7 +1966,7 @@
 			" Helpful" " :master" " Shell-script" " P/???"
 			" Flymake[0 0]" " Flymake:Wait[0 0]" " Elpy" " Pabbrev"
 			" Olv" " Fly" " WE" " Fill" " super-save" " Emmet" " !1"
-			" LYVLE"))
+			" LYVLE" " Black" " hs"))
   (sml/setup))
 
 (use-package dimmer
@@ -2120,14 +2127,11 @@
 
 (use-package elpy
   :unless window-system
-  :defer t
+  :after python
   :ensure t
   :init
-  ;; (setq elpy-autodoc-delay 2)
-  (setq python-shell-completion-native-enable t)
-  ;; (remove-hook 'elpy-mode-hook 'my/company-idle-three-prefix-two)
-  (add-hook 'elpy-mode-hook (lambda () (highlight-indentation-mode -1)))
-  (add-hook 'elpy-mode-hook (lambda () (elpy-shell-toggle-dedicated-shell 1)))
+  (setq elpy-autodoc-delay 1)
+  (setq python-shell-completion-native-enable nil)
   :config
   (general-unbind 'elpy-mode-map
     :with 'ignore
@@ -2141,18 +2145,14 @@
   :config
   (setq blacken-line-length 70))
 
-(use-package pyenv-mode
-  :unless window-system
-  :after python
-  :defer t
-  :ensure t)
-
 (use-package python
   :defer t
   :ensure nil
   :init
+  ;; /home/dave/.emacs.d/etc/python_extras/python_init.org
   (load-file "~/.emacs.d/etc/python_extras/python_init.el")
   :config
+  ;; /home/dave/.emacs.d/etc/python_extras/python_extras.org
   (load-file "~/.emacs.d/etc/python_extras/python_extras.el"))
 
 
@@ -2188,9 +2188,9 @@
    "C-c 0" 'my/projectile-show-commands
    "M-d" 'counsel-projectile-switch-to-buffer)
 
-  (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignore_buffers.el")
+  (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignored_buffers.el")
 
-  (setq projectile-globally-ignored-modes '("erc-mode" "help-mode" "completion-list-mode" "Buffer-menu-mode" "gnus-.*-mode" "occur-mode" "org-mode"))
+  (setq projectile-globally-ignored-modes '("erc-mode" "help-mode" "completion-list-mode" "Buffer-menu-mode" "gnus-.*-mode" "occur-mode"))
   (setq projectile-project-search-path '("~"))
 
   (setq projectile-mode-line-prefix " <p>")
@@ -2213,7 +2213,7 @@
 
 (use-package counsel-projectile
   :if window-system
-  :defer t
+  :defer 1
   :ensure t)
 
 (use-package smart-hungry-delete
@@ -2336,9 +2336,10 @@
    "8" 'company-complete-number
    "9" 'company-complete-number
    "0" 'company-complete-number
-   "M-h" 'company-quickhelp-manual-begin
    "M-f" 'company-filter-candidates
    "M-d" 'my/company-complete-paren
+   ;; "M-h" 'company-quickhelp-manual-begin
+   "M-h" nil
    "M-j" nil
    "M-k" nil
    "M-l" nil
@@ -2372,7 +2373,7 @@
 
   (general-imap
     :keymaps 'company-mode-map
-    "M-r" 'company-complete
+    "M-w" 'company-complete
     "C-ç" 'company-complete
     "M-/" 'hippie-expand)
   (global-company-mode 1))

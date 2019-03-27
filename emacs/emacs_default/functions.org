@@ -732,12 +732,19 @@ return t."
     (sit-for 0.5)
     (shell-command "~/scripts/emacs_scripts/rel")))
 
+(defun my/tangle-quickrun ()
+  (interactive)
+  (my/tangle-default)
+  (last-buffer)
+  (quickrun))
+
 (defun my/tangle-default ()
   (interactive)
-  (widenToCenter)
-  (my/quiet-save-buffer)
-  (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
-  (message "this file was tangled"))
+  (measure-time
+   (widenToCenter)
+   (my/quiet-save-buffer)
+   (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
+   (message "this file was tangled")))
 
 (defun tangle-py-all-debug ()
   (interactive)
@@ -1280,6 +1287,12 @@ Prevents some operations to send content to the clipboard.
   (setq-local company-tooltip-limit 5)
   (setq-local company-minimum-prefix-length 2)
   (message "idle delay: 0.2, minimun prefix length: 2"))
+
+(defun my/company-idle-two-prefix-two-quiet ()
+  (interactive)
+  (setq-local company-idle-delay 0.2)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2))
 
 (defun my/company-idle-three-prefix-one ()
   (interactive)
@@ -2786,13 +2799,6 @@ Provides a major-mode for the i3/config file.
 #+END_SRC
 * misc
 ** measure time
-Message disable key
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
-(defun my/disabled-key ()
-  (interactive)
-  (message " disabled key"))
-#+END_SRC
-** measure time
 [[https://stackoverflow.com/questions/23622296/emacs-timing-execution-of-function-calls-in-emacs-lisp][Source]]
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defmacro measure-time (&rest body)
@@ -2931,9 +2937,9 @@ Kill the current buffer and deletes the file it is visiting.
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/eval-buffer ()
   (interactive)
-  (my/quiet-save-buffer)
   (eval-buffer)
-  (message "buffer evaluated"))
+  (indent-buffer)
+  (message " buffer evaluated"))
 #+END_SRC
 * external
 ** my/hide-all

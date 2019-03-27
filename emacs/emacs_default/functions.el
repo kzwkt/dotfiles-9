@@ -656,12 +656,19 @@ return t."
     (sit-for 0.5)
     (shell-command "~/scripts/emacs_scripts/rel")))
 
+(defun my/tangle-quickrun ()
+  (interactive)
+  (my/tangle-default)
+  (last-buffer)
+  (quickrun))
+
 (defun my/tangle-default ()
   (interactive)
-  (widenToCenter)
-  (my/quiet-save-buffer)
-  (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
-  (message "this file was tangled"))
+  (measure-time
+   (widenToCenter)
+   (my/quiet-save-buffer)
+   (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
+   (message "this file was tangled")))
 
 (defun tangle-py-all-debug ()
   (interactive)
@@ -1131,6 +1138,12 @@ return t."
   (setq-local company-tooltip-limit 5)
   (setq-local company-minimum-prefix-length 2)
   (message "idle delay: 0.2, minimun prefix length: 2"))
+
+(defun my/company-idle-two-prefix-two-quiet ()
+  (interactive)
+  (setq-local company-idle-delay 0.2)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2))
 
 (defun my/company-idle-three-prefix-one ()
   (interactive)
@@ -2457,10 +2470,6 @@ Skips inferior frames, that is, those without a minibuffer (eg. speedbar). "
   ad-do-it
   (kill-org-agenda-files))
 
-(defun my/disabled-key ()
-  (interactive)
-  (message " disabled key"))
-
 (defmacro measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."
   `(let ((time (current-time)))
@@ -2570,9 +2579,9 @@ Skips inferior frames, that is, those without a minibuffer (eg. speedbar). "
 
 (defun my/eval-buffer ()
   (interactive)
-  (my/quiet-save-buffer)
   (eval-buffer)
-  (message "buffer evaluated"))
+  (indent-buffer)
+  (message " buffer evaluated"))
 
 (defun i3-hide-all ()
   (interactive)

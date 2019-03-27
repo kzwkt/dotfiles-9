@@ -1,0 +1,7 @@
+# key: pt
+# name: python text adventure
+# --
+#+BEGIN_SRC python3 :tangle ~/PTA/my_code/${1:$$(yas-choose-value '("examples" "game"))}$2
+$0
+#+END_SRC
+~/PTA/my_code/examples

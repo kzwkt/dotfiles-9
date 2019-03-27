@@ -122,7 +122,7 @@
 * prog macros
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/macros.el
 (fset 'my/python-paste-exercise
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([103 111 103 111 112 103 119 97 112 103 99 105 112 escape] 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([103 111 103 111 112 103 119 97 112 103 99 105 112 escape] 0 "%d") arg)))
 
 (fset 'my/python-make-string
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 103 102 41 104 83 41 105 115 116 114 escape 108] 0 "%d") arg)))
@@ -130,8 +130,14 @@
 (fset 'indent-block
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217837 M-return 134217837] 0 "%d") arg)))
 
+;; (fset 'add-hook-macro
+;;       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("I(add-hook ' ')\342" 0 "%d") arg)))
+
+(fset 'my/ex-run-python-macro
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217848 109 121 47 101 120 45 112 121 return return] 0 "%d") arg)))
+
 (fset 'add-hook-macro
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("I(add-hook ' ')\342" 0 "%d") arg)))
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([73 17 40 97 100 100 45 104 111 111 107 32 17 39 5 32 17 39 41 134217826 6] 0 "%d") arg)))
 
 (fset 'eval-next-sexp
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 97 40 escape 24 5] 0 "%d") arg)))

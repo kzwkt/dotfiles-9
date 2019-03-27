@@ -33,7 +33,6 @@
 
 (general-imap
   :keymaps 'override
-  "<backspace>" 'my/disabled-key
   "C-w" 'evil-delete-backward-word
   "M-/" 'hippie-expand
   "C-h" 'delete-backward-char
@@ -93,5 +92,4 @@
 (general-define-key
  :keymaps '(evil-ex-search-keymap evil-ex-completion-map)
  "C-h" 'delete-backward-char
- "C-h" 'delete-backward-char
- "<backspace>" 'my/disabled-key)
+ "C-h" 'delete-backward-char)

@@ -11,10 +11,10 @@
 (general-define-key
  "<f8>" 'man
  "M-0" 'quit-window
-;; "M-]" 'bs-cycle-next
-;; "M-[" 'bs-cycle-previous
-   "M-]" 'projectile-next-project-buffer
-   "M-[" 'projectile-previous-project-buffer
+ ;; "M-]" 'bs-cycle-next
+ ;; "M-[" 'bs-cycle-previous
+ "M-]" 'projectile-next-project-buffer
+ "M-[" 'projectile-previous-project-buffer
  "C-0" 'delete-window
  "C-c DEL" 'my/bash-shebang
  "M-9" 'delete-other-windows
@@ -65,8 +65,8 @@
 "C-c m 2 o"   'org2blog/wp-logout
 "C-c m 2 n"   'org2blog/wp-new-entry
 
-"C-c 1" 'my/blog-post
-"C-c 2" 'my/blog-publish
+"C-c !" 'my/blog-post
+"C-c @" 'my/blog-publish
 
 "C-c m 2 s p" 'org2blog/wp-post-subtree
 "C-c m 2 s u" 'org2blog/wp-post-subtree-and-publish

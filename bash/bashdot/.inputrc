@@ -17,23 +17,5 @@ set show-all-if-ambiguous on
 # ignore case
 set completion-ignore-case on
 
-# Unbind Backspace
-"": ""
-
-# Unbind Arrow Up
-"OA": ""
-
-# Unbind Arrow Down
-"OB": ""
-
-# Unbind Arrow Right
-"OD": ""
-
-# Unbind Arrow Left
-"OC": ""
-
-# Unbind Home
-"[1~": ""
-
-# Unbind End
-"[4~": ""
+# <C-S-backspace>: kill whole line
+# "": "\C-k \C-u"

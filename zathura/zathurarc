@@ -1,3 +1,5 @@
+" -*- mode: vimrc -*-
+
 set zoom-min 05
 set zoom-step 15
 set scroll-step 150

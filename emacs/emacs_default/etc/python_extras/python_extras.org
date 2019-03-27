@@ -12,10 +12,6 @@
   (switch-to-buffer-other-window "*Async Shell Command*")
   (shell-command foo))
 
-(defun my/ex-python-run ()
-  (interactive)
-  (evil-ex "w !python3"))
-
 (defun my/execute-python-program-shell-simple  ()
   (interactive)
   (my/window-to-register-91)
@@ -53,97 +49,89 @@
      "call term" nil
      "~/scripts/i3_scripts/show_term_right")))
 
-
-
 #+END_SRC
 * Hooks
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_extras.el
-  (defun my/python-mode-hooks ()
-    (interactive)
-    (hl-line-mode 1)
-    (flycheck-mode 1)
-    (highlight-numbers-mode 1)
-    (electric-operator-mode 1)
-    (blacken-mode 1)
-    (hs-minor-mode 1)
-    (rainbow-delimiters-mode 1)
-    (olivetti-mode 1)
-    (elpy-mode 1)
-    (my/company-idle-one-prefix-one))
+(defun my/python-mode-hooks ()
+  (interactive)
+  (hl-line-mode 1)
+  (highlight-numbers-mode 1)
+  (electric-operator-mode 1)
+  (hs-minor-mode 1)
+  (my/company-idle-two-prefix-two-quiet)
+  (blacken-mode))
 
-
-  (defun my/inferior-python-mode-hooks ()
-    (interactive) (line-numbers)
-    (tab-jump-out-mode 1)
-    (subword-mode 1)
-    (electric-operator-mode 1)
-    (highlight-numbers-mode 1))
+(defun my/inferior-python-mode-hooks ()
+  (interactive)
+  (line-numbers)
+  (tab-jump-out-mode 1)
+  (subword-mode 1))
 #+END_SRC
 * Keys
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_extras.el
-  (general-define-key
-   :keymaps 'inferior-python-mode-map
-   "M-e" 'counsel-shell-history
-   "C-c j" 'my/evil-shell-bottom
-   "C-c u" 'universal-argument
-   "C-u" 'comint-kill-input
-   "C-l" 'comint-clear-buffer
-   "C-j" 'counsel-M-x
-   "C-;" 'kill-buffer-and-window
-   "C-n" 'comint-next-input
-   "C-p" 'comint-previous-input)
 
-  (general-nvmap
-    :keymaps 'inferior-python-mode-map
-    "C-j" 'counsel-M-x)
+(general-define-key
+ :keymaps 'inferior-python-mode-map
+ "M-e" 'counsel-shell-history
+ "C-c j" 'my/evil-shell-bottom
+ "C-c u" 'universal-argument
+ "C-u" 'comint-kill-input
+ "C-l" 'comint-clear-buffer
+ "C-j" 'counsel-M-x
+ "C-;" 'kill-buffer-and-window
+ "C-n" 'comint-next-input
+ "C-p" 'comint-previous-input)
 
-  (general-unbind 'inferior-python-mode-map
-    :with 'ignore
-    [remap my/quiet-save-buffer])
+(general-nvmap
+  :keymaps 'inferior-python-mode-map
+  "C-j" 'counsel-M-x)
 
-  (general-unbind 'python-mode-map
-    :with 'my/python-shebang
-    [remap my/bash-shebang])
+(general-unbind 'inferior-python-mode-map
+  :with 'ignore
+  [remap my/quiet-save-buffer])
 
-  (general-unbind 'python-mode-map
-    :with 'my/python-save-buffer
-    [remap my/quiet-save-buffer])
+(general-unbind 'python-mode-map
+  :with 'my/python-shebang
+  [remap my/bash-shebang])
 
-  (general-define-key
-   :keymaps 'python-mode-map
-   "C-." 'my/indent-tools-hydra/body
-   "M-e" 'python-nav-forward-statement
-   "M-a" 'python-nav-backward-statement
-   "M-m" 'blacken-buffer)
+(general-unbind 'python-mode-map
+  :with 'my/python-save-buffer
+  [remap my/quiet-save-buffer])
 
-  (general-nvmap
-    :keymaps 'python-mode-map
-    "C-." 'my/indent-tools-hydra/body
-    "<tab>" 'hs-toggle-hiding
-    "o" 'cool-moves/open-line-below-python
-    "RET" 'hydra-python-mode/body
-    "zm" 'evil-close-folds
-    "M-e" 'python-nav-forward-statement
-    "M-a" 'python-nav-backward-statement
-    "gh" 'outline-up-heading
-    "gl" 'outline-next-heading
-    "zl" 'outline-show-subtree
-    "<M-return>" 'indent-buffer
-    "<" 'python-indent-shift-left
-    "M-m" 'blacken-buffer
-    ">" 'python-indent-shift-right
-    "gj" 'outline-forward-same-level
-    "gk" 'outline-backward-same-level
-    "<C-return>" 'python-open-two-line
-    "<backspace>" 'hydra-prog-mode/body)
+(general-define-key
+ :keymaps 'python-mode-map
+ "C-c -" 'my/python-insert-command
+ "C--" 'quickrun
+ "C-." 'my/indent-tools-hydra/body
+ "M-e" 'python-nav-forward-statement
+ "M-a" 'python-nav-backward-statement)
 
-  (general-imap
-    :keymaps 'python-mode-map
-    "M-e" 'python-nav-forward-statement
-    "M-a" 'python-nav-backward-statement
-    "<S-backspace>" 'python-indent-dedent-line-backspace
-    "<M-return>" 'indent-buffer
-    "<C-return>" 'cool-moves/open-line-below-python)
+(general-nvmap
+  :keymaps 'python-mode-map
+  "C-." 'my/indent-tools-hydra/body
+  "<tab>" 'hs-toggle-hiding
+  "RET" 'hydra-python-mode/body
+  "zm" 'evil-close-folds
+  "M-e" 'python-nav-forward-statement
+  "M-a" 'python-nav-backward-statement
+  "gh" 'outline-up-heading
+  "gl" 'outline-next-heading
+  "zl" 'outline-show-subtree
+  "<M-return>" 'indent-buffer
+  "<" 'python-indent-shift-left
+  ">" 'python-indent-shift-right
+  "gj" 'outline-forward-same-level
+  "gk" 'outline-backward-same-level
+  "<C-return>" 'python-open-two-line
+  "<backspace>" 'hydra-prog-mode/body)
+
+(general-imap
+  :keymaps 'python-mode-map
+  "M-e" 'python-nav-forward-statement
+  "M-a" 'python-nav-backward-statement
+  "<S-backspace>" 'python-indent-dedent-line-backspace
+  "<M-return>" 'indent-buffer
+  "<C-return>" 'cool-moves/open-line-below-python)
 #+END_SRC
 * Functions
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_extras.el
@@ -194,4 +182,16 @@
    nil
    "~/scripts/i3_scripts/show_term_right"))
 
+(defun my/python-insert-command ()
+  (interactive)
+  (evil-visual-char)
+  (evil-last-non-blank)
+  (evil-exit-visual-state)
+  (evil-append 1)
+  (insert ")")
+  (evil-goto-mark 60)
+  (backward-to-word 1)
+  (forward-to-word 1)
+  (insert "(")
+  (backward-char))
 #+END_SRC

@@ -9,7 +9,7 @@
        _w_: correct word      _a_: en dict
        _b_: check buffer      _o_: company pt
        _c_: before point      _k_: company en
-       _y_: yspell            _r_: prose on
+       _t_: tangle quickrun   _r_: prose on
 "
   ("<escape>" nil)
   ("RET" my/counsel-markdown-commands)
@@ -29,7 +29,8 @@
   ("r" prose-enable)
   ("R" prose-disable)
   ("y" flyspell-correct-word-generic)
-  ("f" ranger-find-pcc-dir))
+  ("f" ranger-find-pcc-dir)
+  ("t" my/tangle-quickrun))
 
 (defhydra hydra-kill (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -161,12 +162,14 @@
   ^
        ^Python^               ^Flycheck^  ^Flymake^
        --------------------------------------
-       _q_: quickrun          _f_: first  _N_: prev
-       _s_: quickrun shell    _p_: prev   _P_: next
+       _q_: quickrun          _f_: first  _k_: prev
+       _s_: quickrun shell    _p_: prev   _j_: next
        _g_: go to definition  _n_: next   _M_: mode
        _a_: dumb jump go      _m_: mode
        _w_: my shell
        _x_: ext shell
+       _e_: evil ex macro
+       _t_: tangle quickrun
 
 "
   ("<escape>" nil)
@@ -183,20 +186,23 @@
   ("n" flycheck-previous-error :exit nil)
   ("m" flycheck-mode)
 
-  ("N" flymake-goto-prev-error)
-  ("P" flymake-goto-next-error)
+  ("k" flymake-goto-prev-error)
+  ("j" flymake-goto-next-error)
   ("M" flymake-mode)
   ("w" my/execute-python-program-shell)
-  ("x" my/run-python-externally))
+  ("x" my/run-python-externally)
+  ("e" my/ex-run-python-macro)
+  ("t" my/tangle-quickrun))
 
 (defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
        ^Projectile^
-       ---------------------------
-       _a_: ag       _c_: counsel
-       _g_: grep     _m_: projectile
+       -----------------------------
+       _a_: ag         _c_: counsel
+       _g_: grep       _m_: projectile
        _f_: file
+       _d_: file dwin
        _k_: kill
        _b_: buffer
        _p_: project
@@ -207,7 +213,8 @@
 
   ("a" counsel-projectile-ag)
   ("g" counsel-projectile-grep)
-  ("f" counsel-projectile-find-file-dwim)
+  ("f" counsel-projectile-find-file)
+  ("d" counsel-projectile-find-file-dwim)
   ("k" projectile-kill-buffers)
   ("b" counsel-projectile-switch-to-buffer)
   ("p" counsel-projectile-switch-project)
@@ -459,7 +466,7 @@
 
   ("a" tangle-and-eval-block)
   ("b" eval-region)
-  ("c" eval-buffer)
+  ("c" my/eval-buffer)
   ("d" eval-line)
   ("e" my/tangle-reload-keys)
   ("i" i3-reload))
@@ -537,42 +544,32 @@
 (defhydra hydra-text-main (:color blue :hint nil :exit nil :foreign-keys nil)
   "
   ^
-       ^Commands^                        ^Modes^
-       ---------------------------------------------------------
-       _d_: delete blank lines           _f_: auto fill
-       _e_: clean empty lines            _l_: auto capitalize
-       _i_: duplicate inner paragraph    _t_: toggle truncate lines
-       _z_: capitalize word or region    _h_: highlight sentences
-       _d_: delete blank lines           _,_: org text hydra
-       _c_: copy to chrome               _._: prose hydra
-       _w_: copy to messenger            _p_: PDF
-       _x_: copy to reddit               _s_: copy to tildes
+       ^Text^
+       --------------------------------------------
+       _d_: del blank lines    _c_: copy to chrome
+       _e_: clean blank lines  _m_: copy to messenger
+       _i_: dup inner par      _l_: auto capitalize
+       _z_: capitalize         _t_: truncate lines
+       _d_: del blank lines    _h_: hl sentences
+
 "
 
   ("<escape>" nil)
   ("C-;" hydra-text-commands/body)
   (";" hydra-text-commands/body)
-  ("<menu>" hydra-text-commands/body)
 
   ("d" delete-blank-lines)
-  ("z" fix-word-capitalize)
   ("e" xah-clean-empty-lines)
   ("i" duplicate-inner-paragraph)
+  ("z" fix-word-capitalize)
 
   ("c" copy-to-chrome)
-  ("w" copy-to-messenger)
+  ("m" copy-to-messenger)
   ("t" toggle-truncate-lines)
 
-  ("f" auto-fill-mode)
   ("h" hl-sentence-mode)
-  ("." hydra-prose/body)
-  ("C-." hydra-prose/body)
   ("l" auto-capitalize-mode)
-  ("," hydra-org-text-commands/body)
-  ("C-," hydra-org-text-commands/body)
-  ("p" hydra-pdf-view/body)
-  ("x" copy-to-reddit)
-  ("s" copy-to-tildes))
+  )
 
 (defhydra hydra-text-motions (:color amaranth :hint nil :foreign-keys nil)
   "
@@ -613,16 +610,13 @@
   "
  ^
        ^More Text^
-       ---------------------------------------------
-       _s_: create new setq       _j_: move line
-       _f_: create new hydra key  _k_: copy line
-       _h_: create new hook       _o_: move region
-       _p_: insert paragraph      _i_: copy region
-       _m_: mark whole buffer     _d_: dup line and comment
-       _c_: copy whole buffer     _v_: visible markup
-       _e_: erase whole buffer    _=_: txt scale
-       ^^                         _0_: txt scale reset
+       -------------------------------
+       _s_: setq        _m_: move line
+       _f_: hydra key   _l_: copy line
+       _h_: hook        _a_: text adjust
+       _p_: insert par  _v_: visible mode
 
+       ^^
   "
   ("<escape>" nil)
   ("C-;" nil)
@@ -633,17 +627,10 @@
   ("f" format-hydra-binding)
   ("h" add-hook-macro)
   ("p" Lorem-ipsum-insert-paragraphs)
-  ("m" mark-whole-buffer)
-  ("c" copy-whole-buffer)
-  ("e" erase-buffer)
-  ("j" avy-move-line)
-  ("k" avy-copy-line)
-  ("o" avy-move-region)
-  ("i" avy-copy-region)
-  ("d" my/comment-dupplicate-line)
+  ("m" avy-move-line)
+  ("l" avy-copy-line)
   ("v" visible-mode)
-  ("=" text-scale-adjust)
-  ("0" text-scale-reset))
+  ("a" text-scale-adjust))
 
 
 (defhydra hydra-org-text-commands (:color blue :hint nil :exit nil :foreign-keys nil)

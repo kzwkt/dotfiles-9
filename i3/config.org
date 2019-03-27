@@ -8,6 +8,11 @@ This [[http://orgmode.org][org file]] generates my actual [[https://github.com/m
 ** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 set $mod Mod4
+# 4.28. Delaying urgency hint reset on workspace change
+# http://bit.ly/2CGItXR
+# focus_on_window_activation smart|urgent|focus|none
+focus_on_window_activation smart
+force_display_urgency_hint 150 ms
 show_marks yes
 focus_follows_mouse yes
 # font pango:monospace 8
@@ -33,7 +38,7 @@ bar {
 #+END_SRC
 * startup
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
-exec google-chrome
+exec google-chrome-stable
 exec --no-startup-id "~/scripts/emacs_scripts/emacs-daemons"
 exec --no-startup-id "feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper/Abstract/allblack.png"
 exec --no-startup-id  "~/scripts/screen/mx-big.sh"

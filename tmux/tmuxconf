@@ -52,6 +52,7 @@ bind-key s split-window -v
 
 # }}}
 # {{{ send all
+# https://bit.ly/2JJIeRY
 bind c command-prompt -p "send to all:" \
        "run \"tmux list-panes -a -F '##{session_name}:##{window_index}.##{pane_index}' \
               | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
@@ -67,7 +68,6 @@ bind -n M-F11 set -g status
 # }}}
 # {{{ plugins
 
-run-shell ~/.tmux/tmux-picker/tmux-picker.tmux
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'tmux-plugins/tmux-open'

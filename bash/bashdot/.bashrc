@@ -96,6 +96,7 @@ source ~/.bash_aliases
 source ~/.git_aliases
 source ~/.env_variables.sh
 source ~/.bash_completion.sh
+source ~/.cargo/env
 
 #### DEFAULT EDITOR ####
 

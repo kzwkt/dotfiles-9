@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/scripts/i3_scripts/hide/hide_only_terms
+~/scripts/i3_scripts/hide/hide_only_terms &>/dev/null
 
 emacsclient --socket-name=gui-emacs -n -e "(if (> (length (frame-list)) 1) 't)" | grep t
 if [ "$?" = "1" ]; then

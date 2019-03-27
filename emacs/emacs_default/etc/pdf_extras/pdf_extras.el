@@ -116,8 +116,6 @@
   "C-l" 'counsel-bookmark
   "C-c C-c" 'pdf-annot-add-highlight-markup-annotation
   "c" 'pdf-annot-add-highlight-markup-annotation
-  "M-o" 'pdf-history-backward
-  "M-i" 'pdf-history-forward
   "H" 'pdf-history-backward
   "L" 'pdf-history-forward
   "C-j" 'counsel-M-x
@@ -138,11 +136,10 @@
   "l" 'pdf-view-scroll-down-or-previous-page
   "<up>"  'pdf-view-scroll-up-or-next-page
   "<down>" 'pdf-view-scroll-down-or-previous-page
-  "J" 'pdf-view-next-page
-  "j" 'pdf-view-next-line-or-next-page
-  "K" 'pdf-view-previous-page
-  "k" 'pdf-view-previous-line-or-previous-page
-  "H" 'pdf-history-backward
+  "j" 'pdf-view-next-page
+  "J" 'pdf-view-next-line-or-next-page
+  "k" 'pdf-view-previous-page
+  "K" 'pdf-view-previous-line-or-previous-page
   "<left>" 'pdf-view-next-page
   "<right>" 'pdf-view-previous-page
   "C-c h" 'pdf-annot-add-highlight-markup-annotation)

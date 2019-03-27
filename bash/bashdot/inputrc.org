@@ -25,26 +25,3 @@ set completion-ignore-case on
 # <C-S-backspace>: kill whole line
 # "": "\C-k \C-u"
 #+END_SRC
-** unbindings
-#+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.inputrc
-# Unbind Backspace
-"": ""
-
-# Unbind Arrow Up
-"OA": ""
-
-# Unbind Arrow Down
-"OB": ""
-
-# Unbind Arrow Right
-"OD": ""
-
-# Unbind Arrow Left
-"OC": ""
-
-# Unbind Home
-"[1~": ""
-
-# Unbind End
-"[4~": ""
-#+END_SRC

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+dirs +0 | \\tr -d '\n' | xclip -selection clipboard
