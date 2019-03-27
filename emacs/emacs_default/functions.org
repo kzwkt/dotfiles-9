@@ -2798,6 +2798,12 @@ Provides a major-mode for the i3/config file.
   (kill-org-agenda-files))
 #+END_SRC
 * misc
+** disable flycheck
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
+;; (defun my/flycheck-off ()
+;;   (interactive)
+;;   (flycheck-mode -1))
+#+END_SRC
 ** measure time
 [[https://stackoverflow.com/questions/23622296/emacs-timing-execution-of-function-calls-in-emacs-lisp][Source]]
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el

@@ -229,6 +229,7 @@
   "M-m" 'my/org-edit-special)
 
 (general-nvmap
+
   :keymaps 'org-mode-map
   "zm" 'org-hide-all
   "C-j" 'counsel-M-x
@@ -2157,7 +2158,6 @@
 
 
 (use-package projectile
-  :if window-system
   :defer t
   :ensure t
   :config
@@ -2281,8 +2281,6 @@
   (setq flycheck-display-errors-delay 0.9)
   (setq flycheck-idle-change-delay 0.3)
   (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled))
-  ;; (setq flycheck-check-syntax-automatically '(save new-line mode-enabled))
-  ;; (setq flymake-mode nil)
   (setq flycheck-clang-pedantic t)
   (setq flycheck-gcc-pedantic t))
 

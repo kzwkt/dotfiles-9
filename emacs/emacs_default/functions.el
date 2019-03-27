@@ -2470,6 +2470,10 @@ Skips inferior frames, that is, those without a minibuffer (eg. speedbar). "
   ad-do-it
   (kill-org-agenda-files))
 
+;; (defun my/flycheck-off ()
+;;   (interactive)
+;;   (flycheck-mode -1))
+
 (defmacro measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."
   `(let ((time (current-time)))
