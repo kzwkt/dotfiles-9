@@ -154,6 +154,10 @@
 #+END_SRC
 *** org misc
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+;; (setq org-time-stamp-formats '("<%-Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M>"))
+(setq org-time-stamp-custom-formats '("<%d/%m/%y %a>" . "<%d/%m/%y %a %H:%M>"))
+(setq org-display-custom-times t)
+(setq-default org-display-custom-times t)
 (setq org-pretty-entities-include-sub-superscripts nil)
 (setq org-format-latex-options
       (plist-put org-format-latex-options :scale 1.3))
@@ -175,6 +179,7 @@
 (setq org-babel-temporary-directory "~/.emacs.d/babel-temp")
 (setq org-fontify-done-headline t)
 #+END_SRC
+
 *** org todo config
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (setq org-todo-keywords
@@ -2542,8 +2547,11 @@ buffer expose commands.
 (use-package pyenv-mode
   :ensure t
   :config
-  (pyenv-mode))
+  (pyenv-mode)
+(general-unbind 'pyenv-mode-map
+  "C-c C-s"))
 #+END_SRC
+
 *** python mode
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package python

@@ -134,6 +134,10 @@
 (setq org-src-window-setup 'current-window)
 
 
+;; (setq org-time-stamp-formats '("<%-Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M>"))
+(setq org-time-stamp-custom-formats '("<%d/%m/%y %a>" . "<%d/%m/%y %a %H:%M>"))
+(setq org-display-custom-times t)
+(setq-default org-display-custom-times t)
 (setq org-pretty-entities-include-sub-superscripts nil)
 (setq org-format-latex-options
       (plist-put org-format-latex-options :scale 1.3))
@@ -2016,6 +2020,10 @@
   :defer t
   :ensure t)
 
+(use-package gdscript-mode
+  :defer t
+  :ensure t)
+
 ;; (use-package insert-shebang
 ;;   :ensure t
 ;;   :init
@@ -2182,7 +2190,9 @@
 (use-package pyenv-mode
   :ensure t
   :config
-  (pyenv-mode))
+  (pyenv-mode)
+(general-unbind 'pyenv-mode-map
+  "C-c C-s"))
 
 (use-package python
   :defer t
