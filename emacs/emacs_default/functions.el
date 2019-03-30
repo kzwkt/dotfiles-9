@@ -20,9 +20,8 @@
 (defun my/eval-next-sexp ()
   "Eval next sexp."
   (interactive)
-  (sp-beginning-of-next-sexp)
-  (sp-end-of-sexp)
-  (eval-last-sexp nil))
+  (save-excursion
+    (my/eval-next-sexp-macro)))
 
 (defun make-region-read-only (start end)
   (interactive "*r")
@@ -656,19 +655,12 @@ return t."
     (sit-for 0.5)
     (shell-command "~/scripts/emacs_scripts/rel")))
 
-(defun my/tangle-quickrun ()
-  (interactive)
-  (my/tangle-default)
-  (last-buffer)
-  (quickrun))
-
 (defun my/tangle-default ()
   (interactive)
-  (measure-time
-   (widenToCenter)
-   (my/quiet-save-buffer)
-   (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
-   (message "this file was tangled")))
+  (widenToCenter)
+  (my/quiet-save-buffer)
+  (org-babel-tangle-file (prelude-copy-file-name-to-clipboard))
+  (message "this file was tangled"))
 
 (defun tangle-py-all-debug ()
   (interactive)
@@ -876,14 +868,6 @@ return t."
   (message " state 3 restored"))
 
 
-
-(defun indent-buffer-python ()
-  (interactive)
-  (save-excursion
-    (let ((inhibit-message t))
-      (evil-indent
-       (point-min)
-       (point-max)))))
 
 (defun indent-buffer ()
   (interactive)
@@ -1125,6 +1109,12 @@ return t."
   (setq-local company-minimum-prefix-length 2)
   (message "idle delay: 0.1, minimun prefix length: 2"))
 
+(defun my/company-idle-one-prefix-two-quiet ()
+  (interactive)
+  (setq-local company-idle-delay 0.1)
+  (setq-local company-tooltip-limit 5)
+  (setq-local company-minimum-prefix-length 2))
+
 (defun my/company-idle-two-prefix-one ()
   (interactive)
   (setq-local company-idle-delay 0.2)
@@ -1193,6 +1183,7 @@ return t."
 
 (defun my/company-complete-paren ()
   (interactive)
+  (company-select-next)
   (company-complete)
   (insert "()")
   (backward-char))
@@ -1201,6 +1192,12 @@ return t."
   (interactive)
   (company-select-next)
   (company-complete))
+
+(defun my/company-complete-first-add-space ()
+  (interactive)
+  (company-select-next)
+  (company-complete)
+  (insert " "))
 
 (defun my/company-complete-first-comint ()
   (interactive)

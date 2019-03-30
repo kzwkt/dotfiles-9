@@ -1,3 +1,4 @@
+
 (defun execute-python-program ()
   (interactive)
   (my/window-to-register-91)
@@ -48,12 +49,9 @@
 
 (defun my/python-mode-hooks ()
   (interactive)
-  (hl-line-mode 1)
-  (highlight-numbers-mode 1)
   (electric-operator-mode 1)
-  (hs-minor-mode 1)
   (my/company-idle-two-prefix-two-quiet)
-  (blacken-mode))
+  (blacken-mode 1))
 
 (defun my/inferior-python-mode-hooks ()
   (interactive)
@@ -109,7 +107,7 @@
   "gh" 'outline-up-heading
   "gl" 'outline-next-heading
   "zl" 'outline-show-subtree
-  "<M-return>" 'indent-buffer
+  "<M-return>" 'indent-buffer-python
   "<" 'python-indent-shift-left
   ">" 'python-indent-shift-right
   "gj" 'outline-forward-same-level
@@ -122,8 +120,15 @@
   "M-e" 'python-nav-forward-statement
   "M-a" 'python-nav-backward-statement
   "<S-backspace>" 'python-indent-dedent-line-backspace
-  "<M-return>" 'indent-buffer
+  "<M-return>" 'indent-buffer-python
   "<C-return>" 'cool-moves/open-line-below-python)
+
+
+
+(defun indent-buffer-python ()
+  (interactive)
+  (elpy-autopep8-fix-code)
+  (blacken-buffer))
 
 (defun my/python-save-buffer () (interactive)
        (evil-ex-nohighlight)
@@ -158,6 +163,28 @@
     (left-char)
     (set-mark-command nil)))
 
+(defun my/kill-game-code.py ()
+  (interactive)
+  (cl-flet ((yes-or-no-p (s) t))
+    (kill-matching-buffers "game_code.py")))
+
+(defun my/tangle-python ()
+  (interactive)
+  (measure-time
+   (my/kill-game-code.py)
+   (start-process-shell-command "ntangle" nil "ntangle ~/pta/my_code/game/*.org")
+   (find-file "~/pta/my_code/game/game_code.py")
+   (indent-buffer-python)
+   (beginning-of-buffer)
+   (python-nav-forward-block)
+   (my/python-save-buffer)))
+
+(defun my/tangle-quickrun ()
+  (interactive)
+  (my/tangle-default)
+  (find-file "/home/dave/Documents/Studying/Prog/Python/PTA/my_code/game/game.py")
+  (quickrun))
+
 (defun my/run-python-externally ()
   "Copy the current buffer file name to the clipboard."
   (interactive)
@@ -171,6 +198,26 @@
    "call term"
    nil
    "~/scripts/i3_scripts/show_term_right"))
+
+(defun my/tangle-run-python-externally ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (my/tangle-default)
+  (my/goto-python-file)
+  (let ((filename (if (equal major-mode 'dired-mode)
+		      default-directory
+		    (buffer-file-name))))
+    (when filename
+      (kill-new (concat "python3 " filename))))
+  (start-process-shell-command
+   "call term"
+   nil
+   "~/scripts/i3_scripts/show_term_right"))
+
+(defun my/open ()
+(interactive)
+(measure-time
+(find-file "/home/dave/Documents/Studying/Prog/Python/PTA/my_code/scratch.py")))
 
 (defun my/python-insert-command ()
   (interactive)

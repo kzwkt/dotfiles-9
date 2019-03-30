@@ -40,6 +40,19 @@
 (fset 'org-sort-todos
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("gg]^d" 0 "%d") arg)))
 
+
+(fset 'my/select-paragraph
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '("vap" 1 "%d") arg)))
+
+(fset 'my/goto-python-file
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217828 92 46 112 121 13] 0 "%d") arg)))
+
+(fset 'my/goto-pdf-buffer
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217828 46 112 100 102 return] 0 "%d") arg)))
+
+(fset 'my/goto-org-src-buffer
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([134217828 79 114 103 32 83 114 99 return] 0 "%d") arg)))
+
 (fset 'my/flyspell-insert-word
       "\244iy")
 (fset 'my/markdown-copy-buffer-macro
@@ -128,8 +141,8 @@
 (fset 'add-hook-macro
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([73 17 40 97 100 100 45 104 111 111 107 32 17 39 5 32 17 39 41 134217826 6] 0 "%d") arg)))
 
-(fset 'eval-next-sexp
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 97 40 escape 24 5] 0 "%d") arg)))
+(fset 'my/eval-next-sexp-macro
+	(lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([118 97 40 escape 24 5] 0 "%d") arg)))
 
 (fset 'c-goto-vars
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([109 113 103 103 47 115 101 116 108 111 99 97 108 101 return 50 106] 0 "%d") arg)))

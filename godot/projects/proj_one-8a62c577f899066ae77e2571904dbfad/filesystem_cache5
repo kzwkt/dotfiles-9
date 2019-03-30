@@ -1,0 +1,6 @@
+e676c8cf538667c7b7492316723f6fe3
+::res://::1553810002
+default_env.tres::Environment::1553807857::0::1::<><>::
+icon.png::StreamTexture::1553805101::1553805103::1::<><>::
+MyFirstScene.gd::GDScript::1553806778::0::1::<>Node2D<>::
+MyFirstScene.tscn::PackedScene::1553807857::0::1::<><>::res://MyFirstScene.gd<>res://icon.png

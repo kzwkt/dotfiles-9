@@ -1,5 +1,6 @@
 (add-hook 'python-mode-hook 'my/python-mode-hooks)
 (add-hook 'python-mode-hook 'elpy-mode)
+
 ;; (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
 
 (add-hook 'python-mode-hook #'evil-swap-keys-swap-colon-semicolon)

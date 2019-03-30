@@ -2,3 +2,4 @@
 
 i3-msg "[title=term-up]" move scratchpad &>/dev/null             || true
 i3-msg "[title=term-ranger]" move scratchpad &>/dev/null         || true
+i3-msg [class="Hexchat"] move scratchpad &>/dev/null             || true

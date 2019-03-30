@@ -55,8 +55,8 @@
   :defer t
   :ensure t
   :init
-  (add-hook 'before-save-hook 'org-align-all-tags)
-  (add-hook 'org-archive-hook 'org-hide-other)
+  ;; (add-hook 'before-save-hook 'org-align-all-tags)
+  ;; (add-hook 'org-archive-hook 'org-hide-other)
   (add-hook 'org-mode-hook 'evil-org-mode)
   (add-hook 'org-mode-hook 'org-bullets-mode)
   (remove-hook 'org-cycle-hook #'org-optimize-window-after-visibility-change)
@@ -115,15 +115,10 @@
 
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
-(setq org-confirm-babel-evaluate t)
+(setq org-confirm-babel-evaluate nil)
 (setq org-babel-no-eval-on-ctrl-c-ctrl-c t)
 (setq org-src-ask-before-returning-to-edit-buffer nil)
-
-(defun my/org-edit-special ()
-  (interactive)
-(measure-time
-  (org-edit-special)
-  (delete-other-windows)))
+(setq org-src-window-setup 'current-window)
 
 
 (setq org-pretty-entities-include-sub-superscripts nil)
@@ -191,26 +186,41 @@
 
 (setq org-capture-templates
       '(
-	;; ("m" "Matemática" entry (file+headline "~/Matérias/matematica.org" "Refile") "** %u %i%?" :empty-lines 1)
-	;; ("d" "Des_Social" entry (file+headline "~/Matérias/desenvolvimento_social.org" "Refile") "** %u %i%?" :empty-lines 1)
-	;; ("g" "Ger_de TI" entry (file+headline "~/Matérias/gerencia_de_ti.org" "Refile") "** %u %i%?" :empty-lines 1)
-	;; ("a" "Arquitetura" entry (file+headline "~/Matérias/arquitetura_de_computatores.org" "Refile") "** %u %i%?" :empty-lines 1)
-	;; ("p" "POO" entry (file+headline "~/Matérias/programacao_orientada_a_objetos.org" "Refile") "** %t %i%?" :empty-lines 1)
 	("s" "Social" entry  (file+headline "~/org/Creative/Social/Public/social_public.org" "Refile") "* %u %i%?")
 	("r" "Refile" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Refile") "* %u %i%?")
+	("p" "Pynotes"  entry  (file+headline "~/Studying/Prog/Python/MISC/pynotes.org" "Pynotes")  "* %i%?")
 	("0" "Daily"  entry  (file+headline "~/org/Planning/Agenda/planning.org" "Daily")  "* TODO %u %i%?")
 	("1" "Agora"  entry  (file+headline "~/org/Planning/Agenda/planning.org" "Agora")  "* TODO %u %i%?")
 	("2" "Logo"   entry  (file+headline "~/org/Planning/Agenda/planning.org" "Logo")   "* TODO %u %i%?")
 	("3" "Depois" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Depois") "* TODO %u %i%?")
 	("4" "Um Dia" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Um Dia") "* TODO %u %i%?")))
 
+
+(defun my/org-archive ()
+  (interactive)
+  (org-todo "DONE")
+  (org-archive-subtree-default)
+  (message " todo archived"))
+
+(defun my/make-return-python ()
+  (interactive)
+  (general-nvmap
+    :keymaps 'org-mode-map
+    "RET" 'hydra-python-mode/body))
+
+(defun my/make-return-spell ()
+  (interactive)
+  (general-nvmap
+    :keymaps 'org-mode-map
+    "RET" 'hydra-spell/body))
+
 (general-define-key
  :keymaps 'org-src-mode-map
  "M-m" 'org-edit-src-exit)
 
 (general-nvmap
- :keymaps 'org-src-mode-map
- "M-m" 'org-edit-src-exit)
+  :keymaps 'org-src-mode-map
+  "M-m" 'org-edit-src-exit)
 
 (general-define-key
  :keymaps 'org-mode-map
@@ -226,14 +236,13 @@
 
 (general-imap
   :keymaps 'org-mode-map
-  "M-m" 'my/org-edit-special)
+  "M-m" 'org-edit-special)
 
 (general-nvmap
-
   :keymaps 'org-mode-map
   "zm" 'org-hide-all
   "C-j" 'counsel-M-x
-  "M-m" 'my/org-edit-special
+  "M-m" 'org-edit-special
   "<insert>" 'org-insert-link
   "M-n" 'org-forward-paragraph
   "RET" 'hydra-spell/body
@@ -250,7 +259,8 @@
 
 (general-unbind 'org-capture-mode-map
   :with 'org-capture-kill
-  [remap my/quiet-save-buffer]))
+  [remap my/quiet-save-buffer])
+)
 
 (use-package org-bullets
 :ensure t)
@@ -391,9 +401,9 @@
   :defer t
   :ensure t
   :config
-  (general-define-key
-   :keymaps 'pabbrev-mode-map
-   "C-l" 'pabbrev-expand-maybe))
+  (general-imap
+    :keymaps 'pabbrev-mode-map
+    "C-l" 'pabbrev-expand-maybe))
 
 (use-package lorem-ipsum
 :defer t
@@ -1481,6 +1491,7 @@
     (wc-mode 1)
     (pabbrev-mode 1)
     (my/ispell-dict-options)
+    (company-mode -1)
     (message "prose on"))
 
   (defun my/ispell-dict-options ()
@@ -1987,10 +1998,14 @@
   :defer t
   :ensure t)
 
+(use-package gdscript-mode
+  :defer t
+  :ensure t)
+
 (use-package insert-shebang
   :ensure t
   :init
-  (setq insert-shebang-ignore-extensions '("txt" "org" "pdf"))
+  (setq insert-shebang-ignore-extensions '("txt" "org" "pdf" "py"))
   :config
   (setq insert-shebang-file-types
 	'(("py" . "python3")
@@ -2146,6 +2161,11 @@
   :config
   (setq blacken-line-length 70))
 
+(use-package pyenv-mode
+  :ensure t
+  :config
+  (pyenv-mode))
+
 (use-package python
   :defer t
   :ensure nil
@@ -2185,8 +2205,7 @@
 
   (general-define-key
    :keymaps 'projectile-mode-map
-   "C-c 0" 'my/projectile-show-commands
-   "M-d" 'counsel-projectile-switch-to-buffer)
+   "C-c 0" 'my/projectile-show-commands)
 
   (load-file "~/.emacs.d/lisp/functions/projectile/projectile_ignored_buffers.el")
 
@@ -2208,8 +2227,7 @@
   (general-define-key
    :keymaps 'projectile-command-map
    "ESC" 'keyboard-quit
-   "TAB" 'projectile-project-buffers-other-buffer)
-  )
+   "TAB" 'projectile-project-buffers-other-buffer))
 
 (use-package counsel-projectile
   :if window-system
@@ -2338,21 +2356,18 @@
    "M-d" 'my/company-complete-paren
    ;; "M-h" 'company-quickhelp-manual-begin
    "M-h" nil
-   "M-j" nil
    "M-k" nil
    "M-l" nil
-   "M-w" 'company-select-next
-   "M-q" 'company-select-previous
-   "M-e" 'company-complete
+   ;; "M-w" 'company-select-next
+   ;; "M-q" 'company-select-previous
+   ;; "M-e" 'company-complete
    "C-w" 'evil-delete-backward-word
    "C-h" 'delete-backward-char
    "<tab>" 'my/company-complete-first
-   "<escape>" nil
-   "<return>" 'company-complete
-   ;; "C-h" 'company-complete
+   "<escape>" 'company-abort
+   "<return>" nil
    "C-j" 'company-complete
-   ;; "C-l" 'my/company-complete-comint
-   "C-k" 'my/company-complete-first-comint
+   "M-j" 'my/company-complete-first-add-space
    "M-o" 'my/company-yasnippet)
 
   (general-define-key
@@ -2371,7 +2386,7 @@
 
   (general-imap
     :keymaps 'company-mode-map
-    "M-w" 'company-complete
+    ;; "M-w" 'company-complete
     "C-ç" 'company-complete
     "M-/" 'hippie-expand)
   (global-company-mode 1))
@@ -2433,11 +2448,23 @@
 (use-package yasnippet
   :defer 1
   :ensure t
+  ;; from http://bit.ly/2TEkmif
+  :bind (:map yas-minor-mode-map
+	      ("TAB" . nil)
+	      ("<tab>" . nil))
   :init
   (setq yas--default-user-snippets-dir "~/.emacs.d/etc/yasnippet/snippets")
   (add-hook 'yas-before-expand-snippet-hook 'my/yas-before-hooks)
   (add-hook 'yas-after-exit-snippet-hook 'my/yas-after-hooks)
   :config
+
+  (general-unbind 'yas-keymap
+    :with 'my/jump-out
+    [remap kill-ring-save])
+
+  (defun my/jump-out ()
+    (interactive)
+    (evil-append 1))
 
   (defun my/yas-load-other-window ()
     (interactive)
@@ -2446,6 +2473,7 @@
 
   (setq yas-also-auto-indent-first-line t)
   (setq yas-indent-line 'auto)
+
   (defun my/yas-before-hooks ()
     (interactive)
     (electric-operator-mode -1))
@@ -2454,13 +2482,14 @@
     (interactive)
     (electric-operator-mode +1))
 
-  (general-define-key
-   :keymaps 'yas-minor-mode-map
-   "M-u" 'ivy-yasnippet)
-
   (general-imap
     :keymaps 'yas-minor-mode-map
+    "M-u" 'yas-insert-snippet
     "M-o" 'yas-expand)
+
+  (general-nmap
+    :keymaps 'yas-minor-mode-map
+    "M-u" 'yas-insert-snippet)
 
   (general-unbind 'snippet-mode-map
     :with 'ignore

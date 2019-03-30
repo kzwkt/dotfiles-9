@@ -2,12 +2,10 @@
 (define-key key-translation-map (kbd "<f9>") (kbd "C-c"))
 
 (general-define-key
- "<f8>" 'man
+ "<f7>" 'man
  "M-0" 'quit-window
- ;; "M-]" 'bs-cycle-next
- ;; "M-[" 'bs-cycle-previous
- "M-]" 'projectile-next-project-buffer
- "M-[" 'projectile-previous-project-buffer
+ "M-]" 'bs-cycle-next
+ "M-[" 'bs-cycle-previous
  "C-0" 'delete-window
  "C-c DEL" 'my/bash-shebang
  "M-9" 'delete-other-windows
@@ -107,10 +105,10 @@
 
 ;;;; EDITING ;;;;
 "C-c i" 'ibuffer
-"C-c u" 'yas-insert-snippet
 "C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
+"<C-S-f10>" 'buffer-menu-open
 "<mouse-3>" nil
 "C-c U" 'universal-argument
 "C-c s" 'hydra-shell/body

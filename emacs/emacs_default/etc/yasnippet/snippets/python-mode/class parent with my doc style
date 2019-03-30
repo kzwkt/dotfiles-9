@@ -1,8 +1,8 @@
-# key: clasp
+# key: cc
 # name: class parent with my doc style
 # --
-class ${1:ClassName}(${2:object}):
-    """${3:Documentation for $1} """
-    def __init__(self${4:, args}):
-        ${4:$(elpy-snippet-init-assignments yas-text)}
+class ${1:ClassName}${2:(${3:object})}:${4:
+    """${5:Documentation for $1} """}
+    def __init__(self${6:, args}):
+        ${6:$(elpy-snippet-init-assignments yas-text)}
         $0

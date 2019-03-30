@@ -1,6 +1,8 @@
 " " {{{ Plug
 call plug#begin('~/.config/nvim/plugins/plugged')
 Plug 'justinmk/vim-sneak'
+Plug 'calviken/vim-gdscript3'
+Plug 'vim-syntastic/syntastic'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-repeat'
 Plug 'prendradjaja/vim-vertigo'
@@ -77,5 +79,15 @@ let g:sneak#target_labels = "asdfhjklqwertyu"
 " }}}
 " {{{ commentary
 autocmd FileType cfg setlocal commentstring=#\ %s
+" }}}
+" {{{ syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 " }}}
 "vim: set filetype=vim:

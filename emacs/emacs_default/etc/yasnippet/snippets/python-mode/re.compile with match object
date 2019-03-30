@@ -1,0 +1,8 @@
+# key: ree
+# name: re.compile with match object
+# --
+${1:name}Regex = re.compile(r"${2:string}")
+
+mo$3 = $1Regex.search("$4")
+
+print(mo$3.group())

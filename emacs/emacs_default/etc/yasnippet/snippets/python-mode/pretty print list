@@ -1,0 +1,4 @@
+# key: ppl
+# name: pretty print list
+# --
+print("${1:\n}".join(${2:mo}))

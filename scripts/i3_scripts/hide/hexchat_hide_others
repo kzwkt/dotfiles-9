@@ -5,3 +5,4 @@ i3-msg [title="term-up"] move scratchpad
 i3-msg [class="SpeedCrunch"] move scratchpad
 i3-msg [class="Xfce4-taskmanager"] move scratchpad
 i3-msg [title="term-music"] move scratchpad
+i3-msg "[title=term-right]" move scratchpad

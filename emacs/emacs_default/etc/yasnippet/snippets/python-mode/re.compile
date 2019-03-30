@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: re.compile
+# key: re
+# --
+${1:name}Regex = re.compile(r"$0")

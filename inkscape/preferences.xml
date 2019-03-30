@@ -354,8 +354,8 @@
        live_outline="1"
        live_objects="1"
        show_helperpath="0"
-       x="139.379"
-       y="296.627"
+       x="0"
+       y="0"
        edit_clipping_paths="0"
        edit_masks="0" />
     <eventcontext
@@ -548,7 +548,7 @@
   </group>
   <group
      id="colorselector"
-     page="0" />
+     page="3" />
   <group
      id="embedded">
     <group
@@ -576,10 +576,10 @@
        x="0"
        y="0"
        w="320"
-       h="430"
+       h="428"
        visible="1"
        state="2"
-       placement="1" />
+       placement="5" />
     <group
        id="filtereffects" />
     <group
@@ -597,11 +597,11 @@
        align-to="0"
        x="0"
        y="0"
-       w="320"
+       w="322"
        h="522"
        visible="1"
        state="2"
-       placement="1" />
+       placement="2" />
     <group
        id="xml" />
     <group
@@ -704,7 +704,19 @@
        id="treeeditor" />
     <group
        id="layers"
-       maxDepth="20" />
+       maxDepth="20"
+       panel_size="1"
+       panel_ratio="100"
+       panel_mode="1"
+       panel_wrap="0"
+       panel_border="0"
+       x="0"
+       y="0"
+       w="320"
+       h="428"
+       visible="1"
+       state="2"
+       placement="5" />
     <group
        id="extensioneditor" />
     <group
@@ -1018,12 +1030,12 @@
      org.inkscape.render.empty_video.height="1080" />
   <group
      id="desktop"
-     style="line-height:1.25;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none">
+     style="line-height:1.25;stroke-width:1.065;stroke-miterlimit:4;stroke-dasharray:none;stroke:#ff0000;stroke-opacity:1">
     <group
-       width="1148"
-       height="1033"
-       x="768"
-       y="22"
+       width="956"
+       height="989"
+       x="960"
+       y="66"
        fullscreen="0"
        id="geometry"
        maximized="0" />

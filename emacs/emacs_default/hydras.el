@@ -10,6 +10,7 @@
        _b_: check buffer      _o_: company pt
        _c_: before point      _k_: company en
        _t_: tangle quickrun   _r_: prose on
+	 ^^		    _y_: return python
 "
   ("<escape>" nil)
   ("RET" my/counsel-markdown-commands)
@@ -28,9 +29,9 @@
   ("k" my/company-ispell-en)
   ("r" prose-enable)
   ("R" prose-disable)
-  ("y" flyspell-correct-word-generic)
   ("f" ranger-find-pcc-dir)
-  ("t" my/tangle-quickrun))
+  ("t" my/tangle-quickrun)
+  ("y" my/make-return-python))
 
 (defhydra hydra-kill (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -160,22 +161,22 @@
 (defhydra hydra-python-mode (:color blue :hint nil :foreign-keys run)
   "
   ^
-       ^Python^               ^Flycheck^  ^Flymake^
-       --------------------------------------
-       _q_: quickrun          _f_: first  _k_: prev
-       _s_: quickrun shell    _p_: prev   _j_: next
-       _g_: go to definition  _n_: next   _M_: mode
-       _a_: dumb jump go      _m_: mode
-       _w_: my shell
-       _x_: ext shell
-       _e_: evil ex macro
-       _t_: tangle quickrun
+       ^Python^               ^Flycheck^    ^Flymake^
+       ----------------------------------------
+       _q_: quickrun          _f_: first    _k_: prev
+       _s_: quickrun shell    _p_: prev     _j_: next
+       _g_: go to definition  _n_: next     _M_: mode
+       _t_: tangle            _m_: mode
+       _x_: ext shell         _X_: t&r ext
+       _Q_: tangle quickrun
+       _l_: return spell
 
 "
   ("<escape>" nil)
   ("RET" hydra-prog-mode/body)
 
   ("q" quickrun)
+  ("Q" my/tangle-quickrun)
   ("s" quickrun-shell)
 
   ("g" elpy-goto-definition)
@@ -189,10 +190,11 @@
   ("k" flymake-goto-prev-error)
   ("j" flymake-goto-next-error)
   ("M" flymake-mode)
-  ("w" my/execute-python-program-shell)
   ("x" my/run-python-externally)
   ("e" my/ex-run-python-macro)
-  ("t" my/tangle-quickrun))
+  ("l" my/make-return-spell)
+  ("X" my/tangle-run-python-externally)
+  ("t" my/tangle-python))
 
 (defhydra hydra-projectile-mode (:color blue :hint nil :foreign-keys run)
   "
@@ -335,7 +337,7 @@
   ("M-." yas-new-snippet)
 
   ("r" yas-reload-all)
-  ("l" my/yas-load-other-window))
+  ("l" yas-load-snippet-buffer))
 
 (defhydra hydra-narrow (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -454,22 +456,24 @@
   ^
        ^Eval^
        ------------
-       _a_: block
+       _a_: block  _n_: next sexp
        _b_: region
        _c_: buffer
        _d_: line
        _e_: keys
        _i_: i3
+       _z_: NEW
 
 "
   ("<escape>" nil)
-
+  ("z" my-yank-region)
   ("a" tangle-and-eval-block)
   ("b" eval-region)
   ("c" my/eval-buffer)
   ("d" eval-line)
   ("e" my/tangle-reload-keys)
-  ("i" i3-reload))
+  ("i" i3-reload)
+  ("n" my/eval-next-sexp-macro))
 
 (defhydra hydra-commands (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -726,7 +730,7 @@
 
     ^Org^
     --------------------------------------------------
-    _a_: capture    _h_: schedule   _p_: last capture
+    _a_: my archive _h_: schedule   _p_: last capture
     _b_: agenda     _i_: sort       _q_: property commands
     _c_: align tags _l_: store link _r_: insert link for url
     _d_: archive    _m_: tags tree  _s_: cycle list bullets
@@ -736,7 +740,7 @@
 "
   ("<escape>" nil)
 
-  ("a" counsel-org-capture)
+  ("a" my/org-archive)
   ("b" hydra-org-agenda/body)
   ("c" org-align-all-tags)
   ("d" org-archive-subtree-default)

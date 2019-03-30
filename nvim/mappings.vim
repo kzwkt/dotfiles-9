@@ -151,7 +151,7 @@ inoremap <c-e> g$
 
 nnoremap <c-m-i> <c-a>
 nnoremap <c-x>h ggVG
-
+nnoremap <c-m-i> ggVGp:wqa!<cr>
 nnoremap <silent> <M-s> :silent b#<cr>:echo ""<cr>
 vnoremap <silent> <M-s> <esc>:silent b#<cr>:echo ""<cr>
 

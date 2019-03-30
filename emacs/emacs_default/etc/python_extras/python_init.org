@@ -4,6 +4,7 @@
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/etc/python_extras/python_init.el
 (add-hook 'python-mode-hook 'my/python-mode-hooks)
 (add-hook 'python-mode-hook 'elpy-mode)
+
 ;; (add-hook 'inferior-python-mode-hook 'my/inferior-python-mode-hooks)
 
 (add-hook 'python-mode-hook #'evil-swap-keys-swap-colon-semicolon)
