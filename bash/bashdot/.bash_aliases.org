@@ -24,24 +24,23 @@ alias 5='clear && tmux attach -t 5 &>/dev/null || tmux switch-client -t 5 &>/dev
 * cfg
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.bash_aliases
 alias pfix='pulseaudio -k && sleep 3 && pulseaudio --start &'
-alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
-  	       	          ~/.bashrc                                 \
-                        ~/.profile                                \
-                        ~/.inputrc                                \
-                        ~/.bash_profile                           \
-                        ~/.env_variables.sh                       \
-                        ~/.tmux.conf                              \
-                        ~/.taskrc                                 \
-                        $nv/mappings.vim                          \
-                        $nv/plugins.vim                           \
-                        $nv/init.vim                              \
-                        $nv/abbrevs.vim                           \
-                        /home/dotfiles/bash/bashdot/.bash_aliases \
-                        ~/.bashrc                                 \
-                        ~/.config/i3/config                       \
-                        $nv/mappings.vim                          \
-			  $nv/init.vim                              \
-			  $nv/abbrevs.vim                           \
+alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases	\
+  	       	        ~/.bashrc					\
+                        ~/.profile					\
+                        ~/.inputrc					\
+                        ~/.bash_profile				\
+                        ~/.env_variables.sh				\
+                        ~/.tmux.conf					\
+                        ~/.taskrc					\
+                        \$nv/mappings.vim				\
+                        \$nv/plugins.vim				\
+                        \$nv/init.vim					\
+                        \$nv/abbrevs.vim				\
+                        ~/.bashrc					\
+                        ~/.config/i3/config				\
+                        \$nv/mappings.vim				\
+			\$nv/init.vim					\
+			\$nv/abbrevs.vim				\
                         ~/.config/ranger/rc.conf'
 #+END_SRC
 * taskwarrior

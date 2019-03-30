@@ -85,11 +85,8 @@ bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
 #+END_SRC
 ** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
-# bindsym Mod4+F1 exec ~/scripts/keyboard/init_keys.sh; exec notify-send --expire-time=1 "init keys on"
-# bindsym $mod+Shift+Menu exec ~/scripts/keyboard/reset_keys.sh; exec notify-send "init keys off"
-
+bindsym --release $mod+Shift+q exec xkill
 bindsym $mod+a exec rofi -show run
-# bindsym $mod+d exec exec dmenu_run -i -l 5 -fn 'Input Mono-13'
 bindsym Mod4+F2 exec "xdotool key Caps_Lock"; mode default
 bindsym $mod+Return exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none
 bindsym $mod+q kill
@@ -521,9 +518,7 @@ bindsym l move container to output right; focus output Right; mode default
 bindsym Shift+h move workspace to output Left; mode default
 bindsym Shift+l move workspace to output Right; mode default
 
-bindsym Escape
-
-
+bindsym Escape; exec notify-send --expire-time=1000 "mode default"; mode default
 }
 #+END_SRC
 ** workspace output

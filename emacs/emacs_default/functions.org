@@ -769,10 +769,23 @@ return t."
 
 (defun tangle-and-eval-block ()
   (interactive)
-  (indent-block)
-  (my/save-all)
-  (eval-src-block)
-  (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org"))
+  (measure-time
+   (save-excursion
+     (let ((inhibit-message t))
+       (org-narrow-to-subtree)
+       (evil-indent
+        (point-min)
+        (point-max))
+       (xah-clean-empty-lines)
+       (org-babel-execute-src-block-maybe)
+       (org-babel-remove-result)
+       (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
+       (my/save-all)))))
+
+(defun my/babel-remove-last-blank-line ()
+  (interactive)
+  (end-of-buffer)
+  (flush-lines "END_SRC\n^$"))
 
 (defun i3-reload ()
   (interactive)
@@ -2604,7 +2617,6 @@ Version 2017-09-22"
           (goto-char (point-min))
           (while (re-search-forward "\n\n\n+" nil "move")
             (replace-match "\n\n")))))))
-
 #+END_SRC
 **** xah cycle buffers
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
@@ -2936,6 +2948,7 @@ Kill the current buffer and deletes the file it is visiting.
   (eval-buffer)
   (org-edit-src-exit))
 #+END_SRC
+
 ** eval buffer
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/functions.el
 (defun my/eval-buffer ()

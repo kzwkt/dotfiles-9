@@ -1,5 +1,3 @@
-md default-workspace
-md java_hydras.org
 search java_hydras.org
 search hydra
 touch java_hydras.org
@@ -98,3 +96,5 @@ md Ragnarok
 rename Its_Always_Sunny_in_Philadelphia
 search boy
 search 15
+md old
+rename .old

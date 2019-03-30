@@ -18,25 +18,25 @@ alias 4='clear && tmux attach -t 4 &>/dev/null || tmux switch-client -t 4 &>/dev
 alias 5='clear && tmux attach -t 5 &>/dev/null || tmux switch-client -t 5 &>/dev/null'
 
 alias pfix='pulseaudio -k && sleep 3 && pulseaudio --start &'
-alias bc='clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases \
-  	       	          ~/.bashrc                                 \
-                        ~/.profile                                \
-                        ~/.inputrc                                \
-                        ~/.bash_profile                           \
-                        ~/.env_variables.sh                       \
-                        ~/.tmux.conf                              \
-                        ~/.taskrc                                 \
-                        $nv/mappings.vim                          \
-                        $nv/plugins.vim                           \
-                        $nv/init.vim                              \
-                        $nv/abbrevs.vim                           \
-                        /home/dotfiles/bash/bashdot/.bash_aliases \
-                        ~/.bashrc                                 \
-                        ~/.config/i3/config                       \
-                        $nv/mappings.vim                          \
-			  $nv/init.vim                              \
-			  $nv/abbrevs.vim                           \
-                        ~/.config/ranger/rc.conf'
+alias bc="clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases	\
+  	       	        ~/.bashrc					\
+                        ~/.profile					\
+                        ~/.inputrc					\
+                        ~/.bash_profile				\
+                        ~/.env_variables.sh				\
+                        ~/.tmux.conf					\
+                        ~/.taskrc					\
+                        \$nv/mappings.vim				\
+                        \$nv/plugins.vim				\
+                        \$nv/init.vim					\
+                        \$nv/abbrevs.vim				\
+                        ~/.bashrc					\
+                        ~/.config/i3/config				\
+                        \$nv/mappings.vim				\
+			\$nv/init.vim					\
+			\$nv/abbrevs.vim				\
+                        /home/dotfiles/nvim/status.vim                   \
+                        ~/.config/ranger/rc.conf"
 
 alias t='task'
 alias tc='clear && task completed'

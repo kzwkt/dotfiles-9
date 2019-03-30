@@ -1,4 +1,4 @@
 # key: not
 # name: notify send
 # --
-; exec notify-send --expire-time=${1:1000} "$0"; mode default
+; exec notify-send --expire-time=${1:1000} "${2:mode default}"; mode default

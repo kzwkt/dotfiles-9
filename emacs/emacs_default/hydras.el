@@ -228,8 +228,8 @@
   ^
        ^Flycheck^   ^Others^
        ----------------------------
-       _f_: first   _N_: flymake prev
-       _p_: prev    _P_: flymake next
+       _f_: first   _k_: flymake prev
+       _p_: prev    _j_: flymake next
        _n_: next    _h_: hide-show
        _d_: display _s_: shell
        _b_: buffer  _u_: shorten url
@@ -248,8 +248,8 @@
   ("c" flycheck-clear)
   ("m" flycheck-mode)
 
-  ("N" flymake-goto-prev-error)
-  ("P" flymake-goto-next-error)
+  ("j" flymake-goto-prev-error)
+  ("k" flymake-goto-next-error)
   ("h" hs-minor-mode)
   ("s" hydra-shell/body)
   ("u" bitly-url-shorten))
@@ -485,7 +485,7 @@
        _c_: check parens    _h_: ivy resume     _r_: eval region
        _d_: dup line        _i_: define abbrev  _B_: eval buffer
        _e_: sort by length  _J_: del dup lines  _l_: eval line
-       _E_: sort lines	  _3_: reload i3      _w_: word count
+       _E_: sort lines	  _3_: reload i3      _zzz_: word count
 
 "
 
@@ -508,9 +508,8 @@
   ("r" eval-region)
   ("B" eval-buffer)
   ("l" eval-line)
-  ("w" wc-count)
+  ("zzz" wc-count)
   ("3" i3-reload))
-
 
 (defhydra hydra-quick-commands (:color blue :hint nil :exit nil :foreign-keys nil)
   "

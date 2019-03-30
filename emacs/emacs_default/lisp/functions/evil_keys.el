@@ -93,3 +93,8 @@
  :keymaps '(evil-ex-search-keymap evil-ex-completion-map)
  "C-h" 'delete-backward-char
  "C-h" 'delete-backward-char)
+
+(general-nvmap
+  :keymaps 'override
+  "C-M-i" 'evil-numbers/inc-at-pt
+  "C-M-o" 'evil-numbers/dec-at-pt)

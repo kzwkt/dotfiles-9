@@ -693,10 +693,23 @@ return t."
 
 (defun tangle-and-eval-block ()
   (interactive)
-  (indent-block)
-  (my/save-all)
-  (eval-src-block)
-  (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org"))
+  (measure-time
+   (save-excursion
+     (let ((inhibit-message t))
+       (org-narrow-to-subtree)
+       (evil-indent
+        (point-min)
+        (point-max))
+       (xah-clean-empty-lines)
+       (org-babel-execute-src-block-maybe)
+       (org-babel-remove-result)
+       (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
+       (my/save-all)))))
+
+(defun my/babel-remove-last-blank-line ()
+  (interactive)
+  (end-of-buffer)
+  (flush-lines "END_SRC\n^$"))
 
 (defun i3-reload ()
   (interactive)
@@ -2289,7 +2302,6 @@ Version 2017-09-22"
           (goto-char (point-min))
           (while (re-search-forward "\n\n\n+" nil "move")
             (replace-match "\n\n")))))))
-
 
 (defun xah-next-user-buffer ()
   "Switch to the next user buffer.

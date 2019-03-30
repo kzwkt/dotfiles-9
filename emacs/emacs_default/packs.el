@@ -390,12 +390,11 @@
 
 (use-package evil-numbers
   :defer t
-  :ensure t
-  :config
-  (general-nvmap
-    :keymaps 'override
-    "C-M-i" 'evil-numbers/inc-at-pt
-    "C-M-o" 'evil-numbers/dec-at-pt))
+  :ensure t)
+
+(use-package vimish-fold
+  :defer t
+  :ensure t)
 
 (use-package pabbrev
   :defer t
@@ -551,6 +550,7 @@
   :init
   (setq save-place-file "~/.emacs.d/var/save-place.el")
   :config
+  (setq save-place-limit 100)
   (save-place-mode 1))
 
 (use-package vimrc-mode
@@ -1641,7 +1641,9 @@
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
+    (flymake-mode 1)
     (yas-minor-mode 1)
+    (hs-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
     (highlight-indent-guides-mode 1))
 
@@ -1865,19 +1867,20 @@
   (setq save-silently t)
   (setq delete-old-versions -1)
   (add-to-list 'find-file-hook 'line-numbers)
+  (add-to-list 'find-file-hook 'olivetti-mode)
 
   (setq version-control t	        ;; Use version numbers for backups
-	kept-new-versions 16		;; Number of newest versions to keep
-	kept-old-versions 2		;; Number of oldest versions to keep
-	delete-old-versions t		;; Do not aks to delete excess backup versions
-	backup-by-copying-when-linked t	;; Copy linked files, don't rename.
-	backup-directory-alist
-	'(("." . "~/.emacs.d/.backups"))
+        kept-new-versions 16		;; Number of newest versions to keep
+        kept-old-versions 2		;; Number of oldest versions to keep
+        delete-old-versions t		;; Do not aks to delete excess backup versions
+        backup-by-copying-when-linked t	;; Copy linked files, don't rename.
+        backup-directory-alist
+        '(("." . "~/.emacs.d/.backups"))
 
-	vc-make-backup-files t
-	auto-save-visited-mode t
-	auto-save-file-name-transforms `((".*" "~/.emacs.d/.auto-save-list/" t))
-	auto-save-default t)
+        vc-make-backup-files t
+        auto-save-visited-mode t
+        auto-save-file-name-transforms `((".*" "~/.emacs.d/.auto-save-list/" t))
+        auto-save-default t)
 
   (defun force-backup-of-buffer ()
     (let ((buffer-backed-up nil))
@@ -2002,21 +2005,21 @@
   :defer t
   :ensure t)
 
-(use-package insert-shebang
-  :ensure t
-  :init
-  (setq insert-shebang-ignore-extensions '("txt" "org" "pdf" "py"))
-  :config
-  (setq insert-shebang-file-types
-	'(("py" . "python3")
-	  ("groovy" . "groovy")
-	  ("fish" . "fish")
-	  ("robot" . "robot")
-	  ("rb" . "ruby")
-	  ("lua" . "lua")
-	  ("php" . "php")
-	  ("sh" . "bash")
-	  ("pl" . "perl"))))
+;; (use-package insert-shebang
+;;   :ensure t
+;;   :init
+;;   (setq insert-shebang-ignore-extensions '("txt" "org" "pdf" "py"))
+;;   :config
+;;   (setq insert-shebang-file-types
+;; 	'(("py" . "python3")
+;; 	  ("groovy" . "groovy")
+;; 	  ("fish" . "fish")
+;; 	  ("robot" . "robot")
+;; 	  ("rb" . "ruby")
+;; 	  ("lua" . "lua")
+;; 	  ("php" . "php")
+;; 	  ("sh" . "bash")
+;; 	  ("pl" . "perl"))))
 
 (use-package smartparens
   :defer 3
@@ -2040,7 +2043,11 @@
   :defer t
   :ensure nil
   :init
-  (add-hook 'lisp-interaction-mode-hook 'line-numbers))
+  (add-hook 'lisp-interaction-mode-hook 'line-numbers)
+  (add-hook 'emacs-lisp-mode-hook 'my/flymake-off)
+  (defun my/flymake-off ()
+    (interactive)
+    (flymake-mode -1)))
 
 (use-package indent-tools
   :defer t
@@ -2298,7 +2305,7 @@
   (setq flycheck-clang-warnings nil)
   (setq flycheck-display-errors-delay 0.9)
   (setq flycheck-idle-change-delay 0.3)
-  (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled))
+  (setq flycheck-disabled-checkers "emacs-lisp-checkdoc")
   (setq flycheck-clang-pedantic t)
   (setq flycheck-gcc-pedantic t))
 
