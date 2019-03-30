@@ -1,5 +1,4 @@
 #!/bin/bash
 
-clear
 ~/scripts/emacs_scripts/eclauncher "$1" &>/dev/null
 i3-msg "[class=Emacs]" focus &>/dev/null

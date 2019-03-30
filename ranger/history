@@ -1,11 +1,3 @@
-search java_hydras.org
-search hydra
-touch java_hydras.org
-md .cache
-/
-search java
-md Mooc
-rename MOOC.fi
 touch mooc_notes.org
 search mooc
 md Netbeans_MOOC
@@ -98,3 +90,11 @@ search boy
 search 15
 md old
 rename .old
+rename tadd
+rename tdone
+rename tmod
+rename tstop
+rename tstart
+rename tdel
+rename tpri
+search godot

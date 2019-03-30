@@ -4,8 +4,6 @@
 (general-define-key
  "<f7>" 'man
  "M-0" 'quit-window
- "M-]" 'bs-cycle-next
- "M-[" 'bs-cycle-previous
  "C-0" 'delete-window
  "C-c DEL" 'my/bash-shebang
  "M-9" 'delete-other-windows
@@ -92,25 +90,21 @@
 "C-ç" 'hydra-find-scratches/body
 
 ;;;; LOADING AND UNLOADING ;;;;
-"C-c L t"   'load-theme
-"C-c L d"   'disable-theme
-"C-c L n"   'noctilux-on
-"C-c L p d" 'poet-dark-on
-"C-c L p m" 'poet-dark-monochrome-on
-"C-c L d"   'disable-theme
-"C-c L m"   'disable-modeline
-"C-c L e"   'desktop-change-dir
-"C-c L r"   'desktop-read
-"C-c L w"   'my/new-theme
+"C-c l l"   'load-theme
+"C-c l L"   'unload-theme
+"C-c l n"   'noctilux-on
+"C-c l k"   'my/gui-keybindings-load
+"C-c l K"   'my/gui-keybindings-unload
 
 ;;;; EDITING ;;;;
 "C-c i" 'ibuffer
 "C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
+"C-c o" 'org-open-at-point-global
 "<C-S-f10>" 'buffer-menu-open
 "<mouse-3>" nil
-"C-c U" 'universal-argument
+"C-c u" 'universal-argument
 "C-c s" 'hydra-shell/body
 "C-," 'helpful-variable
 "C-." 'helpful-function

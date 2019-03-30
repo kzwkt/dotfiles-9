@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-killall -s1 xbindkeys
+# killall -s1 xbindkeys
+pkill -fi xbindkeys
 xbindkeys -f ~/.xbindkeysrc

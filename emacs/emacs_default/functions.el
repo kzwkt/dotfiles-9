@@ -201,6 +201,11 @@ rotate entire document."
   (pdf-view--rotate :counterclockwise (not arg)))
 
 
+(defun find-bash-completion ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.bash_completion.sh")))
+
 (defun find-agenda ()
   (interactive)
   (let ((inhibit-message t))
@@ -243,7 +248,6 @@ rotate entire document."
 
 (fset 'adjust-vertigo-cheat-sheet
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([32 116 106 106 106 escape 24 67108912 61 61 escape] 0 "%d") arg)))
-
 
 (defun find-scratch-markdown ()
   (interactive)
@@ -693,18 +697,15 @@ return t."
 
 (defun tangle-and-eval-block ()
   (interactive)
-  (measure-time
-   (save-excursion
-     (let ((inhibit-message t))
-       (org-narrow-to-subtree)
-       (evil-indent
-        (point-min)
-        (point-max))
-       (xah-clean-empty-lines)
-       (org-babel-execute-src-block-maybe)
-       (org-babel-remove-result)
-       (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
-       (my/save-all)))))
+  (save-excursion
+    (let ((inhibit-message t))
+      (org-narrow-to-subtree)
+      (xah-clean-empty-lines)
+      (org-babel-execute-src-block)
+      (org-babel-remove-result)
+      (start-process-shell-command "tangle" nil "tangle-py ~/.emacs.d/*.org")
+      (my/save-all))
+    (message " block evaluated")))
 
 (defun my/babel-remove-last-blank-line ()
   (interactive)

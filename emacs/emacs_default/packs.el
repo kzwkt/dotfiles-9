@@ -36,41 +36,54 @@
 ;; (load-file "~/.emacs.d/etc/custom.el")
 
 
-
-(use-package general
-  :ensure t
-  :if window-system
-  :config
-  (general-define-key
-   "M-[" 'bs-cycle-next
-   "M-]" 'bs-cycle-previous))
-
 (use-package general
   :ensure t
   :config
   (load-file "~/.emacs.d/etc/general_extras/general_keybindings.el")
-  (general-evil-setup t))
+  (general-evil-setup t)
+
+  (defun my/gui-keybindings-load ()
+    (interactive)
+    (general-define-key
+     "M-[" 'bs-cycle-next
+     "M-]" 'bs-cycle-previous)
+    (general-define-key
+     :keymaps 'projectile-mode-map
+     "M-[" 'projectile-next-project-buffer
+     "M-]" 'projectile-previous-project-buffer)
+    (message " gui keys loaded"))
+
+  (defun my/gui-keybindings-unload ()
+    (interactive)
+    (general-define-key
+     "M-[" nil
+     "M-]" nil)
+    (general-define-key
+     :keymaps 'projectile-mode-map
+     "M-[" nil
+     "M-]" nil
+     (message " gui keys unloaded"))))
 
 (use-package org
   :defer t
   :ensure t
   :init
   ;; (add-hook 'before-save-hook 'org-align-all-tags)
-  ;; (add-hook 'org-archive-hook 'org-hide-other)
+  (add-hook 'org-archive-hook 'org-hide-other)
   (add-hook 'org-mode-hook 'evil-org-mode)
   (add-hook 'org-mode-hook 'org-bullets-mode)
   (remove-hook 'org-cycle-hook #'org-optimize-window-after-visibility-change)
 
   (remove-hook 'calendar-mode-hook (lambda ()
-				     (evil-window-move-very-bottom)))
+                                     (evil-window-move-very-bottom)))
   (add-hook 'org-agenda-mode-hook
-	    (lambda ()
-	      (setq display-line-numbers nil)
-	      (setq truncate-lines t)))
+            (lambda ()
+              (setq display-line-numbers nil)
+              (setq truncate-lines t)))
 
   (add-hook 'org-capture-mode-hook (lambda ()
-				     (evil-insert-state)
-				     (evil-window-move-very-bottom)))
+                                     (evil-insert-state)
+                                     (evil-window-move-very-bottom)))
   (add-hook 'org-cycle-hook #'org-cycle-hide-drawers)
   (load-file "~/.emacs.d/lisp/functions/org_func.el")
   :config
@@ -83,7 +96,7 @@
   (setq org-enforce-todo-checkbox-dependencies nil)
   (setq org-link-file-path-type 'relative)
   (setq org-export-with-toc nil)
-
+  (setq calendar-date-style 'european)
   (defun my/save-archive ()
     (interactive)
     (save-buffer "~/org/Config/.archive.org::* From %s"))
@@ -946,10 +959,10 @@
     "d" 'hydra-quick-commands/body
     "b" 'my/evil-botright
     "q" 'my/kill-this-buffer
-    "y" 'my/term-botright)
+    "y" 'my/term-botright
+    "g" 'my/ranger)
 
   (general-define-key
-   "C-c l" 'hydra-python-mode/body
    "C-;" 'hydra-text-main/body)
 
   (general-nvmap
@@ -1011,7 +1024,9 @@
 
 (use-package clipmon
   :defer t
-  :ensure t)
+  :ensure t
+  :config
+  (setq clipmon-timer-interval 0.1))
 
 (use-package undo-propose
   :defer t
@@ -1867,7 +1882,7 @@
   (setq save-silently t)
   (setq delete-old-versions -1)
   (add-to-list 'find-file-hook 'line-numbers)
-  (add-to-list 'find-file-hook 'olivetti-mode)
+  ;; (add-to-list 'find-file-hook 'olivetti-mode)
 
   (setq version-control t	        ;; Use version numbers for backups
         kept-new-versions 16		;; Number of newest versions to keep
@@ -1998,10 +2013,6 @@
 (load-theme 'noctilux))
 
 (use-package poet-theme
-  :defer t
-  :ensure t)
-
-(use-package gdscript-mode
   :defer t
   :ensure t)
 
@@ -2186,12 +2197,7 @@
 
 (use-package projectile
   :defer t
-  :ensure t
-  :config
-  (general-define-key
-   :keymaps 'projectile-mode-map
-   "M-[" 'projectile-next-project-buffer
-   "M-]" 'projectile-previous-project-buffer))
+  :ensure t)
 
 (use-package projectile
   :defer t
@@ -2297,15 +2303,14 @@
 (use-package flycheck
   :defer t
   :ensure t
-  :init
-  (add-hook 'flycheck-mode-hook 'flycheck-buffer)
+  ;; :init
+  ;; (add-hook 'flycheck-mode-hook 'flycheck-buffer)
   :config
   (setq flycheck-mode-line nil)
   (setq flycheck-gcc-warnings nil)
   (setq flycheck-clang-warnings nil)
-  (setq flycheck-display-errors-delay 0.9)
-  (setq flycheck-idle-change-delay 0.3)
-  (setq flycheck-disabled-checkers "emacs-lisp-checkdoc")
+  (setq flycheck-display-errors-delay 1)
+  (setq flycheck-idle-change-delay 0.5)
   (setq flycheck-clang-pedantic t)
   (setq flycheck-gcc-pedantic t))
 

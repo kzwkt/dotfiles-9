@@ -140,8 +140,6 @@ mode "$launch" {
 
     # bindsym apostrophe exec ~/maps/texpander/texpander.sh; mode default
     bindsym apostrophe exec /usr/bin/snippy.sh; mode default
-    bindsym 1 exec /usr/bin/snippy-alt.sh; mode default
-
     bindsym Shift+b exec ~/scripts/i3_scripts/black_bg.sh; mode default
     bindsym Shift+w exec feh --recursive --randomize --bg-fill ~/Pictures/Wallpaper; mode default
 
@@ -154,9 +152,10 @@ mode "$launch" {
     bindsym Escape exec notify-send --expire-time=1 'default'; mode default
     bindsym Shift+e exec ~/scripts/emacs_scripts/rel; [class="Emacs"] focus; mode default
 
-    # bindsym 1 exec "~/scripts/i3_scripts/mouse-slow"; exec notify-send --expire-time=80  'mouse slow'; mode default
-    # bindsym 2 exec "~/scripts/i3_scripts/mouse-default"; exec notify-send --expire-time=80 'mouse default'; mode default
-    # bindsym 3 exec "~/scripts/i3_scripts/mouse-fast"; exec notify-send --expire-time=80 'mouse fast'; mode default
+    bindsym 1 exec "~/scripts/i3_scripts/mouse-slow"; exec notify-send --expire-time=2000  'mouse slow'; mode default
+    bindsym 2 exec "~/scripts/i3_scripts/mouse-default"; exec notify-send --expire-time=2000 'mouse default'; mode default
+    bindsym 3 exec "~/scripts/i3_scripts/mouse-fast"; exec notify-send --expire-time=2000 'mouse fast'; mode default
+    bindsym 4 exec "~/scripts/i3_scripts/mouse-faster"; exec notify-send --expire-time=2000 'mouse faster'; mode default
 }
 
 

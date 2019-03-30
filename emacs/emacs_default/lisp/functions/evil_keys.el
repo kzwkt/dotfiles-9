@@ -56,8 +56,8 @@
   "C-c k" nil
   "<S-SPC>" nil
   "z," 'evil-repeat
-  "gM" 'evil-set-marker
-  ;; "gm" 'evil-middle-of-visual-line
+  "gm" 'evil-set-marker
+  "gM" 'evil-middle-of-visual-line
   "gI" 'evil-insert-line
   "gt" 'fix-word-capitalize
   "gA" 'evil-append-line

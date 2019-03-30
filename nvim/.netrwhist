@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/dotfiles/emacs/emacs_default/eclipse.jdt.ls'
 let g:netrw_dirhist_2='/home/dotfiles/.git'
 let g:netrw_dirhist_3='/home/dotfiles/nvim/.undodir'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/dotfiles/.git'
 let g:netrw_dirhist_5='/home/overlord/.config/fontconfig/conf.d'
 let g:netrw_dirhist_6='/home/dotfiles/taskwarrior/task'
 let g:netrw_dirhist_7='/home/dave/.config/xfce4/xfconf'
+let g:netrw_dirhist_8='/etc/cron.daily'

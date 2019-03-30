@@ -110,6 +110,7 @@ nnoremap <silent> <esc> :silent! wa!<cr>:noh<cr>:echo ""<cr>
 " }}}
 " {{{ commands
 
+nnoremap <leader>mg :Goyo<cr>
 nnoremap ; :
 " nnoremap <c-z> <nop>
 nnoremap <leader>g  :Goyo<cr>

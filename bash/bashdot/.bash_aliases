@@ -10,6 +10,7 @@ alias appu='clear && sudo apt -y update && sudo apt -y dist-upgrade && sudo apt 
 alias att='clear && tmux attach &>/dev/null'
 alias det='clear && tmux detach &>/dev/null'
 alias tk='tmux kill-server &>/dev/null && pkill -fi tmux &>/dev/null'
+alias tks='tmux kill-session -t'
 alias 0='clear && tmux attach -t 0 &>/dev/null || tmux switch-client -t 0 &>/dev/null'
 alias 1='clear && tmux attach -t 1 &>/dev/null || tmux switch-client -t 1 &>/dev/null'
 alias 2='clear && tmux attach -t 2 &>/dev/null || tmux switch-client -t 2 &>/dev/null'
@@ -35,12 +36,11 @@ alias bc="clear && nvim /home/dotfiles/bash/bashdot/.bash_aliases	\
                         \$nv/mappings.vim				\
 			\$nv/init.vim					\
 			\$nv/abbrevs.vim				\
-                        /home/dotfiles/nvim/status.vim                   \
                         ~/.config/ranger/rc.conf"
 
 alias t='task'
 alias tc='clear && task completed'
-# alias ta='task add'
+alias tw='timew'
 
 alias nnn='emacs -nw'
 
@@ -55,6 +55,7 @@ alias push='clear && git push && ls --color'
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
 # Change Java:
 # sudo update-alternatives --config java
+alias crontab='sudo crontab -e'
 alias ipyvi='ipython --TerminalInteractiveShell.editing_mode=vi'
 alias time='/usr/bin/time'
 alias v='nvi'
@@ -95,7 +96,7 @@ alias ko='kill -9'
 alias sym='ln -rsf'
 alias symsudo='sudo ln -rsf'
 alias pk='pkill -fi'
-alias ttp='trash-put'
+alias tp='trash-put'
 # alias tpp='trash-put ./*'
 alias sd='sudo '
 alias ls='ls --color=always'

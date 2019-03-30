@@ -1,6 +1,8 @@
 " " {{{ Plug
 call plug#begin('~/.config/nvim/plugins/plugged')
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'justinmk/vim-sneak'
+Plug 'junegunn/goyo.vim'
 Plug 'calviken/vim-gdscript3'
 Plug 'vim-syntastic/syntastic'
 Plug 'wellle/targets.vim'
@@ -16,7 +18,7 @@ Plug 'vim-utils/vim-husk'
 Plug 'ap/vim-buftabline'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-surround'
-Plug 'ajh17/VimCompletesMe'
+" Plug 'ajh17/VimCompletesMe'
 Plug 'tpope/vim-commentary'
 Plug 'haya14busa/incsearch.vim'
 call plug#end()
@@ -44,7 +46,7 @@ let g:buftabline_plug_max = 35
 let g:buftabline_indicators = 1
 ""}}}
 " {{{ vimcompletesme
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }}}
 " {{{ camelcase
 map <silent> w <Plug>CamelCaseMotion_w
@@ -95,5 +97,19 @@ let g:syntastic_mode_map = {
      \ "active_filetypes": ["ruby", "php"],
      \ "passive_filetypes": ["ruby", "php"] }
 " }}}
-"
+" {{{ goyo
+function! s:goyo_leave()
+  hi statusline ctermbg=black
+endfunction
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+let g:goyo_width = 95
+let g:goyo_height = 90
+let g:goyo_linenr = 1
+
+" }}}
+" {{{ deoplete
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('deoplete-options-max_list', 10)
+" }}}
 "vim: set filetype=vim:

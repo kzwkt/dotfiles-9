@@ -1,6 +1,30 @@
-[gd_resource type="EditorSettings" load_steps=2 format=2]
+[gd_resource type="EditorSettings" load_steps=7 format=2]
 
 [sub_resource type="InputEventKey" id=1]
+control = true
+command = true
+scancode = 82
+
+[sub_resource type="InputEventKey" id=6]
+alt = true
+scancode = 16777221
+
+[sub_resource type="InputEventKey" id=5]
+alt = true
+scancode = 67
+
+[sub_resource type="InputEventKey" id=4]
+control = true
+command = true
+scancode = 72
+
+[sub_resource type="InputEventKey" id=2]
+control = true
+command = true
+scancode = 82
+
+[sub_resource type="InputEventKey" id=3]
+shift = true
 control = true
 command = true
 scancode = 82
@@ -122,8 +146,8 @@ editors/3d_gizmos/gizmo_colors/navigation_solid_disabled = Color( 0.7, 0.7, 0.7,
 editors/3d_gizmos/gizmo_colors/joint = Color( 0.5, 0.8, 1, 1 )
 editors/3d_gizmos/gizmo_colors/joint_body_a = Color( 0.6, 0.8, 1, 1 )
 editors/3d_gizmos/gizmo_colors/joint_body_b = Color( 0.6, 0.9, 1, 1 )
-projects/::home::dave::Documents::Studying::Prog::Godot::projects::proj_one = "/home/dave/Documents/Studying/Prog/Godot/projects/proj_one"
 text_editor/highlighting/gdscript/function_definition_color = Color( 0.00392157, 0.882353, 1, 1 )
 text_editor/highlighting/gdscript/node_path_color = Color( 0.392157, 0.756863, 0.352941, 1 )
-shortcuts = [ "editor/redo", SubResource( 1 ) ]
+projects/::home::Documents::Studying::Prog::Godot::projects::01_Hello_World = "/home/Documents/Studying/Prog/Godot/projects/01_Hello_World"
+shortcuts = [ "editor/redo", SubResource( 1 ), "script_text_editor/auto_indent", SubResource( 6 ), "script_text_editor/capitalize", SubResource( 5 ), "script_text_editor/contextual_help", SubResource( 4 ), "script_text_editor/redo", SubResource( 2 ), "script_text_editor/replace", SubResource( 3 ) ]
 

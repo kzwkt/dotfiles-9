@@ -888,12 +888,13 @@
 
      ^Bash^             ^Others^
      --------------------------------
-     _i_: inputrc       _c_: config
+     _i_: inputrc       _g_: config
      _p_: profile       _s_: scripts
      _b_: bashrc        _n_: conf/nvim
-     _a_: bash aliases  _t_: tmux.conf
-     _r_: bash profile  _3_: i3/config
-     _d_: bash files    _z_: zathurarc
+     _a_: aliases      _t_: tmux.conf
+     _r_: profile      _3_: i3/config
+     _d_: files        _z_: zathurarc
+     _c_: completions
 "
 
   ("<escape>" nil)
@@ -908,10 +909,11 @@
   ("n" ranger-find-nvim-dir)
   ("t" find-tmux-conf)
   ("z" find-zathurarc)
-  ("c" ranger-find-config-dir)
+  ("g" ranger-find-config-dir)
   ("s" ranger-find-scripts-dir)
   ("3" find-i3-config)
-  ("#" my/goto-i3-screen-configs))
+  ("#" my/goto-i3-screen-configs)
+  ("c" find-bash-completion))
 
 (defhydra hydra-find-emacs-files (:hint nil :foreign-keys nil :exit t)
   "

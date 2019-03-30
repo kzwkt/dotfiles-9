@@ -33,7 +33,6 @@ bind-key -n S-left switch-client -p
 bind-key -n S-Pageup copy-mode -u
 bind-key -n F8 copy-mode -u
 
-bind-key c clear-history
 bind-key f switch-client -t 00_k
 bind-key 0 switch-client -t 00_k
 bind-key 1 switch-client -t 01_k
@@ -41,19 +40,15 @@ bind-key 2 switch-client -t 02_k
 bind-key 3 switch-client -t 03_k
 bind-key 4 switch-client -t 04_k
 bind-key 5 switch-client -t 05_k
-bind-key 6 switch-client -t 06_k
-bind-key 7 switch-client -t 07_k
-bind-key 8 switch-client -t 08_k
-bind-key 9 switch-client -t 09_k
-bind-key - switch-client -t 10_k
 
 bind-key v split-window -h
 bind-key s split-window -v
 
+bind-key c clear-history
 # }}}
 # {{{ send all
 # https://bit.ly/2JJIeRY
-bind c command-prompt -p "send to all:" \
+bind s command-prompt -p "send to all:" \
        "run \"tmux list-panes -a -F '##{session_name}:##{window_index}.##{pane_index}' \
               | xargs -I PANE tmux send-keys -t PANE '%1' Enter\""
 

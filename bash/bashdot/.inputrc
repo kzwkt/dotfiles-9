@@ -17,5 +17,5 @@ set show-all-if-ambiguous on
 # ignore case
 set completion-ignore-case on
 
-# <C-S-backspace>: kill whole line
-# "": "\C-k \C-u"
+# M-u: Taskwarrior
+"u": "\C-k \C-uclear && task\n"

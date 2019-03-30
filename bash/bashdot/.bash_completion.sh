@@ -342,3 +342,5 @@ complete -F _complete_alias tc
 complete -F _complete_alias tm
 complete -F _complete_alias ttd
 complete -F _complete_alias bb
+complete -F _complete_alias tw
+complete -F _complete_alias n

@@ -22,6 +22,6 @@ set completion-ignore-case on
 * keybindings
 ** commands
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.inputrc
-# <C-S-backspace>: kill whole line
-# "": "\C-k \C-u"
+# M-u: Taskwarrior
+"u": "\C-k \C-uclear && task\n"
 #+END_SRC
