@@ -69,6 +69,8 @@ alias push='clear && git push && ls --color'
 # pandoc -f markdown -t org -o newfile.org markdown_file.md
 # Change Java:
 # sudo update-alternatives --config java
+alias reload='i3-msg reload'
+alias gd='godot &'
 alias crontab='sudo crontab -e'
 alias ipyvi='ipython --TerminalInteractiveShell.editing_mode=vi'
 alias time='/usr/bin/time'
@@ -81,7 +83,7 @@ alias p='clear && python3'
 alias gig='clear && nvim .gitignore'
 alias fl='flatpak'
 alias fr='flatpak run'
-alias yt='youtube-dl --all-subs'
+alias yt='youtube-dl --all-subs --ignore-errors --format mp4'
 alias setk0='setxkbmap -option'
 alias setkk='~/scripts/keyboard/init_keys.sh'
 alias wal='feh --recursive --randomize --bg-fill'

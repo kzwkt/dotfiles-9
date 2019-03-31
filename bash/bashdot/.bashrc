@@ -93,7 +93,6 @@ shopt -s cdable_vars
 #### SOURCE OTHER FILES ####
 
 source ~/.bash_aliases
-source ~/.git_aliases
 source ~/.env_variables.sh
 source ~/.bash_completion.sh
 source $HOME/.cargo/env

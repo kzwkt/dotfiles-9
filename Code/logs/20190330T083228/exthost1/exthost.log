@@ -1,0 +1,14 @@
+[2019-03-30 08:32:30.774] [exthost] [info] extension host started
+[2019-03-30 08:32:30.811] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-03-30 08:32:30.811] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2019-03-30 08:32:30.853] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-03-30 08:32:30.853] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2019-03-30 08:32:30.874] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-03-30 08:32:30.874] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2019-03-30 08:32:30.983] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-03-30 08:32:30.983] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2019-03-30 08:32:31.000] [exthost] [info] ExtensionService#_doActivateExtension vscodevim.vim {"startup":true,"activationEvent":"*"}
+[2019-03-30 08:32:31.000] [exthost] [info] ExtensionService#loadCommonJSModule /home/dave/.vscode/extensions/vscodevim.vim-1.2.0/out/extension
+[2019-03-30 08:32:32.117] [exthost] [info] ExtensionService#_doActivateExtension geequlim.godot-tools {"startup":false,"activationEvent":"onLanguage:gdscript"}
+[2019-03-30 08:32:32.117] [exthost] [info] ExtensionService#loadCommonJSModule /home/dave/.vscode/extensions/geequlim.godot-tools-0.3.7/out/src/extension
+[2019-03-30 08:32:32.156] [exthost] [info] eager extensions activated

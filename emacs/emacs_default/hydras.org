@@ -519,6 +519,29 @@
   ("i" i3-reload)
   ("n" my/eval-next-sexp-macro))
 #+END_SRC
+** packages
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
+(defhydra hydra-packages (:color blue :hint nil :exit nil :foreign-keys nil)
+  "
+  ^
+       ^Packages^
+       -------------------
+       _l_: list
+       _r_: refresh
+       _d_: delete
+       _i_: install
+       _f_: install file
+
+"
+  ("<escape>" nil)
+
+("l" package-list-packages)
+("r" package-refresh-contents)
+("d" package-delete)
+("i" package-install)
+("f" package-install-file))
+#+END_SRC
+
 ** main commands
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-commands (:color blue :hint nil :exit nil :foreign-keys nil)
@@ -531,7 +554,8 @@
        _c_: check parens    _h_: ivy resume     _r_: eval region
        _d_: dup line        _i_: define abbrev  _B_: eval buffer
        _e_: sort by length  _J_: del dup lines  _l_: eval line
-       _E_: sort lines	  _3_: reload i3      _zzz_: word count
+       _E_: sort lines	  _3_: reload i3      _w_: word count
+                                              _p_: packages
 
 "
 
@@ -554,46 +578,40 @@
   ("r" eval-region)
   ("B" eval-buffer)
   ("l" eval-line)
-  ("zzz" wc-count)
-  ("3" i3-reload))
+  ("w" wc-count)
+  ("3" i3-reload)
+  ("p" hydra-packages/body))
 #+END_SRC
+
 ** quick commands
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-quick-commands (:color blue :hint nil :exit nil :foreign-keys nil)
   "
   ^
        ^Quick Commands^
-       --------------------------------------------------
-       _l_: load theme    _r_: refresh packs  _m_: abbrev mode
-       _u_: unload theme  _o_: org brain      _g_: goto spotify
-       _i_: install pack  _a_: disable pack   _f_: define abbrev
-       _d_: delete pack   _s_: enable pack    _t_: list packages
-       _e_: describe pack _b_: eddit abbrevs  _F_: define mode abbrev
+       -----------------------------------------
+       _f_: def abbrev       _n_: name macro
+       _F_: def mode abbrev  _d_: edit macro
+       _e_: eddit abbrevs    _s_: local set key
+       _l_: enable theme
+       _L_: disable theme
   "
   ("<escape>" nil)
 
-  ("i" package-install)
-  ("d" package-delete)
-  ("e" describe-package)
-  ("r" package-refresh-contents)
-
-  ("l" load-theme)
-  ("u" disable-theme)
-  ("o" org-brain-visualize)
-
-  ("a" disable-package)
-  ("s" enable-package)
-
-  ("b" edit-abbrevs)
-  ("m" abbrev-mode)
-
-  ("g" goto-spotify)
   ("f" define-global-abbrev)
   ("F" define-mode-abbrev)
-  ("t" package-list-packages))
+  ("e" edit-abbrevs)
+
+  ("l" load-theme)
+  ("L" disable-theme)
+
+("n" name-last-kbd-macro)
+("d" edit-named-kbd-macro)
+("s" local-set-key))
 #+END_SRC
-* text
-** text main
+
+* text hydras
+** text
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-text-main (:color blue :hint nil :exit nil :foreign-keys nil)
   "
@@ -670,11 +688,12 @@
   "
  ^
        ^More Text^
-       -------------------------------
-       _s_: setq        _m_: move line
-       _f_: hydra key   _l_: copy line
-       _h_: hook        _a_: text adjust
-       _p_: insert par  _v_: visible mode
+       ---------------------------------------------
+       _s_: setq        _m_: move line     _w_: to msger
+       _f_: hydra key   _l_: copy line     _c_: to chrome
+       _h_: hook        _a_: text adjust   _g_: agg fill
+       _p_: insert par  _v_: visible mode  _i_: auto fill
+                                       _o_: show fill
 
        ^^
   "
@@ -690,9 +709,14 @@
   ("m" avy-move-line)
   ("l" avy-copy-line)
   ("v" visible-mode)
-  ("a" text-scale-adjust))
-
+  ("a" text-scale-adjust)
+  ("w" copy-to-messenger)
+  ("c" copy-to-chrome)
+  ("g" aggressive-fill-paragraph-mode)
+  ("i" auto-fill-mode)
+  ("o" show-fill-column))
 #+END_SRC
+
 ** org text commands
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-org-text-commands (:color blue :hint nil :exit nil :foreign-keys nil)
@@ -794,37 +818,33 @@
   "
 
     ^Org^
-    --------------------------------------------------
-    _a_: my archive _h_: schedule   _p_: last capture
-    _b_: agenda     _i_: sort       _q_: property commands
-    _c_: align tags _l_: store link _r_: insert link for url
-    _d_: archive    _m_: tags tree  _s_: cycle list bullets
-    _e_: deadline   _n_: todo       _t_: hide markup
-    _g_: refile     _o_: tags       _u_: show markup
+    -----------------------------------------------
+    _A_: a. default    _g_: agenda      _t_: todo
+    _a_: archive       _l_: store link  _T_: tags
+    _b_: list bullets  _p_: properties  _u_: insert url
+    _c_: last capture  _r_: refile
+    _d_: deadline      _s_: time stamp
 
 "
   ("<escape>" nil)
 
+  ("A" org-archive-subtree-default)
   ("a" my/org-archive)
-  ("b" hydra-org-agenda/body)
-  ("c" org-align-all-tags)
-  ("d" org-archive-subtree-default)
-  ("e" org-deadline)
-  ("f" org-indent-mode)
-  ("g" org-refile)
-  ("h" org-schedule)
-  ("i" org-sort)
+  ("b" org-cycle-list-bullet)
+  ("c" org-capture-goto-last-stored)
+  ("d" org-deadline)
+  ("g" hydra-org-agenda/body)
   ("l" org-store-link)
-  ("m" org-tags-sparse-tree)
-  ("n" org-todo)
-  ("o" counsel-org-tag)
-  ("p" org-capture-goto-last-stored)
-  ("q" my/org-property-commands)
-  ("r" org-web-tools-insert-link-for-url)
-  ("s" org-cycle-list-bullet)
-  ("t" org-hide-emphasis)
-  ("u" org-show-emphasis))
+  ("p" my/org-property-commands)
+  ("r" org-refile)
+  ("s" org-time-stamp)
+  ("t" org-todo)
+  ("T" counsel-org-tag)
+  ("u" org-web-tools-insert-link-for-url)
+
+)
 #+END_SRC
+
 ** org agenda
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-org-agenda (:color blue :hint nil :exit nil :foreign-keys nil)

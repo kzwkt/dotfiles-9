@@ -105,6 +105,7 @@
 "<C-S-f10>" 'buffer-menu-open
 "<mouse-3>" nil
 "C-c u" 'universal-argument
+"C-x u" 'my/undo-propose
 "C-c s" 'hydra-shell/body
 "C-," 'helpful-variable
 "C-." 'helpful-function

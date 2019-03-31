@@ -1,0 +1,18 @@
+{
+    "vim.camelCaseMotion.enable": true,
+    "vim.sneak": true,
+    "vim.useSystemClipboard": true,
+    "GodotTools.completeNodePath": true,
+    "GodotTools.editorPath": "godot: /usr/bin/godot",
+    "files.autoSave": "onFocusChange",
+    "window.enableMenuBarMnemonics": false,
+    "window.menuBarVisibility": "toggle",
+    "editor.minimap.enabled": false,
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": true,
+    "editor.fontSize": 16,
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "vim.cursorStylePerMode.insert": "line-thin",
+    "vim.cursorStylePerMode.normal": "block"
+}

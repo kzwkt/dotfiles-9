@@ -1,8 +1,3 @@
-touch mooc_notes.org
-search mooc
-md Netbeans_MOOC
-md tmcbeans
-md mooc
 rename Personal
 rename Private
 md Public
@@ -75,7 +70,6 @@ md Others
 md Agenda
 rename Prog
 shell !
-search nvim
 shell zp
 
 search 
@@ -83,7 +77,6 @@ search nvi
 search task
 rename task
 rename .task
-shell 
 md Ragnarok
 rename Its_Always_Sunny_in_Philadelphia
 search boy
@@ -98,3 +91,10 @@ rename tstart
 rename tdel
 rename tpri
 search godot
+rename Code
+search code
+shell 
+search gimp
+search nvim
+search snip
+search gds

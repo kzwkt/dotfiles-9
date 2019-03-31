@@ -55,7 +55,6 @@ nnoremap <silent> <leader>0 :close<cr>
 " movement {{{
 nnoremap <leader>ts :let &scrolloff=999-&scrolloff<cr>:echo " Toggle Centered Cursor"<cr>
 nmap <leader>u <Plug>(easymotion-W)
-nnoremap <c-x>s :e  ~/.config/nvim/plugins/plugged/vim-snippets/snippets/c.snippets<cr>
 
 nnoremap <c-x>i :w!<cr>:so ~/.config/nvim/plugins.vim<cr>:PlugInstall<cr>
 nnoremap <c-x>c :w!<cr>:so ~/.config/nvim/plugins.vim<cr>:PlugClean<cr>
@@ -65,7 +64,6 @@ nnoremap <c-x>r :w!<cr>:so %<cr>:echo " file loaded"<cr>
 nnoremap <M-o> <c-o>
 nnoremap <M-i> <c-i>
 nnoremap <M-d> :b<space>
-nnoremap <M-u> :Ag<cr>
 nnoremap <leader>r :Ranger<cr><c-\><c-n>:set nonu nornu<cr>:echo ""<cr>i
 nnoremap j mzj`z
 nnoremap g, g,zz
@@ -110,6 +108,7 @@ nnoremap <silent> <esc> :silent! wa!<cr>:noh<cr>:echo ""<cr>
 " }}}
 " {{{ commands
 
+nnoremap <c-x>y :setlocal foldmethod=syntax<cr>
 nnoremap <leader>mg :Goyo<cr>
 nnoremap ; :
 " nnoremap <c-z> <nop>
@@ -161,9 +160,7 @@ nnoremap <silent> <tab> :silent execute "normal! za"<cr>
 nnoremap <silent> <c-M-n> :silent bnext<cr><c-\><c-n>:echo ""<cr>
 nnoremap <silent> <c-M-p> :silent bprev<cr><c-\><c-n>:echo ""<cr>
 
-nnoremap <silent> <c-x><c-x> :wqa!<cr>
-inoremap <silent> <c-x><c-x> <c-o>:wqa!<cr>
-
+nnoremap <c-x>s :set laststatus=0<cr>
 nmap ga <Plug>Titlecase
 vmap ga <Plug>Titlecase
 nmap gT <Plug>TitlecaseLine
@@ -171,8 +168,13 @@ nmap gT <Plug>TitlecaseLine
 " }}}
 " {{{ terminal
 nnoremap <m-2> @
-tnoremap <esc> <c-\><c-n>
-tnoremap <m-return> <c-\><c-n>:bd!<cr>
-nnoremap <m-return> :term<cr><cr><cr>isp<cr>cc<cr>rr<space>
+nnoremap <m-return> mZgg=G`Z
+" }}}
+" {{{ eleq operator
+" inoremap / <space>/<space>
+" inoremap % <space>%<space>
+" inoremap ; :<cr>
+" inoremap : ;<space>
+" inoremap , ,<space>
 " }}}
 " vim: nowrap

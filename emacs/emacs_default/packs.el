@@ -135,7 +135,7 @@
 
 
 ;; (setq org-time-stamp-formats '("<%-Y-%m-%d %a>" . "<%Y-%m-%d %a %H:%M>"))
-(setq org-time-stamp-custom-formats '("<%d/%m/%y %a>" . "<%d/%m/%y %a %H:%M>"))
+(setq org-time-stamp-custom-formats '("<%d/%m/%Y %a>" . "<%d/%m/%Y %a %H:%M>"))
 (setq org-display-custom-times t)
 (setq-default org-display-custom-times t)
 (setq org-pretty-entities-include-sub-superscripts nil)
@@ -212,6 +212,13 @@
 	("3" "Depois" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Depois") "* TODO %u %i%?")
 	("4" "Um Dia" entry  (file+headline "~/org/Planning/Agenda/planning.org" "Um Dia") "* TODO %u %i%?")))
 
+(defun my/indent-src-block-function ()
+(interactive)
+(org-edit-special)
+(indent-buffer)
+(my/quiet-save-buffer)
+(org-edit-src-exit))
+
 
 (defun my/org-archive ()
   (interactive)
@@ -277,7 +284,14 @@
 (general-unbind 'org-capture-mode-map
   :with 'org-capture-kill
   [remap my/quiet-save-buffer])
-)
+
+
+  (general-nvmap
+    :keymaps 'org-mode-map
+    :prefix "SPC"
+    "o" 'hydra-org-mode/body
+    "a" 'hydra-org-clock/body
+    "i" 'hydra-org-text-commands/body))
 
 (use-package org-bullets
 :ensure t)
@@ -411,143 +425,6 @@
 
 (use-package vimish-fold
   :defer t
-  :ensure t)
-
-(use-package pabbrev
-  :defer t
-  :ensure t
-  :config
-  (general-imap
-    :keymaps 'pabbrev-mode-map
-    "C-l" 'pabbrev-expand-maybe))
-
-(use-package lorem-ipsum
-:defer t
-:ensure t)
-
-(use-package typo
-:defer t
-:ensure t)
-
-(use-package writegood-mode
-  :defer t
-  :ensure t)
-
-(use-package hl-sentence
-  :defer t
-  :ensure t)
-
-(use-package flyspell
-  :defer t
-  :custom
-  (flyspell-abbrev-p t)
-  (flyspell-issue-message-flag nil)
-  (flyspell-issue-welcome-flag nil)
-  (flyspell-default-dictionary "american")
-  :config
-  (general-nvmap
-    :keymaps 'override
-    "z-" 'my/flyspell-insert-word))
-
- (general-define-key
-  :keymaps 'flyspell-mode-map
-  "C-;" 'hydra-text-main/body)
-
-(use-package flyspell-correct-ivy
-  :after flyspell
-  :custom
-  (flyspell-correct-interface 'flyspell-correct-ivy))
-
-(use-package ispell
-:defer t
-:ensure nil
-:config
-(general-nvmap
-  :keymaps 'override
-  "z[" 'ispell-insert-word))
-
-(setq auto-capitalize-ask nil)
-(autoload 'auto-capitalize-mode "auto-capitalize"
-  "Toggle `auto-capitalize' minor mode in this buffer." t)
-(autoload 'turn-on-auto-capitalize-mode "auto-capitalize"
-  "Turn on `auto-capitalize' minor mode in this buffer." t)
-(autoload 'enable-auto-capitalize-mode "auto-capitalize"
-  "Enable `auto-capitalize' minor mode in this buffer." t)
-
-(use-package fix-word
-:defer t
-:ensure t)
-
-(use-package wc-mode
-:defer 3
-:ensure t)
-
-(use-package olivetti
-  :defer t
-  :ensure t
-  :init
-
-  (general-define-key
-   :keymaps 'olivetti-mode-map
-   "C-c m m" 'olivetti-toggle-hide-mode-line)
-
-  (setq-default olivetti-body-width 90)
-  (setq olivetti-body-width 90))
-
-(use-package markdown-mode
-  :defer t
-  :ensure t
-  :init
-  (add-hook 'markdown-mode-hook 'prose-enable)
-  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url) (setq markdown-hide-urls t) (setq markdown-hide-markup nil)
-  (setq-default markdown-hide-markup nil)
-  (setq markdown-enable-wiki-links t)
-  :config
-
-  (defun my/markdown-copy-buffer ()
-    (interactive)
-    (save-excursion
-      (my/markdown-copy-buffer-macro)
-      (message " buffer yanked without title")))
-
-  (setq markdown-css-paths '("/home/mrbig/org/Creative/Web/md_themes/retro/css/retro.css"))
-
-  (defun my/counsel-markdown-commands ()
-    (interactive)
-    (counsel-M-x "^markdown- "))
-
-  (general-nmap
-    :keymaps 'markdown-mode-map
-    "<escape>" 'my/quiet-save-buffer-markdown)
-
-  (general-imap
-    :keymaps 'markdown-mode-map
-    "C-;" 'hydra-text-main/body)
-
-  (general-nvmap
-    :keymaps 'markdown-mode-map
-    "C-;" 'hydra-text-main/body
-    ">" 'markdown-promote-subtree
-    "<" 'markdown-demote-subtree
-    "}" 'markdown-forward-paragraph
-    "RET" 'hydra-spell/body
-    "[" 'markdown-previous-link
-    "]" 'markdown-next-link
-    "<tab>" 'markdown-cycle
-    "C-;" 'hydra-text-main/body
-    "<insert>" 'markdown-insert-link)
-
-  (general-define-key
-   :keymaps 'markdown-mode-map
-   "C-x y" 'my/markdown-copy-buffer
-   "C-;" 'hydra-text-main/body
-   "C-c l" 'markdown-toc-generate-or-refresh-toc
-   "M-p" 'markdown-backward-paragraph
-   "M-n" 'my/markdown-forward-paragraph
-   "<tab>" 'markdown-cycle
-   "<insert>" 'markdown-insert-link))
-
-(use-package markdown-toc
   :ensure t)
 
 (use-package savehist
@@ -957,9 +834,6 @@
     ";" 'hydra-modes/body
     "m" 'hydra-modes/body
     "c" 'hydra-commands/body
-    "o" 'hydra-org-mode/body
-    "i" 'hydra-org-text-commands/body
-    "a" 'hydra-org-clock/body
     "d" 'hydra-quick-commands/body
     "b" 'my/evil-botright
     "q" 'my/kill-this-buffer
@@ -1030,11 +904,31 @@
   :defer t
   :ensure t
   :config
-  (setq clipmon-timer-interval 0.1))
+  (setq clipmon-timer-interval 0.3)
+  (clipmon-mode-start))
 
 (use-package undo-propose
-  :defer t
-  :ensure t)
+  :defer 1
+  :ensure t
+  :config
+
+  (defun my/undo-propose ()
+    (interactive)
+    (widen)
+    (undo-propose))
+
+  (general-define-key
+   :keymaps 'override
+
+   (general-unbind 'undo-propose-mode-map
+     :with 'undo-propose-finish
+     [remap evil-org-org-insert-heading-respect-content-below])
+
+   (general-unbind 'undo-propose-mode-map
+     :with 'undo-propose-cancel
+     [remap org-meta-return])
+
+   (undo-propose-mode))
 
 (use-package wordnut
   :defer t
@@ -1127,7 +1021,6 @@
     (interactive)
     (counsel-M-x "^evil-swap-keys "))
 
-  (evil-swap-keys-swap-double-single-quotes)
   (global-evil-swap-keys-mode t))
 
 (use-package super-save
@@ -1495,7 +1388,11 @@
     (interactive)
     (electric-pair-local-mode 1)
     (subword-mode 1)
-    (tab-jump-out-mode 1))
+    (tab-jump-out-mode 1)
+    (auto-fill-mode 1)
+    (aggressive-fill-paragraph-mode 1)
+    (evil-swap-keys-swap-colon-semicolon)
+    (evil-swap-keys-swap-double-single-quotes))
   :ensure nil
   :config
 
@@ -1664,6 +1561,8 @@
     (yas-minor-mode 1)
     (hs-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
+    (evil-swap-keys-swap-double-single-quotes)
+    (evil-swap-keys-swap-colon-semicolon)
     (highlight-indent-guides-mode 1))
 
   (general-imap
@@ -2020,9 +1919,11 @@
   :defer t
   :ensure t)
 
-(use-package gdscript-mode
-  :defer t
-  :ensure t)
+;; (use-package godot-gdscript
+;;   :load-path "~/.emacs.d/lisp/"
+;;   :init
+;;   (add-hook 'godot-gdscript-mode-hook 'olivetti-mode)
+;;   (add-hook 'godot-gdscript-mode-hook 'electric-operator-mode))
 
 ;; (use-package insert-shebang
 ;;   :ensure t
@@ -2556,6 +2457,143 @@
 (use-package highlight-indent-guides
 :defer t
 :ensure t)
+
+(use-package pabbrev
+  :defer t
+  :ensure t
+  :config
+  (general-imap
+    :keymaps 'pabbrev-mode-map
+    "C-l" 'pabbrev-expand-maybe))
+
+(use-package lorem-ipsum
+:defer t
+:ensure t)
+
+(use-package typo
+:defer t
+:ensure t)
+
+(use-package writegood-mode
+  :defer t
+  :ensure t)
+
+(use-package hl-sentence
+  :defer t
+  :ensure t)
+
+(use-package flyspell
+  :defer t
+  :custom
+  (flyspell-abbrev-p t)
+  (flyspell-issue-message-flag nil)
+  (flyspell-issue-welcome-flag nil)
+  (flyspell-default-dictionary "american")
+  :config
+  (general-nvmap
+    :keymaps 'override
+    "z-" 'my/flyspell-insert-word))
+
+ (general-define-key
+  :keymaps 'flyspell-mode-map
+  "C-;" 'hydra-text-main/body)
+
+(use-package flyspell-correct-ivy
+  :after flyspell
+  :custom
+  (flyspell-correct-interface 'flyspell-correct-ivy))
+
+(use-package ispell
+:defer t
+:ensure nil
+:config
+(general-nvmap
+  :keymaps 'override
+  "z[" 'ispell-insert-word))
+
+(setq auto-capitalize-ask nil)
+(autoload 'auto-capitalize-mode "auto-capitalize"
+  "Toggle `auto-capitalize' minor mode in this buffer." t)
+(autoload 'turn-on-auto-capitalize-mode "auto-capitalize"
+  "Turn on `auto-capitalize' minor mode in this buffer." t)
+(autoload 'enable-auto-capitalize-mode "auto-capitalize"
+  "Enable `auto-capitalize' minor mode in this buffer." t)
+
+(use-package fix-word
+:defer t
+:ensure t)
+
+(use-package wc-mode
+:defer 3
+:ensure t)
+
+(use-package olivetti
+  :defer t
+  :ensure t
+  :init
+
+  (general-define-key
+   :keymaps 'olivetti-mode-map
+   "C-c m m" 'olivetti-toggle-hide-mode-line)
+
+  (setq-default olivetti-body-width 90)
+  (setq olivetti-body-width 90))
+
+(use-package markdown-mode
+  :defer t
+  :ensure t
+  :init
+  (add-hook 'markdown-mode-hook 'prose-enable)
+  ;; (remove-hook 'markdown-after-export-hook 'my/browse-current-url) (setq markdown-hide-urls t) (setq markdown-hide-markup nil)
+  (setq-default markdown-hide-markup nil)
+  (setq markdown-enable-wiki-links t)
+  :config
+
+  (defun my/markdown-copy-buffer ()
+    (interactive)
+    (save-excursion
+      (my/markdown-copy-buffer-macro)
+      (message " buffer yanked without title")))
+
+  (setq markdown-css-paths '("/home/mrbig/org/Creative/Web/md_themes/retro/css/retro.css"))
+
+  (defun my/counsel-markdown-commands ()
+    (interactive)
+    (counsel-M-x "^markdown- "))
+
+  (general-nmap
+    :keymaps 'markdown-mode-map
+    "<escape>" 'my/quiet-save-buffer-markdown)
+
+  (general-imap
+    :keymaps 'markdown-mode-map
+    "C-;" 'hydra-text-main/body)
+
+  (general-nvmap
+    :keymaps 'markdown-mode-map
+    "C-;" 'hydra-text-main/body
+    ">" 'markdown-promote-subtree
+    "<" 'markdown-demote-subtree
+    "}" 'markdown-forward-paragraph
+    "RET" 'hydra-spell/body
+    "[" 'markdown-previous-link
+    "]" 'markdown-next-link
+    "<tab>" 'markdown-cycle
+    "C-;" 'hydra-text-main/body
+    "<insert>" 'markdown-insert-link)
+
+  (general-define-key
+   :keymaps 'markdown-mode-map
+   "C-x y" 'my/markdown-copy-buffer
+   "C-;" 'hydra-text-main/body
+   "C-c l" 'markdown-toc-generate-or-refresh-toc
+   "M-p" 'markdown-backward-paragraph
+   "M-n" 'my/markdown-forward-paragraph
+   "<tab>" 'markdown-cycle
+   "<insert>" 'markdown-insert-link))
+
+(use-package markdown-toc
+  :ensure t)
 
 (use-package pdf-tools
   :defer 1

@@ -1,4 +1,3 @@
-res://Hello.tscn
-res://Panel.tscn
 res://default_env.tres
 res://sayhello.gd
+res://sayhello.tscn

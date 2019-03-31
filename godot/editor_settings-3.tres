@@ -1,29 +1,25 @@
-[gd_resource type="EditorSettings" load_steps=7 format=2]
+[gd_resource type="EditorSettings" load_steps=6 format=2]
 
 [sub_resource type="InputEventKey" id=1]
 control = true
 command = true
 scancode = 82
 
-[sub_resource type="InputEventKey" id=6]
+[sub_resource type="InputEventKey" id=2]
 alt = true
 scancode = 16777221
 
-[sub_resource type="InputEventKey" id=5]
-alt = true
-scancode = 67
-
-[sub_resource type="InputEventKey" id=4]
+[sub_resource type="InputEventKey" id=3]
 control = true
 command = true
 scancode = 72
 
-[sub_resource type="InputEventKey" id=2]
+[sub_resource type="InputEventKey" id=4]
 control = true
 command = true
 scancode = 82
 
-[sub_resource type="InputEventKey" id=3]
+[sub_resource type="InputEventKey" id=5]
 shift = true
 control = true
 command = true
@@ -31,6 +27,8 @@ scancode = 82
 
 [resource]
 interface/editor/code_font_size = 15.0
+interface/scene_tabs/show_extension = true
+interface/scene_tabs/show_script_button = true
 text_editor/highlighting/symbol_color = Color( 0.670588, 0.786275, 1, 1 )
 text_editor/highlighting/keyword_color = Color( 1, 0.443137, 0.521569, 1 )
 text_editor/highlighting/base_type_color = Color( 0.258824, 1, 0.760784, 1 )
@@ -61,6 +59,9 @@ text_editor/highlighting/breakpoint_color = Color( 1, 0.47, 0.42, 1 )
 text_editor/highlighting/code_folding_color = Color( 1, 1, 1, 0.7 )
 text_editor/highlighting/search_result_color = Color( 1, 1, 1, 0.07 )
 text_editor/highlighting/search_result_border_color = Color( 1, 1, 1, 0.7 )
+text_editor/completion/auto_brace_complete = true
+text_editor/completion/add_type_hints = true
+editors/2d/simple_spacebar_panning = true
 network/debug/remote_host = "127.0.0.1"
 network/debug/remote_port = 6007
 network/ssl/editor_ssl_certificates = ""
@@ -80,7 +81,7 @@ export/android/shutdown_adb_on_exit = true
 export/windows/rcedit = ""
 export/windows/wine = ""
 interface/scene_tabs/always_show_close_button = false
-interface/scene_tabs/restore_scenes_on_load = false
+interface/scene_tabs/restore_scenes_on_load = true
 interface/inspector/capitalize_properties = true
 interface/inspector/disable_folding = false
 interface/inspector/auto_unfold_foreign_scenes = true
@@ -103,8 +104,8 @@ debugger/profiler_frame_max_functions = 64
 text_editor/files/auto_reload_scripts_on_external_change = true
 text_editor/files/auto_reload_and_parse_scripts_on_save = true
 text_editor/files/open_dominant_script_on_scene_change = true
-text_editor/external/use_external_editor = false
-text_editor/external/exec_path = "nvim-qt"
+text_editor/external/use_external_editor = true
+text_editor/external/exec_path = "/usr/local/bin/gnvim"
 text_editor/open_scripts/script_temperature_enabled = true
 text_editor/open_scripts/highlight_current_script = true
 text_editor/open_scripts/script_temperature_history_size = 15
@@ -112,7 +113,7 @@ text_editor/open_scripts/current_script_background_color = Color( 1, 1, 1, 0.3 )
 text_editor/open_scripts/group_help_pages = true
 text_editor/open_scripts/sort_scripts_by = 0
 text_editor/open_scripts/list_script_names_as = 0
-text_editor/external/exec_flags = "\"+normal {line}G{col}|\" {file}"
+text_editor/external/exec_flags = "{file}"
 text_editor/completion/code_complete_delay = 0.3
 editors/grid_map/preview_size = 64
 editors/tile_map/preview_size = 64
@@ -148,6 +149,7 @@ editors/3d_gizmos/gizmo_colors/joint_body_a = Color( 0.6, 0.8, 1, 1 )
 editors/3d_gizmos/gizmo_colors/joint_body_b = Color( 0.6, 0.9, 1, 1 )
 text_editor/highlighting/gdscript/function_definition_color = Color( 0.00392157, 0.882353, 1, 1 )
 text_editor/highlighting/gdscript/node_path_color = Color( 0.392157, 0.756863, 0.352941, 1 )
-projects/::home::Documents::Studying::Prog::Godot::projects::01_Hello_World = "/home/Documents/Studying/Prog/Godot/projects/01_Hello_World"
-shortcuts = [ "editor/redo", SubResource( 1 ), "script_text_editor/auto_indent", SubResource( 6 ), "script_text_editor/capitalize", SubResource( 5 ), "script_text_editor/contextual_help", SubResource( 4 ), "script_text_editor/redo", SubResource( 2 ), "script_text_editor/replace", SubResource( 3 ) ]
+text_editor/help/sort_functions_alphabetically = true
+projects/::home::dave::Documents::Studying::Prog::Godot::projects::My_Platform_Game = "/home/dave/Documents/Studying/Prog/Godot/projects/My_Platform_Game"
+shortcuts = [ "editor/redo", SubResource( 1 ), "script_text_editor/auto_indent", SubResource( 2 ), "script_text_editor/contextual_help", SubResource( 3 ), "script_text_editor/redo", SubResource( 4 ), "script_text_editor/replace", SubResource( 5 ) ]
 

@@ -1,6 +1,9 @@
 " " {{{ Plug
 call plug#begin('~/.config/nvim/plugins/plugged')
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
 Plug 'justinmk/vim-sneak'
 Plug 'junegunn/goyo.vim'
 Plug 'calviken/vim-gdscript3'
@@ -111,5 +114,14 @@ let g:goyo_linenr = 1
 " {{{ deoplete
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('deoplete-options-max_list', 10)
+" }}}
+" {{{ ultisnips
+let g:UltiSnipsExpandTrigger="<m-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories=["~/.config/nvim/plugins/plugged/vim-snippets/snippets"]
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 " }}}
 "vim: set filetype=vim:

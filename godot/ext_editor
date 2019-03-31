@@ -1,0 +1,5 @@
+exec path: code
+exec flags: --goto {file}:{line}:{col}
+
+exec: /home/dotfiles/scripts/emacs_scripts/eclauncher
+exec: {file}

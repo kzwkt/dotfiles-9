@@ -12,7 +12,6 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 " }}}
-
 set title
 set backup
 set nu rnu
@@ -66,7 +65,7 @@ filetype plugin on
 colorscheme badwolf
 syntax sync minlines=256
 filetype plugin indent on
-" let g:python_host_prog ='/usr/bin/python2.7'
+let g:python_host_prog ='/usr/bin/python2.7'
 " let g:python3_host_prog ='/usr/local/bin/python3'
 " hide ugly tidles
 hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
@@ -103,6 +102,12 @@ if v:version >= 700
   au BufLeave * let b:winview = winsaveview()
   au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 endif
+" }}}
+" {{{
+augroup myAutoSave!
+    autocmd!
+     au FocusLost * :wall!
+augroup END
 " }}}
 " }}}
 "" vim: nowrap
