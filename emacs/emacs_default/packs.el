@@ -459,16 +459,7 @@
 (use-package unkillable-scratch
   :ensure t
   :config
-  (setq unkillable-buffers '("^\\*scratch\\*$"
-			     "*Bongo Playlist*"
-			     "*Bongo Library*"
-			     "text_scratch"
-			     "markdown_scratch"
-			     "fundamental_scratch"
-			     "org_scratch"
-			     "info_keys.org"
-			     "prog_scratch"
-			     "i3keys.org"))
+  ;; (setq unkillable-buffers '("^\\*scratch\\*$"))
   (setq unkillable-scratch-behavior 'bury)
   :config
   (unkillable-scratch))
@@ -891,6 +882,17 @@
   :ensure t
   :config
   (setq bitly-access-token "3026d7e8b1a0f89da10740c69fd77b4b3293151e"))
+
+(use-package keyfreq
+  :defer 2
+  :ensure t
+  :config
+  ;; How often in seconds keyfreq-table should be saved when
+  ;; keyfreq-autosave-mode is enabled.
+  (setq keyfreq-autosave-timeout 180)
+  (setq keyfreq-excluded-commands '("self-insert-command" "org-self-insert-command" "save-buffer"))
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
 
 (use-package zoom
   :defer t
@@ -1390,7 +1392,6 @@
     (subword-mode 1)
     (tab-jump-out-mode 1)
     (auto-fill-mode 1)
-    (aggressive-fill-paragraph-mode 1)
     (evil-swap-keys-swap-colon-semicolon)
     (evil-swap-keys-swap-double-single-quotes))
   :ensure nil
@@ -2391,7 +2392,7 @@
 
   (defun my/yas-load-other-window ()
     (interactive)
-    (yas-load-snippet-buffer)
+    (yas-load-snippet-buffer '## t)
     (other-window -1))
 
   (setq yas-also-auto-indent-first-line t)
@@ -2421,6 +2422,7 @@
   (general-nvmap
     :keymaps 'snippet-mode-map
     "<C-return>" 'yas-load-snippet-buffer-and-close
+    "<M-return>" 'my/yas-load-other-window
     "M-;" 'hydra-yasnippet/body)
 
   (general-imap

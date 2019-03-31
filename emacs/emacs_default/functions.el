@@ -254,25 +254,15 @@ rotate entire document."
   (let ((inhibit-message t))
     (find-file "~/.emacs.d/tmp/scratches/scratch.md")))
 
+(defun find-scratch-elisp ()
+  (interactive)
+  (let ((inhibit-message t))
+    (find-file "~/.emacs.d/tmp/scratches/scratch.el")))
+
 (defun find-scratch-org ()
   (interactive)
   (let ((inhibit-message t))
     (find-file "~/.emacs.d/tmp/scratches/scratch.org")))
-
-(defun find-scratch-text ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/scratch.txt")))
-
-(defun find-scratch-prog ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/scratch.prog")))
-
-(defun find-scratch-fundamental ()
-  (interactive)
-  (let ((inhibit-message t))
-    (find-file "~/.emacs.d/tmp/scratches/scratch.fund")))
 
 (defun find-bash-aliases ()
   (interactive)

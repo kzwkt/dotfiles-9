@@ -369,7 +369,7 @@
   ("M-." yas-new-snippet)
 
   ("r" yas-reload-all)
-  ("l" yas-load-snippet-buffer))
+  ("l" my/yas-load-other-window))
 #+END_SRC
 * buffers
 ** narrow
@@ -529,6 +529,7 @@
        _l_: list
        _r_: refresh
        _d_: delete
+       _e_: describe
        _i_: install
        _f_: install file
 
@@ -539,7 +540,8 @@
 ("r" package-refresh-contents)
 ("d" package-delete)
 ("i" package-install)
-("f" package-install-file))
+("f" package-install-file)
+("e" describe-package))
 #+END_SRC
 
 ** main commands
@@ -555,7 +557,7 @@
        _d_: dup line        _i_: define abbrev  _B_: eval buffer
        _e_: sort by length  _J_: del dup lines  _l_: eval line
        _E_: sort lines	  _3_: reload i3      _w_: word count
-                                              _p_: packages
+                                            _p_: packages
 
 "
 
@@ -592,8 +594,8 @@
        -----------------------------------------
        _f_: def abbrev       _n_: name macro
        _F_: def mode abbrev  _d_: edit macro
-       _e_: eddit abbrevs    _s_: local set key
-       _l_: enable theme
+       _e_: eddit abbrevs    _i_: insert macro
+       _l_: enable theme     _s_: local set key
        _L_: disable theme
   "
   ("<escape>" nil)
@@ -607,6 +609,7 @@
 
 ("n" name-last-kbd-macro)
 ("d" edit-named-kbd-macro)
+("i" insert-kbd-macro)
 ("s" local-set-key))
 #+END_SRC
 
@@ -840,11 +843,8 @@
   ("s" org-time-stamp)
   ("t" org-todo)
   ("T" counsel-org-tag)
-  ("u" org-web-tools-insert-link-for-url)
-
-)
+  ("u" org-web-tools-insert-link-for-url))
 #+END_SRC
-
 ** org agenda
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-org-agenda (:color blue :hint nil :exit nil :foreign-keys nil)
@@ -914,30 +914,25 @@
 
   "
 
-     ^Files^
+     ^Scratches^     ^Others^
      ---------------------------
-     _a_: scratch    _e_: emacs
-     _b_: scratches  _f_: functions
-     _c_: org        _g_: planning
-     _d_: dotfiles   _h_: pcc
-		   _i_: i3 keys
+     _o_: org        _d_: dotfiles
+     _l_: lisp       _e_: emacs
+     _i_: elisp
+     _m_: markdown
 
 "
   ("<escape>" nil)
-  ("C-o" hydra-find-dotfiles/body)
 
-  ("a" my/goto-scratch-buffer)
-  ("b" hydra-find-scratches/body)
-  ("c" ranger-find-org-dir)
+  ("o" find-scratch-org)
+  ("l" my/goto-scratch-buffer)
+  ("i" find-scratch-elisp)
+  ("m" find-scratch-markdown)
+
   ("d" hydra-find-dotfiles/body)
-
-  ("e" hydra-find-emacs-files/body)
-  ("f" ranger-find-functions)
-  ("g" ranger-find-planning)
-  ("h" ranger-find-pcc-dir)
-  ("i" find-i3-keys)
-  ("m" find-scratch-markdown))
+  ("e" hydra-find-emacs-files/body))
 #+END_SRC
+
 ** find scratches
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-find-scratches (:hint nil :foreign-keys nil :exit t)
@@ -945,39 +940,19 @@
   "
 
      ^Scratches^
-     -----------------------
-     _m_: md    _s_: *scratch*
-     _o_: org   _M_: *messages*
-     _p_: prog  _w_: *warnings*
-     _t_: text
-     _f_: fund
+     -----------------
+     _m_: md
+     _o_: org
+     _e_: elisp
 
 "
   ("<escape>" nil)
 
-  ("s" my/goto-scratch-buffer)
-
-  ("o" find-scratch-org)
-  ("C-o" find-scratch-org)
-
   ("m" find-scratch-markdown)
-  ("C-m" find-scratch-markdown)
-
-  ("M" my/goto-messages-buffer)
-  ("C-M" my/goto-messages-buffer)
-
-  ("w" my/goto-warnings-buffer)
-  ("C-w" my/goto-warnings-buffer)
-
-  ("p" find-scratch-prog)
-  ("C-p" find-scratch-prog)
-
-  ("t" find-scratch-text)
-  ("C-t" find-scratch-text)
-
-  ("f" find-scratch-fundamental)
-  ("C-f" find-scratch-fundamental))
+  ("o" find-scratch-org)
+  ("e" find-scratch-elisp))
 #+END_SRC
+
 ** find dotfiles
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/hydras.el
 (defhydra hydra-find-dotfiles (:hint nil :color blue)

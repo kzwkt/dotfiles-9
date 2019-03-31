@@ -224,7 +224,7 @@
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([escape 32 119 114 106 escape 105] 0 "%d") arg)))
 
 (fset 'format-hydra-binding
-      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 103 114 83 41 96 60 97 34 right 32 left left] 0 "%d") arg)))
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([48 103 114 83 41 96 60 97 39 right 32 left left] 0 "%d") arg)))
 
 (fset 'eval-line
       (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item '([103 93 122 86 32 99 114 escape 96 122] 0 "%d") arg)))

@@ -562,20 +562,12 @@ Maybe I need it in the future.
 (use-package unkillable-scratch
   :ensure t
   :config
-  (setq unkillable-buffers '("^\\*scratch\\*$"
-			     "*Bongo Playlist*"
-			     "*Bongo Library*"
-			     "text_scratch"
-			     "markdown_scratch"
-			     "fundamental_scratch"
-			     "org_scratch"
-			     "info_keys.org"
-			     "prog_scratch"
-			     "i3keys.org"))
+  ;; (setq unkillable-buffers '("^\\*scratch\\*$"))
   (setq unkillable-scratch-behavior 'bury)
   :config
   (unkillable-scratch))
 #+END_SRC
+
 * Movement
 ** visual line
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -1034,6 +1026,24 @@ Maybe I need it in the future.
   :ensure t
   :config
   (setq bitly-access-token "3026d7e8b1a0f89da10740c69fd77b4b3293151e"))
+#+END_SRC
+** keyfreq
+#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
+(use-package keyfreq
+  :defer 2
+  :ensure t
+  :config
+  ;; How often in seconds keyfreq-table should be saved when
+  ;; keyfreq-autosave-mode is enabled.
+  (setq keyfreq-autosave-timeout 180)
+  (setq keyfreq-excluded-commands '("self-insert-command" "org-self-insert-command" "save-buffer"))
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+(setq keyfreq-excluded-commands '("self-insert-command" "org-self-insert-command" "save-buffer"))
+
+(setq keyfreq-excluded-commands nil)
 #+END_SRC
 ** zoom
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
@@ -1613,7 +1623,6 @@ buffer expose commands.
     (subword-mode 1)
     (tab-jump-out-mode 1)
     (auto-fill-mode 1)
-    (aggressive-fill-paragraph-mode 1)
     (evil-swap-keys-swap-colon-semicolon)
     (evil-swap-keys-swap-double-single-quotes))
   :ensure nil
@@ -2775,8 +2784,16 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
 
   (defun my/yas-load-other-window ()
     (interactive)
-    (yas-load-snippet-buffer)
-    (other-window -1))
+    (yas-load-snippet-buffer '## t)
+    (other-window -1)
+    (evil-insert-state))
+
+  (defun my/yas-load-other-kill-contents-other-window ()
+    (interactive)
+    (yas-load-snippet-buffer '## t)
+    (other-window -1)
+    (kill-buffer-contents)
+    (evil-insert-state))
 
   (setq yas-also-auto-indent-first-line t)
   (setq yas-indent-line 'auto)
@@ -2805,6 +2822,8 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   (general-nvmap
     :keymaps 'snippet-mode-map
     "<C-return>" 'yas-load-snippet-buffer-and-close
+    "<M-return>" 'my/yas-load-other-window
+    "<C-M-return>" 'my/yas-load-other-kill-contents-other-window
     "M-;" 'hydra-yasnippet/body)
 
   (general-imap
@@ -2833,6 +2852,7 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   :after yasnippet
   :ensure t)
 #+END_SRC
+
 ** rainbow delimiters
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package rainbow-delimiters
