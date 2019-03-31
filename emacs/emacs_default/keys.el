@@ -101,6 +101,7 @@
 "C-c a" 'align-regexp
 
 ;;;; QUICK KEYS ;;;;
+"C-x l" nil
 "C-c o" 'org-open-at-point-global
 "<C-S-f10>" 'buffer-menu-open
 "<mouse-3>" nil

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+tangle-py ~/.config/i3/config.org &&
+i3-msg fullscreen disable &&
+i3-msg restart

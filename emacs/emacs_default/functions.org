@@ -774,19 +774,11 @@ return t."
       (my/save-all))
     (message " block evaluated")))
 
-(defun my/babel-remove-last-blank-line ()
-  (interactive)
-  (end-of-buffer)
-  (flush-lines "END_SRC\n^$"))
-
 (defun i3-reload ()
   (interactive)
   (my/save-all)
-  (shell-command "tangle-py ~/.config/i3/*.org")
-  (let ((inhibit-message t))
-    (shell-command "i3-msg fullscreen disable ")
-    (shell-command "i3-msg restart"))
-  (message "i3 reloaded"))
+  (start-process-shell-command "tangle-i3" nil "~/scripts/i3_scripts/tangle-i3")
+    (message " i3 reloaded"))
 
 (defun my/reload-init-file ()
   (interactive)
