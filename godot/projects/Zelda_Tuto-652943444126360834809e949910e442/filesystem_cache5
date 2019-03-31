@@ -1,0 +1,11 @@
+e676c8cf538667c7b7492316723f6fe3
+::res://::1554037393
+default_env.tres::Environment::1554037156::0::1::<><>::
+icon.png::StreamTexture::1554035456::1554035459::1::<><>::
+::res://player/::1554037156
+Player.gd::GDScript::1554037156::0::1::<>KinematicBody2D<>::
+player.png::StreamTexture::1554035804::1554035806::1::<><>::
+Player.tscn::PackedScene::1554037156::0::1::<><>::res://player/Player.gd<>res://player/player.png
+::res://tiles/::1554037265
+wall.png::StreamTexture::1554037128::1554037147::1::<><>::
+wall.tres::TileSet::1554037265::0::1::<><>::res://tiles/wall.png

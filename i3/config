@@ -54,6 +54,7 @@ bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
 bindsym $mod+q kill
 bindcode 107 exec xfce4-screenshooter -r
 bindsym --release $mod+Shift+q exec xkill
+bindsym $mod+F5 exec "xdotool key Caps_Lock"; exec notify-send --expire-time=1000 "caps"; mode default
 bindsym $mod+a exec dmenu_run -i -l 5 -fn 'Input Mono-13'
 bindsym $mod+Shift+s exec ~/scripts/i3_scripts/reload.sh; mode default
 bindsym $mod+Return exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none
@@ -265,7 +266,7 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 
-bindsym F8 mode "$output"; exec notify-send 'output mode'
+bindsym F12 mode "$output"; exec notify-send 'output mode'
 
 mode "$output" {
 

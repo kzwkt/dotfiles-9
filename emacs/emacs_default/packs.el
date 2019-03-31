@@ -367,6 +367,11 @@
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-Y-yank-to-eol t)
   :config
+
+  (defun my/evil-format-paragraph ()
+    (interactive)
+    (evil-fill 418 573))
+
   (evil-mode 1)
   (load-file "~/.emacs.d/lisp/functions/evil_keys.el")
   (setq evil-insert-state-message nil)
@@ -928,7 +933,7 @@
 
    (general-unbind 'undo-propose-mode-map
      :with 'undo-propose-cancel
-     [remap org-meta-return])
+     [remap org-meta-return]))
 
    (undo-propose-mode))
 
@@ -1018,6 +1023,25 @@
   :after evil
   :ensure t
   :config
+  (defun my/evil-swap-keys-on ()
+    (interactive)
+    (setq evil-swap-keys--mappings '(
+				     ("?" . "/")
+				     ("/" . "?")
+				     ("'" . "\"")
+				     ("\"" . "'")
+				     (";" . ":")
+
+
+  (defun my/evil-swap-keys-off ()
+    (interactive)
+    (setq evil-swap-keys--mappings nil))
+
+  (defun my/evil-swap-keys ()
+    (interactive)
+    (evil-swap-keys-swap-colon-semicolon)
+    (evil-swap-keys-swap-double-single-quotes)
+    (evil-swap-keys-swap-question-mark-slash))
 
   (defun my/evil-swap-keys-commands ()
     (interactive)
@@ -1392,8 +1416,7 @@
     (subword-mode 1)
     (tab-jump-out-mode 1)
     (auto-fill-mode 1)
-    (evil-swap-keys-swap-colon-semicolon)
-    (evil-swap-keys-swap-double-single-quotes))
+    (my/evil-swap-keys-on))
   :ensure nil
   :config
 
@@ -1553,18 +1576,15 @@
 
   (defun my/prog-mode-hooks ()
     (interactive)
-    (subword-mode 1)
     (company-mode 1)
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
     (flymake-mode 1)
     (yas-minor-mode 1)
-    (hs-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
-    (evil-swap-keys-swap-double-single-quotes)
-    (evil-swap-keys-swap-colon-semicolon)
-    (highlight-indent-guides-mode 1))
+    (highlight-indent-guides-mode 1)
+(my/evil-swap-keys-on))
 
   (general-imap
     :keymaps 'prog-mode-map
@@ -1920,11 +1940,9 @@
   :defer t
   :ensure t)
 
-;; (use-package godot-gdscript
-;;   :load-path "~/.emacs.d/lisp/"
-;;   :init
-;;   (add-hook 'godot-gdscript-mode-hook 'olivetti-mode)
-;;   (add-hook 'godot-gdscript-mode-hook 'electric-operator-mode))
+(use-package gdscript-mode
+    :defer t
+    :ensure t)
 
 ;; (use-package insert-shebang
 ;;   :ensure t
@@ -2230,7 +2248,7 @@
 :defer 3
 :ensure nil
 :config
-(subword-mode +1))
+(global-subword-mode +1))
 
 (use-package company
   :defer 3

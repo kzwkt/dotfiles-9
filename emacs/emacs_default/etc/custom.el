@@ -11,7 +11,7 @@
  '(flyspell-default-dictionary "american")
  '(flyspell-issue-message-flag nil)
  '(flyspell-issue-welcome-flag nil)
- '(package-selected-packages '(keyfreq use-package)))
+ '(package-selected-packages '(gdscript-mode keyfreq use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

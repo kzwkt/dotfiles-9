@@ -1,10 +1,10 @@
 e676c8cf538667c7b7492316723f6fe3
-::res://::1554007101
-Player.gd::GDScript::1553976964::0::1::<>KinematicBody2D<>::
-Player.tscn::PackedScene::1553976968::0::1::<><>::
-StageOne.tscn::PackedScene::1553980276::0::1::<><>::
-default_env.tres::Environment::1553980276::0::1::<><>::
+::res://::1554013303
+default_env.tres::Environment::1554013199::0::1::<><>::
 icon.png::StreamTexture::1553959446::1553959448::1::<><>::
+Player.gd::GDScript::1553976964::0::1::<>KinematicBody2D<>::
+Player.tscn::PackedScene::1554013199::0::1::<><>::res://Player.gd<>res://platformer-pack/PNG/Players/128x256/Blue/alienBlue_stand.png
+StageOne.tscn::PackedScene::1554013199::0::1::<><>::res://Player.tscn<>res://platformer-pack/PNG/Ground/Grass/grass.png
 ::res://UltiSnips/::1553973318
 ::res://UltiSnips/UltiSnips/::1553973185
 ::res://export/::1553977394

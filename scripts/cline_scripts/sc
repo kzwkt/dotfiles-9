@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+clear
+~/scripts/i3_scripts/hide/hide_only_terms
+gnvim /home/dave/Documents/Studying/Prog/Godot/projects/Zelda_Tuto/player/Player.gd &>/dev/null &

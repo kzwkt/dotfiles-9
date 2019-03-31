@@ -257,7 +257,6 @@ Easy templates
 (my/quiet-save-buffer)
 (org-edit-src-exit))
 #+END_SRC
-
 *** org keys
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 
@@ -431,11 +430,17 @@ Ver: https://github.com/org2blog/org2blog/wiki
   (setq evil-disable-insert-state-bindings t)
   (setq evil-want-Y-yank-to-eol t)
   :config
+
+  (defun my/evil-format-paragraph ()
+    (interactive)
+    (evil-fill 418 573))
+
   (evil-mode 1)
   (load-file "~/.emacs.d/lisp/functions/evil_keys.el")
   (setq evil-insert-state-message nil)
   (setq evil-respect-visual-line-mode nil))
 #+END_SRC
+
 *** Evil Org
 ***** Evil Org Text Objects
 
@@ -1088,7 +1093,7 @@ Maybe I need it in the future.
 
    (general-unbind 'undo-propose-mode-map
      :with 'undo-propose-cancel
-     [remap org-meta-return])
+     [remap org-meta-return]))
 
    (undo-propose-mode))
 #+END_SRC
@@ -1196,6 +1201,25 @@ buffer expose commands.
   :after evil
   :ensure t
   :config
+  (defun my/evil-swap-keys-on ()
+    (interactive)
+    (setq evil-swap-keys--mappings '(
+				     ("?" . "/")
+				     ("/" . "?")
+				     ("'" . "\"")
+				     ("\"" . "'")
+				     (";" . ":")
+
+
+  (defun my/evil-swap-keys-off ()
+    (interactive)
+    (setq evil-swap-keys--mappings nil))
+
+  (defun my/evil-swap-keys ()
+    (interactive)
+    (evil-swap-keys-swap-colon-semicolon)
+    (evil-swap-keys-swap-double-single-quotes)
+    (evil-swap-keys-swap-question-mark-slash))
 
   (defun my/evil-swap-keys-commands ()
     (interactive)
@@ -1203,6 +1227,7 @@ buffer expose commands.
 
   (global-evil-swap-keys-mode t))
 #+END_SRC
+
 ** super-save
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package super-save
@@ -1623,8 +1648,7 @@ buffer expose commands.
     (subword-mode 1)
     (tab-jump-out-mode 1)
     (auto-fill-mode 1)
-    (evil-swap-keys-swap-colon-semicolon)
-    (evil-swap-keys-swap-double-single-quotes))
+    (my/evil-swap-keys-on))
   :ensure nil
   :config
 
@@ -1795,18 +1819,15 @@ buffer expose commands.
 
   (defun my/prog-mode-hooks ()
     (interactive)
-    (subword-mode 1)
     (company-mode 1)
     (smartparens-mode 1)
     (tab-jump-out-mode 1)
     (flycheck-mode 1)
     (flymake-mode 1)
     (yas-minor-mode 1)
-    (hs-minor-mode 1)
     (my/company-idle-one-prefix-one-quiet)
-    (evil-swap-keys-swap-double-single-quotes)
-    (evil-swap-keys-swap-colon-semicolon)
-    (highlight-indent-guides-mode 1))
+    (highlight-indent-guides-mode 1)
+(my/evil-swap-keys-on))
 
   (general-imap
     :keymaps 'prog-mode-map
@@ -2227,12 +2248,11 @@ buffer expose commands.
 * Programming
 ** godot
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
-;; (use-package godot-gdscript
-;;   :load-path "~/.emacs.d/lisp/"
-;;   :init
-;;   (add-hook 'godot-gdscript-mode-hook 'olivetti-mode)
-;;   (add-hook 'godot-gdscript-mode-hook 'electric-operator-mode))
+(use-package gdscript-mode
+  :defer t
+  :ensure t)
 #+END_SRC
+
 ** shebang
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 ;; (use-package insert-shebang
@@ -2602,8 +2622,9 @@ buffer expose commands.
 :defer 3
 :ensure nil
 :config
-(subword-mode +1))
+(global-subword-mode +1))
 #+END_SRC
+
 ** company
 *** company mode
 Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*.

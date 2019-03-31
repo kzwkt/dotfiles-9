@@ -48,6 +48,7 @@
 (general-nvmap
   :keymaps 'override
   ;; "u" 'undo-only
+  "gn" 'my/evil-format-paragraph
   "!" 'delete-frame
   "Q" 'save-buffers-kill-terminal
   "z=" 'endless/ispell-word-then-abbrev

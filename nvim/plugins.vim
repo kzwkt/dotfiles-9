@@ -56,7 +56,7 @@ map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
 map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
+" sunmap w
 sunmap b
 sunmap e
 sunmap ge
@@ -113,7 +113,8 @@ let g:goyo_linenr = 1
 " }}}
 " {{{ deoplete
 let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('deoplete-options-max_list', 10)
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({'deoplete-options-max_list': 10, 'deoplete-options-ignore_case': v:true})
 " }}}
 " {{{ ultisnips
 let g:UltiSnipsExpandTrigger="<m-o>"
