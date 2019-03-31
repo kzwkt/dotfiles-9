@@ -2,6 +2,34 @@
 #+OPTIONS: ^:nil
 #+STARTUP: overview
 
+* Contents                                                      :toc:
+- [[#basic][basic]]
+  - [[#general][general]]
+  - [[#status][status]]
+- [[#startup][startup]]
+- [[#keys][keys]]
+  - [[#focus][focus]]
+  - [[#general-1][general]]
+  - [[#movement][movement]]
+- [[#modes][modes]]
+  - [[#launch][launch]]
+  - [[#tilling][tilling]]
+- [[#strachpads][strachpads]]
+  - [[#general-2][General]]
+  - [[#term-up][Term Up]]
+  - [[#term-right][Term Right]]
+  - [[#term-ranger][Term Ranger]]
+  - [[#hexchat][Hexchat]]
+- [[#worskpaces][worskpaces]]
+  - [[#workspace-names][workspace names]]
+  - [[#workspace-motions][workspace motions]]
+  - [[#worksplace-switching][worksplace switching]]
+- [[#output][output]]
+  - [[#output-mode][output mode]]
+  - [[#workspace-output][workspace output]]
+  - [[#audio-controls][audio controls]]
+- [[#windows][windows]]
+
 * basic
 ** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
