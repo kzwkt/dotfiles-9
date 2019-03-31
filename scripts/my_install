@@ -9,13 +9,15 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
     lxappearance leafpad calibre zathura zathura-pdf-poppler                                \
     qbittorrent uget xclip python3-setuptools python-setuptools                             \
     python-wheel python-pip python3-pip dmenu abiword midori                                \
-    texlive-full checkinstall lxde unclutter trash-cli arandr                               \
+    checkinstall lxde unclutter trash-cli arandr                                            \
     xbindkeys font-manager atool silversearcher-ag clang aspell-pt-br                       \
     python-jedi python3-jedi python-rope python-autopep8 yapf yapf3                         \
     flake8 python-flake8 python3-flake8 python3-wheel pandoc asciidoctor                    \
     markdown coderay ruby-coderay python-pygments ruby-pygments python3-pygments ruby-rouge \
     xsel xdotool zenity lxde-settings-daemon w3m-img okular okular-extra-backends git\
 
+    # Option: too big
+    # texlive-full 
     # Pyenv dependencies, https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
     make build-essential libssl-dev zlib1g-dev libbz2-dev \
@@ -24,8 +26,9 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
     curl https://pyenv.run | bash
     git clone git@github.com:mrbig033/dotfiles.git ~
     git clone git@github.com:mrbig033/maps.git ~
-   # Rust
-   curl https://sh.rustup.rs -sSf | sh
+
+    # Rust
+    curl https://sh.rustup.rs -sSf | sh
 
    apt -y build-dep emacs25
    apt -y autoremove
