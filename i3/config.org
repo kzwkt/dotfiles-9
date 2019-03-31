@@ -15,11 +15,11 @@
   - [[#launch][launch]]
   - [[#tilling][tilling]]
 - [[#strachpads][strachpads]]
-  - [[#general-2][General]]
-  - [[#term-up][Term Up]]
-  - [[#term-right][Term Right]]
-  - [[#term-ranger][Term Ranger]]
-  - [[#hexchat][Hexchat]]
+  - [[#general-2][general]]
+  - [[#term-up][term Up]]
+  - [[#term-right][term Right]]
+  - [[#term-ranger][term Ranger]]
+  - [[#hexchat][hexchat]]
 - [[#worskpaces][worskpaces]]
   - [[#workspace-names][workspace names]]
   - [[#workspace-motions][workspace motions]]
@@ -271,13 +271,13 @@ mode "$float_small_steps" {
 }
 #+END_SRC
 * strachpads
-** General
+** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 bindsym $mod+equal scratchpad show
 bindsym $mod+Shift+minus move scratchpad; mode default
 bindsym $mod+minus exec ~/scripts/i3_scripts/hide/hide_all mode; mode default
 #+END_SRC
-** Term Up
+** term Up
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 for_window [title="term-up"] border none
 for_window [title="term-up"] floating enable sticky enable
@@ -285,7 +285,7 @@ for_window [title="term-up"] move scratchpad
 for_window [title="term-up"] resize set 1250 450; move to position 350 0
 bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0
 #+END_SRC
-** Term Right
+** term Right
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 for_window [title="term-right"] border none
 for_window [title="term-right"] floating enable sticky enable
@@ -293,7 +293,7 @@ for_window [title="term-right"] move scratchpad
 for_window [title="term-right"] resize set 1000 1034; move to position 0 0
 bindsym $mod+o exec ~/scripts/i3_scripts/hide/hide_only_terms; [title="term-right"] scratchpad show; move to position 960 22
 #+END_SRC
-** Term Ranger
+** term Ranger
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 for_window [title="term-ranger"] border none
 for_window [title="term-ranger"] floating enable sticky enable
@@ -301,7 +301,7 @@ for_window [title="term-ranger"] move scratchpad
 for_window [title="term-ranger"] resize set 1250 450; move to position 350 0
 bindsym $mod+i exec ~/scripts/i3_scripts/hide/sranger_hide_others ; [title="term-ranger"] scratchpad show; move to position 350 0
 #+END_SRC
-** Hexchat
+** hexchat
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 for_window [title="mrblack" class="Hexchat"] move to position 650 0
 for_window [title="mrblack" class="Hexchat"] resize set 920 600
