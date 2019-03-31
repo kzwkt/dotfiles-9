@@ -1,5 +1,0 @@
-# key: prs
-# name: Print com Scanf
-# --
-printf(" $1\n"$2);
-scanf(" %$3", &$4);

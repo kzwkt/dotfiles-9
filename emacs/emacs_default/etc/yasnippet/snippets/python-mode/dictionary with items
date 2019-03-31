@@ -1,4 +1,0 @@
-# key: dic
-# name: dictionary with items
-# --
-${1:dictionary} = {${2:${3:"${4:key}"}: ${6:"${7:value}"}, $8}}$0

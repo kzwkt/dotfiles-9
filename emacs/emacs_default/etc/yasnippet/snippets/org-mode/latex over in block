@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: latex over in block
-# key: ob
-# --
-\overline{$1}$0

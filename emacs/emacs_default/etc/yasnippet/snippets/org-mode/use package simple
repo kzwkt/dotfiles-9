@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: use package simple
-# key: uses
-# --
-(use-package $1
-:ensure t$0)

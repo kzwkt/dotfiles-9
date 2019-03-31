@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: bold list item
-# key: bl
-# --
-- *$1*: $0

@@ -1,6 +1,0 @@
-# key: define
-# name: general define key
-# --
- (general-define-key
-  :keymaps '$0-mode-map}
-  "" ')

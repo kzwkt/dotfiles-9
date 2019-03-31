@@ -1,4 +1,0 @@
-# key: vl
-# name: list with variable
-# --
-${1:variable} = [${2:"${3:item1}"}$0]

@@ -1,7 +1,0 @@
-# key: elf
-# name: elf
-# --
-else if ($1)
-{
-$0
-}

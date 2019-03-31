@@ -1,4 +1,0 @@
-# key: i - -
-# name: decrement
-# --
-i = i - 1

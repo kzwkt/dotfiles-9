@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: input 
-# key: in
-# --
-${1:variable} = input('${2:String: }')

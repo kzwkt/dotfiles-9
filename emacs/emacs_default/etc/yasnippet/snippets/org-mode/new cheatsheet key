@@ -1,4 +1,0 @@
-# key: chh
-# name: new cheatsheet key
-# --
-'(:key "${1:C-c x}" :description "${2:command}")$0

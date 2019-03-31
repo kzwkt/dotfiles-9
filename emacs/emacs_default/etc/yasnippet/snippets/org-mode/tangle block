@@ -1,6 +1,0 @@
-# key: blk
-# name: tangle block
-# --
-#+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/${1:path to file}
-$0
-#+END_SRC

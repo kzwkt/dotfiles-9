@@ -1,4 +1,0 @@
-# key: quiet
-# name: Inhibit at Point (make it quiet)
-# --
-(let ((inhibit-message t))

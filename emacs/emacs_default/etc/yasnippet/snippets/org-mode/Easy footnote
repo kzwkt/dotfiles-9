@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Easy footnote
-# key: foot
-# --
-[efn_note]$0[/efn_note]

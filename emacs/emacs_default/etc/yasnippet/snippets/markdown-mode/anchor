@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: anchor
-# key: anchor
-# --
-<a name="$1"></a>

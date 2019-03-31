@@ -1,4 +1,0 @@
-# key: ti
-# name: title
-# --
-${1:name}.title()

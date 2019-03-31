@@ -1,4 +1,0 @@
-# key: scanf
-# name: scanf
-# --
-scanf("%$1", &$2);$0

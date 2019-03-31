@@ -1,5 +1,0 @@
-# key: bo
-# name: bold ordered items
-# --
-*$1*: $2
-$0

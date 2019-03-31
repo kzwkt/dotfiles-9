@@ -1,8 +1,0 @@
-# key: eq
-# name: latex equation
-# --
-\begin{equation*}
-\begin{split}
-$0
-\end{split}
-\end{equation*}

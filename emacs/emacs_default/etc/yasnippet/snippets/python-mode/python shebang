@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: my python shebang
-# key: pp
-# --
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-$0

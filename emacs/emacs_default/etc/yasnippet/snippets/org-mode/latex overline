@@ -1,4 +1,0 @@
-# key: over
-# name: latex overline
-# --
-\[\overline{$1}\]$0

@@ -1,5 +1,0 @@
-# key: elif
-# name: elif
-# --
-elif ${1:condition}:
-    $0 

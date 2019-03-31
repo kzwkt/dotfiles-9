@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: checkboxes
-# key: chk
-# --
-- [ ] $0
-- [ ]
-- [ ]
-- [ ]
-- [ ]
