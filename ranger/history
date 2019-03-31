@@ -1,4 +1,3 @@
-search well
 open_with o f
 touch o_psicologo.org
 md Philip_K_Dick
@@ -98,3 +97,4 @@ touch readme.md
 touch test
 rename .readme.md
 shell 
+search back

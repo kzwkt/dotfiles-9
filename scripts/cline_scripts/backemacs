@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cp --recursive --force --dereference /home/dotfiles/emacs/emacs_default /home/dotfiles/emacs/backemacs

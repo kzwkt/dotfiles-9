@@ -14,22 +14,22 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
     python-jedi python3-jedi python-rope python-autopep8 yapf yapf3                         \
     flake8 python-flake8 python3-flake8 python3-wheel pandoc asciidoctor                    \
     markdown coderay ruby-coderay python-pygments ruby-pygments python3-pygments ruby-rouge \
-    xsel xdotool zenity lxde-settings-daemon w3m-img okular okular-extra-backends\
+    xsel xdotool zenity lxde-settings-daemon w3m-img okular okular-extra-backends git\
 
-    # Pyenv dependencies
-    # See https://github.com/pyenv/pyenv/wiki/Common-build-problems
+    # Pyenv dependencies, https://github.com/pyenv/pyenv/wiki/Common-build-problems
 
     make build-essential libssl-dev zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
     xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
     curl https://pyenv.run | bash
-
+    git clone git@github.com:mrbig033/dotfiles.git ~
+    git clone git@github.com:mrbig033/maps.git ~
    # Rust
    curl https://sh.rustup.rs -sSf | sh
 
-apt -y build-dep emacs25
-apt -y autoremove
-apt -y autoclean
-python3 -m pip install --user autopep8
-python3 -m pip install --user --upgrade jedi
-python3 -m pip install --user --upgrade yapf
+   apt -y build-dep emacs25
+   apt -y autoremove
+   apt -y autoclean
+   python3 -m pip install --user autopep8
+   python3 -m pip install --user --upgrade jedi
+   python3 -m pip install --user --upgrade yapf
