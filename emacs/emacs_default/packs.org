@@ -2364,7 +2364,7 @@ buffer expose commands.
   (setq eclimd-wait-for-process t)
   (add-hook 'eclim-mode-hook 'company-emacs-eclim-setup)
   (custom-set-variables
-   '(eclim-eclipse-dirs '("~/maps/eclipse"))
+   '(eclim-eclipse-dirs '("/home/large/eclipse"))
    '(eclim-executable "~/.p2/pool/plugins/org.eclim_2.8.0/bin/eclim")
    '(eclimd-default-workspace "~/org/Studying/Programming/Java/Core_Java/My_Code"))
   :config

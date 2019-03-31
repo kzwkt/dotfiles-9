@@ -67,7 +67,6 @@ search nvim
 search snip
 search gds
 open_with  f
-shell 
 search 
 open_with 
 md export
@@ -98,3 +97,4 @@ md .readme.md
 touch readme.md
 touch test
 rename .readme.md
+shell 

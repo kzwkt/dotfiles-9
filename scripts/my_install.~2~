@@ -21,11 +21,7 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
 
     make build-essential libssl-dev zlib1g-dev libbz2-dev \
     libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-    xz-utils tk-dev libffi-dev liblzma-dev python-openssl \
-    curl https://pyenv.run | bash
-
-   # Rust
-   curl https://sh.rustup.rs -sSf | sh
+    xz-utils tk-dev libffi-dev liblzma-dev python-openssl
 
 apt -y build-dep emacs25
 apt -y autoremove
