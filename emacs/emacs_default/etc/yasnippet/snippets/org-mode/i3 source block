@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: i3 source block
+# key: i3
+# --
+#+BEGIN_SRC shell :tangle ~/.config/i3/config
+$0
+#+END_SRC

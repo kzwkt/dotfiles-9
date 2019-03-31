@@ -1,31 +1,3 @@
-rename Personal
-rename Private
-md Public
-touch social_public.org
-search packs
-md Watchmen_Ultimate
-md image
-search dream
-search best
-md last_question
-search complete
-md Masterchef
-md 01
-md Ufba
-md terapeuta_virtual
-md tech
-md lit
-rename cult
-rename planning
-rename publ
-rename ref
-md Blogging
-rename 03_ref
-rename plan
-touch terapeuta_virtual.org
-md Style
-rename Guides
-open_with  f
 search well
 open_with o f
 touch o_psicologo.org
@@ -48,7 +20,6 @@ rename Identificao_Adaptativa_14_pages.pdf
 rename Catalogo_de_URLs_Maliciosas+16_pages.pdf
 rename Catalogo_de_URLs_Maliciosas_cropped_16_pages.pdf
 touch .gitignore
-open_with 
 open_with nvim
 open_with r0 f
 open_with 0 f
@@ -72,7 +43,6 @@ rename Prog
 shell !
 shell zp
 
-search 
 search nvi
 search task
 rename task
@@ -81,7 +51,6 @@ md Ragnarok
 rename Its_Always_Sunny_in_Philadelphia
 search boy
 search 15
-md old
 rename .old
 rename tadd
 rename tdone
@@ -93,8 +62,39 @@ rename tpri
 search godot
 rename Code
 search code
-shell 
 search gimp
 search nvim
 search snip
 search gds
+open_with  f
+shell 
+search 
+open_with 
+md export
+md windows
+md linux
+md 
+md Adentu
+rename Adventurer_May
+md Adventurer
+rename inca_tileset
+rename Cyberpunk
+open_with 2 f
+open_with vlc f
+md Godot
+md Dialogue_Box
+md Zelda-like
+md Z
+md old
+md new
+rename new
+search /key
+search key
+touch t.el
+md tutorial
+rename progress
+rename Zelda_Like
+md .readme.md
+touch readme.md
+touch test
+rename .readme.md

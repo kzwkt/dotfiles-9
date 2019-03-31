@@ -1,0 +1,6 @@
+# key: i3bb
+# name: i3 src blk end and begin
+# --
+#+END_SRC
+* $0
+#+BEGIN_SRC shell :tangle ~/.config/i3/config

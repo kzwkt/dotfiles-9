@@ -1,0 +1,4 @@
+# key: i3b
+# name: i3 source block begin
+# --
+#+BEGIN_SRC shell :tangle ~/.config/i3/config

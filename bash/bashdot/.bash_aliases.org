@@ -1,6 +1,7 @@
 * apt
 #+BEGIN_SRC shell :tangle /home/dotfiles/bash/bashdot/.bash_aliases
 alias aas='clear && aptitude search'
+alias ass='clear && aptitude search'
 alias ins='clear && apt list --installed -a'
 alias all='clear && apt list -a'
 alias ap='sudo aptitude'

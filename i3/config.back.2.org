@@ -2,6 +2,8 @@
 #+OPTIONS: ^:nil
 #+STARTUP: overview
 
+* intro
+This [[http://orgmode.org][org file]] generates my actual [[https://github.com/mrbig033/dotfiles/blob/master/i3/config][i3/config]] by running the command ~org-babel-tangle~ on Emacs.
 * basic
 ** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
@@ -9,7 +11,7 @@ set $mod Mod4
 # 4.28. Delaying urgency hint reset on workspace change
 # http://bit.ly/2CGItXR
 # focus_on_window_activation smart|urgent|focus|none
-focus_on_window_activation smart
+focus_on_window_activation focus
 force_display_urgency_hint 150 ms
 show_marks yes
 focus_follows_mouse yes
@@ -84,7 +86,7 @@ bindsym Mod1+Shift+p focus parent;exec notify-send 'parent focus'
 ** general
 #+BEGIN_SRC shell :tangle ~/.config/i3/config
 bindsym --release $mod+Shift+q exec xkill
-bindsym $mod+a exec rofi -show run
+bindsym $mod+a exec dmenu_run -i -l 5 -fn 'Input Mono-13'
 bindsym Mod4+F2 exec "xdotool key Caps_Lock"; mode default
 bindsym $mod+Return exec xfce4-terminal --hide-menubar --hide-scrollbar --hide-toolbar; border none
 bindsym $mod+q kill
@@ -151,13 +153,14 @@ mode "$launch" {
     bindsym $mod+u exec ~/scripts/i3_scripts/hide/term_hide_others; [title="term-up"] scratchpad show; move to position 350 0
 
     bindsym t exec thunar; mode default
+
     bindsym Shift+r exec "/home/dotfiles/scripts/cline_scripts/repeat"
 
 
     # bindsym Menu [title="term-ranger"] move scratchpad; [title="term-up"] move scratchpad; exec rofi -show run; mode default
     bindsym w exec rofi -show window; mode default
-    bindsym Menu exec exec dmenu_run -i -l 5 -fn 'Input Mono-13' ; mode default
-
+    # bindsym Menu exec exec dmenu_run -i -l 5 -fn 'Input Mono-13' ; mode default
+    bindsym Menu exec rofi -show run; mode default
     bindsym z exec google-chrome-stable; mode default
     bindsym Shift+C exec "xdotool key Caps_Lock"; mode default
 
@@ -559,8 +562,4 @@ for_window [class="File-roller"] floating enable resize set 720 400
 for_window [class="Inkscape" title="Preferences"]  floating enable resize set 720 400  move position 650 0
 for_window [class="Inkscape" title="Document Properties"]  floating disable resize set 720 400  move position 650
 for_window [class="Inkscape" title="Preferences"]  floating disable resize set 720 400  move position 650
-#+END_SRC
-* misc
-#+BEGIN_SRC shell :tangle ~/.config/i3/config
-# bindsym $mod+period exec /usr/bin/snippy.sh
 #+END_SRC

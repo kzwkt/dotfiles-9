@@ -5,37 +5,28 @@
 (defhydra hydra-spell (:color blue :hint nil)
   "
   ^
-       ^Spell^            ^Modes^
-       ----------------------------------
-       _p_: correct prev      _m_: flyspell
-       _n_: correct next      _l_: langtool
-       _g_: goto next         _b_: pt dict
-       _w_: correct word      _a_: en dict
-       _b_: check buffer      _o_: company pt
-       _c_: before point      _k_: company en
-       _t_: tangle quickrun   _r_: prose on
-	 ^^		    _y_: return python
+       ^Spell^
+       -----------------------------
+       _a_: american    _n_: f. next
+       _b_: brasileiro  _y_: return py
+       _p_: prose on    _d_: show dict
+       _f_: flyspell
+       _u_: f. buff
+
+	 ^^
 "
   ("<escape>" nil)
   ("RET" my/counsel-markdown-commands)
 
-  ("p" flyspell-correct-previous :color pink)
-  ("n" flyspell-correct-next :color pink)
-  ("g" flyspell-goto-next-error :color pink)
-  ("w" flyspell-correct-word)
-  ("b" flyspell-buffer)
-  ("c" flyspell-correct-word-before-point)
-  ("m" flyspell-mode)
-  ("l" hydra-langtool/body)
-  ("b" brasileiro)
   ("a" american)
-  ("o" my/company-ispell-pt)
-  ("k" my/company-ispell-en)
-  ("r" prose-enable)
-  ("R" prose-disable)
-  ("f" ranger-find-pcc-dir)
-  ("t" my/tangle-quickrun)
-  ("y" my/make-return-python))
+  ("b" brasileiro)
+  ("p" prose-enable)
+
+  ("f" flyspell-mode)
+  ("y" my/make-return-python)
+  ("u" flyspell-buffer)
+  ("n" flyspell-goto-next-error :color pink)
+  ("d" my/ispell-show-dictionary))
 #+END_SRC
 
 * kill
@@ -596,7 +587,7 @@
        _F_: def mode abbrev  _d_: edit macro
        _e_: eddit abbrevs    _i_: insert macro
        _l_: enable theme     _s_: local set key
-       _L_: disable theme
+       _L_: disable theme    _t_: indent block
   "
   ("<escape>" nil)
 
@@ -607,10 +598,11 @@
   ("l" load-theme)
   ("L" disable-theme)
 
-("n" name-last-kbd-macro)
-("d" edit-named-kbd-macro)
-("i" insert-kbd-macro)
-("s" local-set-key))
+  ("n" name-last-kbd-macro)
+  ("d" edit-named-kbd-macro)
+  ("i" insert-kbd-macro)
+  ("s" local-set-key)
+  ("t" my/indent-src-block-function))
 #+END_SRC
 
 * text hydras

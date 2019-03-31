@@ -1638,7 +1638,7 @@ buffer expose commands.
     (electric-operator-mode 1)
     (wc-mode 1)
     (pabbrev-mode 1)
-    (my/ispell-dict-options)
+    ;; (my/ispell-dict-options)
     (company-mode -1)
     (message "prose on"))
 
@@ -2911,19 +2911,21 @@ Company Ispell Portuguese fix: *set-buffer-file-coding-system* and chose *utf-8*
   (flyspell-issue-welcome-flag nil)
   (flyspell-default-dictionary "american")
   :config
+
+  (defun my/ispell-show-dictionary ()
+    (interactive)
+    (describe-variable 'ispell-current-dictionary))
+
+  (general-define-key
+   :keymaps 'flyspell-mode-map
+   "C-;" 'hydra-text-main/body
+   "C-c d" 'my/ispell-show-dictionary)
+
   (general-nvmap
-    :keymaps 'override
+    :keymaps 'flyspell-mode-map
     "z-" 'my/flyspell-insert-word))
-
- (general-define-key
-  :keymaps 'flyspell-mode-map
-  "C-;" 'hydra-text-main/body)
-
-(use-package flyspell-correct-ivy
-  :after flyspell
-  :custom
-  (flyspell-correct-interface 'flyspell-correct-ivy))
 #+END_SRC
+
 ** ispell
 #+BEGIN_SRC emacs-lisp :tangle ~/.emacs.d/packs.el
 (use-package ispell

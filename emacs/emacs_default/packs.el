@@ -1407,7 +1407,7 @@
     (electric-operator-mode 1)
     (wc-mode 1)
     (pabbrev-mode 1)
-    (my/ispell-dict-options)
+    ;; (my/ispell-dict-options)
     (company-mode -1)
     (message "prose on"))
 
@@ -2393,7 +2393,15 @@
   (defun my/yas-load-other-window ()
     (interactive)
     (yas-load-snippet-buffer '## t)
-    (other-window -1))
+    (other-window -1)
+    (evil-insert-state))
+
+  (defun my/yas-load-other-kill-contents-other-window ()
+    (interactive)
+    (yas-load-snippet-buffer '## t)
+    (other-window -1)
+    (kill-buffer-contents)
+    (evil-insert-state))
 
   (setq yas-also-auto-indent-first-line t)
   (setq yas-indent-line 'auto)
@@ -2423,6 +2431,7 @@
     :keymaps 'snippet-mode-map
     "<C-return>" 'yas-load-snippet-buffer-and-close
     "<M-return>" 'my/yas-load-other-window
+    "<C-M-return>" 'my/yas-load-other-kill-contents-other-window
     "M-;" 'hydra-yasnippet/body)
 
   (general-imap
@@ -2492,18 +2501,19 @@
   (flyspell-issue-welcome-flag nil)
   (flyspell-default-dictionary "american")
   :config
+
+  (defun my/ispell-show-dictionary ()
+    (interactive)
+    (describe-variable 'ispell-current-dictionary))
+
+  (general-define-key
+   :keymaps 'flyspell-mode-map
+   "C-;" 'hydra-text-main/body
+   "C-c d" 'my/ispell-show-dictionary)
+
   (general-nvmap
-    :keymaps 'override
+    :keymaps 'flyspell-mode-map
     "z-" 'my/flyspell-insert-word))
-
- (general-define-key
-  :keymaps 'flyspell-mode-map
-  "C-;" 'hydra-text-main/body)
-
-(use-package flyspell-correct-ivy
-  :after flyspell
-  :custom
-  (flyspell-correct-interface 'flyspell-correct-ivy))
 
 (use-package ispell
 :defer t
