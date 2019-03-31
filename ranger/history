@@ -1,46 +1,3 @@
-open_with o f
-touch o_psicologo.org
-md Philip_K_Dick
-open_with 0i f
-open_with calibre f
-rename ufba_present.org
-touch 
-rename ufba_notes.org
-rename ufba_present_notes.org
-rename ufba_present_notes.org_
-rename .ufba_present_notes.org.b
-md Repo
-rename Repo
-rename .apresentacao.b
-touch j
-rename Present_Repo
-rename 7_Anos_de_RNP_5_pages.pdf
-rename Identificao_Adaptativa_14_pages.pdf
-rename Catalogo_de_URLs_Maliciosas+16_pages.pdf
-rename Catalogo_de_URLs_Maliciosas_cropped_16_pages.pdf
-touch .gitignore
-open_with nvim
-open_with r0 f
-open_with 0 f
-open_with 1 f
-search obj
-touch README_PT.md
-search jjj
-search spel
-md home
-rename 
-rename Hackaton_01
-md
-rename Literature
-rename Misc
-rename .workspace
-search time
-rename .timewarrior.cfg
-md Others
-md Agenda
-rename Prog
-shell !
-shell zp
 
 search nvi
 search task
@@ -67,7 +24,6 @@ search snip
 search gds
 open_with  f
 search 
-open_with 
 md export
 md windows
 md linux
@@ -84,7 +40,6 @@ md Dialogue_Box
 md Zelda-like
 md Z
 md old
-md new
 rename new
 search /key
 search key
@@ -98,3 +53,48 @@ touch test
 rename .readme.md
 shell 
 search back
+search init
+rename init.el
+open_with gnvim f
+open_with nvim f
+search func
+search p
+search em
+md my_lisp
+rename spacemacs
+search doom
+search packs.el
+search packs.org
+search emac
+rename .emacs.d
+rename spelling
+rename Scratch_Buffer
+md modules
+search emacs
+md .emacs.d
+touch init.el
+touch init.org
+open_with 
+open_with leafpad f
+search packs
+rename packs.org
+md packages
+md settin
+rename general.org
+rename evil.org
+rename org.org
+rename prog.el
+touch p
+rename prog
+rename prog.org
+rename packs_b.org
+rename utilss.org
+rename builtins.org
+rename utils.org
+md new
+md main
+rename large
+md disabled
+search evil_
+searchor
+rename org

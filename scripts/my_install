@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 clear
-apt -y update
-apt -y dist-upgrade
-apt -y autoremove
-apt -y autoclean
-apt -y purge transmission-gtk
+apt -y update &&
+apt -y dist-upgrade &&
+apt -y autoremove &&
+apt -y autoclean &&
+apt -y purge transmission-gtk &&
 apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems                        \
     lxappearance leafpad calibre zathura zathura-pdf-poppler                                \
     qbittorrent uget xclip python3-setuptools python-setuptools                             \
@@ -14,7 +14,7 @@ apt -y install i3 rofi vim neovim python-all xorg-dev xcape rubygems            
     python-jedi python3-jedi python-rope python-autopep8 yapf yapf3                         \
     flake8 python-flake8 python3-flake8 python3-wheel pandoc asciidoctor                    \
     markdown coderay ruby-coderay python-pygments ruby-pygments python3-pygments ruby-rouge \
-    xsel xdotool zenity lxde-settings-daemon w3m-img okular okular-extra-backends git\
+    xsel xdotool zenity lxde-settings-daemon w3m-img okular okular-extra-backends git 
 
     # Option: too big
     # texlive-full 

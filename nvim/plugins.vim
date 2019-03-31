@@ -1,5 +1,6 @@
 " " {{{ Plug
 call plug#begin('~/.config/nvim/plugins/plugged')
+Plug 'jceb/vim-orgmode'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
